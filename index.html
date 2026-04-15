@@ -124,39 +124,91 @@
       -webkit-backdrop-filter: blur(0px);
     }
 
-    /* ── Centered caption — glass card ── */
+    /* ── Breathing glow animations for captions ── */
+    @keyframes glow-gold {
+      0%, 100% {
+        box-shadow:
+          0 0 22px rgba(201,169,110,0.18),
+          0 8px 48px rgba(201,169,110,0.10),
+          inset 0 1px 0 rgba(255,255,255,0.09);
+      }
+      50% {
+        box-shadow:
+          0 0 38px rgba(201,169,110,0.34),
+          0 8px 64px rgba(201,169,110,0.20),
+          inset 0 1px 0 rgba(255,255,255,0.13);
+      }
+    }
+    @keyframes glow-blue {
+      0%, 100% {
+        box-shadow:
+          0 0 22px rgba(59,130,246,0.18),
+          0 8px 48px rgba(59,130,246,0.10),
+          inset 0 1px 0 rgba(255,255,255,0.09);
+      }
+      50% {
+        box-shadow:
+          0 0 38px rgba(59,130,246,0.34),
+          0 8px 64px rgba(59,130,246,0.20),
+          inset 0 1px 0 rgba(255,255,255,0.13);
+      }
+    }
+
+    /* ── Centered caption — premium glass card ── */
     .half-caption {
       position: absolute;
-      top: 50%;
+      /* Shifted down ~26px from true centre to sit below the header visually */
+      top: calc(50% + 26px);
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
       text-align: center;
-      padding: 28px 44px;
-      background: rgba(0,0,0,0.28);
-      border-radius: 14px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      padding: 36px 52px 32px;
+      background: rgba(6,7,16,0.55);
+      border-radius: 18px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       pointer-events: none;
       white-space: nowrap;
+      /* Specular top-edge highlight (glass refraction effect) */
+      border-top: 1px solid rgba(255,255,255,0.18);
+      border-left: 1px solid rgba(255,255,255,0.07);
+      border-right: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
       transition:
         transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         opacity   0.38s ease;
     }
-    .half--residential .half-caption { border: 1px solid rgba(201,169,110,0.3); }
-    .half--business    .half-caption { border: 1px solid rgba(59,130,246,0.3);  }
+    /* Brand-coloured glow + border accent */
+    .half--residential .half-caption {
+      border-color: rgba(201,169,110,0.32) rgba(201,169,110,0.14) rgba(201,169,110,0.08) rgba(201,169,110,0.14);
+      animation: glow-gold 3.6s ease-in-out infinite;
+    }
+    .half--business .half-caption {
+      border-color: rgba(59,130,246,0.32) rgba(59,130,246,0.14) rgba(59,130,246,0.08) rgba(59,130,246,0.14);
+      animation: glow-blue 3.6s ease-in-out infinite;
+    }
 
     .half:hover .half-caption {
-      /* subtle rise on hover */
       transform: translate(-50%, -56%);
     }
+
+    /* SVG icon above the label */
+    .half-icon {
+      display: block;
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 18px;
+    }
+    .half--residential .half-icon { color: #C9A96E; }
+    .half--business    .half-icon { color: #3B82F6; }
 
     .half-name {
       font-size: 1.5rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
     .half--residential .half-name { color: #C9A96E; }
     .half--business    .half-name { color: #3B82F6; }
@@ -164,26 +216,26 @@
     .half-sub {
       font-size: 0.8rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.5);
       display: block;
     }
 
-    /* Hint arrow — appears on hover ── */
+    /* Hint arrow — fades in on hover ── */
     .half-arrow {
       display: block;
-      margin-top: 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      margin-top: 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       opacity: 0;
-      transform: translateY(6px);
+      transform: translateY(5px);
       transition:
         opacity   0.3s ease,
         transform 0.3s ease;
     }
-    .half--residential .half-arrow { color: rgba(201,169,110,0.8); }
-    .half--business    .half-arrow { color: rgba(59,130,246,0.8);  }
+    .half--residential .half-arrow { color: rgba(201,169,110,0.85); }
+    .half--business    .half-arrow { color: rgba(59,130,246,0.85);  }
     .half:hover .half-arrow {
       opacity: 1;
       transform: translateY(0);
@@ -249,6 +301,13 @@
               title="Residential site preview"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
+        <!-- House icon -->
+        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="18" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
+          <rect x="37" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
+        </svg>
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
         <span class="half-arrow">Enter &rsaquo;</span>
@@ -269,6 +328,18 @@
               title="Business site preview"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
+        <!-- Office building icon -->
+        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="8" y1="26" x2="56" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <rect x="14" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="28" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="42" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="14" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
+          <rect x="42" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Commercial IT Services</span>
         <span class="half-arrow">Enter &rsaquo;</span>
