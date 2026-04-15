@@ -29,7 +29,7 @@
       flex-direction: column;
       align-items: center;
       padding: 24px 16px 0;
-      pointer-events: none;
+      pointer-events: none; /* pass-through: remove if header gains interactive children */
     }
     .header-logo {
       display: flex;
@@ -74,7 +74,6 @@
       gap: 20px;
       cursor: pointer;
       overflow: hidden;
-      transition: filter 0.3s ease;
     }
     .half--residential { background: #15274D; }
     .half--business    { background: #1C1C2E; }
@@ -113,6 +112,12 @@
       text-align: center;
     }
 
+    /* ── Keyboard focus ── */
+    .half:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: -3px;
+    }
+
     /* ── Responsive: mobile stacks vertically ── */
     @media (max-width: 767px) {
       html, body { overflow: auto; }
@@ -132,7 +137,7 @@
     <p class="header-tagline">Local Service. Logical Solutions.</p>
   </header>
 
-  <div class="chooser" id="chooser">
+  <main class="chooser" id="chooser">
 
     <!-- Residential half -->
     <a class="half half--residential" href="residential.html" aria-label="Go to Residential services">
@@ -167,7 +172,7 @@
       <span class="half-sub">Commercial IT Services</span>
     </a>
 
-  </div>
+  </main>
 
 </body>
 </html>
