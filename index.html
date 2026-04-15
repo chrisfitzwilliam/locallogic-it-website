@@ -14,140 +14,130 @@
     html, body { height: 100%; overflow: hidden; }
     body {
       font-family: "Manrope", sans-serif;
-      background: radial-gradient(ellipse at 50% 40%, #1a1a2e 0%, #080810 100%);
+      background: radial-gradient(ellipse at 50% 40%, #1a1a2e 0%, #07070f 100%);
     }
-    a { text-decoration: none; color: inherit; }
 
     /* ── Header ── */
     .header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 10;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 24px 16px 0;
-      pointer-events: none; /* pass-through: remove if header gains interactive children */
+      padding: 20px 16px 0;
+      pointer-events: none;
     }
-    .header-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .header-logo img {
-      height: 44px;
-      width: auto;
-    }
-    .header-name {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-    }
+    .header-logo { display: flex; align-items: center; gap: 12px; }
+    .header-logo img { height: 40px; width: auto; }
+    .header-name { font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
     .header-tagline {
       margin-top: 4px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.5);
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    /* ── Chooser ── */
+    /* ── Chooser layout ── */
     @keyframes chooser-fade-in {
-      from { opacity: 0; transform: translateY(14px); }
+      from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: none; }
     }
     .chooser {
-      position: relative;
+      display: flex;
+      gap: 14px;
+      padding: 88px 40px 36px;
       width: 100%;
       height: 100vh;
-      display: flex;
-      gap: 20px;
-      /* Padding creates real dark space around and between the panels */
-      padding: 110px 56px 52px;
-      overflow: hidden; /* clips the click-zoom */
-      animation: chooser-fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      overflow: hidden;
+      animation: chooser-fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     }
 
-    /* ── Halves ── */
+    /* ── Half panels ── */
     .half {
       position: relative;
       flex: 1;
+      overflow: hidden;
+      border-radius: 14px;
+      cursor: pointer;
+      outline: none;
+      /* Subtle brand-colored border */
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07);
+    }
+    .half--residential { box-shadow: inset 0 0 0 1px rgba(201,169,110,0.25); }
+    .half--business    { box-shadow: inset 0 0 0 1px rgba(59,130,246,0.25);  }
+    .half:focus-visible {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.55);
+    }
+
+    /* ── Scaled iframe preview ── */
+    .half-preview {
+      position: absolute;
+      top: 0; left: 0;
+      border: none;
+      display: block;
+      pointer-events: none; /* non-interactive in preview mode */
+      transform-origin: 0 0;
+    }
+
+    /* ── Dim overlay — fades on hover to reveal the preview ── */
+    .half-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .half--residential .half-overlay { background: rgba(6,8,16,0.58); }
+    .half--business    .half-overlay { background: rgba(6,8,16,0.58); }
+
+    .half:hover .half-overlay { opacity: 0.06; }
+
+    /* ── Caption at bottom ── */
+    .half-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      padding: 64px 24px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 20px;
-      z-index: 1;
-      /* Transparent baseline — body shows through, colored border marks the card */
-      background-color: rgba(0,0,0,0);
-      will-change: transform, background-color;
-      transition:
-        background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        transform        0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        border-color     0.4s ease,
-        border-radius    0.2s ease;
+      gap: 4px;
+      pointer-events: none;
+      transition: opacity 0.38s ease;
     }
-    /* Colored border outlines the card in its panel color even when transparent */
-    .half--residential { border: 1px solid rgba(201,169,110,0.35); }
-    .half--business    { border: 1px solid rgba(59,130,246,0.30);  }
-
-    /* SVG divider doesn't suit the card layout — hidden */
-    .divider { display: none; }
-
-    /* ── Half content ── */
-    .half-icon {
-      width: 72px;
-      height: 72px;
-      opacity: 0.85;
-    }
-    .half-label {
-      font-size: 1.75rem;
+    .half-name {
+      font-size: 1.45rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      text-align: center;
     }
-    .half--residential .half-label { color: #C9A96E; }
-    .half--business    .half-label { color: #3B82F6; }
+    .half--residential .half-name { color: #C9A96E; }
+    .half--business    .half-name { color: #3B82F6; }
     .half-sub {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      opacity: 0.6;
-      color: #fff;
-      text-align: center;
+      color: rgba(255,255,255,0.6);
     }
 
-    /* ── Keyboard focus ── */
-    .half:focus-visible {
-      outline: 3px solid #fff;
-      outline-offset: -3px;
+    /* ── Selection state: FLIP expands panel to fullscreen ── */
+    .half.is-selecting {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 100;
+      flex: none;
+      overflow: hidden;
     }
+    .half.is-selecting .half-overlay  { opacity: 0 !important; }
+    .half.is-selecting .half-caption  { opacity: 0 !important; }
 
-    /* ── Hover: active half fills with its color, other stays transparent ── */
-    .half--residential:hover { background-color: rgba(21,39,77,1);  border-color: rgba(201,169,110,0.7); transform: scale(1.03); z-index: 3; }
-    .half--business:hover    { background-color: rgba(28,28,46,1);  border-color: rgba(59,130,246,0.6);  transform: scale(1.03); z-index: 3; }
-    .chooser:has(.half:hover) .half:not(:hover) {
-      transform: scale(0.97);
-      border-color: rgba(255,255,255,0.06);
-    }
-
-    /* ── Click / zoom-select: panel expands to fill screen then navigates ── */
-    .half--residential.selected { background-color: #15274D; }
-    .half--business.selected    { background-color: #1C1C2E; }
-    .half.selected {
-      transform: scale(9);
-      border-radius: 0;
-      z-index: 20;
-      transition:
-        background-color 0.1s  ease,
-        transform        0.42s cubic-bezier(0.4, 0, 0.15, 1),
-        border-radius    0.15s ease;
+    /* Hide the other panel when one is being selected */
+    .chooser.has-selection .half:not(.is-selecting) {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
     }
 
     /* ── Responsive: mobile stacks vertically ── */
@@ -157,10 +147,10 @@
         flex-direction: column;
         height: auto;
         min-height: 100vh;
-        padding: 100px 24px 32px;
-        gap: 16px;
+        padding: 80px 20px 20px;
+        gap: 12px;
       }
-      .half { min-height: 44vh; }
+      .half { min-height: 42vh; }
     }
   </style>
 </head>
@@ -176,51 +166,135 @@
 
   <main class="chooser" id="chooser">
 
-    <!-- Residential half -->
-    <a class="half half--residential" href="residential.html" aria-label="Go to Residential services">
-      <!-- House icon -->
-      <svg class="half-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M10 34L36 10L62 34" stroke="#C9A96E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M18 28V58H30V44H42V58H54V28" stroke="#C9A96E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <span class="half-label">Home &amp; Family</span>
-      <span class="half-sub">Residential IT Support</span>
-    </a>
+    <!-- Residential preview panel -->
+    <div class="half half--residential"
+         role="link" tabindex="0"
+         aria-label="Residential IT Support — Home and Family"
+         data-href="residential.html">
+      <iframe class="half-preview"
+              src="residential.html"
+              loading="lazy"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+              title="Residential site preview"></iframe>
+      <div class="half-overlay"></div>
+      <div class="half-caption">
+        <span class="half-name">Home &amp; Family</span>
+        <span class="half-sub">Residential IT Support</span>
+      </div>
+    </div>
 
-    <!-- Curved SVG divider -->
-    <svg class="divider" viewBox="0 0 120 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M60 0 C20 150, 100 300, 60 450 C20 600, 100 750, 60 900 L120 900 L120 0 Z" fill="#1C1C2E"/>
-      <path d="M60 0 C20 150, 100 300, 60 450 C20 600, 100 750, 60 900" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
-    </svg>
-
-    <!-- Business half -->
-    <a class="half half--business" href="business.html" aria-label="Go to Business services">
-      <!-- Building icon -->
-      <svg class="half-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="12" y="14" width="48" height="44" rx="2" stroke="#3B82F6" stroke-width="4"/>
-        <line x1="12" y1="28" x2="60" y2="28" stroke="#3B82F6" stroke-width="4"/>
-        <line x1="36" y1="14" x2="36" y2="58" stroke="#3B82F6" stroke-width="4"/>
-        <rect x="22" y="36" width="10" height="10" rx="1" fill="#3B82F6" opacity="0.5"/>
-        <rect x="40" y="36" width="10" height="10" rx="1" fill="#3B82F6" opacity="0.5"/>
-        <rect x="22" y="20" width="10" height="4" rx="1" fill="#3B82F6" opacity="0.4"/>
-        <rect x="40" y="20" width="10" height="4" rx="1" fill="#3B82F6" opacity="0.4"/>
-      </svg>
-      <span class="half-label">Business &amp; Office</span>
-      <span class="half-sub">Commercial IT Services</span>
-    </a>
+    <!-- Business preview panel -->
+    <div class="half half--business"
+         role="link" tabindex="0"
+         aria-label="Business IT Services — Business and Office"
+         data-href="business.html">
+      <iframe class="half-preview"
+              src="business.html"
+              loading="lazy"
+              scrolling="no"
+              tabindex="-1"
+              aria-hidden="true"
+              title="Business site preview"></iframe>
+      <div class="half-overlay"></div>
+      <div class="half-caption">
+        <span class="half-name">Business &amp; Office</span>
+        <span class="half-sub">Commercial IT Services</span>
+      </div>
+    </div>
 
   </main>
 
   <script>
-    // Intercept clicks: zoom the selected half to fill the screen, then navigate
-    document.querySelectorAll('.half').forEach(function(half) {
-      half.addEventListener('click', function(e) {
-        e.preventDefault();
-        var dest = this.getAttribute('href');
-        this.classList.add('selected');
-        setTimeout(function() { window.location.href = dest; }, 420);
+    var REF_W = 1440; // reference render width for the iframe pages
+
+    // Scale each iframe to fill its panel at full desktop width
+    function scalePreview(half) {
+      var iframe = half.querySelector('.half-preview');
+      if (!iframe) return;
+      var W = half.offsetWidth;
+      var H = half.offsetHeight;
+      var scale = W / REF_W;
+      iframe.style.width  = REF_W + 'px';
+      iframe.style.height = Math.ceil(H / scale) + 'px';
+      iframe.style.transform = 'scale(' + scale + ')';
+    }
+
+    function init() {
+      var chooser = document.getElementById('chooser');
+      var halves  = document.querySelectorAll('.half');
+
+      // Initial scale pass
+      halves.forEach(scalePreview);
+
+      halves.forEach(function(half) {
+
+        function selectHalf() {
+          if (chooser.classList.contains('has-selection')) return; // prevent double-fire
+          var dest = half.dataset.href;
+
+          // 1. Snapshot the card's current viewport position
+          var cardRect = half.getBoundingClientRect();
+
+          // 2. Mark chooser (hides the other panel)
+          chooser.classList.add('has-selection');
+
+          // 3. Expand the panel to cover the full viewport (position: fixed; inset: 0)
+          half.classList.add('is-selecting');
+
+          // 4. Measure its new (fullscreen) position
+          var fullRect = half.getBoundingClientRect();
+
+          // 5. Compute inverse FLIP transform — makes it visually appear at card position
+          var sx = cardRect.width  / fullRect.width;
+          var sy = cardRect.height / fullRect.height;
+          var tx = cardRect.left   - fullRect.left;
+          var ty = cardRect.top    - fullRect.top;
+
+          // Apply inverse transform instantly (no transition yet)
+          half.style.borderRadius = '14px'; // keep rounded at start of FLIP
+          half.style.transition   = 'none';
+          half.style.transform    = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + sx + ', ' + sy + ')';
+
+          // Force reflow so the browser registers the starting state
+          void half.offsetHeight;
+
+          // Re-scale iframe for full viewport size
+          scalePreview(half);
+
+          // 6. Play FLIP: animate from card position → fullscreen
+          half.style.transition   = 'transform 0.46s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.46s ease';
+          half.style.transform    = 'translate(0,0) scale(1,1)';
+          half.style.borderRadius = '0';
+
+          // Navigate once the expansion is visually complete
+          setTimeout(function() {
+            window.location.href = dest;
+          }, 420);
+        }
+
+        half.addEventListener('click', selectHalf);
+        half.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectHalf();
+          }
+        });
       });
-    });
+
+      // Re-scale on resize
+      window.addEventListener('resize', function() {
+        halves.forEach(scalePreview);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
+
 </body>
 </html>
