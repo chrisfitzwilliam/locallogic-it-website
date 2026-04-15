@@ -7,122 +7,180 @@
   <title>Local Logic IT — Choose Your Service</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; }
     body {
       font-family: "Manrope", sans-serif;
-      background: radial-gradient(ellipse at 50% 40%, #1a1a2e 0%, #07070f 100%);
+      background: #07070f;
     }
 
-    /* ── Header ── */
+    /* ── Flash animation (injected on click) ── */
+    @keyframes flash-out {
+      0%   { opacity: 0.8; }
+      100% { opacity: 0;   }
+    }
+
+    /* ── Header — frosted glass pill ── */
     .header {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 300;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      padding: 20px 16px 0;
+      gap: 12px;
+      padding: 9px 22px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 50px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      white-space: nowrap;
       pointer-events: none;
     }
-    .header-logo { display: flex; align-items: center; gap: 12px; }
-    .header-logo img { height: 40px; width: auto; }
-    .header-name { font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .header-logo img { height: 32px; width: auto; display: block; }
+    .header-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .header-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
     .header-tagline {
-      margin-top: 4px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 500;
       color: rgba(255,255,255,0.5);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
     }
 
-    /* ── Chooser layout ── */
+    /* ── Chooser — full-bleed, no gap ── */
     @keyframes chooser-fade-in {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: none; }
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
     .chooser {
       display: flex;
-      gap: 14px;
-      padding: 88px 40px 36px;
       width: 100%;
       height: 100vh;
       overflow: hidden;
-      animation: chooser-fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      animation: chooser-fade-in 0.6s ease both;
     }
 
-    /* ── Half panels ── */
+    /* ── Halves — full-bleed ── */
     .half {
       position: relative;
       flex: 1;
       overflow: hidden;
-      border-radius: 14px;
       cursor: pointer;
       outline: none;
-      /* Subtle brand-colored border */
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07);
     }
-    .half--residential { box-shadow: inset 0 0 0 1px rgba(201,169,110,0.25); }
-    .half--business    { box-shadow: inset 0 0 0 1px rgba(59,130,246,0.25);  }
+    /* Thin line between the two halves */
+    .half--residential {
+      box-shadow: inset -1px 0 0 rgba(255,255,255,0.08);
+    }
     .half:focus-visible {
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.55);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.5);
     }
 
-    /* ── Scaled iframe preview ── */
+    /* ── Iframe preview ── */
     .half-preview {
       position: absolute;
       top: 0; left: 0;
       border: none;
       display: block;
-      pointer-events: none; /* non-interactive in preview mode */
+      pointer-events: none;
       transform-origin: 0 0;
     }
 
-    /* ── Dim overlay — fades on hover to reveal the preview ── */
+    /* ── Dim overlay ── */
     .half-overlay {
       position: absolute;
       inset: 0;
       z-index: 2;
       pointer-events: none;
-      transition: opacity 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    .half--residential .half-overlay { background: rgba(6,8,16,0.58); }
-    .half--business    .half-overlay { background: rgba(6,8,16,0.58); }
+    .half--residential .half-overlay { background: rgba(4,6,14,0.72); }
+    .half--business    .half-overlay { background: rgba(4,6,14,0.72); }
 
-    .half:hover .half-overlay { opacity: 0.06; }
+    .half:hover .half-overlay { opacity: 0.1; }
 
-    /* ── Caption at bottom ── */
+    /* ── Centered caption — glass card ── */
     .half-caption {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 3;
-      padding: 64px 24px 24px;
-      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
+      text-align: center;
+      padding: 28px 44px;
+      background: rgba(0,0,0,0.28);
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       pointer-events: none;
-      transition: opacity 0.38s ease;
+      white-space: nowrap;
+      transition:
+        transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity   0.38s ease;
     }
+    .half--residential .half-caption { border: 1px solid rgba(201,169,110,0.3); }
+    .half--business    .half-caption { border: 1px solid rgba(59,130,246,0.3);  }
+
+    .half:hover .half-caption {
+      /* subtle rise on hover */
+      transform: translate(-50%, -56%);
+    }
+
     .half-name {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       font-weight: 800;
       letter-spacing: -0.02em;
+      display: block;
+      margin-bottom: 4px;
     }
     .half--residential .half-name { color: #C9A96E; }
     .half--business    .half-name { color: #3B82F6; }
+
     .half-sub {
       font-size: 0.8rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.55);
+      display: block;
     }
 
-    /* ── Selection state: FLIP expands panel to fullscreen ── */
+    /* Hint arrow — appears on hover ── */
+    .half-arrow {
+      display: block;
+      margin-top: 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(6px);
+      transition:
+        opacity   0.3s ease,
+        transform 0.3s ease;
+    }
+    .half--residential .half-arrow { color: rgba(201,169,110,0.8); }
+    .half--business    .half-arrow { color: rgba(59,130,246,0.8);  }
+    .half:hover .half-arrow {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Selection state — FLIP base ── */
     .half.is-selecting {
       position: fixed !important;
       inset: 0 !important;
@@ -130,38 +188,40 @@
       flex: none;
       overflow: hidden;
     }
-    .half.is-selecting .half-overlay  { opacity: 0 !important; }
-    .half.is-selecting .half-caption  { opacity: 0 !important; }
+    .half.is-selecting .half-overlay  { opacity: 0 !important; transition: opacity 0.12s ease !important; }
+    .half.is-selecting .half-caption  { opacity: 0 !important; transition: opacity 0.08s ease !important; }
 
-    /* Hide the other panel when one is being selected */
+    /* Fade out the non-selected half */
     .chooser.has-selection .half:not(.is-selecting) {
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.18s ease;
     }
 
-    /* ── Responsive: mobile stacks vertically ── */
+    /* ── Responsive ── */
     @media (max-width: 767px) {
       html, body { overflow: auto; }
-      .chooser {
-        flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        padding: 80px 20px 20px;
-        gap: 12px;
-      }
-      .half { min-height: 42vh; }
+      .chooser { flex-direction: column; height: auto; min-height: 100vh; }
+      .half { min-height: 44vh; }
+      .half--residential { box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08); }
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .chooser, .half-overlay, .half-caption, .half-arrow { animation: none; transition: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Frosted glass pill header -->
   <header class="header">
     <div class="header-logo">
       <img src="assets/logo.png" alt="Local Logic IT logo" />
-      <span class="header-name">Local Logic IT</span>
     </div>
-    <p class="header-tagline">Local Service. Logical Solutions.</p>
+    <span class="header-name">Local Logic IT</span>
+    <div class="header-divider" aria-hidden="true"></div>
+    <span class="header-tagline">Local Service. Logical Solutions.</span>
   </header>
 
   <main class="chooser" id="chooser">
@@ -182,6 +242,7 @@
       <div class="half-caption">
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
+        <span class="half-arrow">Enter &rsaquo;</span>
       </div>
     </div>
 
@@ -201,89 +262,106 @@
       <div class="half-caption">
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Commercial IT Services</span>
+        <span class="half-arrow">Enter &rsaquo;</span>
       </div>
     </div>
 
   </main>
 
   <script>
-    var REF_W = 1440; // reference render width for the iframe pages
+    var REF_W = 1440;
 
-    // Scale each iframe to fill its panel at full desktop width
     function scalePreview(half) {
       var iframe = half.querySelector('.half-preview');
       if (!iframe) return;
-      var W = half.offsetWidth;
-      var H = half.offsetHeight;
+      var W     = half.offsetWidth;
+      var H     = half.offsetHeight;
       var scale = W / REF_W;
-      iframe.style.width  = REF_W + 'px';
-      iframe.style.height = Math.ceil(H / scale) + 'px';
+      iframe.style.width     = REF_W + 'px';
+      iframe.style.height    = Math.ceil(H / scale) + 'px';
       iframe.style.transform = 'scale(' + scale + ')';
     }
 
-    function init() {
-      var chooser = document.getElementById('chooser');
-      var halves  = document.querySelectorAll('.half');
+    function injectFlash(color) {
+      var el = document.createElement('div');
+      el.setAttribute('aria-hidden', 'true');
+      el.style.cssText = [
+        'position:fixed',
+        'inset:0',
+        'z-index:200',
+        'pointer-events:none',
+        'background:' + color,
+        'animation:flash-out 0.35s ease-out forwards'
+      ].join(';');
+      document.body.appendChild(el);
+      el.addEventListener('animationend', function() { el.parentNode && el.parentNode.removeChild(el); });
+    }
 
-      // Initial scale pass
-      halves.forEach(scalePreview);
+    function selectHalf(half) {
+      var chooser = document.getElementById('chooser');
+      if (chooser.classList.contains('has-selection')) return;
+
+      var dest      = half.dataset.href;
+      var isRes     = half.classList.contains('half--residential');
+      var flashColor = isRes
+        ? 'rgba(201,169,110,0.22)'
+        : 'rgba(59,130,246,0.22)';
+
+      // 1. Inject full-screen flash for immediate "confirmed" feedback
+      injectFlash(flashColor);
+
+      // 2. Hide the other panel
+      chooser.classList.add('has-selection');
+
+      // 3. Snapshot card position before any layout change
+      var cardRect = half.getBoundingClientRect();
+
+      // 4. Expand to fixed fullscreen
+      half.classList.add('is-selecting');
+      var fullRect = half.getBoundingClientRect();
+
+      // 5. FLIP: compute the inverse transform (visually starts at card position)
+      var sx = cardRect.width  / fullRect.width;
+      var sy = cardRect.height / fullRect.height;
+      var tx = cardRect.left   - fullRect.left;
+      var ty = cardRect.top    - fullRect.top;
+
+      // Apply the starting (inverted) state — keep rounded corners at start
+      half.style.borderRadius = '0px';
+      half.style.transition   = 'none';
+      half.style.transform    = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sx + ',' + sy + ')';
+
+      // Force reflow so browser registers starting state
+      void half.offsetHeight;
+
+      // Re-scale the iframe for the now-fullscreen panel
+      scalePreview(half);
+
+      // 6. Animate to fullscreen — expo-out easing for game-like explosive feel
+      half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
+      half.style.transform  = 'translate(0,0) scale(1,1)';
+
+      // Navigate once animation is complete
+      setTimeout(function() {
+        window.location.href = dest;
+      }, 310);
+    }
+
+    function init() {
+      var halves = document.querySelectorAll('.half');
 
       halves.forEach(function(half) {
+        scalePreview(half);
 
-        function selectHalf() {
-          if (chooser.classList.contains('has-selection')) return; // prevent double-fire
-          var dest = half.dataset.href;
-
-          // 1. Snapshot the card's current viewport position
-          var cardRect = half.getBoundingClientRect();
-
-          // 2. Mark chooser (hides the other panel)
-          chooser.classList.add('has-selection');
-
-          // 3. Expand the panel to cover the full viewport (position: fixed; inset: 0)
-          half.classList.add('is-selecting');
-
-          // 4. Measure its new (fullscreen) position
-          var fullRect = half.getBoundingClientRect();
-
-          // 5. Compute inverse FLIP transform — makes it visually appear at card position
-          var sx = cardRect.width  / fullRect.width;
-          var sy = cardRect.height / fullRect.height;
-          var tx = cardRect.left   - fullRect.left;
-          var ty = cardRect.top    - fullRect.top;
-
-          // Apply inverse transform instantly (no transition yet)
-          half.style.borderRadius = '14px'; // keep rounded at start of FLIP
-          half.style.transition   = 'none';
-          half.style.transform    = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + sx + ', ' + sy + ')';
-
-          // Force reflow so the browser registers the starting state
-          void half.offsetHeight;
-
-          // Re-scale iframe for full viewport size
-          scalePreview(half);
-
-          // 6. Play FLIP: animate from card position → fullscreen
-          half.style.transition   = 'transform 0.46s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.46s ease';
-          half.style.transform    = 'translate(0,0) scale(1,1)';
-          half.style.borderRadius = '0';
-
-          // Navigate once the expansion is visually complete
-          setTimeout(function() {
-            window.location.href = dest;
-          }, 420);
-        }
-
-        half.addEventListener('click', selectHalf);
+        half.addEventListener('click', function() { selectHalf(this); });
         half.addEventListener('keydown', function(e) {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            selectHalf();
+            selectHalf(this);
           }
         });
       });
 
-      // Re-scale on resize
       window.addEventListener('resize', function() {
         halves.forEach(scalePreview);
       });
