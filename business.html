@@ -491,22 +491,20 @@
   </script>
 
   <script>
-    /* ── Bubble landing animation ── */
+    /* ── Bubble landing + expand animation ── */
     (function () {
       if (!sessionStorage.getItem('fromLanding')) return;
       sessionStorage.removeItem('fromLanding');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      var navLogo = document.querySelector('.nav-logo');
-      if (!navLogo) return;
+      // Hide existing nav elements — pill takes over
+      var navLeft  = document.querySelector('.nav-left');
+      var navLinks = document.querySelector('.nav-links');
+      if (navLeft)  { navLeft.style.opacity  = '0'; navLeft.style.pointerEvents  = 'none'; }
+      if (navLinks) { navLinks.style.opacity = '0'; navLinks.style.pointerEvents = 'none'; }
 
-      // Hide the real nav-logo — the pill replaces it
-      navLogo.style.opacity = '0';
-      navLogo.style.pointerEvents = 'none';
-
-      // Build pill matching the index.html .header, centered in the 64px nav
-      var pill = document.createElement('a');
-      pill.href = '#top';
+      // ── Outer pill (overflow:hidden clips the expanding section) ──
+      var pill = document.createElement('div');
       pill.style.cssText = [
         'position:fixed',
         'left:32px',
@@ -514,46 +512,81 @@
         'z-index:1000',
         'display:flex',
         'align-items:center',
-        'gap:12px',
-        'padding:9px 22px',
-        'background:rgba(8,8,18,0.90)',
+        'background:rgba(8,8,18,0.92)',
         'border:1px solid rgba(255,255,255,0.14)',
         'border-radius:50px',
         'backdrop-filter:blur(14px)',
         '-webkit-backdrop-filter:blur(14px)',
-        'white-space:nowrap',
-        'text-decoration:none',
+        'overflow:hidden',
+        'transform-origin:left center',
         'font-family:"Manrope",sans-serif'
       ].join(';');
 
+      // Core: logo + name — links back to home
+      var core = document.createElement('a');
+      core.href = 'index.html';
+      core.style.cssText = 'display:flex;align-items:center;gap:12px;padding:9px 22px;text-decoration:none;flex-shrink:0;';
+
       var img = document.createElement('img');
       img.src = 'assets/logo.png';
-      img.alt = '';
+      img.alt = 'Local Logic IT';
       img.style.cssText = 'height:32px;width:auto;display:block;';
-      pill.appendChild(img);
+      core.appendChild(img);
 
-      var name = document.createElement('span');
-      name.textContent = 'Local Logic IT';
-      name.style.cssText = 'font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.02em;';
-      pill.appendChild(name);
+      var nameEl = document.createElement('span');
+      nameEl.textContent = 'Local Logic IT';
+      nameEl.style.cssText = 'font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.02em;white-space:nowrap;';
+      core.appendChild(nameEl);
+      pill.appendChild(core);
+
+      // Expand: divider + nav links — starts collapsed
+      var expand = document.createElement('div');
+      expand.style.cssText = 'display:flex;align-items:center;max-width:0;overflow:hidden;opacity:0;';
+
+      var divider = document.createElement('div');
+      divider.style.cssText = 'width:1px;height:18px;background:rgba(255,255,255,0.15);flex-shrink:0;margin-right:4px;';
+      expand.appendChild(divider);
+
+      [['Services','#services'],['About','#about'],['Contact','#contact']].forEach(function(l) {
+        var a = document.createElement('a');
+        a.href = l[1];
+        a.textContent = l[0];
+        a.style.cssText = 'font-size:0.875rem;font-weight:600;color:rgba(255,255,255,0.7);padding:0 14px;white-space:nowrap;text-decoration:none;';
+        a.addEventListener('mouseover', function() { this.style.color = '#fff'; });
+        a.addEventListener('mouseout',  function() { this.style.color = 'rgba(255,255,255,0.7)'; });
+        expand.appendChild(a);
+      });
+
+      var pad = document.createElement('div');
+      pad.style.cssText = 'width:8px;flex-shrink:0;';
+      expand.appendChild(pad);
+      pill.appendChild(expand);
 
       document.body.appendChild(pill);
 
-      // Landing click effect — pill stays permanently after settling
+      // ── Animation ──
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          // Scale pop + blue glow
+
+          // 1. Click pop + blue glow
           pill.style.transition  = 'transform 0.09s ease-out, border-color 0.07s ease, box-shadow 0.07s ease';
           pill.style.transform   = 'scale(1.11)';
           pill.style.borderColor = 'rgba(59,130,246,0.85)';
           pill.style.boxShadow   = '0 0 12px rgba(59,130,246,0.4), 0 0 28px rgba(59,130,246,0.18)';
 
-          // Spring back — then stays
+          // 2. Spring back
           setTimeout(function () {
-            pill.style.transition  = 'transform 0.18s cubic-bezier(0.34,1.56,0.64,1), border-color 0.32s ease, box-shadow 0.32s ease';
+            pill.style.transition  = 'transform 0.2s cubic-bezier(0.34,1.56,0.64,1), border-color 0.35s ease, box-shadow 0.35s ease';
             pill.style.transform   = 'scale(1)';
             pill.style.borderColor = 'rgba(255,255,255,0.14)';
             pill.style.boxShadow   = 'none';
+
+            // 3. Expand right to reveal nav links
+            setTimeout(function () {
+              expand.style.transition = 'max-width 0.38s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.28s ease 0.12s';
+              expand.style.maxWidth   = '300px';
+              expand.style.opacity    = '1';
+            }, 160);
           }, 90);
         });
       });
