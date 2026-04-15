@@ -48,18 +48,18 @@ The site is responsive and mostly self-contained in one file.
 
 - Branch: `main`
 - Trigger: push to GitHub
-- Workflow: `.github/workflows/deploy.yml`
-- Target host: `34.172.117.25`
 - Remote path: `/var/www/locallogic/current`
 - Server: `nginx` on GCP VM `fitzwilliam-web-1`
+- Auto-update mechanism: server-side `systemd` timer running as `deploy`
+- Status workflow: `.github/workflows/deploy.yml` reports deployment mode but does not perform the deploy
 
 Expected deploy flow:
 
 1. Edit locally.
 2. Commit and push to `main`.
-3. GitHub Actions SSHes to the VM.
-4. Remote repo runs `git pull origin main`.
-5. Site updates in about 30 seconds.
+3. The VM timer checks `origin/main` about once per minute.
+4. The server repo runs `git pull --ff-only origin main`.
+5. Site updates automatically, usually within about 1 minute.
 
 ## Important Constraints
 

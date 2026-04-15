@@ -1,4 +1,4 @@
-name: Deploy to locallogic.fitzwilliam.net
+name: Deployment Status
 
 on:
   push:
@@ -6,16 +6,11 @@ on:
       - main
 
 jobs:
-  deploy:
+  deployment-status:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 34.172.117.25
-          username: deploy
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script: |
-            cd /var/www/locallogic/current
-            git pull origin main
-            echo "Deployed successfully at $(date)"
+      - name: Report server-side deployment mode
+        run: |
+          echo "Production deployment is handled on the server by a systemd timer."
+          echo "Pushes to main are pulled into /var/www/locallogic/current automatically."
+          echo "Expected production update window: about 1 minute."
