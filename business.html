@@ -500,15 +500,17 @@
       var navLogo = document.querySelector('.nav-logo');
       if (!navLogo) return;
 
-      // Hide the real nav-logo so we don't see both at once
+      // Hide the real nav-logo — the pill replaces it
       navLogo.style.opacity = '0';
+      navLogo.style.pointerEvents = 'none';
 
-      // Build a ghost pill that looks exactly like the index.html .header pill
-      var pill = document.createElement('div');
+      // Build pill matching the index.html .header, centered in the 64px nav
+      var pill = document.createElement('a');
+      pill.href = '#top';
       pill.style.cssText = [
         'position:fixed',
         'left:32px',
-        'top:16px',
+        'top:7px',
         'z-index:1000',
         'display:flex',
         'align-items:center',
@@ -520,7 +522,7 @@
         'backdrop-filter:blur(14px)',
         '-webkit-backdrop-filter:blur(14px)',
         'white-space:nowrap',
-        'pointer-events:none',
+        'text-decoration:none',
         'font-family:"Manrope",sans-serif'
       ].join(';');
 
@@ -537,31 +539,22 @@
 
       document.body.appendChild(pill);
 
-      // Landing click effect — pill "just arrived" at top-left
+      // Landing click effect — pill stays permanently after settling
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
           // Scale pop + blue glow
-          pill.style.transition = 'transform 0.09s ease-out, border-color 0.07s ease, box-shadow 0.07s ease';
-          pill.style.transform    = 'scale(1.11)';
-          pill.style.borderColor  = 'rgba(59,130,246,0.85)';
-          pill.style.boxShadow    = '0 0 12px rgba(59,130,246,0.4), 0 0 28px rgba(59,130,246,0.18)';
+          pill.style.transition  = 'transform 0.09s ease-out, border-color 0.07s ease, box-shadow 0.07s ease';
+          pill.style.transform   = 'scale(1.11)';
+          pill.style.borderColor = 'rgba(59,130,246,0.85)';
+          pill.style.boxShadow   = '0 0 12px rgba(59,130,246,0.4), 0 0 28px rgba(59,130,246,0.18)';
 
-          // Spring back
+          // Spring back — then stays
           setTimeout(function () {
             pill.style.transition  = 'transform 0.18s cubic-bezier(0.34,1.56,0.64,1), border-color 0.32s ease, box-shadow 0.32s ease';
             pill.style.transform   = 'scale(1)';
             pill.style.borderColor = 'rgba(255,255,255,0.14)';
             pill.style.boxShadow   = 'none';
           }, 90);
-
-          // Dissolve ghost pill → reveal real nav-logo
-          setTimeout(function () {
-            pill.style.transition    = 'opacity 0.22s ease';
-            pill.style.opacity       = '0';
-            navLogo.style.transition = 'opacity 0.22s ease';
-            navLogo.style.opacity    = '1';
-            setTimeout(function () { if (pill.parentNode) pill.parentNode.removeChild(pill); }, 260);
-          }, 360);
         });
       });
     }());
