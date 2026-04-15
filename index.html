@@ -74,6 +74,7 @@
       gap: 20px;
       cursor: pointer;
       overflow: hidden;
+      transition: filter 0.3s ease;
     }
     .half--residential { background: #15274D; }
     .half--business    { background: #1C1C2E; }
@@ -116,6 +117,23 @@
     .half:focus-visible {
       outline: 3px solid #fff;
       outline-offset: -3px;
+    }
+
+    /* ── Hover effects ── */
+    .half--residential:hover {
+      filter: brightness(1.12);
+    }
+    .half--business:hover {
+      filter: brightness(1.12);
+    }
+    /* Glow on divider line when either side is hovered */
+    .chooser:has(.half--residential:hover) .divider path:last-child {
+      stroke: rgba(201,169,110,0.4);
+      transition: stroke 0.3s ease;
+    }
+    .chooser:has(.half--business:hover) .divider path:last-child {
+      stroke: rgba(59,130,246,0.4);
+      transition: stroke 0.3s ease;
     }
 
     /* ── Entrance animation ── */
