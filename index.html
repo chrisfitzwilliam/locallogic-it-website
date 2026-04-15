@@ -65,6 +65,10 @@
       width: 100%;
       height: 100vh;
       display: flex;
+      gap: 20px;
+      /* Padding creates real dark space around and between the panels */
+      padding: 110px 56px 52px;
+      overflow: hidden; /* clips the click-zoom */
       animation: chooser-fade-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
 
@@ -79,29 +83,21 @@
       gap: 20px;
       cursor: pointer;
       overflow: hidden;
+      border-radius: 20px;
       z-index: 1;
-      /* Transparent/smaller baseline — dark body shows through */
-      opacity: 0.52;
-      transform: scale(0.96);
+      /* Faded/transparent baseline — clearly "inactive" against dark body */
+      opacity: 0.48;
       will-change: transform, opacity;
       transition:
-        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity   0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform      0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity        0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-radius  0.2s  ease;
     }
     .half--residential { background: #15274D; }
     .half--business    { background: #1C1C2E; }
 
-    /* ── SVG Divider ── */
-    .divider {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 100%;
-      width: 120px;
-      z-index: 2;
-      pointer-events: none;
-    }
+    /* SVG divider doesn't suit the card layout — hidden */
+    .divider { display: none; }
 
     /* ── Half content ── */
     .half-icon {
@@ -131,47 +127,40 @@
       outline-offset: -3px;
     }
 
-    /* ── Hover: active half comes fully alive, other fades back ── */
+    /* ── Hover: active half comes fully alive, other recedes ── */
     .half:hover {
       opacity: 1;
-      transform: scale(1.04);
+      transform: scale(1.03);
       z-index: 3;
     }
     .chooser:has(.half:hover) .half:not(:hover) {
-      opacity: 0.28;
-      transform: scale(0.94);
-    }
-    /* Glow on divider edge when a side is hovered */
-    .chooser:has(.half--residential:hover) .divider path:last-child {
-      stroke: rgba(201,169,110,0.5);
-      transition: stroke 0.3s ease;
-    }
-    .chooser:has(.half--business:hover) .divider path:last-child {
-      stroke: rgba(59,130,246,0.5);
-      transition: stroke 0.3s ease;
+      opacity: 0.2;
+      transform: scale(0.97);
     }
 
-    /* ── Click / zoom-select: half expands to fill screen ── */
+    /* ── Click / zoom-select: panel expands to fill screen then navigates ── */
     .half.selected {
       opacity: 1;
-      transform: scale(7);
+      transform: scale(9);
+      border-radius: 0;
       z-index: 20;
       transition:
-        transform 0.42s cubic-bezier(0.4, 0, 0.15, 1),
-        opacity   0.15s ease;
-    }
-    /* Hide divider once a selection is in progress */
-    .chooser:has(.half.selected) .divider {
-      opacity: 0 !important;
-      transition: opacity 0.1s ease;
+        transform     0.42s cubic-bezier(0.4, 0, 0.15, 1),
+        border-radius 0.15s ease,
+        opacity       0.1s  ease;
     }
 
     /* ── Responsive: mobile stacks vertically ── */
     @media (max-width: 767px) {
       html, body { overflow: auto; }
-      .chooser { flex-direction: column; height: auto; min-height: 100vh; }
-      .half { min-height: 50vh; }
-      .divider { display: none; }
+      .chooser {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 24px 32px;
+        gap: 16px;
+      }
+      .half { min-height: 44vh; }
     }
   </style>
 </head>
