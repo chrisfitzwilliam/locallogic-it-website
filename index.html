@@ -118,6 +118,16 @@
       outline-offset: -3px;
     }
 
+    /* ── Entrance animation ── */
+    @keyframes ying-yang-reveal {
+      from { transform: rotate(180deg); opacity: 0; }
+      to   { transform: rotate(0deg);   opacity: 1; }
+    }
+    .chooser {
+      animation: ying-yang-reveal 1.2s ease-out forwards;
+      transform-origin: center center;
+    }
+
     /* ── Responsive: mobile stacks vertically ── */
     @media (max-width: 767px) {
       html, body { overflow: auto; }
