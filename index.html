@@ -80,12 +80,13 @@
       cursor: pointer;
       overflow: hidden;
       z-index: 1;
-      /* Muted baseline — halves "wake up" on interaction */
-      filter: brightness(0.72);
-      will-change: transform, filter;
+      /* Transparent/smaller baseline — dark body shows through */
+      opacity: 0.52;
+      transform: scale(0.96);
+      will-change: transform, opacity;
       transition:
-        transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        filter    0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity   0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .half--residential { background: #15274D; }
     .half--business    { background: #1C1C2E; }
@@ -130,14 +131,15 @@
       outline-offset: -3px;
     }
 
-    /* ── Hover: active half comes alive, other dims ── */
+    /* ── Hover: active half comes fully alive, other fades back ── */
     .half:hover {
-      filter: brightness(1.14);
+      opacity: 1;
       transform: scale(1.04);
       z-index: 3;
     }
     .chooser:has(.half:hover) .half:not(:hover) {
-      filter: brightness(0.42);
+      opacity: 0.28;
+      transform: scale(0.94);
     }
     /* Glow on divider edge when a side is hovered */
     .chooser:has(.half--residential:hover) .divider path:last-child {
@@ -151,17 +153,17 @@
 
     /* ── Click / zoom-select: half expands to fill screen ── */
     .half.selected {
+      opacity: 1;
       transform: scale(7);
-      filter: brightness(1.2);
       z-index: 20;
       transition:
         transform 0.42s cubic-bezier(0.4, 0, 0.15, 1),
-        filter    0.28s ease;
+        opacity   0.15s ease;
     }
     /* Hide divider once a selection is in progress */
     .chooser:has(.half.selected) .divider {
-      opacity: 0;
-      transition: opacity 0.15s ease;
+      opacity: 0 !important;
+      transition: opacity 0.1s ease;
     }
 
     /* ── Responsive: mobile stacks vertically ── */
