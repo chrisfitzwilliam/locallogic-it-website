@@ -30,6 +30,7 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 300;
+      will-change: left, top, transform;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -421,10 +422,35 @@
       half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
       half.style.transform  = 'translate(0,0) scale(1,1)';
 
-      // Navigate once animation is complete
+      // 7. Fly the header bubble to the top-left nav position
+      var header  = document.querySelector('.header');
+      var divider = header.querySelector('.header-divider');
+      var tagline = header.querySelector('.header-tagline');
+
+      header.style.transition = [
+        'left 0.52s cubic-bezier(0.25,0.46,0.45,0.94)',
+        'top 0.44s cubic-bezier(0.25,0.46,0.45,0.94)',
+        'transform 0.52s cubic-bezier(0.25,0.46,0.45,0.94)'
+      ].join(',');
+      header.style.left      = '32px';
+      header.style.top       = '16px';
+      header.style.transform = 'none';
+
+      // Tagline + divider fade out early in the flight
+      setTimeout(function() {
+        divider.style.transition = 'opacity 0.18s ease';
+        tagline.style.transition = 'opacity 0.18s ease';
+        divider.style.opacity    = '0';
+        tagline.style.opacity    = '0';
+      }, 130);
+
+      // Flag destination page to play receiving animation
+      sessionStorage.setItem('fromLanding', '1');
+
+      // Navigate once bubble flight completes
       setTimeout(function() {
         window.location.href = dest;
-      }, 310);
+      }, 600);
     }
 
     function resetState() {
@@ -436,6 +462,19 @@
         half.removeAttribute('style');
       });
       document.querySelectorAll('.half').forEach(scalePreview);
+
+      // Reset header bubble back to centered position (no transition — snap immediately)
+      var header = document.querySelector('.header');
+      header.style.transition = 'none';
+      header.style.left       = '50%';
+      header.style.top        = '18px';
+      header.style.transform  = 'translateX(-50%)';
+      var divider = header.querySelector('.header-divider');
+      var tagline = header.querySelector('.header-tagline');
+      divider.style.transition = 'none';
+      tagline.style.transition = 'none';
+      divider.style.opacity    = '';
+      tagline.style.opacity    = '';
     }
 
     function init() {
