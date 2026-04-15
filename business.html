@@ -97,6 +97,7 @@
       height: 2px;
       background: #fff;
       border-radius: 2px;
+      transition: all 0.3s;
     }
     .nav-hamburger:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
     .nav-mobile-menu {
@@ -324,13 +325,14 @@
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-mobile-menu" id="mobileMenu" role="menu">
+    <div class="nav-mobile-menu" id="mobileMenu">
       <a href="#services" onclick="closeMobileMenu()">Services</a>
       <a href="#about" onclick="closeMobileMenu()">About</a>
       <a href="#contact" onclick="closeMobileMenu()">Contact</a>
     </div>
   </nav>
 
+  <main>
   <!-- Hero -->
   <section class="hero">
     <div class="hero-badge">Business IT Services</div>
@@ -434,6 +436,7 @@
   <footer class="footer">
     <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
   </footer>
+  </main>
 
   <script>
     const hamburger = document.getElementById('hamburger');
