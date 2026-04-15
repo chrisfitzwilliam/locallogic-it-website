@@ -34,8 +34,8 @@
       align-items: center;
       gap: 12px;
       padding: 9px 22px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(8,8,18,0.90);
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 50px;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -102,18 +102,27 @@
       transform-origin: 0 0;
     }
 
-    /* ── Dim overlay ── */
+    /* ── Dim overlay — very opaque + heavy blur (frosted glass over preview) ── */
     .half-overlay {
       position: absolute;
       inset: 0;
       z-index: 2;
       pointer-events: none;
-      transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background: rgba(4,6,14,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition:
+        opacity          0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        backdrop-filter  0.4s ease,
+        -webkit-backdrop-filter 0.4s ease;
     }
-    .half--residential .half-overlay { background: rgba(4,6,14,0.72); }
-    .half--business    .half-overlay { background: rgba(4,6,14,0.72); }
 
-    .half:hover .half-overlay { opacity: 0.1; }
+    /* Hover: frost clears — preview revealed sharp and bright ── */
+    .half:hover .half-overlay {
+      opacity: 0.06;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+    }
 
     /* ── Centered caption — glass card ── */
     .half-caption {
