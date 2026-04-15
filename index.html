@@ -1,888 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="Local Logic IT provides managed IT, cybersecurity, cloud, backup, and automation services for local businesses." />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Local Logic IT — Local Service. Logical Solutions.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="description" content="Local Logic IT delivers managed IT, cybersecurity, cloud, backup, and automation services for businesses that need responsive, practical support." />
+  <title>Local Logic IT - Local Service. Logical Solutions.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy:        #1E2D5C;
-      --navy-deep:   #111B3A;
-      --navy-mid:    #28397A;
-      --gold:        #C9A96E;
-      --gold-light:  #DEC28A;
-      --gold-pale:   #F0E3C6;
-      --tan-bg:      #D4AF7A;
-      --tan-light:   #EDD9A3;
-      --cream:       #FAF5EC;
-      --white:       #FFFFFF;
-      --text-dark:   #1A1F36;
-      --text-mid:    #4A5273;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --navy: #15274d;
+      --navy-2: #1f3c76;
+      --gold: #c9a96e;
+      --orange: #f76641;
+      --orange-2: #ff875f;
+      --paper: #fffdf8;
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--tan-bg);
-      color: var(--text-dark);
-      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8fbff 0%, #f1f5fb 100%);
+      padding: 12px;
     }
-
-    /* ── NAVBAR ── */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 68px;
-      background: rgba(17, 27, 58, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(201,169,110,0.18);
+    a { color: inherit; text-decoration: none; }
+    .shell {
+      max-width: 1480px;
+      margin: 0 auto;
+      background: white;
+      border: 12px solid #111;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.12);
     }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    .nav-logo-icon {
-      width: 36px; height: 36px;
-      background: var(--gold);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .nav-logo-icon svg { width: 22px; height: 22px; }
-    .nav-logo-text { display: flex; flex-direction: column; }
-    .nav-logo-name {
-      font-size: 15px; font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 1.5px;
-      line-height: 1;
-    }
-    .nav-logo-tagline {
-      font-size: 8px; font-weight: 500;
-      color: rgba(201,169,110,0.65);
-      letter-spacing: 1.2px;
-      margin-top: 2px;
-    }
-    .nav-links {
-      display: flex; align-items: center; gap: 6px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,0.82);
-      text-decoration: none;
-      font-size: 13.5px;
-      font-weight: 500;
-      padding: 6px 14px;
-      border-radius: 6px;
-      transition: color .2s, background .2s;
-    }
-    .nav-links a:hover { color: var(--gold); background: rgba(201,169,110,0.1); }
-    .nav-actions { display: flex; gap: 10px; }
-    .btn-ghost {
-      padding: 8px 20px;
-      border: 1.5px solid rgba(201,169,110,0.5);
-      background: transparent;
-      color: var(--gold-light);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,169,110,0.08); }
-    .btn-primary-nav {
-      padding: 8px 20px;
-      background: var(--gold);
-      color: var(--navy-deep);
-      border: none;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s, transform .15s;
-    }
-    .btn-primary-nav:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-    /* ── HERO ── */
+    .container { width: min(1312px, calc(100% - 48px)); margin: 0 auto; }
     .hero {
       position: relative;
       overflow: hidden;
-      min-height: 540px;
-      background: linear-gradient(135deg, #111B3A 0%, #1E2D5C 45%, #28397A 75%, #1C3060 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 0 0 32px 32px;
-      padding-bottom: 0;
+      background:
+        radial-gradient(circle at 50% 78%, rgba(255, 247, 212, 0.96) 0 12%, rgba(255, 247, 212, 0.55) 13%, transparent 34%),
+        linear-gradient(180deg, #ffd45e 0%, #ffc34b 48%, #ffe98c 100%);
+      min-height: 770px;
     }
-
-    /* Decorative glow orbs */
-    .hero::before {
-      content: '';
+    .hero::before, .hero::after {
+      content: "";
       position: absolute;
-      top: -80px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201,169,110,0.18) 0%, transparent 65%);
-      pointer-events: none;
+      border-radius: 999px;
+      background: rgba(255, 240, 194, 0.82);
     }
-    .hero-stars {
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(1.5px 1.5px at 15% 20%, rgba(201,169,110,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 80% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 60% 35%, rgba(201,169,110,0.35) 0%, transparent 100%),
-        radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 90% 50%, rgba(201,169,110,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 45% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
-        radial-gradient(1px 1px at 70% 65%, rgba(201,169,110,0.3) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 10% 80%, rgba(255,255,255,0.35) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1100px;
-      padding: 56px 40px 0;
-      gap: 40px;
-    }
-    .hero-left { flex: 1; max-width: 480px; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(201,169,110,0.12);
-      border: 1px solid rgba(201,169,110,0.3);
-      color: var(--gold-light);
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: .8px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
-    .hero-badge span { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; display: inline-block; }
-    .hero-heading {
-      font-size: 46px;
-      font-weight: 800;
-      color: #FFFFFF;
-      line-height: 1.12;
-      margin-bottom: 18px;
-    }
-    .hero-heading em {
-      font-style: normal;
-      color: var(--gold);
-      position: relative;
-    }
-    .hero-heading em::after {
-      content: '';
-      position: absolute;
-      bottom: 2px; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      border-radius: 2px;
-    }
-    .hero-sub {
-      font-size: 14.5px;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.7;
-      max-width: 380px;
-      margin-bottom: 28px;
-    }
-    .hero-reviews {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .avatar-stack { display: flex; }
-    .avatar-stack img,
-    .avatar-pill {
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      border: 2px solid var(--navy);
-      margin-left: -8px;
-      background: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; color: var(--navy-deep);
-      overflow: hidden;
-    }
-    .avatar-stack .avatar-pill:first-child { margin-left: 0; }
-    .hero-rating-text { font-size: 12.5px; color: rgba(255,255,255,0.7); }
-    .hero-rating-text strong { color: var(--gold); font-weight: 700; }
-    .stars-row { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
-
-    /* Central laptop illustration */
-    .hero-illustration {
-      position: relative;
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      max-width: 480px;
-    }
-    .hero-glow-ring {
-      position: absolute;
-      bottom: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(201,169,110,0.22) 0%, rgba(201,169,110,0.06) 50%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero-sun {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(201,169,110,0.3) 0%, rgba(201,169,110,0.08) 55%, transparent 72%);
-      border-radius: 50%;
-      border: 2px solid rgba(201,169,110,0.15);
-    }
-    .laptop-svg-wrap {
+    .hero::before { width: 310px; height: 310px; left: -110px; bottom: 195px; }
+    .hero::after { width: 220px; height: 220px; right: -70px; bottom: 188px; }
+    .header {
       position: relative;
       z-index: 3;
-      margin-bottom: -5px;
+      padding: 18px 0;
     }
-
-    /* Floating data nodes */
-    .data-node {
-      position: absolute;
-      background: rgba(30, 45, 92, 0.85);
-      border: 1px solid rgba(201,169,110,0.4);
-      border-radius: 10px;
-      padding: 8px 12px;
+    .header-bar, .nav, .actions, .metrics {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gold-light);
-      white-space: nowrap;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      animation: float 3.5s ease-in-out infinite;
     }
-    .data-node.node-1 { top: 30px; right: -20px; animation-delay: 0s; }
-    .data-node.node-2 { top: 80px; left: -30px; animation-delay: 1.2s; }
-    .data-node.node-3 { bottom: 90px; right: -10px; animation-delay: 0.7s; }
-    .data-node-icon { width: 22px; height: 22px; background: rgba(201,169,110,0.15); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
+    .header-bar { justify-content: space-between; gap: 24px; }
+    .nav, .actions { gap: 10px; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
     }
-
-    /* ── SEARCH/TABS CARD ── */
-    .card-wrap {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      margin-top: -28px;
-      padding: 0 40px 40px;
-    }
-    .service-card {
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(17,27,58,0.25), 0 4px 16px rgba(201,169,110,0.1);
-      width: 100%;
-      max-width: 900px;
-      overflow: hidden;
-    }
-    .service-tabs {
-      display: flex;
-      border-bottom: 1px solid #E8E4DC;
-    }
-    .tab-btn {
-      flex: 1;
-      padding: 16px 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-mid);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color .2s, background .2s;
-      letter-spacing: .3px;
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--navy), var(--navy-2));
       position: relative;
     }
-    .tab-btn::after {
-      content: '';
+    .mark::before {
+      content: "";
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      left: 50%;
+      top: 42%;
+      width: 18px;
+      height: 12px;
+      transform: translate(-50%, -50%);
+      border: 2px solid #ecd6ab;
+      border-bottom-width: 4px;
+      border-radius: 3px 3px 6px 6px;
+    }
+    .mark::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      transform: translateX(-50%);
+      width: 20px;
       height: 3px;
-      background: var(--gold);
-      border-radius: 3px 3px 0 0;
-      transform: scaleX(0);
-      transition: transform .25s;
+      border-radius: 99px;
+      background: #ecd6ab;
     }
-    .tab-btn.active { color: var(--navy); }
-    .tab-btn.active::after { transform: scaleX(1); }
-    .tab-btn:hover { background: rgba(201,169,110,0.06); color: var(--navy); }
-
-    .form-row {
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      padding: 20px 24px;
+    .brand-copy strong {
+      display: block;
+      font-size: 1.8rem;
+      line-height: 1;
+      color: #12233f;
+      letter-spacing: -0.04em;
     }
-    .form-divider { width: 1px; background: #E8E4DC; flex-shrink: 0; margin: 4px 0; }
-    .form-field {
-      flex: 1;
-      padding: 8px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      min-width: 0;
-    }
-    .form-field label {
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--text-mid);
+    .brand-copy span {
+      display: block;
+      font-size: 0.76rem;
+      color: rgba(18, 35, 63, 0.72);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-    .form-field-inner { display: flex; align-items: center; gap: 8px; }
-    .form-field-icon { color: var(--gold); flex-shrink: 0; }
-    .form-field input,
-    .form-field select {
-      border: none;
-      outline: none;
-      font-size: 14px;
       font-weight: 700;
-      color: var(--text-dark);
-      font-family: 'Inter', sans-serif;
-      background: transparent;
-      width: 100%;
+      margin-top: 2px;
     }
-    .form-field select { cursor: pointer; }
-    .form-field-sub {
-      font-size: 11px;
-      color: var(--text-mid);
-      font-weight: 400;
-      margin-top: 1px;
-    }
-    .form-action { padding: 16px 20px; display: flex; align-items: center; flex-shrink: 0; }
-    .btn-search {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      background: linear-gradient(135deg, var(--gold), #B8944A);
-      color: var(--navy-deep);
-      border: none;
+    .nav a, .btn {
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 0.95rem;
       font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 16px rgba(201,169,110,0.4);
-      font-family: 'Inter', sans-serif;
+      padding: 10px 14px;
     }
-    .btn-search:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,169,110,0.5); }
-
-    /* ── POPULAR SERVICES ── */
-    .services-section {
-      background: var(--cream);
-      border-radius: 32px 32px 0 0;
-      padding: 56px 40px 64px;
+    .nav a:hover { background: rgba(255, 255, 255, 0.52); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; }
+    .btn-light {
+      background: white;
+      color: var(--orange);
+      box-shadow: 0 2px 4px rgba(16, 24, 40, 0.05);
     }
-    .section-header { text-align: center; margin-bottom: 40px; }
-    .section-title { font-size: 30px; font-weight: 800; color: var(--navy-deep); margin-bottom: 10px; }
-    .section-sub { font-size: 14px; color: var(--text-mid); max-width: 480px; margin: 0 auto; line-height: 1.6; }
-
-    .services-grid {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      max-width: 1060px;
-      margin: 0 auto 60px;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: white;
+      box-shadow: 0 14px 28px rgba(247, 102, 65, 0.2);
     }
-    .service-tile {
-      display: flex;
-      flex-direction: column;
+    .hero-main {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 36px;
+      padding: 34px 0 314px;
+    }
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 22px 18px 18px;
-      background: var(--white);
-      border: 1.5px solid #E8E3D8;
-      border-radius: 16px;
-      cursor: pointer;
-      transition: border-color .2s, box-shadow .2s, transform .2s;
-      min-width: 130px;
-      flex: 0 0 auto;
+      padding: 10px 16px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(31, 41, 55, 0.08);
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #132847;
     }
-    .service-tile:hover {
-      border-color: var(--gold);
-      box-shadow: 0 6px 24px rgba(201,169,110,0.2);
-      transform: translateY(-3px);
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 14px 0 0 rgba(247, 102, 65, 0.18);
     }
-    .service-tile.active {
-      border-color: var(--gold);
-      background: linear-gradient(160deg, #FDF8EF, var(--white));
+    h1 {
+      max-width: 720px;
+      font-size: clamp(3rem, 5vw, 5.1rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      color: #142540;
     }
-    .tile-icon {
-      width: 52px; height: 52px;
-      background: rgba(30,45,92,0.06);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
+    .scribble {
+      position: relative;
+      display: inline-block;
     }
-    .service-tile.active .tile-icon { background: rgba(201,169,110,0.12); }
-    .tile-icon svg { width: 28px; height: 28px; }
-    .service-tile.active .tile-icon svg { color: var(--gold); }
-    .tile-label { font-size: 12.5px; font-weight: 600; color: var(--text-mid); text-align: center; line-height: 1.3; }
-    .service-tile.active .tile-label { color: var(--navy); }
-
-    /* ── WHY LOCAL LOGIC ── */
-    .why-section {
-      max-width: 1060px;
+    .scribble::after {
+      content: "";
+      position: absolute;
+      left: 2%;
+      right: 1%;
+      bottom: -10px;
+      height: 14px;
+      background:
+        radial-gradient(circle at 8px 8px, transparent 7px, var(--orange) 7px 8px, transparent 8px) 0 0 / 34px 14px repeat-x;
+    }
+    .side-copy {
+      padding-top: 34px;
+    }
+    .lead {
+      max-width: 500px;
+      font-size: 1.16rem;
+      line-height: 1.7;
+      color: rgba(31, 41, 55, 0.9);
+    }
+    .metrics { gap: 14px; margin-top: 24px; flex-wrap: wrap; }
+    .avatars { display: flex; align-items: center; padding-left: 6px; }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      margin-left: -8px;
+      border: 2px solid white;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-2));
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+    .avatar:first-child { margin-left: 0; }
+    .rating { font-size: 0.95rem; font-weight: 800; color: #132847; }
+    .rating span { color: #f59e0b; margin-right: 6px; }
+    .rating small { color: rgba(31, 41, 55, 0.72); margin-left: 4px; }
+    .plane {
+      position: absolute;
+      left: 50%;
+      bottom: 278px;
+      transform: translateX(-50%);
+      width: min(760px, calc(100% - 160px));
+      height: 220px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .plane::before {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: 18px;
+      height: 12px;
+      border-radius: 999px;
+      transform: skewX(-12deg);
+      background: linear-gradient(90deg, #b32f24, #d53b2d);
+    }
+    .plane::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 42px;
+      height: 120px;
+      background:
+        linear-gradient(175deg, transparent 42%, rgba(183, 38, 27, 0.96) 42% 46%, transparent 46%) left center / 50% 100% no-repeat,
+        linear-gradient(185deg, transparent 42%, rgba(183, 38, 27, 0.96) 42% 46%, transparent 46%) right center / 50% 100% no-repeat;
+    }
+    .plane-core {
+      position: absolute;
+      left: 50%;
+      top: 66px;
+      transform: translateX(-50%);
+      width: 112px;
+      height: 112px;
+      clip-path: polygon(50% 0, 70% 28%, 74% 64%, 100% 100%, 0 100%, 26% 64%, 30% 28%);
+      background: linear-gradient(180deg, #c53426, #981f17);
+    }
+    .plane-core::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -66px;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 154px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #cc3a2b, #8d1a14);
+    }
+    .booker {
+      position: absolute;
+      left: 50%;
+      bottom: -104px;
+      transform: translateX(-50%);
+      z-index: 4;
+      width: min(1012px, calc(100% - 48px));
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 760px;
       margin: 0 auto;
     }
-    .why-title { font-size: 22px; font-weight: 800; color: var(--navy-deep); margin-bottom: 24px; text-align: center; }
-    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .why-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px 24px;
-      border: 1.5px solid #E8E3D8;
-      transition: box-shadow .2s, transform .2s;
-    }
-    .why-card:hover { box-shadow: 0 8px 28px rgba(17,27,58,0.1); transform: translateY(-2px); }
-    .why-card-icon {
-      width: 44px; height: 44px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 14px;
-    }
-    .why-card-icon svg { width: 22px; height: 22px; color: var(--gold); }
-    .why-card h4 { font-size: 15px; font-weight: 700; color: var(--navy-deep); margin-bottom: 8px; }
-    .why-card p { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: var(--navy-deep);
-      padding: 32px 40px;
+    .tab {
+      padding: 20px 16px;
+      background: var(--orange);
+      color: rgba(255, 255, 255, 0.96);
       text-align: center;
-      border-top: 1px solid rgba(201,169,110,0.15);
+      font-weight: 700;
     }
-    .footer-logo-text { font-size: 18px; font-weight: 800; color: var(--gold); letter-spacing: 2px; margin-bottom: 6px; }
-    .footer-tagline { font-size: 11px; color: rgba(201,169,110,0.5); letter-spacing: 1.5px; margin-bottom: 20px; }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; }
-    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
-
-    /* Responsive tweaks */
-    @media (max-width: 768px) {
-      .hero-illustration { display: none; }
-      .hero-heading { font-size: 32px; }
-      .why-grid { grid-template-columns: 1fr; }
-      .form-row { flex-direction: column; }
-      .form-divider { width: 100%; height: 1px; }
-      .navbar { padding: 0 20px; }
-      .nav-links { display: none; }
-      .hero-content { padding: 40px 20px 0; }
+    .tab:first-child, .tab:last-child { border-radius: 34px 34px 0 0; }
+    .tab.active {
+      background: white;
+      color: var(--orange);
+      border-radius: 40px 40px 0 0;
+    }
+    .panel {
+      position: relative;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 26px 20px 22px;
+      border-radius: 28px;
+      box-shadow: 0 0 110px rgba(15, 23, 42, 0.06);
+    }
+    .form {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .field {
+      min-height: 76px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: white;
+      padding: 11px 14px 12px;
+    }
+    .label {
+      display: block;
+      color: var(--orange);
+      font-size: 0.73rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .value {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+    .value small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .icon {
+      flex: 0 0 auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #f9fafb;
+      display: grid;
+      place-items: center;
+      color: #9ca3af;
+    }
+    .cta-wrap { text-align: center; margin-top: 16px; }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: white;
+      box-shadow: 0 14px 30px rgba(247, 102, 65, 0.18);
+    }
+    .cta b { padding: 16px 30px 16px 32px; }
+    .cta span {
+      padding: 16px 18px;
+      background: rgba(255, 255, 255, 0.16);
+      display: inline-flex;
+      align-items: center;
+    }
+    .note {
+      text-align: center;
+      margin-top: 12px;
+      color: rgba(31, 41, 55, 0.62);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .services {
+      padding: 220px 0 96px;
+      background: white;
+    }
+    .section-head {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+    .section-head h2 {
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+    .section-head p {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .card {
+      min-height: 236px;
+      padding: 28px 24px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: white;
+      text-align: center;
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+    }
+    .card.featured {
+      border: 2px solid var(--orange);
+      box-shadow: 0 18px 36px rgba(247, 102, 65, 0.12);
+    }
+    .card-icon {
+      width: 82px;
+      height: 82px;
+      border-radius: 24px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #fffaf0, #fff2d6);
+      color: var(--navy);
+      font-size: 2rem;
+      font-weight: 800;
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .band {
+      background: linear-gradient(180deg, #f8fbff 0%, #f2f6fb 100%);
+      padding: 0 0 96px;
+    }
+    .panel-dark {
+      width: min(1312px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 36px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #11213f, #17305e);
+      color: white;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      box-shadow: var(--shadow);
+    }
+    .panel-dark h3 {
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+    .panel-dark p {
+      max-width: 620px;
+      color: rgba(255, 255, 255, 0.74);
+      line-height: 1.75;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .stat strong {
+      display: block;
+      font-size: 1.55rem;
+      margin-bottom: 6px;
+    }
+    .stat span {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .footer {
+      width: min(1312px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: #6b7280;
+      font-size: 0.94rem;
+    }
+    .footer a {
+      color: var(--navy);
+      font-weight: 700;
+    }
+    @media (max-width: 1200px) {
+      .hero-main, .panel-dark { grid-template-columns: 1fr; }
+      .form, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 900px) {
+      body { padding: 0; }
+      .shell { border: 0; border-radius: 0; }
+      .container, .panel-dark, .footer { width: min(calc(100% - 28px), 1312px); }
+      .header-bar { flex-wrap: wrap; justify-content: center; }
+      .nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+      .hero { min-height: 980px; }
+      .hero-main { grid-template-columns: 1fr; text-align: center; padding-bottom: 450px; }
+      .side-copy { padding-top: 0; }
+      .lead { max-width: none; }
+      .metrics, .avatars { justify-content: center; }
+      .plane { bottom: 386px; width: calc(100% - 48px); }
+      .booker { bottom: -132px; }
+      .form, .cards, .stats { grid-template-columns: 1fr; }
+      .services { padding-top: 292px; }
+      .footer { flex-direction: column; text-align: center; padding-bottom: 28px; }
+    }
+    @media (max-width: 640px) {
+      .hero { min-height: 1040px; }
+      .hero-main { padding-top: 22px; gap: 22px; }
+      h1 { font-size: 2.7rem; }
+      .actions { width: 100%; }
+      .actions a { flex: 1 1 0; }
+      .tabs { font-size: 0.88rem; }
+      .tab { padding: 17px 10px; }
+      .panel { padding-left: 14px; padding-right: 14px; }
+      .plane { bottom: 456px; }
+      .plane-core { transform: translateX(-50%) scale(0.84); }
+      .panel-dark { padding: 24px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- ── NAVBAR ── -->
-  <nav class="navbar">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#1E2D5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="4" width="20" height="14" rx="2"/>
-          <line x1="8" y1="21" x2="16" y2="21"/>
-          <line x1="12" y1="18" x2="12" y2="21"/>
-        </svg>
-      </div>
-      <div class="nav-logo-text">
-        <span class="nav-logo-name">LOCAL LOGIC IT</span>
-        <span class="nav-logo-tagline">LOCAL SERVICE. LOGICAL SOLUTIONS.</span>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#">Services ▾</a></li>
-      <li><a href="#">Solutions</a></li>
-      <li><a href="#">Industries</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="btn-ghost">Client Portal</button>
-      <button class="btn-primary-nav">Get a Free Quote</button>
-    </div>
-  </nav>
-
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero-stars"></div>
-
-    <div class="hero-content">
-      <!-- Left text -->
-      <div class="hero-left">
-        <div class="hero-badge"><span></span> PROUDLY LOCAL &amp; ALWAYS ON CALL</div>
-        <h1 class="hero-heading">
-          Your Business Deserves<br/><em>Smarter IT</em> Support.
-        </h1>
-        <p class="hero-sub">
-          From managed services to AI automation, we keep your technology working so you can focus on what matters most — growing your business.
-        </p>
-        <div class="hero-reviews">
-          <div class="avatar-stack">
-            <div class="avatar-pill" style="background:#3A5FA0;">JB</div>
-            <div class="avatar-pill" style="background:#5A3A80;">KM</div>
-            <div class="avatar-pill" style="background:#3A7A5A;">SR</div>
-            <div class="avatar-pill" style="background:#7A5A3A;">PW</div>
-            <div class="avatar-pill" style="background:#4A4A7A; font-size:9px;">+42</div>
+  <div class="shell">
+    <section class="hero">
+      <header class="header">
+        <div class="container header-bar">
+          <a class="brand" href="#top" aria-label="Local Logic IT home">
+            <span class="mark" aria-hidden="true"></span>
+            <span class="brand-copy">
+              <strong>LocalLogic</strong>
+              <span>Local Service. Logical Solutions.</span>
+            </span>
+          </a>
+          <nav class="nav" aria-label="Primary">
+            <a href="#services">Services</a>
+            <a href="#coverage">Coverage</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact Us</a>
+          </nav>
+          <div class="actions">
+            <a class="btn btn-light" href="mailto:chris@fitzwilliam.net">Email</a>
+            <a class="btn btn-primary" href="#contact">Book Review</a>
           </div>
+        </div>
+      </header>
+
+      <div class="container hero-main" id="top">
+        <div>
+          <div class="eyebrow">Fast local response for business IT</div>
+          <h1>It&apos;s A Better Way To Run <span class="scribble">IT Without The Chaos</span></h1>
+        </div>
+        <div class="side-copy">
+          <p class="lead">
+            We help local businesses stabilize support, tighten security, modernize cloud systems,
+            and keep teams productive without dragging owners into every technical problem.
+          </p>
+          <div class="metrics">
+            <div class="avatars" aria-hidden="true">
+              <span class="avatar">MSP</span>
+              <span class="avatar">SOC</span>
+              <span class="avatar">M365</span>
+              <span class="avatar">AI</span>
+              <span class="avatar">24/7</span>
+            </div>
+            <div class="rating"><span>&#9733;</span>5.0 Service Focus <small>for practical business support</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="plane" aria-hidden="true"><div class="plane-core"></div></div>
+
+      <div class="booker" id="contact">
+        <div class="tabs">
+          <div class="tab">Managed IT</div>
+          <div class="tab active">Cybersecurity</div>
+          <div class="tab">Cloud + AI</div>
+        </div>
+        <div class="panel">
+          <div class="form">
+            <div class="field">
+              <span class="label">Company Name</span>
+              <div class="value">
+                <span class="icon">CO</span>
+                <span>Local business<small>Tell us who needs support</small></span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Primary Need</span>
+              <div class="value">
+                <span class="icon">SR</span>
+                <span>Security review<small>Hardening, monitoring, policy gaps</small></span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Best Contact</span>
+              <div class="value">
+                <span class="icon">EM</span>
+                <span>Email first<small>Share scope and callback details</small></span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Environment Size</span>
+              <div class="value">
+                <span class="icon">SZ</span>
+                <span>10-75 users<small>Ideal SMB support footprint</small></span>
+              </div>
+            </div>
+            <div class="field">
+              <span class="label">Support Model</span>
+              <div class="value">
+                <span class="icon">OP</span>
+                <span>Ongoing partnership<small>Co-managed or fully outsourced</small></span>
+              </div>
+            </div>
+          </div>
+          <div class="cta-wrap">
+            <a class="cta" href="mailto:chris@fitzwilliam.net?subject=Local%20Logic%20IT%20Consultation">
+              <b>Request Consultation</b><span>GO</span>
+            </a>
+          </div>
+          <p class="note">This keeps the Figma booking-bar layout, but the action is mapped to Local Logic&apos;s current email-based intake flow.</p>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="services" id="services">
+        <div class="container">
+          <div class="section-head">
+            <h2>Core Service Lines</h2>
+            <p>
+              The original Figma is a travel landing page. This version keeps its structure and conversion
+              rhythm, but translates the content into Local Logic&apos;s actual IT service offer.
+            </p>
+          </div>
+          <div class="cards">
+            <article class="card featured">
+              <div class="card-icon">IT</div>
+              <h3>Managed IT Services</h3>
+              <p>Help desk, workstation support, patching, vendor coordination, and day-to-day ownership that reduces internal drag.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">CS</div>
+              <h3>Cybersecurity</h3>
+              <p>MFA enforcement, endpoint protection, policy tuning, user awareness, and practical remediation for common business risks.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">CL</div>
+              <h3>Cloud Services</h3>
+              <p>Microsoft 365, identity cleanup, tenant governance, shared-file modernization, and cleaner remote-work operations.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">BR</div>
+              <h3>Backup &amp; Recovery</h3>
+              <p>Retention strategy, restore testing, endpoint backup, and continuity planning so outages stop being existential events.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon">AI</div>
+              <h3>AI Automation</h3>
+              <p>Internal workflow improvements, document handling, and targeted automations that save time without adding platform sprawl.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="coverage">
+        <div class="panel-dark" id="about">
           <div>
-            <div class="stars-row">★★★★★</div>
-            <div class="hero-rating-text"><strong>5.0 Rating</strong> from 100+ local businesses</div>
+            <h3>Structured Like A Consumer Product, Built For Real IT Decisions</h3>
+            <p>
+              This page now follows the Figma reference much more directly: warm hero, centered navigation,
+              floating tabbed intake bar, and five service cards. The copy and call to action stay grounded in Local Logic&apos;s business.
+            </p>
           </div>
-        </div>
-      </div>
-
-      <!-- Right illustration -->
-      <div class="hero-illustration">
-        <div class="hero-glow-ring"></div>
-        <div class="hero-sun"></div>
-
-        <!-- Floating nodes -->
-        <div class="data-node node-1">
-          <div class="data-node-icon">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          Threat Blocked ✓
-        </div>
-        <div class="data-node node-2">
-          <div class="data-node-icon">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          99.9% Uptime
-        </div>
-        <div class="data-node node-3">
-          <div class="data-node-icon">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          Backup Complete
-        </div>
-
-        <!-- Laptop SVG -->
-        <div class="laptop-svg-wrap">
-          <svg width="360" height="260" viewBox="0 0 360 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Laptop screen body -->
-            <rect x="60" y="20" width="240" height="165" rx="10" fill="#111B3A" stroke="#C9A96E" stroke-width="1.5"/>
-            <!-- Screen bezel -->
-            <rect x="72" y="32" width="216" height="141" rx="6" fill="#0D1630"/>
-            <!-- Screen glow -->
-            <rect x="72" y="32" width="216" height="141" rx="6" fill="url(#screenGrad)" opacity="0.9"/>
-            <!-- Screen content: code lines -->
-            <rect x="88" y="50" width="120" height="5" rx="2.5" fill="#C9A96E" opacity="0.7"/>
-            <rect x="88" y="63" width="85" height="4" rx="2" fill="#4A7FC0" opacity="0.6"/>
-            <rect x="88" y="74" width="100" height="4" rx="2" fill="#3A9A6A" opacity="0.6"/>
-            <rect x="88" y="85" width="72" height="4" rx="2" fill="#C9A96E" opacity="0.4"/>
-            <rect x="88" y="96" width="110" height="4" rx="2" fill="#4A7FC0" opacity="0.5"/>
-            <rect x="88" y="107" width="60" height="4" rx="2" fill="#9A6AC9" opacity="0.5"/>
-            <rect x="88" y="118" width="95" height="4" rx="2" fill="#3A9A6A" opacity="0.4"/>
-            <rect x="88" y="129" width="78" height="4" rx="2" fill="#C9A96E" opacity="0.5"/>
-            <rect x="88" y="140" width="105" height="4" rx="2" fill="#4A7FC0" opacity="0.4"/>
-            <!-- Right panel -->
-            <rect x="230" y="50" width="46" height="111" rx="5" fill="rgba(201,169,110,0.07)" stroke="rgba(201,169,110,0.25)" stroke-width="1"/>
-            <rect x="236" y="58" width="34" height="6" rx="3" fill="#C9A96E" opacity="0.6"/>
-            <rect x="236" y="70" width="26" height="5" rx="2.5" fill="rgba(255,255,255,0.2)"/>
-            <rect x="236" y="81" width="30" height="5" rx="2.5" fill="rgba(255,255,255,0.15)"/>
-            <rect x="236" y="92" width="22" height="5" rx="2.5" fill="rgba(201,169,110,0.3)"/>
-            <!-- Terminal cursor blink -->
-            <rect x="88" y="152" width="7" height="10" rx="1.5" fill="#C9A96E" opacity="0.85">
-              <animate attributeName="opacity" values="0.85;0;0.85" dur="1.1s" repeatCount="indefinite"/>
-            </rect>
-            <!-- Hinge -->
-            <rect x="60" y="183" width="240" height="6" rx="3" fill="#C9A96E" opacity="0.3"/>
-            <!-- Keyboard base -->
-            <rect x="30" y="189" width="300" height="20" rx="4" fill="#1A2548" stroke="#C9A96E" stroke-width="1.2" stroke-opacity="0.4"/>
-            <!-- Keyboard keys suggestion -->
-            <rect x="50" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <rect x="62" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <rect x="74" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <rect x="86" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <rect x="110" y="193" width="100" height="5" rx="1.5" fill="rgba(201,169,110,0.15)"/>
-            <rect x="224" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <rect x="236" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <rect x="248" y="193" width="8" height="5" rx="1.5" fill="rgba(201,169,110,0.25)"/>
-            <!-- Trackpad -->
-            <rect x="148" y="201" width="64" height="5" rx="2" fill="rgba(201,169,110,0.15)" stroke="rgba(201,169,110,0.2)" stroke-width="0.8"/>
-            <!-- Bottom base -->
-            <path d="M20 209 L340 209 L330 230 L30 230 Z" fill="#141E3C" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.3"/>
-            <!-- Gold accent line on base -->
-            <line x1="110" y1="219" x2="250" y2="219" stroke="#C9A96E" stroke-width="1" stroke-opacity="0.4"/>
-            <!-- Network dots orbiting -->
-            <circle cx="40" cy="120" r="4" fill="#C9A96E" opacity="0.5">
-              <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="320" cy="90" r="3.5" fill="#4A7FC0" opacity="0.6">
-              <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="330" cy="160" r="4" fill="#C9A96E" opacity="0.4">
-              <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.8s" repeatCount="indefinite"/>
-            </circle>
-            <!-- Connection lines -->
-            <line x1="40" y1="120" x2="70" y2="100" stroke="#C9A96E" stroke-width="0.8" stroke-opacity="0.25" stroke-dasharray="4 3"/>
-            <line x1="320" y1="90" x2="290" y2="80" stroke="#4A7FC0" stroke-width="0.8" stroke-opacity="0.25" stroke-dasharray="4 3"/>
-            <line x1="330" y1="160" x2="295" y2="155" stroke="#C9A96E" stroke-width="0.8" stroke-opacity="0.2" stroke-dasharray="4 3"/>
-            <defs>
-              <linearGradient id="screenGrad" x1="72" y1="32" x2="288" y2="173" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#1E3A6E" stop-opacity="0.8"/>
-                <stop offset="100%" stop-color="#0D1630" stop-opacity="0.3"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spacer for card overlap -->
-    <div style="height: 36px;"></div>
-  </section>
-
-  <!-- ── SERVICE CARD ── -->
-  <div class="card-wrap">
-    <div class="service-card">
-      <div class="service-tabs">
-        <button class="tab-btn active" onclick="setTab(this)">Managed IT Services</button>
-        <button class="tab-btn" onclick="setTab(this)">Backup &amp; Recovery</button>
-        <button class="tab-btn" onclick="setTab(this)">AI Automation</button>
-        <button class="tab-btn" onclick="setTab(this)">Cybersecurity</button>
-        <button class="tab-btn" onclick="setTab(this)">Cloud Services</button>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>Business Name</label>
-          <div class="form-field-inner">
-            <div class="form-field-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          <div class="stats">
+            <div class="stat">
+              <strong>Response-first</strong>
+              <span>Direct local communication instead of ticket-black-hole support.</span>
             </div>
-            <div>
-              <input type="text" placeholder="Acme Corp" />
-              <div class="form-field-sub">Your company name</div>
+            <div class="stat">
+              <strong>Security-aware</strong>
+              <span>Infrastructure decisions shaped by practical risk reduction.</span>
+            </div>
+            <div class="stat">
+              <strong>Cloud-capable</strong>
+              <span>Microsoft 365, identity, and hybrid environment cleanup.</span>
+            </div>
+            <div class="stat">
+              <strong>Owner-friendly</strong>
+              <span>Clear recommendations without dumping technical jargon on the client.</span>
             </div>
           </div>
         </div>
-        <div class="form-divider"></div>
-        <div class="form-field">
-          <label>Service Needed</label>
-          <div class="form-field-inner">
-            <div class="form-field-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-            </div>
-            <div>
-              <select>
-                <option>Managed IT</option>
-                <option>Backup &amp; Recovery</option>
-                <option>AI Automation</option>
-                <option>Cybersecurity</option>
-                <option>Cloud Services</option>
-                <option>Network Setup</option>
-                <option>Help Desk Support</option>
-              </select>
-              <div class="form-field-sub">Choose a service</div>
-            </div>
-          </div>
-        </div>
-        <div class="form-divider"></div>
-        <div class="form-field">
-          <label>Your Location</label>
-          <div class="form-field-inner">
-            <div class="form-field-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <input type="text" placeholder="City or Zip Code" />
-              <div class="form-field-sub">We serve your area</div>
-            </div>
-          </div>
-        </div>
-        <div class="form-divider"></div>
-        <div class="form-field" style="max-width:160px;">
-          <label>Team Size</label>
-          <div class="form-field-inner">
-            <div class="form-field-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div>
-              <select>
-                <option>1–10</option>
-                <option>11–50</option>
-                <option>51–200</option>
-                <option>200+</option>
-              </select>
-              <div class="form-field-sub">Employees</div>
-            </div>
-          </div>
-        </div>
-        <div class="form-action">
-          <button class="btn-search">
-            Get a Free Quote
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
+        <footer class="footer">
+          <p>&copy; 2026 Local Logic IT. Local Service. Logical Solutions.</p>
+          <p><a href="mailto:chris@fitzwilliam.net">chris@fitzwilliam.net</a> / locallogic.fitzwilliam.net</p>
+        </footer>
+      </section>
+    </main>
   </div>
-
-  <!-- ── POPULAR SERVICES SECTION ── -->
-  <section class="services-section">
-    <div class="section-header">
-      <h2 class="section-title">Popular IT Service Types</h2>
-      <p class="section-sub">Comprehensive technology solutions tailored for local businesses — explore what we do best.</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-tile active">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-          </svg>
-        </div>
-        <span class="tile-label">Managed IT</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <span class="tile-label">Cybersecurity</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-        </div>
-        <span class="tile-label">AI Automation</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>
-          </svg>
-        </div>
-        <span class="tile-label">Cloud Services</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-          </svg>
-        </div>
-        <span class="tile-label">Backup &amp; Recovery</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <circle cx="12" cy="12" r="2"/><path d="M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-          </svg>
-        </div>
-        <span class="tile-label">Help Desk Support</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
-          </svg>
-        </div>
-        <span class="tile-label">Network &amp; Infrastructure</span>
-      </div>
-      <div class="service-tile">
-        <div class="tile-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-          </svg>
-        </div>
-        <span class="tile-label">IT Consulting</span>
-      </div>
-    </div>
-
-    <!-- Why us cards -->
-    <div class="why-section">
-      <h3 class="why-title">Why Local Logic IT?</h3>
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <h4>Truly Local Support</h4>
-          <p>Our technicians are right in your backyard — fast on-site response when you need it most, with no overseas call centers.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
-          </div>
-          <h4>99.9% Uptime Guarantee</h4>
-          <p>We monitor your systems 24/7 so you don't have to. Proactive alerts and rapid response keep your business running smoothly.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <h4>Flat-Rate Pricing</h4>
-          <p>No surprise invoices. Our simple monthly plans cover everything — from help desk calls to hardware replacements and beyond.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer class="footer">
-    <div class="footer-logo-text">LOCAL LOGIC IT</div>
-    <div class="footer-tagline">LOCAL SERVICE. LOGICAL SOLUTIONS.</div>
-    <div class="footer-links">
-      <a href="#">Services</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Client Portal</a>
-      <a href="#">Privacy Policy</a>
-    </div>
-    <div class="footer-copy">© 2026 Local Logic IT. All rights reserved.</div>
-  </footer>
-
-  <script>
-    function setTab(el) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-    }
-    // Highlight active service tile on click
-    document.querySelectorAll('.service-tile').forEach(tile => {
-      tile.addEventListener('click', () => {
-        document.querySelectorAll('.service-tile').forEach(t => t.classList.remove('active'));
-        tile.classList.add('active');
-      });
-    });
-  </script>
 </body>
 </html>
