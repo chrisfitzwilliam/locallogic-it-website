@@ -356,6 +356,17 @@
       }, 310);
     }
 
+    function resetState() {
+      // Clear all selection state — needed when browser restores page from bfcache
+      var chooser = document.getElementById('chooser');
+      chooser.classList.remove('has-selection');
+      document.querySelectorAll('.half').forEach(function(half) {
+        half.classList.remove('is-selecting');
+        half.removeAttribute('style');
+      });
+      document.querySelectorAll('.half').forEach(scalePreview);
+    }
+
     function init() {
       var halves = document.querySelectorAll('.half');
 
@@ -373,6 +384,12 @@
 
       window.addEventListener('resize', function() {
         halves.forEach(scalePreview);
+      });
+
+      // When the back button restores this page from bfcache, reset the
+      // selection animation so the chooser is clean and interactive again
+      window.addEventListener('pageshow', function(e) {
+        if (e.persisted) resetState();
       });
     }
 
