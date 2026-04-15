@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root { --amber:#1A2035; --amber-2:#0F1525; --gold:#B86E44; --gold-2:#D4916A; --gold-3:#E8B090; --paper:#FDFAF7; --ink:#1A2035; --muted:#7A6A5A; --line:#E8DDD4; }
+    :root { --amber:#2C140A; --amber-2:#1C0C04; --gold:#C97B4B; --gold-2:#DCA07A; --gold-3:#E8BCA0; --paper:#FBF8F5; --ink:#2C140A; --muted:#7A6858; --line:#EAD8CC; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--paper); }
@@ -34,9 +34,9 @@
     .nav-mobile-menu a:hover { color: var(--gold); }
     @media (max-width: 767px) { .nav-cta-link { display: none; } .nav-hamburger { display: flex; } .nav { position: relative; } }
     .hero { background: linear-gradient(160deg, var(--amber) 0%, var(--amber-2) 100%); padding: 100px 32px 80px; position: relative; overflow: hidden; text-align: center; }
-    .hero::before { content: ""; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; border: 2px solid rgba(232,201,138,0.18); pointer-events: none; }
-    .hero::after { content: ""; position: absolute; bottom: -120px; left: -100px; width: 500px; height: 500px; border-radius: 50%; border: 2px solid rgba(232,201,138,0.12); pointer-events: none; }
-    .hero-badge { display: inline-block; background: rgba(232,201,138,0.18); color: var(--gold-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 24px; border: 1px solid rgba(232,201,138,0.35); }
+    .hero::before { content: ""; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; border: 2px solid rgba(201,123,75,0.18); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; bottom: -120px; left: -100px; width: 500px; height: 500px; border-radius: 50%; border: 2px solid rgba(201,123,75,0.12); pointer-events: none; }
+    .hero-badge { display: inline-block; background: rgba(201,123,75,0.18); color: var(--gold-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 24px; border: 1px solid rgba(201,123,75,0.35); }
     .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.03em; max-width: 700px; margin: 0 auto 20px; }
     .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 36px; line-height: 1.6; }
     .hero-cta { display: inline-block; background: var(--gold); color: var(--amber); font-size: 0.9rem; font-weight: 700; padding: 14px 32px; border-radius: 8px; transition: background 0.2s, transform 0.15s; }
@@ -47,7 +47,7 @@
     .section-heading { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; text-align: center; color: var(--amber); letter-spacing: -0.02em; margin-bottom: 40px; }
     .includes { background: var(--paper); }
     .includes-list { list-style: none; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-    .includes-list li { display: flex; align-items: flex-start; gap: 16px; background: #FFFEF8; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; font-size: 0.95rem; color: var(--ink); line-height: 1.5; font-weight: 500; }
+    .includes-list li { display: flex; align-items: flex-start; gap: 16px; background: #FFF8F2; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; font-size: 0.95rem; color: var(--ink); line-height: 1.5; font-weight: 500; }
     .includes-list li::before { content: ""; display: block; flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; background: var(--gold); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10l3.5 3.5L15 7' stroke='%232B1A00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: contain; }
     .trust { background: var(--amber); text-align: center; }
     .trust .section-heading { color: #fff; }

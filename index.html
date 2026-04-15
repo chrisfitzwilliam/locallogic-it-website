@@ -129,28 +129,28 @@
     @keyframes glow-gold {
       0%, 100% {
         box-shadow:
-          0 0 22px rgba(201,169,110,0.18),
-          0 8px 48px rgba(201,169,110,0.10),
+          0 0 22px rgba(201,123,75,0.18),
+          0 8px 48px rgba(201,123,75,0.10),
           inset 0 1px 0 rgba(255,255,255,0.09);
       }
       50% {
         box-shadow:
-          0 0 38px rgba(201,169,110,0.34),
-          0 8px 64px rgba(201,169,110,0.20),
+          0 0 38px rgba(201,123,75,0.34),
+          0 8px 64px rgba(201,123,75,0.20),
           inset 0 1px 0 rgba(255,255,255,0.13);
       }
     }
     @keyframes glow-blue {
       0%, 100% {
         box-shadow:
-          0 0 22px rgba(59,130,246,0.18),
-          0 8px 48px rgba(59,130,246,0.10),
+          0 0 22px rgba(74,128,232,0.18),
+          0 8px 48px rgba(74,128,232,0.10),
           inset 0 1px 0 rgba(255,255,255,0.09);
       }
       50% {
         box-shadow:
-          0 0 38px rgba(59,130,246,0.34),
-          0 8px 64px rgba(59,130,246,0.20),
+          0 0 38px rgba(74,128,232,0.34),
+          0 8px 64px rgba(74,128,232,0.20),
           inset 0 1px 0 rgba(255,255,255,0.13);
       }
     }
@@ -182,11 +182,11 @@
     }
     /* Brand-coloured glow + border accent */
     .half--residential .half-caption {
-      border-color: rgba(201,169,110,0.32) rgba(201,169,110,0.14) rgba(201,169,110,0.08) rgba(201,169,110,0.14);
+      border-color: rgba(201,123,75,0.32) rgba(201,123,75,0.14) rgba(201,123,75,0.08) rgba(201,123,75,0.14);
       animation: glow-gold 3.6s ease-in-out infinite;
     }
     .half--business .half-caption {
-      border-color: rgba(59,130,246,0.32) rgba(59,130,246,0.14) rgba(59,130,246,0.08) rgba(59,130,246,0.14);
+      border-color: rgba(74,128,232,0.32) rgba(74,128,232,0.14) rgba(74,128,232,0.08) rgba(74,128,232,0.14);
       animation: glow-blue 3.6s ease-in-out infinite;
     }
 
@@ -201,8 +201,8 @@
       height: 52px;
       margin: 0 auto 18px;
     }
-    .half--residential .half-icon { color: #D4916A; }
-    .half--business    .half-icon { color: #3B82F6; }
+    .half--residential .half-icon { color: #DCA07A; }
+    .half--business    .half-icon { color: #4A80E8; }
 
     .half-name {
       font-size: 1.5rem;
@@ -211,8 +211,8 @@
       display: block;
       margin-bottom: 5px;
     }
-    .half--residential .half-name { color: #D4916A; }
-    .half--business    .half-name { color: #3B82F6; }
+    .half--residential .half-name { color: #DCA07A; }
+    .half--business    .half-name { color: #4A80E8; }
 
     .half-sub {
       font-size: 0.8rem;
@@ -235,8 +235,8 @@
         opacity   0.3s ease,
         transform 0.3s ease;
     }
-    .half--residential .half-arrow { color: rgba(201,169,110,0.85); }
-    .half--business    .half-arrow { color: rgba(59,130,246,0.85);  }
+    .half--residential .half-arrow { color: rgba(201,123,75,0.85); }
+    .half--business    .half-arrow { color: rgba(74,128,232,0.85);  }
     .half:hover .half-arrow {
       opacity: 1;
       transform: translateY(0);
@@ -385,8 +385,8 @@
       var dest      = half.dataset.href;
       var isRes     = half.classList.contains('half--residential');
       var flashColor = isRes
-        ? 'rgba(201,169,110,0.22)'
-        : 'rgba(59,130,246,0.22)';
+        ? 'rgba(201,123,75,0.22)'
+        : 'rgba(74,128,232,0.22)';
 
       // 1. Inject full-screen flash for immediate "confirmed" feedback
       injectFlash(flashColor);
