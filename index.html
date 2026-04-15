@@ -3,713 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Local Logic IT delivers managed IT, cybersecurity, cloud, backup, and automation services for businesses that need responsive, practical support." />
-  <title>Local Logic IT - Local Service. Logical Solutions.</title>
+  <meta name="description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <title>Local Logic IT — Choose Your Service</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --ink: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --navy: #15274d;
-      --navy-2: #1f3c76;
-      --gold: #c9a96e;
-      --orange: #f76641;
-      --orange-2: #ff875f;
-      --paper: #fffdf8;
-      --shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
     body {
       font-family: "Manrope", sans-serif;
-      color: var(--ink);
-      background: linear-gradient(180deg, #f8fbff 0%, #f1f5fb 100%);
-      padding: 12px;
+      background: #111;
     }
-    a { color: inherit; text-decoration: none; }
-    .shell {
-      max-width: 1480px;
-      margin: 0 auto;
-      background: white;
-      border: 12px solid #111;
-      border-radius: 32px;
-      overflow: hidden;
-      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.12);
-    }
-    .container { width: min(1312px, calc(100% - 48px)); margin: 0 auto; }
-    .hero {
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 78%, rgba(255, 247, 212, 0.96) 0 12%, rgba(255, 247, 212, 0.55) 13%, transparent 34%),
-        linear-gradient(180deg, #ffd45e 0%, #ffc34b 48%, #ffe98c 100%);
-      min-height: 770px;
-    }
-    .hero::before, .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      background: rgba(255, 240, 194, 0.82);
-    }
-    .hero::before { width: 310px; height: 310px; left: -110px; bottom: 195px; }
-    .hero::after { width: 220px; height: 220px; right: -70px; bottom: 188px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Header ── */
     .header {
-      position: relative;
-      z-index: 3;
-      padding: 18px 0;
-    }
-    .header-bar, .nav, .actions, .metrics {
-      display: flex;
-      align-items: center;
-    }
-    .header-bar { justify-content: space-between; gap: 24px; }
-    .nav, .actions { gap: 10px; }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-    }
-    .mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--navy), var(--navy-2));
-      position: relative;
-    }
-    .mark::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 42%;
-      width: 18px;
-      height: 12px;
-      transform: translate(-50%, -50%);
-      border: 2px solid #ecd6ab;
-      border-bottom-width: 4px;
-      border-radius: 3px 3px 6px 6px;
-    }
-    .mark::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 10px;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 3px;
-      border-radius: 99px;
-      background: #ecd6ab;
-    }
-    .brand-copy strong {
-      display: block;
-      font-size: 1.8rem;
-      line-height: 1;
-      color: #12233f;
-      letter-spacing: -0.04em;
-    }
-    .brand-copy span {
-      display: block;
-      font-size: 0.76rem;
-      color: rgba(18, 35, 63, 0.72);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-top: 2px;
-    }
-    .nav a, .btn {
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      padding: 10px 14px;
-    }
-    .nav a:hover { background: rgba(255, 255, 255, 0.52); }
-    .btn { display: inline-flex; align-items: center; justify-content: center; }
-    .btn-light {
-      background: white;
-      color: var(--orange);
-      box-shadow: 0 2px 4px rgba(16, 24, 40, 0.05);
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--orange), var(--orange-2));
-      color: white;
-      box-shadow: 0 14px 28px rgba(247, 102, 65, 0.2);
-    }
-    .hero-main {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 36px;
-      padding: 34px 0 314px;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      margin-bottom: 18px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.56);
-      border: 1px solid rgba(31, 41, 55, 0.08);
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: #132847;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 14px 0 0 rgba(247, 102, 65, 0.18);
-    }
-    h1 {
-      max-width: 720px;
-      font-size: clamp(3rem, 5vw, 5.1rem);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-      color: #142540;
-    }
-    .scribble {
-      position: relative;
-      display: inline-block;
-    }
-    .scribble::after {
-      content: "";
-      position: absolute;
-      left: 2%;
-      right: 1%;
-      bottom: -10px;
-      height: 14px;
-      background:
-        radial-gradient(circle at 8px 8px, transparent 7px, var(--orange) 7px 8px, transparent 8px) 0 0 / 34px 14px repeat-x;
-    }
-    .side-copy {
-      padding-top: 34px;
-    }
-    .lead {
-      max-width: 500px;
-      font-size: 1.16rem;
-      line-height: 1.7;
-      color: rgba(31, 41, 55, 0.9);
-    }
-    .metrics { gap: 14px; margin-top: 24px; flex-wrap: wrap; }
-    .avatars { display: flex; align-items: center; padding-left: 6px; }
-    .avatar {
-      width: 34px;
-      height: 34px;
-      margin-left: -8px;
-      border: 2px solid white;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy), var(--navy-2));
-      color: white;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.72rem;
-      font-weight: 800;
-    }
-    .avatar:first-child { margin-left: 0; }
-    .rating { font-size: 0.95rem; font-weight: 800; color: #132847; }
-    .rating span { color: #f59e0b; margin-right: 6px; }
-    .rating small { color: rgba(31, 41, 55, 0.72); margin-left: 4px; }
-    .plane {
-      position: absolute;
-      left: 50%;
-      bottom: 278px;
-      transform: translateX(-50%);
-      width: min(760px, calc(100% - 160px));
-      height: 220px;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .plane::before {
-      content: "";
-      position: absolute;
-      left: 12%;
-      right: 12%;
-      bottom: 18px;
-      height: 12px;
-      border-radius: 999px;
-      transform: skewX(-12deg);
-      background: linear-gradient(90deg, #b32f24, #d53b2d);
-    }
-    .plane::after {
-      content: "";
-      position: absolute;
+      position: fixed;
+      top: 0;
       left: 0;
       right: 0;
-      top: 42px;
-      height: 120px;
-      background:
-        linear-gradient(175deg, transparent 42%, rgba(183, 38, 27, 0.96) 42% 46%, transparent 46%) left center / 50% 100% no-repeat,
-        linear-gradient(185deg, transparent 42%, rgba(183, 38, 27, 0.96) 42% 46%, transparent 46%) right center / 50% 100% no-repeat;
-    }
-    .plane-core {
-      position: absolute;
-      left: 50%;
-      top: 66px;
-      transform: translateX(-50%);
-      width: 112px;
-      height: 112px;
-      clip-path: polygon(50% 0, 70% 28%, 74% 64%, 100% 100%, 0 100%, 26% 64%, 30% 28%);
-      background: linear-gradient(180deg, #c53426, #981f17);
-    }
-    .plane-core::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: -66px;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 154px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #cc3a2b, #8d1a14);
-    }
-    .booker {
-      position: absolute;
-      left: 50%;
-      bottom: -104px;
-      transform: translateX(-50%);
-      z-index: 4;
-      width: min(1012px, calc(100% - 48px));
-    }
-    .tabs {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      max-width: 760px;
-      margin: 0 auto;
-    }
-    .tab {
-      padding: 20px 16px;
-      background: var(--orange);
-      color: rgba(255, 255, 255, 0.96);
-      text-align: center;
-      font-weight: 700;
-    }
-    .tab:first-child, .tab:last-child { border-radius: 34px 34px 0 0; }
-    .tab.active {
-      background: white;
-      color: var(--orange);
-      border-radius: 40px 40px 0 0;
-    }
-    .panel {
-      position: relative;
-      background: rgba(255, 255, 255, 0.96);
-      padding: 26px 20px 22px;
-      border-radius: 28px;
-      box-shadow: 0 0 110px rgba(15, 23, 42, 0.06);
-    }
-    .form {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 10px;
-    }
-    .field {
-      min-height: 76px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: white;
-      padding: 11px 14px 12px;
-    }
-    .label {
-      display: block;
-      color: var(--orange);
-      font-size: 0.73rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .value {
+      z-index: 10;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 0;
+      pointer-events: none;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
       gap: 12px;
-      align-items: center;
-      font-size: 1rem;
+    }
+    .header-logo img {
+      height: 44px;
+      width: auto;
+    }
+    .header-name {
+      font-size: 1.4rem;
       font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
     }
-    .value small {
-      display: block;
-      color: var(--muted);
-      font-size: 0.76rem;
-      font-weight: 600;
-      margin-top: 2px;
+    .header-tagline {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    .icon {
-      flex: 0 0 auto;
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: #f9fafb;
-      display: grid;
-      place-items: center;
-      color: #9ca3af;
-    }
-    .cta-wrap { text-align: center; margin-top: 16px; }
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      overflow: hidden;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--orange), var(--orange-2));
-      color: white;
-      box-shadow: 0 14px 30px rgba(247, 102, 65, 0.18);
-    }
-    .cta b { padding: 16px 30px 16px 32px; }
-    .cta span {
-      padding: 16px 18px;
-      background: rgba(255, 255, 255, 0.16);
-      display: inline-flex;
-      align-items: center;
-    }
-    .note {
-      text-align: center;
-      margin-top: 12px;
-      color: rgba(31, 41, 55, 0.62);
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-    .services {
-      padding: 220px 0 96px;
-      background: white;
-    }
-    .section-head {
-      max-width: 760px;
-      margin: 0 auto 34px;
-      text-align: center;
-    }
-    .section-head h2 {
-      font-size: clamp(2.3rem, 4vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.05em;
-      margin-bottom: 12px;
-    }
-    .section-head p {
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 22px;
-    }
-    .card {
-      min-height: 236px;
-      padding: 28px 24px;
-      border-radius: 26px;
-      border: 1px solid var(--line);
-      background: white;
-      text-align: center;
-      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
-    }
-    .card.featured {
-      border: 2px solid var(--orange);
-      box-shadow: 0 18px 36px rgba(247, 102, 65, 0.12);
-    }
-    .card-icon {
-      width: 82px;
-      height: 82px;
-      border-radius: 24px;
-      margin: 0 auto 22px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(180deg, #fffaf0, #fff2d6);
-      color: var(--navy);
-      font-size: 2rem;
-      font-weight: 800;
-    }
-    .card h3 {
-      font-size: 1.15rem;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.65;
-    }
-    .band {
-      background: linear-gradient(180deg, #f8fbff 0%, #f2f6fb 100%);
-      padding: 0 0 96px;
-    }
-    .panel-dark {
-      width: min(1312px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 36px;
-      border-radius: 28px;
-      background: linear-gradient(135deg, #11213f, #17305e);
-      color: white;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 24px;
-      box-shadow: var(--shadow);
-    }
-    .panel-dark h3 {
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      margin-bottom: 12px;
-    }
-    .panel-dark p {
-      max-width: 620px;
-      color: rgba(255, 255, 255, 0.74);
-      line-height: 1.75;
-    }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .stat {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .stat strong {
-      display: block;
-      font-size: 1.55rem;
-      margin-bottom: 6px;
-    }
-    .stat span {
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-    .footer {
-      width: min(1312px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 28px 0 10px;
+
+    /* ── Chooser ── */
+    .chooser {
+      position: relative;
+      width: 100%;
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
+    }
+
+    /* ── Halves ── */
+    .half {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 20px;
-      color: #6b7280;
-      font-size: 0.94rem;
+      cursor: pointer;
+      overflow: hidden;
+      transition: filter 0.3s ease;
     }
-    .footer a {
-      color: var(--navy);
-      font-weight: 700;
+    .half--residential { background: #15274D; }
+    .half--business    { background: #1C1C2E; }
+
+    /* ── SVG Divider ── */
+    .divider {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 100%;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
     }
-    @media (max-width: 1200px) {
-      .hero-main, .panel-dark { grid-template-columns: 1fr; }
-      .form, .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    /* ── Half content ── */
+    .half-icon {
+      width: 72px;
+      height: 72px;
+      opacity: 0.85;
     }
-    @media (max-width: 900px) {
-      body { padding: 0; }
-      .shell { border: 0; border-radius: 0; }
-      .container, .panel-dark, .footer { width: min(calc(100% - 28px), 1312px); }
-      .header-bar { flex-wrap: wrap; justify-content: center; }
-      .nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
-      .hero { min-height: 980px; }
-      .hero-main { grid-template-columns: 1fr; text-align: center; padding-bottom: 450px; }
-      .side-copy { padding-top: 0; }
-      .lead { max-width: none; }
-      .metrics, .avatars { justify-content: center; }
-      .plane { bottom: 386px; width: calc(100% - 48px); }
-      .booker { bottom: -132px; }
-      .form, .cards, .stats { grid-template-columns: 1fr; }
-      .services { padding-top: 292px; }
-      .footer { flex-direction: column; text-align: center; padding-bottom: 28px; }
+    .half-label {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-align: center;
     }
-    @media (max-width: 640px) {
-      .hero { min-height: 1040px; }
-      .hero-main { padding-top: 22px; gap: 22px; }
-      h1 { font-size: 2.7rem; }
-      .actions { width: 100%; }
-      .actions a { flex: 1 1 0; }
-      .tabs { font-size: 0.88rem; }
-      .tab { padding: 17px 10px; }
-      .panel { padding-left: 14px; padding-right: 14px; }
-      .plane { bottom: 456px; }
-      .plane-core { transform: translateX(-50%) scale(0.84); }
-      .panel-dark { padding: 24px; }
+    .half--residential .half-label { color: #C9A96E; }
+    .half--business    .half-label { color: #3B82F6; }
+    .half-sub {
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0.6;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* ── Responsive: mobile stacks vertically ── */
+    @media (max-width: 767px) {
+      html, body { overflow: auto; }
+      .chooser { flex-direction: column; height: auto; min-height: 100vh; }
+      .half { min-height: 50vh; }
+      .divider { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <section class="hero">
-      <header class="header">
-        <div class="container header-bar">
-          <a class="brand" href="#top" aria-label="Local Logic IT home">
-            <span class="mark" aria-hidden="true"></span>
-            <span class="brand-copy">
-              <strong>LocalLogic</strong>
-              <span>Local Service. Logical Solutions.</span>
-            </span>
-          </a>
-          <nav class="nav" aria-label="Primary">
-            <a href="#services">Services</a>
-            <a href="#coverage">Coverage</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact Us</a>
-          </nav>
-          <div class="actions">
-            <a class="btn btn-light" href="mailto:chris@fitzwilliam.net">Email</a>
-            <a class="btn btn-primary" href="#contact">Book Review</a>
-          </div>
-        </div>
-      </header>
 
-      <div class="container hero-main" id="top">
-        <div>
-          <div class="eyebrow">Fast local response for business IT</div>
-          <h1>It&apos;s A Better Way To Run <span class="scribble">IT Without The Chaos</span></h1>
-        </div>
-        <div class="side-copy">
-          <p class="lead">
-            We help local businesses stabilize support, tighten security, modernize cloud systems,
-            and keep teams productive without dragging owners into every technical problem.
-          </p>
-          <div class="metrics">
-            <div class="avatars" aria-hidden="true">
-              <span class="avatar">MSP</span>
-              <span class="avatar">SOC</span>
-              <span class="avatar">M365</span>
-              <span class="avatar">AI</span>
-              <span class="avatar">24/7</span>
-            </div>
-            <div class="rating"><span>&#9733;</span>5.0 Service Focus <small>for practical business support</small></div>
-          </div>
-        </div>
-      </div>
+  <header class="header">
+    <div class="header-logo">
+      <img src="assets/logo.png" alt="Local Logic IT logo" />
+      <span class="header-name">Local Logic IT</span>
+    </div>
+    <p class="header-tagline">Local Service. Logical Solutions.</p>
+  </header>
 
-      <div class="plane" aria-hidden="true"><div class="plane-core"></div></div>
+  <div class="chooser" id="chooser">
 
-      <div class="booker" id="contact">
-        <div class="tabs">
-          <div class="tab">Managed IT</div>
-          <div class="tab active">Cybersecurity</div>
-          <div class="tab">Cloud + AI</div>
-        </div>
-        <div class="panel">
-          <div class="form">
-            <div class="field">
-              <span class="label">Company Name</span>
-              <div class="value">
-                <span class="icon">CO</span>
-                <span>Local business<small>Tell us who needs support</small></span>
-              </div>
-            </div>
-            <div class="field">
-              <span class="label">Primary Need</span>
-              <div class="value">
-                <span class="icon">SR</span>
-                <span>Security review<small>Hardening, monitoring, policy gaps</small></span>
-              </div>
-            </div>
-            <div class="field">
-              <span class="label">Best Contact</span>
-              <div class="value">
-                <span class="icon">EM</span>
-                <span>Email first<small>Share scope and callback details</small></span>
-              </div>
-            </div>
-            <div class="field">
-              <span class="label">Environment Size</span>
-              <div class="value">
-                <span class="icon">SZ</span>
-                <span>10-75 users<small>Ideal SMB support footprint</small></span>
-              </div>
-            </div>
-            <div class="field">
-              <span class="label">Support Model</span>
-              <div class="value">
-                <span class="icon">OP</span>
-                <span>Ongoing partnership<small>Co-managed or fully outsourced</small></span>
-              </div>
-            </div>
-          </div>
-          <div class="cta-wrap">
-            <a class="cta" href="mailto:chris@fitzwilliam.net?subject=Local%20Logic%20IT%20Consultation">
-              <b>Request Consultation</b><span>GO</span>
-            </a>
-          </div>
-          <p class="note">This keeps the Figma booking-bar layout, but the action is mapped to Local Logic&apos;s current email-based intake flow.</p>
-        </div>
-      </div>
-    </section>
+    <!-- Residential half -->
+    <a class="half half--residential" href="residential.html" aria-label="Go to Residential services">
+      <!-- House icon -->
+      <svg class="half-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M10 34L36 10L62 34" stroke="#C9A96E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 28V58H30V44H42V58H54V28" stroke="#C9A96E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="half-label">Home &amp; Family</span>
+      <span class="half-sub">Residential IT Support</span>
+    </a>
 
-    <main>
-      <section class="services" id="services">
-        <div class="container">
-          <div class="section-head">
-            <h2>Core Service Lines</h2>
-            <p>
-              The original Figma is a travel landing page. This version keeps its structure and conversion
-              rhythm, but translates the content into Local Logic&apos;s actual IT service offer.
-            </p>
-          </div>
-          <div class="cards">
-            <article class="card featured">
-              <div class="card-icon">IT</div>
-              <h3>Managed IT Services</h3>
-              <p>Help desk, workstation support, patching, vendor coordination, and day-to-day ownership that reduces internal drag.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon">CS</div>
-              <h3>Cybersecurity</h3>
-              <p>MFA enforcement, endpoint protection, policy tuning, user awareness, and practical remediation for common business risks.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon">CL</div>
-              <h3>Cloud Services</h3>
-              <p>Microsoft 365, identity cleanup, tenant governance, shared-file modernization, and cleaner remote-work operations.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon">BR</div>
-              <h3>Backup &amp; Recovery</h3>
-              <p>Retention strategy, restore testing, endpoint backup, and continuity planning so outages stop being existential events.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon">AI</div>
-              <h3>AI Automation</h3>
-              <p>Internal workflow improvements, document handling, and targeted automations that save time without adding platform sprawl.</p>
-            </article>
-          </div>
-        </div>
-      </section>
+    <!-- Curved SVG divider -->
+    <svg class="divider" viewBox="0 0 120 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M60 0 C20 150, 100 300, 60 450 C20 600, 100 750, 60 900 L120 900 L120 0 Z" fill="#1C1C2E"/>
+      <path d="M60 0 C20 150, 100 300, 60 450 C20 600, 100 750, 60 900" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+    </svg>
 
-      <section class="band" id="coverage">
-        <div class="panel-dark" id="about">
-          <div>
-            <h3>Structured Like A Consumer Product, Built For Real IT Decisions</h3>
-            <p>
-              This page now follows the Figma reference much more directly: warm hero, centered navigation,
-              floating tabbed intake bar, and five service cards. The copy and call to action stay grounded in Local Logic&apos;s business.
-            </p>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <strong>Response-first</strong>
-              <span>Direct local communication instead of ticket-black-hole support.</span>
-            </div>
-            <div class="stat">
-              <strong>Security-aware</strong>
-              <span>Infrastructure decisions shaped by practical risk reduction.</span>
-            </div>
-            <div class="stat">
-              <strong>Cloud-capable</strong>
-              <span>Microsoft 365, identity, and hybrid environment cleanup.</span>
-            </div>
-            <div class="stat">
-              <strong>Owner-friendly</strong>
-              <span>Clear recommendations without dumping technical jargon on the client.</span>
-            </div>
-          </div>
-        </div>
-        <footer class="footer">
-          <p>&copy; 2026 Local Logic IT. Local Service. Logical Solutions.</p>
-          <p><a href="mailto:chris@fitzwilliam.net">chris@fitzwilliam.net</a> / locallogic.fitzwilliam.net</p>
-        </footer>
-      </section>
-    </main>
+    <!-- Business half -->
+    <a class="half half--business" href="business.html" aria-label="Go to Business services">
+      <!-- Building icon -->
+      <svg class="half-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="12" y="14" width="48" height="44" rx="2" stroke="#3B82F6" stroke-width="4"/>
+        <line x1="12" y1="28" x2="60" y2="28" stroke="#3B82F6" stroke-width="4"/>
+        <line x1="36" y1="14" x2="36" y2="58" stroke="#3B82F6" stroke-width="4"/>
+        <rect x="22" y="36" width="10" height="10" rx="1" fill="#3B82F6" opacity="0.5"/>
+        <rect x="40" y="36" width="10" height="10" rx="1" fill="#3B82F6" opacity="0.5"/>
+        <rect x="22" y="20" width="10" height="4" rx="1" fill="#3B82F6" opacity="0.4"/>
+        <rect x="40" y="20" width="10" height="4" rx="1" fill="#3B82F6" opacity="0.4"/>
+      </svg>
+      <span class="half-label">Business &amp; Office</span>
+      <span class="half-sub">Commercial IT Services</span>
+    </a>
+
   </div>
+
 </body>
 </html>
