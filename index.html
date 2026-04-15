@@ -14,7 +14,7 @@
     html, body { height: 100%; overflow: hidden; }
     body {
       font-family: "Manrope", sans-serif;
-      background: #111;
+      background: radial-gradient(ellipse at 50% 40%, #1a1a2e 0%, #080810 100%);
     }
     a { text-decoration: none; color: inherit; }
 
@@ -85,16 +85,18 @@
       overflow: hidden;
       border-radius: 20px;
       z-index: 1;
-      /* Faded/transparent baseline — clearly "inactive" against dark body */
-      opacity: 0.48;
-      will-change: transform, opacity;
+      /* Transparent baseline — body shows through, colored border marks the card */
+      background-color: rgba(0,0,0,0);
+      will-change: transform, background-color;
       transition:
-        transform      0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity        0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        border-radius  0.2s  ease;
+        background-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        transform        0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color     0.4s ease,
+        border-radius    0.2s ease;
     }
-    .half--residential { background: #15274D; }
-    .half--business    { background: #1C1C2E; }
+    /* Colored border outlines the card in its panel color even when transparent */
+    .half--residential { border: 1px solid rgba(201,169,110,0.35); }
+    .half--business    { border: 1px solid rgba(59,130,246,0.30);  }
 
     /* SVG divider doesn't suit the card layout — hidden */
     .divider { display: none; }
@@ -127,27 +129,25 @@
       outline-offset: -3px;
     }
 
-    /* ── Hover: active half comes fully alive, other recedes ── */
-    .half:hover {
-      opacity: 1;
-      transform: scale(1.03);
-      z-index: 3;
-    }
+    /* ── Hover: active half fills with its color, other stays transparent ── */
+    .half--residential:hover { background-color: rgba(21,39,77,1);  border-color: rgba(201,169,110,0.7); transform: scale(1.03); z-index: 3; }
+    .half--business:hover    { background-color: rgba(28,28,46,1);  border-color: rgba(59,130,246,0.6);  transform: scale(1.03); z-index: 3; }
     .chooser:has(.half:hover) .half:not(:hover) {
-      opacity: 0.2;
       transform: scale(0.97);
+      border-color: rgba(255,255,255,0.06);
     }
 
     /* ── Click / zoom-select: panel expands to fill screen then navigates ── */
+    .half--residential.selected { background-color: #15274D; }
+    .half--business.selected    { background-color: #1C1C2E; }
     .half.selected {
-      opacity: 1;
       transform: scale(9);
       border-radius: 0;
       z-index: 20;
       transition:
-        transform     0.42s cubic-bezier(0.4, 0, 0.15, 1),
-        border-radius 0.15s ease,
-        opacity       0.1s  ease;
+        background-color 0.1s  ease,
+        transform        0.42s cubic-bezier(0.4, 0, 0.15, 1),
+        border-radius    0.15s ease;
     }
 
     /* ── Responsive: mobile stacks vertically ── */
