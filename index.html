@@ -23,6 +23,23 @@
       100% { opacity: 0;   }
     }
 
+    @keyframes header-arrive {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -10px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+    }
+    @keyframes header-flare {
+      0%, 28% { transform: translateX(-135%) skewX(-18deg); opacity: 0; }
+      38%     { opacity: 0.55; }
+      56%     { transform: translateX(135%) skewX(-18deg); opacity: 0; }
+      100%    { transform: translateX(135%) skewX(-18deg); opacity: 0; }
+    }
+
     /* ── Header — frosted glass pill ── */
     .header {
       position: fixed;
@@ -33,35 +50,194 @@
       will-change: left, top, transform;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 9px 22px;
-      background: rgba(8,8,18,0.90);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 50px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      gap: 14px;
+      width: min(720px, calc(100vw - 36px));
+      min-height: 62px;
+      padding: 8px 10px 8px 18px;
+      background:
+        linear-gradient(135deg, rgba(10,11,24,0.94), rgba(17,18,38,0.88)) padding-box,
+        linear-gradient(112deg, rgba(212,114,42,0.72), rgba(255,255,255,0.28), rgba(91,94,204,0.74)) border-box;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      box-shadow:
+        0 18px 48px rgba(0,0,0,0.36),
+        0 0 28px rgba(212,114,42,0.14),
+        0 0 32px rgba(91,94,204,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.14);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       white-space: nowrap;
-      pointer-events: none;
+      pointer-events: auto;
+      overflow: visible;
+      animation: header-arrive 0.7s cubic-bezier(0.19,1,0.22,1) both 0.08s;
     }
-    .header-logo img { height: 32px; width: auto; display: block; }
+    .header::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      z-index: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(212,114,42,0.08), transparent 36%, rgba(91,94,204,0.08));
+    }
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 1px;
+      bottom: 1px;
+      left: 0;
+      z-index: 0;
+      width: 96px;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      filter: blur(1px);
+      animation: header-flare 6.8s ease-in-out infinite 1.1s;
+    }
+    .header > * {
+      position: relative;
+      z-index: 1;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      text-decoration: none;
+    }
+    .header-brand:focus-visible,
+    .header-link:focus-visible,
+    .header-choice:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.86);
+      outline-offset: 3px;
+      border-radius: 999px;
+    }
+    .header-logo {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 24%, rgba(255,255,255,0.18), rgba(255,255,255,0.03) 58%);
+      box-shadow:
+        0 0 20px rgba(212,114,42,0.24),
+        0 0 22px rgba(91,94,204,0.18);
+      flex-shrink: 0;
+    }
+    .header-logo img { height: 34px; width: auto; display: block; }
     .header-name {
-      font-size: 1.05rem;
+      font-size: 1.12rem;
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.02em;
     }
     .header-divider {
       width: 1px;
-      height: 18px;
-      background: rgba(255,255,255,0.2);
+      height: 26px;
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.3), transparent);
       flex-shrink: 0;
     }
     .header-tagline {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.07em;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.58);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      flex: 1 1 auto;
+      min-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .header-link {
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: transparent;
+      color: rgba(255,255,255,0.72);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition:
+        color 0.22s ease,
+        background 0.22s ease,
+        box-shadow 0.22s ease,
+        transform 0.22s ease;
+    }
+    .header-link:hover,
+    .header-link.is-active {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(212,114,42,0.28), rgba(91,94,204,0.24));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.13);
+    }
+    .header-link:hover {
+      transform: translateY(-1px);
+    }
+    .header-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 10px;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: min(320px, calc(100vw - 36px));
+      padding: 8px;
+      background: rgba(9,10,23,0.94);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 18px;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.34);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-6px) scale(0.98);
+      transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease,
+        transform 0.2s ease;
+    }
+    .header.is-menu-open .header-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+    .header-choice {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .header-choice:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.24);
+    }
+    .header-choice--home {
+      background: linear-gradient(135deg, rgba(212,114,42,0.28), rgba(212,114,42,0.12));
+    }
+    .header-choice--business {
+      background: linear-gradient(135deg, rgba(91,94,204,0.3), rgba(91,94,204,0.13));
     }
 
     /* ── Chooser — full-bleed, no gap ── */
@@ -295,16 +471,82 @@
     }
 
     /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .header {
+        width: min(620px, calc(100vw - 24px));
+        gap: 10px;
+        padding-left: 12px;
+      }
+      .header-tagline {
+        display: none;
+      }
+      .header-divider {
+        display: none;
+      }
+    }
+
     @media (max-width: 767px) {
       html, body { overflow: auto; }
       .chooser { flex-direction: column; height: auto; min-height: 100vh; }
       .half { min-height: 44vh; }
       .half--residential { box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08); }
+      .header {
+        top: 12px;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 58px;
+      }
+      .header-logo {
+        width: 38px;
+        height: 38px;
+      }
+      .header-logo img {
+        height: 30px;
+      }
+      .header-name {
+        font-size: 1rem;
+      }
+      .header-nav {
+        gap: 4px;
+        padding: 3px;
+      }
+      .header-link {
+        padding: 7px 8px;
+        font-size: 0.7rem;
+      }
+      .header-menu {
+        right: 0;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .header {
+        width: calc(100vw - 18px);
+        padding: 8px;
+      }
+      .header-brand {
+        gap: 8px;
+      }
+      .header-name {
+        max-width: 96px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .header-link {
+        padding: 7px 6px;
+        font-size: 0.66rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .header-name {
+        display: none;
+      }
     }
 
     /* Respect reduced-motion preference */
     @media (prefers-reduced-motion: reduce) {
-      .chooser, .half-overlay, .caption-wrapper::before, .half-caption, .half-arrow { animation: none; transition: none; }
+      .header, .header::after, .chooser, .half-overlay, .caption-wrapper::before, .half-caption, .half-arrow { animation: none; transition: none; }
     }
   </style>
 </head>
@@ -312,12 +554,23 @@
 
   <!-- Frosted glass pill header -->
   <header class="header">
-    <div class="header-logo">
-      <img src="assets/logo.png" alt="Local Logic IT logo" />
-    </div>
-    <span class="header-name">Local Logic IT</span>
+    <a class="header-brand" href="index.html" aria-label="Local Logic IT home">
+      <span class="header-logo">
+        <img src="assets/logo.png" alt="" />
+      </span>
+      <span class="header-name">Local Logic IT</span>
+    </a>
     <div class="header-divider" aria-hidden="true"></div>
     <span class="header-tagline">Local Service. Logical Solutions.</span>
+    <nav class="header-nav" aria-label="Quick sections">
+      <button class="header-link" type="button" data-section="services" aria-haspopup="menu" aria-expanded="false" aria-controls="headerMenu">Services</button>
+      <button class="header-link" type="button" data-section="about" aria-haspopup="menu" aria-expanded="false" aria-controls="headerMenu">About</button>
+      <button class="header-link" type="button" data-section="contact" aria-haspopup="menu" aria-expanded="false" aria-controls="headerMenu">Contact</button>
+    </nav>
+    <div class="header-menu" id="headerMenu" role="menu" hidden>
+      <a class="header-choice header-choice--home" role="menuitem" data-page="residential.html" href="residential.html#services">Home &amp; Family</a>
+      <a class="header-choice header-choice--business" role="menuitem" data-page="business.html" href="business.html#services">Business &amp; Office</a>
+    </div>
   </header>
 
   <main class="chooser" id="chooser">
@@ -389,6 +642,61 @@
 
   <script>
     var REF_W = 1440;
+    var header = document.querySelector('.header');
+    var headerMenu = document.getElementById('headerMenu');
+    var headerLinks = document.querySelectorAll('.header-link[data-section]');
+    var headerChoices = document.querySelectorAll('.header-choice[data-page]');
+
+    function closeHeaderMenu() {
+      if (!header || !headerMenu) return;
+      header.classList.remove('is-menu-open');
+      headerMenu.hidden = true;
+      headerLinks.forEach(function(link) {
+        link.classList.remove('is-active');
+        link.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function openHeaderMenu(section, trigger) {
+      if (!header || !headerMenu) return;
+      var isSameOpen = header.classList.contains('is-menu-open') && headerMenu.dataset.section === section;
+      if (isSameOpen) {
+        closeHeaderMenu();
+        return;
+      }
+
+      headerMenu.dataset.section = section;
+      headerChoices.forEach(function(choice) {
+        choice.href = choice.dataset.page + '#' + section;
+      });
+      headerLinks.forEach(function(link) {
+        var isActive = link === trigger;
+        link.classList.toggle('is-active', isActive);
+        link.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+      headerMenu.hidden = false;
+      requestAnimationFrame(function() {
+        header.classList.add('is-menu-open');
+      });
+    }
+
+    headerLinks.forEach(function(link) {
+      link.addEventListener('click', function(event) {
+        event.stopPropagation();
+        openHeaderMenu(link.dataset.section, link);
+      });
+    });
+
+    if (header) {
+      header.addEventListener('click', function(event) {
+        event.stopPropagation();
+      });
+    }
+
+    document.addEventListener('click', closeHeaderMenu);
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') closeHeaderMenu();
+    });
 
     function scalePreview(half) {
       var iframe = half.querySelector('.half-preview');
@@ -461,9 +769,10 @@
       half.style.transform  = 'translate(0,0) scale(1,1)';
 
       // 7. Fly the header bubble to the top-left nav position
-      var header  = document.querySelector('.header');
       var divider = header.querySelector('.header-divider');
       var tagline = header.querySelector('.header-tagline');
+      var nav     = header.querySelector('.header-nav');
+      closeHeaderMenu();
 
       header.style.transition = [
         'left 0.52s cubic-bezier(0.25,0.46,0.45,0.94)',
@@ -478,8 +787,10 @@
       setTimeout(function() {
         divider.style.transition = 'opacity 0.18s ease';
         tagline.style.transition = 'opacity 0.18s ease';
+        nav.style.transition     = 'opacity 0.18s ease';
         divider.style.opacity    = '0';
         tagline.style.opacity    = '0';
+        nav.style.opacity        = '0';
       }, 130);
 
       // Flag destination page to play receiving animation
