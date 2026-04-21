@@ -11,14 +11,14 @@
   <style>
     /* ── Tokens ── */
     :root {
-      --charcoal:   #0D1B38;
-      --charcoal-2: #070F22;
-      --blue:       #4A80E8;
-      --blue-2:     #7AAAF5;
-      --light:      #EDF2FF;
-      --ink:        #0D1B38;
-      --muted:      #6B7280;
-      --line:       #CDD9F5;
+      --charcoal:   #2C2D6E;
+      --charcoal-2: #23245A;
+      --blue:       #5B5ECC;
+      --blue-2:     #8B8FE8;
+      --light:      #EEEEFF;
+      --ink:        #202445;
+      --muted:      #666A8E;
+      --line:       #D7D9FB;
     }
 
     /* ── Reset ── */
@@ -143,7 +143,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      border: 2px solid rgba(74,128,232,0.1);
+      border: 2px solid rgba(91,94,204,0.1);
       pointer-events: none;
     }
     .hero::after {
@@ -154,12 +154,12 @@
       width: 500px;
       height: 500px;
       border-radius: 50%;
-      border: 2px solid rgba(74,128,232,0.06);
+      border: 2px solid rgba(91,94,204,0.06);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(74,128,232,0.15);
+      background: rgba(91,94,204,0.15);
       color: var(--blue);
       font-size: 0.75rem;
       font-weight: 700;
@@ -168,7 +168,7 @@
       padding: 6px 16px;
       border-radius: 999px;
       margin-bottom: 24px;
-      border: 1px solid rgba(74,128,232,0.3);
+      border: 1px solid rgba(91,94,204,0.3);
     }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.25rem);
@@ -194,11 +194,13 @@
       font-weight: 700;
       padding: 14px 32px;
       border-radius: 8px;
-      transition: background 0.2s, transform 0.15s;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease;
+      box-shadow: 0 14px 30px rgba(91,94,204,0.24);
     }
     .hero-cta:hover {
       background: var(--blue-2);
       transform: translateY(-2px);
+      box-shadow: 0 18px 34px rgba(91,94,204,0.32);
     }
     .hero-cta:focus-visible {
       outline: 3px solid #fff;

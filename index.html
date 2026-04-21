@@ -14,7 +14,7 @@
     html, body { height: 100%; overflow: hidden; }
     body {
       font-family: "Manrope", sans-serif;
-      background: #07070f;
+      background: linear-gradient(90deg, #F0F0F4 0%, #F0F0F4 50%, #F4F0EC 50%, #F4F0EC 100%);
     }
 
     /* ── Flash animation (injected on click) ── */
@@ -129,68 +129,91 @@
     @keyframes glow-gold {
       0%, 100% {
         box-shadow:
-          0 0 22px rgba(201,123,75,0.18),
-          0 8px 48px rgba(201,123,75,0.10),
+          0 0 22px rgba(212,114,42,0.18),
+          0 8px 48px rgba(212,114,42,0.10),
           inset 0 1px 0 rgba(255,255,255,0.09);
       }
       50% {
         box-shadow:
-          0 0 38px rgba(201,123,75,0.34),
-          0 8px 64px rgba(201,123,75,0.20),
+          0 0 38px rgba(212,114,42,0.34),
+          0 8px 64px rgba(212,114,42,0.20),
           inset 0 1px 0 rgba(255,255,255,0.13);
       }
     }
     @keyframes glow-blue {
       0%, 100% {
         box-shadow:
-          0 0 22px rgba(74,128,232,0.18),
-          0 8px 48px rgba(74,128,232,0.10),
+          0 0 22px rgba(91,94,204,0.18),
+          0 8px 48px rgba(91,94,204,0.10),
           inset 0 1px 0 rgba(255,255,255,0.09);
       }
       50% {
         box-shadow:
-          0 0 38px rgba(74,128,232,0.34),
-          0 8px 64px rgba(74,128,232,0.20),
+          0 0 38px rgba(91,94,204,0.34),
+          0 8px 64px rgba(91,94,204,0.20),
           inset 0 1px 0 rgba(255,255,255,0.13);
       }
     }
 
     /* ── Centered caption — premium glass card ── */
-    .half-caption {
+    .caption-wrapper {
       position: absolute;
-      /* Shifted down ~26px from true centre to sit below the header visually */
       top: calc(50% + 26px);
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
-      text-align: center;
-      padding: 36px 52px 32px;
-      background: rgba(6,7,16,0.55);
       border-radius: 18px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      padding: 1.5px;
+      overflow: hidden;
       pointer-events: none;
       white-space: nowrap;
-      /* Specular top-edge highlight (glass refraction effect) */
-      border-top: 1px solid rgba(255,255,255,0.18);
-      border-left: 1px solid rgba(255,255,255,0.07);
-      border-right: 1px solid rgba(255,255,255,0.07);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
       transition:
         transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         opacity   0.38s ease;
     }
+    .caption-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -100%;
+      animation: spin-border 3s linear infinite;
+    }
+    .caption-wrapper--residential::before {
+      background: conic-gradient(from 0deg, transparent 60%, #D4722A 80%, #F2B07D 90%, #D4722A 100%, transparent);
+    }
+    .caption-wrapper--business::before {
+      background: conic-gradient(from 0deg, transparent 60%, #5B5ECC 80%, #9898FF 90%, #5B5ECC 100%, transparent);
+    }
+    @keyframes spin-border {
+      to { transform: rotate(360deg); }
+    }
+    .half-caption {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 36px 52px 32px;
+      background: rgba(6,7,16,0.55);
+      border-radius: 16.5px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      pointer-events: none;
+      white-space: nowrap;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      border-left: 1px solid rgba(255,255,255,0.07);
+      border-right: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: opacity 0.38s ease;
+    }
     /* Brand-coloured glow + border accent */
     .half--residential .half-caption {
-      border-color: rgba(201,123,75,0.32) rgba(201,123,75,0.14) rgba(201,123,75,0.08) rgba(201,123,75,0.14);
+      border-color: rgba(212,114,42,0.32) rgba(212,114,42,0.14) rgba(212,114,42,0.08) rgba(212,114,42,0.14);
       animation: glow-gold 3.6s ease-in-out infinite;
     }
     .half--business .half-caption {
-      border-color: rgba(74,128,232,0.32) rgba(74,128,232,0.14) rgba(74,128,232,0.08) rgba(74,128,232,0.14);
+      border-color: rgba(91,94,204,0.32) rgba(91,94,204,0.14) rgba(91,94,204,0.08) rgba(91,94,204,0.14);
       animation: glow-blue 3.6s ease-in-out infinite;
     }
 
-    .half:hover .half-caption {
+    .half:hover .caption-wrapper {
       transform: translate(-50%, -56%);
     }
 
@@ -201,8 +224,8 @@
       height: 52px;
       margin: 0 auto 18px;
     }
-    .half--residential .half-icon { color: #DCA07A; }
-    .half--business    .half-icon { color: #4A80E8; }
+    .half--residential .half-icon { color: #E8A870; }
+    .half--business    .half-icon { color: #8B8FE8; }
 
     .half-name {
       font-size: 1.5rem;
@@ -211,8 +234,8 @@
       display: block;
       margin-bottom: 5px;
     }
-    .half--residential .half-name { color: #DCA07A; }
-    .half--business    .half-name { color: #4A80E8; }
+    .half--residential .half-name { color: #E8A870; }
+    .half--business    .half-name { color: #8B8FE8; }
 
     .half-sub {
       font-size: 0.8rem;
@@ -235,8 +258,8 @@
         opacity   0.3s ease,
         transform 0.3s ease;
     }
-    .half--residential .half-arrow { color: rgba(201,123,75,0.85); }
-    .half--business    .half-arrow { color: rgba(74,128,232,0.85);  }
+    .half--residential .half-arrow { color: rgba(212,114,42,0.85); }
+    .half--business    .half-arrow { color: rgba(91,94,204,0.85);  }
     .half:hover .half-arrow {
       opacity: 1;
       transform: translateY(0);
@@ -251,6 +274,7 @@
       overflow: hidden;
     }
     .half.is-selecting .half-overlay  { opacity: 0 !important; transition: opacity 0.12s ease !important; }
+    .half.is-selecting .caption-wrapper,
     .half.is-selecting .half-caption  { opacity: 0 !important; transition: opacity 0.08s ease !important; }
 
     /* Fade out the non-selected half */
@@ -301,17 +325,19 @@
               aria-hidden="true"
               title="Residential site preview"></iframe>
       <div class="half-overlay"></div>
-      <div class="half-caption">
-        <!-- House icon -->
-        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="18" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
-          <rect x="37" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
-        </svg>
-        <span class="half-name">Home &amp; Family</span>
-        <span class="half-sub">Residential IT Support</span>
-        <span class="half-arrow">Enter &rsaquo;</span>
+      <div class="caption-wrapper caption-wrapper--residential">
+        <div class="half-caption caption-inner">
+          <!-- House icon -->
+          <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="18" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
+            <rect x="37" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
+          </svg>
+          <span class="half-name">Home &amp; Family</span>
+          <span class="half-sub">Residential IT Support</span>
+          <span class="half-arrow">Enter &rsaquo;</span>
+        </div>
       </div>
     </div>
 
@@ -328,22 +354,24 @@
               aria-hidden="true"
               title="Business site preview"></iframe>
       <div class="half-overlay"></div>
-      <div class="half-caption">
-        <!-- Office building icon -->
-        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5"/>
-          <line x1="8" y1="26" x2="56" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="8" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <rect x="14" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="28" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="42" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="14" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="42" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="half-name">Business &amp; Office</span>
-        <span class="half-sub">Commercial IT Services</span>
-        <span class="half-arrow">Enter &rsaquo;</span>
+      <div class="caption-wrapper caption-wrapper--business">
+        <div class="half-caption caption-inner">
+          <!-- Office building icon -->
+          <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5"/>
+            <line x1="8" y1="26" x2="56" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <rect x="14" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="28" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="42" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="14" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="42" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="half-name">Business &amp; Office</span>
+          <span class="half-sub">Commercial IT Services</span>
+          <span class="half-arrow">Enter &rsaquo;</span>
+        </div>
       </div>
     </div>
 
@@ -385,8 +413,8 @@
       var dest      = half.dataset.href;
       var isRes     = half.classList.contains('half--residential');
       var flashColor = isRes
-        ? 'rgba(201,123,75,0.22)'
-        : 'rgba(74,128,232,0.22)';
+        ? 'rgba(212,114,42,0.22)'
+        : 'rgba(91,94,204,0.22)';
 
       // 1. Inject full-screen flash for immediate "confirmed" feedback
       injectFlash(flashColor);
