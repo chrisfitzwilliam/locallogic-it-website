@@ -174,17 +174,27 @@
     .caption-wrapper::before {
       content: '';
       position: absolute;
-      inset: -100%;
-      animation: spin-border 3s linear infinite;
+      inset: -55%;
+      opacity: 0.92;
+      transform-origin: center;
+      animation: border-sweep 5.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+      transition: opacity 0.3s ease, filter 0.3s ease;
     }
     .caption-wrapper--residential::before {
-      background: conic-gradient(from 0deg, transparent 60%, #D4722A 80%, #F2B07D 90%, #D4722A 100%, transparent);
+      background: conic-gradient(from -45deg, transparent 0deg, transparent 205deg, rgba(212,114,42,0.2) 232deg, #D4722A 256deg, #F2B07D 276deg, #D4722A 296deg, rgba(212,114,42,0.2) 320deg, transparent 348deg);
     }
     .caption-wrapper--business::before {
-      background: conic-gradient(from 0deg, transparent 60%, #5B5ECC 80%, #9898FF 90%, #5B5ECC 100%, transparent);
+      background: conic-gradient(from -45deg, transparent 0deg, transparent 205deg, rgba(91,94,204,0.2) 232deg, #5B5ECC 256deg, #9898FF 276deg, #5B5ECC 296deg, rgba(91,94,204,0.2) 320deg, transparent 348deg);
     }
-    @keyframes spin-border {
-      to { transform: rotate(360deg); }
+    .half:hover .caption-wrapper::before {
+      opacity: 1;
+      filter: saturate(1.18) brightness(1.08);
+      animation-duration: 3.4s;
+    }
+    @keyframes border-sweep {
+      0%, 12%   { transform: rotate(-28deg); }
+      44%, 56%  { transform: rotate(142deg); }
+      88%, 100% { transform: rotate(332deg); }
     }
     .half-caption {
       position: relative;
@@ -294,7 +304,7 @@
 
     /* Respect reduced-motion preference */
     @media (prefers-reduced-motion: reduce) {
-      .chooser, .half-overlay, .half-caption, .half-arrow { animation: none; transition: none; }
+      .chooser, .half-overlay, .caption-wrapper::before, .half-caption, .half-arrow { animation: none; transition: none; }
     }
   </style>
 </head>
