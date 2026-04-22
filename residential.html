@@ -14,124 +14,12 @@
   <meta name="theme-color" content="#232425" />
   <meta property="og:image" content="assets/brand/social-card.png" />
   <style>
-    /* ── Tokens — espresso & copper palette ── */
-    :root {
-      --amber:   #232425;
-      --amber-2: #111213;
-      --gold:    #A98236;
-      --gold-2:  #C7B064;
-      --gold-3:  #B99A4D;
-      --paper:   #F5F1E7;
-      --ink:     #222222;
-      --muted:   #5D574C;
-      --line:    #C7B064;
-    }
-
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--paper); }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
-
-    /* ── Nav ── */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--amber);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 32px;
-      height: 64px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-    }
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .nav-back {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--gold); }
-    .nav-back:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .nav-logo img { height: 32px; width: auto; }
-    .nav-logo-name {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #fff;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-links a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
-
-    /* Mobile nav */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .nav-hamburger:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
-    .nav-mobile-menu {
-      display: none;
-      position: absolute;
-      top: 64px;
-      left: 0;
-      right: 0;
-      background: var(--amber-2);
-      padding: 16px 24px;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .nav-mobile-menu.open { display: flex; }
-    .nav-mobile-menu a {
-      font-size: 1rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.8);
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .nav-mobile-menu a:hover { color: var(--gold); }
-
-    @media (max-width: 767px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .nav { position: relative; }
-    }
 
     /* ── Hero ── */
     .hero {
@@ -343,28 +231,22 @@
 <body class="site-page residential-page">
 
   <!-- Nav -->
-  <nav class="nav" id="top">
-    <div class="nav-left">
-      <a class="nav-back" href="index.html">&#8592; Back to Home</a>
-      <a class="nav-logo" href="index.html">
-        <img src="assets/brand/local-logic-mark.svg" alt="Local Logic IT" />
-        <span class="nav-logo-name">Local Logic IT</span>
+  <div class="nav-wrapper">
+    <div class="glass-stratum"></div>
+    <nav class="glass-nav">
+      <a href="index.html" class="logo">
+        <img src="assets/brand/local-logic-mark.svg" alt="Local Logic IT" class="logo-mark-svg" />
+        Local Logic IT
       </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-mobile-menu" id="mobileMenu">
-      <a href="#services" onclick="closeMobileMenu()">Services</a>
-      <a href="#about" onclick="closeMobileMenu()">About</a>
-      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-    </div>
-  </nav>
+
+      <div class="nav-links">
+        <a href="#services" class="nav-item"><span>01</span>Services</a>
+        <a href="#about" class="nav-item"><span>02</span>About</a>
+        <a href="#contact" class="nav-item"><span>03</span>Contact</a>
+      </div>
+      <!-- Mobile toggle and CTA button are not part of this new nav structure -->
+    </nav>
+  </div>
 
   <main>
   <!-- Hero -->

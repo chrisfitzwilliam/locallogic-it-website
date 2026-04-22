@@ -8,523 +8,34 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@600;800&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg" />
   <link rel="alternate icon" type="image/png" href="assets/brand/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
   <meta name="theme-color" content="#232425" />
   <meta property="og:image" content="assets/brand/social-card.png" />
-  <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; }
-    body {
-      font-family: "Manrope", sans-serif;
-      background: linear-gradient(90deg, #232425 0%, #232425 50%, #2F3030 50%, #2F3030 100%);
-    }
-
-    /* ── Flash animation (injected on click) ── */
-    @keyframes header-arrive {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -10px) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-      }
-    }
-    /* ── Header — frosted glass pill ── */
-    .header {
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 300;
-      will-change: left, top, transform;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      width: min(720px, calc(100vw - 36px));
-      min-height: 62px;
-      padding: 8px 10px 8px 18px;
-      background:
-        linear-gradient(135deg, rgba(10,11,24,0.94), rgba(17,18,38,0.88)) padding-box,
-        linear-gradient(112deg, rgba(169,130,54,0.72), rgba(255,255,255,0.28), rgba(199,176,100,0.74)) border-box;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      box-shadow:
-        0 18px 48px rgba(0,0,0,0.36),
-        0 0 28px rgba(169,130,54,0.14),
-        0 0 32px rgba(199,176,100,0.15),
-        inset 0 1px 0 rgba(255,255,255,0.14);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      white-space: nowrap;
-      pointer-events: auto;
-      overflow: visible;
-      animation: header-arrive 0.7s cubic-bezier(0.19,1,0.22,1) both 0.08s;
-    }
-    .header::before {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      z-index: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      background: linear-gradient(90deg, rgba(169,130,54,0.08), transparent 36%, rgba(199,176,100,0.08));
-    }
-    .header::after {
-      content: "";
-      position: absolute;
-      top: 1px;
-      bottom: 1px;
-      left: 0;
-      z-index: 0;
-      width: 96px;
-      border-radius: inherit;
-      pointer-events: none;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
-      filter: blur(1px);
-      opacity: 0;
-    }
-    .header > * {
-      position: relative;
-      z-index: 1;
-    }
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-      text-decoration: none;
-    }
-    .header-brand:focus-visible,
-    .header-link:focus-visible,
-    .header-choice:focus-visible {
-      outline: 2px solid rgba(255,255,255,0.86);
-      outline-offset: 3px;
-      border-radius: 999px;
-    }
-    .header-logo {
-      display: grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 32% 24%, rgba(255,255,255,0.18), rgba(255,255,255,0.03) 58%);
-      box-shadow:
-        0 0 20px rgba(169,130,54,0.24),
-        0 0 22px rgba(199,176,100,0.18);
-      flex-shrink: 0;
-    }
-    .header-logo img { height: 34px; width: auto; display: block; }
-    .header-name {
-      font-size: 1.12rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -0.02em;
-    }
-    .header-divider {
-      width: 1px;
-      height: 26px;
-      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.3), transparent);
-      flex-shrink: 0;
-    }
-    .header-tagline {
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: rgba(255,255,255,0.58);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      flex: 1 1 auto;
-      min-width: 150px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-      padding: 4px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .header-link {
-      border: 0;
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: transparent;
-      color: rgba(255,255,255,0.72);
-      font: inherit;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      cursor: pointer;
-      transition:
-        color 0.22s ease,
-        background 0.22s ease,
-        box-shadow 0.22s ease,
-        transform 0.22s ease;
-    }
-    .header-link:hover,
-    .header-link.is-active {
-      color: #fff;
-      background: linear-gradient(135deg, rgba(169,130,54,0.28), rgba(199,176,100,0.24));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.13);
-    }
-    .header-link:hover {
-      transform: translateY(-1px);
-    }
-    .header-menu {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 10px;
-      z-index: 4;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      width: min(320px, calc(100vw - 36px));
-      padding: 8px;
-      background: rgba(9,10,23,0.94);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 18px;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.34);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translateY(-6px) scale(0.98);
-      transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease,
-        transform 0.2s ease;
-    }
-    .header.is-menu-open .header-menu {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
-    .header-choice {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-    .header-choice:hover {
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,0.24);
-    }
-    .header-choice--home {
-      background: linear-gradient(135deg, rgba(169,130,54,0.28), rgba(169,130,54,0.12));
-    }
-    .header-choice--business {
-      background: linear-gradient(135deg, rgba(199,176,100,0.3), rgba(199,176,100,0.13));
-    }
-
-    /* ── Chooser — full-bleed, no gap ── */
-    @keyframes chooser-fade-in {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    .chooser {
-      display: flex;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      animation: chooser-fade-in 0.6s ease both;
-    }
-
-    /* ── Halves — full-bleed ── */
-    .half {
-      position: relative;
-      flex: 1 1 50%;
-      overflow: hidden;
-      cursor: pointer;
-      outline: none;
-      min-width: 0;
-      min-height: 0;
-      transition: flex 0.68s cubic-bezier(0.22,1,0.36,1);
-    }
-    /* Thin line between the two halves */
-    .half--residential {
-      box-shadow: inset -1px 0 0 rgba(255,255,255,0.08);
-    }
-    .half:focus-visible {
-      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.5);
-    }
-
-    /* ── Iframe preview ── */
-    .half-preview {
-      position: absolute;
-      top: 0; left: 0;
-      border: none;
-      display: block;
-      pointer-events: none;
-      transform-origin: 0 0;
-    }
-
-    /* ── Dim overlay — very opaque + heavy blur (frosted glass over preview) ── */
-    .half-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background: rgba(4,6,14,0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition:
-        opacity          0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        backdrop-filter  0.4s ease,
-        -webkit-backdrop-filter 0.4s ease;
-    }
-
-    /* Hover: very slight frost lift — background stays mostly covered */
-    .half:hover .half-overlay {
-      opacity: 0.75;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    /* ── Breathing glow animations for captions ── */
-    /* ── Centered caption — premium glass card ── */
-    .caption-wrapper {
-      position: absolute;
-      top: calc(50% + 26px);
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      border-radius: 18px;
-      padding: 1.5px;
-      overflow: hidden;
-      pointer-events: none;
-      white-space: nowrap;
-      transition:
-        transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity   0.38s ease;
-    }
-    .caption-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: -55%;
-      opacity: 0.92;
-      transform-origin: center;
-      transition: opacity 0.3s ease, filter 0.3s ease;
-    }
-    .caption-wrapper--residential::before {
-      background: conic-gradient(from -45deg, transparent 0deg, transparent 205deg, rgba(169,130,54,0.2) 232deg, #A98236 256deg, #C7B064 276deg, #A98236 296deg, rgba(169,130,54,0.2) 320deg, transparent 348deg);
-    }
-    .caption-wrapper--business::before {
-      background: conic-gradient(from -45deg, transparent 0deg, transparent 205deg, rgba(199,176,100,0.2) 232deg, #A98236 256deg, #C7B064 276deg, #A98236 296deg, rgba(199,176,100,0.2) 320deg, transparent 348deg);
-    }
-    .half:hover .caption-wrapper::before {
-      opacity: 1;
-      filter: saturate(1.18) brightness(1.08);
-      animation-duration: 3.4s;
-    }
-    .half-caption {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 36px 52px 32px;
-      background: rgba(6,7,16,0.55);
-      border-radius: 16.5px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      pointer-events: none;
-      white-space: nowrap;
-      border-top: 1px solid rgba(255,255,255,0.18);
-      border-left: 1px solid rgba(255,255,255,0.07);
-      border-right: 1px solid rgba(255,255,255,0.07);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      transition: opacity 0.38s ease;
-    }
-    /* Brand-coloured glow + border accent */
-    .half--residential .half-caption {
-      border-color: rgba(169,130,54,0.32) rgba(169,130,54,0.14) rgba(169,130,54,0.08) rgba(169,130,54,0.14);
-    }
-    .half--business .half-caption {
-      border-color: rgba(199,176,100,0.32) rgba(199,176,100,0.14) rgba(199,176,100,0.08) rgba(199,176,100,0.14);
-    }
-
-    .half:hover .caption-wrapper {
-      transform: translate(-50%, -56%);
-    }
-
-    /* SVG icon above the label */
-    .half-icon {
-      display: block;
-      width: 52px;
-      height: 52px;
-      margin: 0 auto 18px;
-    }
-    .half--residential .half-icon { color: #C7B064; }
-    .half--business    .half-icon { color: #C7B064; }
-
-    .half-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      display: block;
-      margin-bottom: 5px;
-    }
-    .half--residential .half-name { color: #C7B064; }
-    .half--business    .half-name { color: #C7B064; }
-
-    .half-sub {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      display: block;
-    }
-
-    /* Hint arrow — fades in on hover ── */
-    .half-arrow {
-      display: block;
-      margin-top: 18px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(5px);
-      transition:
-        opacity   0.3s ease,
-        transform 0.3s ease;
-    }
-    .half--residential .half-arrow { color: rgba(169,130,54,0.85); }
-    .half--business    .half-arrow { color: rgba(199,176,100,0.85);  }
-    .half:hover .half-arrow {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Selection state — Expansion ── */
-    /* Allow removing min-height constraints during animation */
-    .chooser.has-selection .half {
-      min-height: 0;
-    }
-    /* Shrink and fade out the non-selected half so the selected one expands */
-    .chooser.has-selection .half:not(.is-selected) {
-      flex: 0 1 0%;
-      opacity: 0;
-      pointer-events: none;
-      transition: flex 0.68s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease;
-    }
-    .chooser.has-selection .half.is-selected {
-      flex: 1 0 100%;
-      transition: flex 0.68s cubic-bezier(0.22,1,0.36,1);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 860px) {
-      .header {
-        width: min(620px, calc(100vw - 24px));
-        gap: 10px;
-        padding-left: 12px;
-      }
-      .header-tagline {
-        display: none;
-      }
-      .header-divider {
-        display: none;
-      }
-    }
-
-    @media (max-width: 767px) {
-      html, body { overflow: auto; }
-      .chooser { flex-direction: column; height: auto; min-height: 100vh; }
-      .half { min-height: 44vh; }
-      .half--residential { box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08); }
-      .header {
-        top: 12px;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 58px;
-      }
-      .header-logo {
-        width: 38px;
-        height: 38px;
-      }
-      .header-logo img {
-        height: 30px;
-      }
-      .header-name {
-        font-size: 1rem;
-      }
-      .header-nav {
-        gap: 4px;
-        padding: 3px;
-      }
-      .header-link {
-        padding: 7px 8px;
-        font-size: 0.7rem;
-      }
-      .header-menu {
-        right: 0;
-      }
-    }
-
-    @media (max-width: 460px) {
-      .header {
-        width: calc(100vw - 18px);
-        padding: 8px;
-      }
-      .header-brand {
-        gap: 8px;
-      }
-      .header-name {
-        max-width: 96px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .header-link {
-        padding: 7px 6px;
-        font-size: 0.66rem;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .header-name {
-        display: none;
-      }
-    }
-
-    /* Respect reduced-motion preference */
-    @media (prefers-reduced-motion: reduce) {
-      .header, .header::after, .chooser, .half-overlay, .caption-wrapper::before, .half-caption, .half-arrow { animation: none; transition: none; }
-    }
-  </style>
   <link rel="stylesheet" href="assets/css/site.css" />
   <script src="assets/js/site.js" defer></script>
 </head>
 <body class="landing-page">
 
-  <!-- Frosted glass pill header -->
-  <nav class="nav is-pill">
-    <a class="nav-logo" href="index.html" aria-label="Local Logic IT home">
-      <img src="assets/brand/local-logic-mark.svg" alt="" />
-      <span class="nav-logo-name">Local Logic IT</span>
-    </a>
-    <div class="nav-divider" aria-hidden="true"></div>
-    <span class="nav-tagline">Local Service. Logical Solutions.</span>
-    <ul class="nav-links" aria-label="Quick sections">
-      <li><a href="residential.html#services">Services</a></li>
-      <li><a href="residential.html#about">About</a></li>
-      <li><a href="residential.html#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- New Glassmorphism Nav Bar -->
+  <div class="nav-wrapper">
+    <div class="glass-stratum"></div>
+    <nav class="glass-nav">
+      <a href="index.html" class="logo">
+        <img src="assets/brand/local-logic-mark.svg" alt="Local Logic IT" class="logo-mark-svg" />
+        Local Logic IT
+      </a>
+
+      <div class="nav-links">
+        <a href="residential.html#services" class="nav-item"><span>01</span>Services</a>
+        <a href="residential.html#about" class="nav-item"><span>02</span>About</a>
+        <a href="residential.html#contact" class="nav-item"><span>03</span>Contact</a>
+      </div>
+      <!-- Removed CTA button and mobile toggle for consistency with original landing page header functionality -->
+    </nav>
+  </div>
 
   <main class="chooser" id="chooser">
 
@@ -593,20 +104,75 @@
 
   </main>
 
+  <!-- New inline script for landing page specific JS -->
   <script>
+    // Subtle Refraction Movement (adapted for Local Logic IT)
+    const navWrapper = document.querySelector('.nav-wrapper');
+    const glassNav = document.querySelector('.glass-nav');
+
+    if (navWrapper && glassNav) {
+      window.addEventListener('mousemove', (e) => {
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 75;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 75;
+        glassNav.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+      });
+
+      window.addEventListener('mouseleave', () => {
+        glassNav.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      });
+
+      // Scroll Depth Effect (adapted for Local Logic IT)
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        if(scrolled > 50) {
+          navWrapper.style.width = '85%';
+          glassNav.style.padding = '0.5rem 1.5rem';
+          glassNav.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+        } else {
+          navWrapper.style.width = '90%';
+          glassNav.style.padding = '0.75rem 1.5rem';
+          glassNav.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+        }
+      });
+    }
+
+    // Original landing page script functionality, adapted for new header
     function scalePreview(half) {
-      if (window.LocalLogicLanding) window.LocalLogicLanding.scalePreview(half);
+      // This function scales the iframe previews. It's independent of the header.
+      const iframe = half.querySelector('.half-preview');
+      if (!iframe) return;
+      const halfWidth = half.offsetWidth;
+      const halfHeight = half.offsetHeight;
+      const iframeWidth = 1440; // Assuming a desktop width for the iframe content
+      const iframeHeight = 900; // Assuming a desktop height for the iframe content
+
+      const scaleX = halfWidth / iframeWidth;
+      const scaleY = halfHeight / iframeHeight;
+      const scale = Math.max(scaleX, scaleY); // Scale to cover the area
+
+      iframe.style.transform = `scale(${scale})`;
+      iframe.style.width = `${iframeWidth}px`;
+      iframe.style.height = `${iframeHeight}px`;
     }
 
     function selectHalf(half) {
-      if (window.LocalLogicLanding) window.LocalLogicLanding.select(half);
+      const targetUrl = half.dataset.href;
+      if (!targetUrl) return;
+
+      const navWrapper = document.querySelector('.nav-wrapper');
+      if (navWrapper) {
+        navWrapper.classList.add('is-leaving'); // Trigger exit animation
+      }
+
+      sessionStorage.setItem('fromLanding', half.classList.contains('half--residential') ? 'residential' : 'business');
+
+      // Allow animation to start before navigating
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 600); // Match this with the CSS transition duration for .is-leaving
     }
 
     function resetState() {
-      if (window.LocalLogicLanding) {
-        window.LocalLogicLanding.reset();
-        return;
-      }
       // Clear all selection state — needed when browser restores page from bfcache
       var chooser = document.getElementById('chooser');
       if (!chooser) return;
@@ -617,23 +183,14 @@
       });
       document.querySelectorAll('.half').forEach(scalePreview);
 
-      // Reset header bubble back to centered position
-      var nav = document.querySelector('.nav');
-      if (nav) {
-        nav.classList.add('is-pill');
-        nav.classList.remove('is-locked');
-        nav.style.transition = 'none';
-        requestAnimationFrame(function() {
-          nav.style.transition = '';
-        });
+      // Reset new header state if needed (e.g., remove is-leaving class)
+      const navWrapper = document.querySelector('.nav-wrapper');
+      if (navWrapper) {
+        navWrapper.classList.remove('is-leaving');
       }
     }
 
     function initLandingPage() {
-      if (window.LocalLogicLanding) {
-        window.LocalLogicLanding.init();
-        return;
-      }
       var halves = document.querySelectorAll('.half');
       halves.forEach(function(half) {
         scalePreview(half);

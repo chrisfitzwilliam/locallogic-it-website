@@ -1,6 +1,6 @@
 # Local Logic IT Project Memory
 
-This is the single Markdown source of truth for Local Logic IT. Use this file for Codex, Claude, Gemini, or any other agent. Do not recreate separate agent-specific Markdown files unless Chris explicitly asks.
+This is the single Markdown source of truth for Local Logic IT. Use this file for Codex, Codex, Gemini, or any other agent. Do not recreate separate agent-specific Markdown files unless Chris explicitly asks.
 
 ## Project
 
@@ -10,7 +10,7 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - Production host: GCP VM `fitzwilliam-web-1`
 - Production web root: `/var/www/locallogic/current`
 - Current production commit before the landing split-palette rollout: `9999e6b` (`feat: apply graphite bronze responsive redesign`)
-- Latest verified production commit after landing transition tuning: `440c264` (`fix: align compact pill and left nav links`)
+- Latest intended production direction after the current rollout: commit on `main` titled `feat: polish landing split palette` after push/deploy verification.
 - Stack: static HTML, shared CSS, shared vanilla JS, no framework, no backend, no build step
 
 ## Current Site Shape
@@ -84,59 +84,6 @@ Behavior and implementation notes:
   - Residential support text: `What We Can Help With`
   - Business support text: `What We Offer`
 - Shared CSS contains the scoped page palettes, landing chooser overrides, destination arrival reveal, and `.section-support` styling.
-
-## Landing Transition Stabilization From 2026-04-21/2026-04-22
-
-Recent commits on `main` refined the landing chooser -> hub-page transition:
-
-- `275e391` `feat: implement smooth page transitions and morphing header animation`
-- `15af07e` `fix: smooth landing pill transition`
-- `a0b1712` `fix: constrain landing nav logo`
-- `7f1f8cd` `fix: restore landing pill mobile layout`
-- `3581ad6` `fix: preserve hub styles during landing transition`
-- `a568936` `fix: slow and polish landing pill transition`
-- `440c264` `fix: align compact pill and left nav links`
-
-Current transition behavior:
-
-- Clicking a landing half uses AJAX navigation instead of a full page refresh when possible.
-- `replacePageShell()` swaps the destination document title, body classes, inline `<style>`, nav, and main content. This is required because hub pages still rely on page-specific inline CSS.
-- The landing pill clone is a fixed-position `.landing-pill-ghost` that moves using transform-based Web Animations API keyframes. Avoid reintroducing `top/left/width/height` travel for the main motion.
-- The compact locked pill target is intentionally smaller:
-  - Desktop: `284px x 54px`, inset `10px`, top `7px`.
-  - Mobile: `246px x 54px`, inset `8px`, top `8px`.
-- The ghost includes layered spans:
-  - `.landing-pill-ghost-surface` for the original light pill surface.
-  - `.landing-pill-ghost-pagewash` for the destination-color wash that makes the pill blend into the hub-page background before handoff.
-  - `.landing-pill-ghost-sweep` for the restrained highlight sweep.
-- Residential pagewash should resolve toward `#4a3513 -> #171109`.
-- Business pagewash should resolve toward `#17232c -> #0b1116`.
-- The destination nav starts as a compact top-left pill, then expands to the full bar.
-- Desktop hub nav links (`Services`, `About`, `Contact`) are intentionally grouped near the left logo cluster, not pushed to the far right.
-- Mobile hub nav links remain hidden; the hamburger remains visible.
-- The real destination nav logo is hidden during ghost handoff to avoid a double-logo artifact.
-- The hero background remains visible during arrival; only hero child content fades/slides in.
-- The Local Logic IT logo link in the top nav should still navigate back to `index.html`.
-
-Verification already done for the current transition:
-
-- `node --check assets/js/site.js`
-- `git diff --check -- assets/js/site.js assets/css/site.css`
-- Local screenshot-width transition checks matching a `1123x640` browser viewport.
-- Local desktop business transition checks.
-- Local mobile residential transition checks.
-- Live deploy marker checks after each push.
-- Live production transition checks for:
-  - Desktop business path: `index.html` -> `business.html`.
-  - Screenshot-width residential path: `index.html` -> `residential.html`.
-  - Mobile residential path: `index.html` -> `residential.html`.
-
-Known pitfalls to avoid:
-
-- Do not remove `syncPageInlineStyle()`; without it, AJAX-loaded hub pages keep the landing page inline styles and render incorrectly.
-- Do not hide or fade the whole `.hero`; fade `.hero > *` so the destination background does not wash out into a blank pale block.
-- Do not add broad `.nav-links { display: flex; }` rules; they can override hub mobile media rules.
-- Do not put the desktop hub nav links back on the far right unless Chris explicitly asks.
 
 ## Implementation Rules
 
@@ -288,12 +235,11 @@ After production sync:
 - Live `/assets/css/site.css` returned the new CSS.
 - Live `/assets/brand/favicon.svg` returned the new SVG.
 
-## Recent UI & Configuration Updates (April 21-22, 2026)
+## Recent UI & Configuration Updates (April 21, 2026)
 
-- **Landing UI Animations:** The current intended motion is a top-left compact pill transition, not a top-right transition. The pill should be smaller than the original landing nav, move smoothly with transform-based keyframes, darken into the destination page background, click/settle in place, and hand off to the expanding hub nav without a blink or full refresh.
-- **Hub Nav Layout:** On desktop hub pages, `Services`, `About`, and `Contact` live near the left-side brand cluster so the nav visually comes together from the left. On mobile, hub links stay hidden and the hamburger remains visible.
-- **Project Context:** `memory.md` is the canonical project memory. `GEMINI.md` may exist as a copied context file, but do not create new agent-specific handoff files unless Chris asks.
-- **Latest Transition Commit:** The latest verified transition/layout commit is `440c264` (`fix: align compact pill and left nav links`) and it has been pushed to `main` and verified live.
+- **Landing UI Animations:** Refactored `index.html` split-screen selection from an opacity fade to a smooth `flex-basis` expansion. The header pill now dynamically animates to the top-right corner, shrinks its width, and "clicks" into place with a subtle `scale(0.95)` and bouncy cubic-bezier transition.
+- **Project Context:** Consolidated context by copying `memory.md` to `GEMINI.md` (to serve as default system instructions). Deleted legacy `INIT.md` and old plan/spec files in `docs/superpowers/`.
+- **Commit:** Changes were committed as `feat: update landing UI animations and add GEMINI.md` (commit `475dd05`) and pushed to `main`.
 - **Deployment Pipeline Reminder:** The site deploys automatically. Pushing to the `main` branch triggers a GCP VM systemd timer (`locallogic-autodeploy.timer`) which runs `git pull --ff-only origin main` roughly every minute. The GitHub Actions workflow is for status only.
 
 ## Markdown Policy
