@@ -594,54 +594,19 @@
   </main>
 
   <script>
-    var REF_W = 1440;
-
     function scalePreview(half) {
-      var iframe = half.querySelector('.half-preview');
-      if (!iframe) return;
-      var W     = half.offsetWidth;
-      var H     = half.offsetHeight;
-      var scale = W / REF_W;
-      iframe.style.width     = REF_W + 'px';
-      iframe.style.height    = Math.ceil(H / scale) + 'px';
-      iframe.style.transform = 'scale(' + scale + ')';
+      if (window.LocalLogicLanding) window.LocalLogicLanding.scalePreview(half);
     }
 
     function selectHalf(half) {
-      var chooser = document.getElementById('chooser');
-      if (chooser.classList.contains('has-selection')) return;
-
-      var dest      = half.dataset.href;
-      var isRes     = half.classList.contains('half--residential');
-      var side      = isRes ? 'residential' : 'business';
-      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      chooser.classList.add('has-selection', 'selecting-' + side);
-      half.classList.add('is-selected', 'is-clicked');
-      scalePreview(half);
-
-      if (isRes) {
-        sessionStorage.setItem('fromLanding', 'residential');
-      } else {
-        sessionStorage.setItem('fromLanding', 'business');
-      }
-
-      if (reduceMotion) {
-        window.location.href = dest;
-        return;
-      }
-
-      // Use the Router if available, otherwise fallback
-      if (window.Router && window.Router.navigate) {
-        window.Router.navigate(dest);
-      } else {
-        setTimeout(function() {
-          window.location.href = dest;
-        }, 760);
-      }
+      if (window.LocalLogicLanding) window.LocalLogicLanding.select(half);
     }
 
     function resetState() {
+      if (window.LocalLogicLanding) {
+        window.LocalLogicLanding.reset();
+        return;
+      }
       // Clear all selection state — needed when browser restores page from bfcache
       var chooser = document.getElementById('chooser');
       if (!chooser) return;
@@ -665,6 +630,10 @@
     }
 
     function initLandingPage() {
+      if (window.LocalLogicLanding) {
+        window.LocalLogicLanding.init();
+        return;
+      }
       var halves = document.querySelectorAll('.half');
       halves.forEach(function(half) {
         scalePreview(half);
@@ -684,7 +653,6 @@
     window.addEventListener('pageshow', function(e) {
       if (e.persisted) resetState();
     });
-  </script>
   </script>
 
 </body>

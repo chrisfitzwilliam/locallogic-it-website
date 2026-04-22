@@ -715,42 +715,138 @@ iframe {
   transform: translate(-50%, -54%);
 }
 
-.landing-page .header.is-departing {
-  box-shadow: 0 18px 42px rgba(25, 24, 20, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.72);
+.landing-page .nav.is-leaving-landing {
+  opacity: 0;
+  transition: opacity 0.12s ease;
 }
 
-.landing-page .header.is-departing-residential {
-  background:
-    linear-gradient(135deg, rgba(255, 248, 220, 0.98), rgba(236, 202, 91, 0.9)) padding-box,
-    linear-gradient(112deg, rgba(197, 141, 31, 0.52), rgba(255, 255, 255, 0.68)) border-box;
+.landing-pill-ghost {
+  overflow: hidden;
+  contain: layout paint;
+  will-change: transform, filter;
 }
 
-.landing-page .header.is-departing-business {
-  background:
-    linear-gradient(135deg, rgba(239, 247, 250, 0.98), rgba(184, 213, 230, 0.9)) padding-box,
-    linear-gradient(112deg, rgba(111, 159, 189, 0.52), rgba(255, 255, 255, 0.68)) border-box;
+.landing-pill-ghost .nav-divider,
+.landing-pill-ghost .nav-tagline,
+.landing-pill-ghost .nav-links {
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-.site-page.is-arriving-from-landing .nav,
+.landing-pill-ghost.is-compact .nav-divider,
+.landing-pill-ghost.is-compact .nav-tagline,
+.landing-pill-ghost.is-compact .nav-links {
+  opacity: 0;
+  transform: translateX(-8px);
+}
+
+.landing-pill-ghost.is-clicked {
+  box-shadow:
+    0 12px 34px rgba(25, 24, 20, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.46) inset,
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.site-page.is-arriving-from-landing {
+  overflow-x: hidden;
+}
+
+.site-page.is-arriving-from-landing .nav {
+  position: fixed;
+  top: 12px;
+  left: 14px;
+  right: auto;
+  width: min(306px, calc(100vw - 28px));
+  height: 60px;
+  min-height: 60px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  justify-content: space-between;
+  transform: scale(0.97);
+  box-shadow:
+    0 12px 34px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    top 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    min-height 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-page.is-arriving-from-landing .nav-left {
+  gap: 0;
+  min-width: 0;
+  transition: gap 0.34s ease;
+}
+
+.site-page.is-arriving-from-landing .nav-back {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-8px);
+  transition:
+    max-width 0.34s ease,
+    opacity 0.26s ease,
+    transform 0.26s ease;
+}
+
+.site-page.is-arriving-from-landing .nav-links,
+.site-page.is-arriving-from-landing .nav-hamburger {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
 .site-page.is-arriving-from-landing .hero {
   opacity: 0;
-  transform: translateY(-10px);
-}
-
-.site-page.is-arriving-from-landing .hero {
-  transform: translateY(-6px) scale(1.012);
-}
-
-.site-page.is-arriving-from-landing .nav,
-.site-page.is-arriving-from-landing .hero,
-.site-page.is-arriving-from-landing.has-arrived .nav,
-.site-page.is-arriving-from-landing.has-arrived .hero {
+  transform: translateY(10px) scale(1.006);
   transition:
-    opacity 0.52s ease,
-    transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.46s ease 0.16s,
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1) 0.16s;
 }
 
-.site-page.is-arriving-from-landing.has-arrived .nav,
+.site-page.is-arriving-from-landing.has-arrived .nav {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  min-height: 64px;
+  padding: 0 clamp(14px, 4vw, 32px);
+  border-radius: 0;
+  overflow: visible;
+  transform: none;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.32);
+}
+
+.site-page.is-arriving-from-landing.has-arrived .nav-left {
+  gap: 20px;
+}
+
+.site-page.is-arriving-from-landing.has-arrived .nav-back {
+  max-width: 150px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition-delay: 0.26s, 0.32s, 0.32s;
+}
+
+.site-page.is-arriving-from-landing.has-arrived .nav-links,
+.site-page.is-arriving-from-landing.has-arrived .nav-hamburger {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+  transition-delay: 0.34s;
+}
+
 .site-page.is-arriving-from-landing.has-arrived .hero {
   opacity: 1;
   transform: none;
@@ -819,6 +915,28 @@ iframe {
   .landing-page .half-caption {
     padding: 30px 24px 26px;
     white-space: normal;
+  }
+
+  .site-page.is-arriving-from-landing .nav {
+    top: 10px;
+    left: 10px;
+    width: min(270px, calc(100vw - 20px));
+    height: 58px;
+    min-height: 58px;
+    padding: 8px 10px;
+  }
+
+  .site-page.is-arriving-from-landing.has-arrived .nav {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 58px;
+    min-height: 58px;
+    padding: 0 14px;
+  }
+
+  .site-page.is-arriving-from-landing.has-arrived .nav-left {
+    gap: 12px;
   }
 }
 
