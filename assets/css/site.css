@@ -107,6 +107,9 @@ iframe {
   left: 0;
   right: 0;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   min-height: 64px;
   height: auto;
   padding-inline: clamp(14px, 4vw, 32px);
@@ -144,6 +147,40 @@ iframe {
     inset 0 1px 0 rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
+}
+
+.nav-left,
+.nav-logo,
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left {
+  gap: 20px;
+}
+
+.nav-logo {
+  gap: 10px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  width: auto;
+  height: 32px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.nav.is-pill .nav-logo img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.nav-links {
+  list-style: none;
 }
 
 .nav.is-locked {
