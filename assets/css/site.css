@@ -244,12 +244,17 @@ iframe {
   color: var(--landing-ink);
 }
 
+.nav.is-pill .nav-logo {
+  flex: 0 1 auto;
+}
+
 .nav.is-pill .nav-links {
   background: rgba(83, 70, 34, 0.08);
   border: 1px solid rgba(83, 70, 34, 0.12);
   border-radius: 999px;
   padding: 4px;
   gap: 6px;
+  flex: 0 0 auto;
 }
 
 .nav.is-pill .nav-links a {
@@ -939,6 +944,15 @@ iframe {
     overflow-x: hidden;
   }
 
+  .landing-page .nav.is-pill {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: calc(100vw - 18px);
+  }
+
   .landing-page .half {
     width: 100%;
   }
@@ -977,6 +991,13 @@ iframe {
   }
 }
 
+@media (max-width: 860px) {
+  .nav.is-pill .nav-tagline,
+  .nav.is-pill .nav-divider {
+    display: none;
+  }
+}
+
 @media (max-width: 520px) {
   .nav {
     gap: 10px;
@@ -996,6 +1017,26 @@ iframe {
 
   .contact-item {
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 460px) {
+  .nav.is-pill {
+    gap: 10px;
+    padding-inline: 10px;
+  }
+
+  .nav.is-pill .nav-logo-name {
+    max-width: 84px;
+  }
+
+  .nav.is-pill .nav-links {
+    gap: 4px;
+  }
+
+  .nav.is-pill .nav-links a {
+    padding: 7px;
+    font-size: 0.7rem;
   }
 }
 
