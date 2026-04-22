@@ -58,12 +58,12 @@
 
   function lockedPillRect() {
     var isNarrow = window.matchMedia('(max-width: 767px)').matches;
-    var inset = isNarrow ? 10 : 14;
+    var inset = isNarrow ? 8 : 10;
     return {
-      top: isNarrow ? 10 : 12,
+      top: isNarrow ? 8 : 7,
       left: inset,
-      width: Math.min(isNarrow ? 270 : 306, window.innerWidth - (inset * 2)),
-      height: isNarrow ? 58 : 60
+      width: Math.min(isNarrow ? 246 : 284, window.innerWidth - (inset * 2)),
+      height: isNarrow ? 54 : 54
     };
   }
 
@@ -87,17 +87,21 @@
     var sourceCompactTop = source.top + ((source.height - target.height) / 2);
     var dx = sourceCompactLeft - target.left;
     var dy = sourceCompactTop - target.top;
-    var surfaceScaleX = Math.max(1, source.width / target.width);
+    var surfaceScaleX = Math.min(1.18, Math.max(1, source.width / target.width));
     var ghost = nav.cloneNode(true);
     var surface = document.createElement('span');
+    var pagewash = document.createElement('span');
     var sweep = document.createElement('span');
 
     clearElementIds(ghost);
     surface.className = 'landing-pill-ghost-surface';
+    pagewash.className = 'landing-pill-ghost-pagewash';
     sweep.className = 'landing-pill-ghost-sweep';
     surface.setAttribute('aria-hidden', 'true');
+    pagewash.setAttribute('aria-hidden', 'true');
     sweep.setAttribute('aria-hidden', 'true');
     ghost.prepend(sweep);
+    ghost.prepend(pagewash);
     ghost.prepend(surface);
 
     ghost.setAttribute('aria-hidden', 'true');
@@ -156,12 +160,12 @@
         filter: 'saturate(1) brightness(1)'
       },
       {
-        transform: 'scaleX(' + Math.max(1.18, surfaceScaleX * 0.62).toFixed(3) + ')',
+        transform: 'scaleX(' + Math.max(1.06, surfaceScaleX * 0.88).toFixed(3) + ')',
         filter: 'saturate(1.08) brightness(1.025)',
         offset: 0.24
       },
       {
-        transform: 'scaleX(1.08)',
+        transform: 'scaleX(1.03)',
         filter: 'saturate(1.14) brightness(1.04)',
         offset: 0.58
       },
@@ -172,6 +176,17 @@
     ], {
       duration: 900,
       easing: 'cubic-bezier(0.34, 0.02, 0.18, 1)',
+      fill: 'forwards'
+    });
+
+    pagewash.animate([
+      { opacity: 0 },
+      { opacity: 0.18, offset: 0.34 },
+      { opacity: 0.72, offset: 0.78 },
+      { opacity: 0.96 }
+    ], {
+      duration: 1040,
+      easing: 'cubic-bezier(0.22, 0.02, 0.16, 1)',
       fill: 'forwards'
     });
 
