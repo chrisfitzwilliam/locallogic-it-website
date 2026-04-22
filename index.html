@@ -4,14 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta name="view-transition" content="same-origin" />
   <title>Local Logic IT — Choose Your Service</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --quartz-bg: rgba(255, 255, 255, 0.03);
+      --quartz-border: rgba(255, 255, 255, 0.12);
+      --quartz-edge: rgba(255, 255, 255, 0.4);
+      --accent-glow: rgba(200, 220, 255, 0.15);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; overflow: hidden; }
+    html { height: 100%; overflow-y: scroll; }
+    body { height: 100%; overflow: hidden; }
     body {
       font-family: "Manrope", sans-serif;
       background: #07070f;
@@ -23,45 +35,124 @@
       100% { opacity: 0;   }
     }
 
-    /* ── Header — frosted glass pill ── */
-    .header {
+    /* The Quartz Shell */
+    .pill-wrapper {
       position: fixed;
       top: 18px;
       left: 50%;
-      transform: translateX(-50%);
       z-index: 300;
       will-change: left, top, transform;
+      padding: 4px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+      box-shadow: 
+          0 20px 40px rgba(0,0,0,0.4),
+          inset 0 0 0 1px var(--quartz-border);
+      animation: quartz-entry 1.2s var(--transition-fluid) forwards;
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .pill-nav {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 9px 22px;
-      background: rgba(8,8,18,0.90);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 50px;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      white-space: nowrap;
-      pointer-events: none;
+      gap: 10px;
+      padding: 6px 14px;
+      background: rgba(10, 10, 15, 0.4);
+      backdrop-filter: blur(32px) saturate(150%);
+      -webkit-backdrop-filter: blur(32px) saturate(150%);
+      border-radius: 100px;
+      border: 1px solid var(--quartz-edge);
+      position: relative;
+      z-index: 1;
     }
-    .header-logo img { height: 32px; width: auto; display: block; }
-    .header-name {
-      font-size: 1.05rem;
-      font-weight: 800;
+
+    /* Light Refraction Grain Overlay */
+    .pill-nav::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 100px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3e%3cfilter id='noiseFilter'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3e%3c/filter%3e%3crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3e%3c/svg%3e");
+      opacity: 0.04;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+    }
+
+    .header-logo, .header-name, .header-tagline {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #fff;
+    }
+
+    .header-logo svg { 
+      height: 24px; 
+      width: 24px; 
+      display: block; 
+    }
+
+    .header-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
       letter-spacing: -0.02em;
     }
-    .header-divider {
-      width: 1px;
-      height: 18px;
-      background: rgba(255,255,255,0.2);
-      flex-shrink: 0;
-    }
+
     .header-tagline {
       font-size: 0.72rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.5);
+      color: var(--text-secondary);
       letter-spacing: 0.07em;
       text-transform: uppercase;
+      padding-right: 8px;
+    }
+
+    /* Data Encapsulation Segment */
+    .pill-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--quartz-border);
+      margin: 0 4px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes quartz-entry {
+      to {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Refractive Glint Follower (Simplified for CSS) */
+    .pill-wrapper:hover .glint {
+      opacity: 1;
+    }
+
+    .glint {
+      position: absolute;
+      width: 100px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+      pointer-events: none;
+      transition: transform 0.1s linear;
+      z-index: 0;
+      opacity: 0;
     }
 
     /* ── Chooser — full-bleed, no gap ── */
@@ -118,11 +209,11 @@
         -webkit-backdrop-filter 0.4s ease;
     }
 
-    /* Hover: frost clears — preview revealed sharp and bright ── */
+    /* Hover: frost clears slightly ── */
     .half:hover .half-overlay {
-      opacity: 0.06;
-      backdrop-filter: blur(0px);
-      -webkit-backdrop-filter: blur(0px);
+      opacity: 0.7;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     /* ── Breathing glow animations for captions ── */
@@ -221,7 +312,7 @@
       display: block;
     }
 
-    /* Hint arrow — fades in on hover ── */
+    /* Hint arrow — always visible ── */
     .half-arrow {
       display: block;
       margin-top: 18px;
@@ -229,18 +320,12 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(5px);
-      transition:
-        opacity   0.3s ease,
-        transform 0.3s ease;
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
     }
     .half--residential .half-arrow { color: rgba(201,123,75,0.85); }
     .half--business    .half-arrow { color: rgba(74,128,232,0.85);  }
-    .half:hover .half-arrow {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     /* ── Selection state — FLIP base ── */
     .half.is-selecting {
@@ -276,15 +361,22 @@
 </head>
 <body>
 
-  <!-- Frosted glass pill header -->
-  <header class="header">
-    <div class="header-logo">
-      <img src="assets/logo.png" alt="Local Logic IT logo" />
-    </div>
-    <span class="header-name">Local Logic IT</span>
-    <div class="header-divider" aria-hidden="true"></div>
-    <span class="header-tagline">Local Service. Logical Solutions.</span>
-  </header>
+  <!-- The Quartz Shell -->
+  <div class="pill-wrapper" id="quartz-shell">
+      <div class="glint" id="refractor"></div>
+      <header class="pill-nav">
+          <div class="header-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <span class="header-name">Local Logic IT</span>
+          <div class="pill-divider" aria-hidden="true"></div>
+          <span class="header-tagline">Local Service. Logical Solutions.</span>
+      </header>
+  </div>
 
   <main class="chooser" id="chooser">
 
@@ -350,14 +442,20 @@
   </main>
 
   <script>
-    var REF_W = 1440;
-
     function scalePreview(half) {
       var iframe = half.querySelector('.half-preview');
       if (!iframe) return;
+      var REF_W = document.documentElement.clientWidth;
       var W     = half.offsetWidth;
       var H     = half.offsetHeight;
       var scale = W / REF_W;
+      
+      // Prevent mobile weirdness where stacking halves could cause issues
+      if (REF_W <= 767) {
+        scale = 1;
+        REF_W = W;
+      }
+      
       iframe.style.width     = REF_W + 'px';
       iframe.style.height    = Math.ceil(H / scale) + 'px';
       iframe.style.transform = 'scale(' + scale + ')';
@@ -423,26 +521,40 @@
       half.style.transform  = 'translate(0,0) scale(1,1)';
 
       // 7. Fly the header bubble to the top-left nav position
-      var header  = document.querySelector('.header');
-      var divider = header.querySelector('.header-divider');
-      var tagline = header.querySelector('.header-tagline');
+      var header  = document.querySelector('.pill-wrapper');
+      var divider = header ? header.querySelector('.pill-divider') : null;
+      var tagline = header ? header.querySelector('.header-tagline') : null;
 
-      header.style.transition = [
-        'left 0.52s cubic-bezier(0.25,0.46,0.45,0.94)',
-        'top 0.44s cubic-bezier(0.25,0.46,0.45,0.94)',
-        'transform 0.52s cubic-bezier(0.25,0.46,0.45,0.94)'
-      ].join(',');
-      header.style.left      = '32px';
-      header.style.top       = '16px';
-      header.style.transform = 'none';
+      if (header) {
+        // Lock the final animated states to prevent jumping before removing the CSS animation
+        header.style.opacity = '1';
+        header.style.transform = 'translateX(-50%) translateY(0)';
+        header.style.animation = 'none';
+        
+        // Force reflow
+        void header.offsetWidth;
 
-      // Tagline + divider fade out early in the flight
+        header.style.transition = [
+          'left 1s cubic-bezier(0.25,0.46,0.45,0.94)',
+          'top 1s cubic-bezier(0.25,0.46,0.45,0.94)',
+          'transform 1s cubic-bezier(0.25,0.46,0.45,0.94)'
+        ].join(',');
+        header.style.left      = '32px';
+        header.style.top       = '7px';
+        header.style.transform = 'translateX(0) translateY(0)';
+      }
+
+      // Fade out some elements early in the flight
       setTimeout(function() {
-        divider.style.transition = 'opacity 0.18s ease';
-        tagline.style.transition = 'opacity 0.18s ease';
-        divider.style.opacity    = '0';
-        tagline.style.opacity    = '0';
-      }, 130);
+        if (divider) {
+          divider.style.transition = 'opacity 0.5s ease';
+          divider.style.opacity    = '0';
+        }
+        if (tagline) {
+          tagline.style.transition = 'opacity 0.5s ease';
+          tagline.style.opacity    = '0';
+        }
+      }, 200);
 
       // Flag destination page to play receiving animation
       sessionStorage.setItem('fromLanding', '1');
@@ -450,7 +562,7 @@
       // Navigate once bubble flight completes
       setTimeout(function() {
         window.location.href = dest;
-      }, 600);
+      }, 1000);
     }
 
     function resetState() {
@@ -464,17 +576,19 @@
       document.querySelectorAll('.half').forEach(scalePreview);
 
       // Reset header bubble back to centered position (no transition — snap immediately)
-      var header = document.querySelector('.header');
-      header.style.transition = 'none';
-      header.style.left       = '50%';
-      header.style.top        = '18px';
-      header.style.transform  = 'translateX(-50%)';
-      var divider = header.querySelector('.header-divider');
-      var tagline = header.querySelector('.header-tagline');
-      divider.style.transition = 'none';
-      tagline.style.transition = 'none';
-      divider.style.opacity    = '';
-      tagline.style.opacity    = '';
+      var header = document.querySelector('.pill-wrapper');
+      if (header) {
+        header.style.transition = 'none';
+        header.style.animation  = '';
+        header.style.opacity    = '';
+        header.style.left       = '50%';
+        header.style.top        = '18px';
+        header.style.transform  = 'translateX(-50%) translateY(0)';
+        var divider = header.querySelector('.pill-divider');
+        var tagline = header.querySelector('.header-tagline');
+        if (divider) { divider.style.transition = 'none'; divider.style.opacity = ''; }
+        if (tagline) { tagline.style.transition = 'none'; tagline.style.opacity = ''; }
+      }
     }
 
     function init() {
@@ -501,6 +615,18 @@
       window.addEventListener('pageshow', function(e) {
         if (e.persisted) resetState();
       });
+
+      // Quartz Shell interactions
+      const shell = document.getElementById('quartz-shell');
+      const glint = document.getElementById('refractor');
+
+      if (shell && glint) {
+          shell.addEventListener('mousemove', (e) => {
+              const rect = shell.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              glint.style.transform = `translateX(${x - 50}px)`;
+          });
+      }
     }
 
     if (document.readyState === 'loading') {

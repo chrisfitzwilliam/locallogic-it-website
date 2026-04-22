@@ -4,11 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Local Logic IT business IT services — managed IT, cybersecurity, backup, AI automation, and cloud services for local businesses." />
+  <meta name="view-transition" content="same-origin" />
   <title>Local Logic IT — Business IT Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    if (sessionStorage.getItem('fromLanding')) {
+      document.documentElement.classList.add('is-landing-anim');
+    }
+    if (window !== window.parent) {
+      document.documentElement.classList.add('in-iframe');
+    }
+  </script>
   <style>
+    html.is-landing-anim .nav-left,
+    html.is-landing-anim .nav-links,
+    html.in-iframe .nav-left,
+    html.in-iframe .nav-links,
+    html.in-iframe .nav-hamburger {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
     /* ── Tokens ── */
     :root {
       --charcoal:   #0D1B38;
@@ -33,7 +50,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--charcoal);
+      background: var(--charcoal-2);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -59,12 +76,15 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
+      color: #fff;
     }
-    .nav-logo img { height: 32px; width: auto; }
+    .nav-logo svg { height: 24px; width: 24px; display: block; }
     .nav-logo-name {
       font-size: 1rem;
       font-weight: 800;
       color: #fff;
+      letter-spacing: -0.02em;
     }
     .nav-links {
       display: flex;
@@ -319,7 +339,11 @@
     <div class="nav-left">
       <a class="nav-back" href="index.html">&#8592; Back to Home</a>
       <a class="nav-logo" href="#top">
-        <img src="assets/logo.png" alt="Local Logic IT" />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+          <path d="M2 17l10 5 10-5"></path>
+          <path d="M2 12l10 5 10-5"></path>
+        </svg>
         <span class="nav-logo-name">Local Logic IT</span>
       </a>
     </div>
@@ -503,48 +527,63 @@
       if (navLeft)  { navLeft.style.opacity  = '0'; navLeft.style.pointerEvents  = 'none'; }
       if (navLinks) { navLinks.style.opacity = '0'; navLinks.style.pointerEvents = 'none'; }
 
-      // ── Outer pill (overflow:hidden clips the expanding section) ──
+      // ── Outer pill (Quartz Shell matching index.html) ──
       var pill = document.createElement('div');
       pill.style.cssText = [
         'position:fixed',
         'left:32px',
         'top:7px',
         'z-index:1000',
+        'padding:4px',
+        'border-radius:100px',
+        'background:linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)',
+        'box-shadow:0 20px 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.12)',
+        'transform-origin:left center',
+        'font-family:"Inter", "Manrope", sans-serif'
+      ].join(';');
+
+      var pillNav = document.createElement('div');
+      pillNav.style.cssText = [
         'display:flex',
         'align-items:center',
-        'background:rgba(8,8,18,0.92)',
-        'border:1px solid rgba(255,255,255,0.14)',
-        'border-radius:50px',
-        'backdrop-filter:blur(14px)',
-        '-webkit-backdrop-filter:blur(14px)',
+        'padding:6px 14px',
+        'background:rgba(10, 10, 15, 0.4)',
+        'backdrop-filter:blur(32px) saturate(150%)',
+        '-webkit-backdrop-filter:blur(32px) saturate(150%)',
+        'border-radius:100px',
+        'border:1px solid rgba(255,255,255,0.4)',
         'overflow:hidden',
-        'transform-origin:left center',
-        'font-family:"Manrope",sans-serif'
+        'transition:border-color 0.3s ease, box-shadow 0.3s ease'
       ].join(';');
 
       // Core: logo + name — links back to home
       var core = document.createElement('a');
       core.href = 'index.html';
-      core.style.cssText = 'display:flex;align-items:center;gap:12px;padding:9px 22px;text-decoration:none;flex-shrink:0;';
+      core.style.cssText = 'display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;';
 
-      var img = document.createElement('img');
-      img.src = 'assets/logo.png';
-      img.alt = 'Local Logic IT';
-      img.style.cssText = 'height:32px;width:auto;display:block;';
-      core.appendChild(img);
+      var icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      icon.setAttribute('viewBox', '0 0 24 24');
+      icon.setAttribute('fill', 'none');
+      icon.setAttribute('stroke', 'currentColor');
+      icon.setAttribute('stroke-width', '2.5');
+      icon.setAttribute('stroke-linecap', 'round');
+      icon.setAttribute('stroke-linejoin', 'round');
+      icon.style.cssText = 'width:24px;height:24px;color:#fff;display:block;';
+      icon.innerHTML = '<path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path>';
+      core.appendChild(icon);
 
       var nameEl = document.createElement('span');
       nameEl.textContent = 'Local Logic IT';
-      nameEl.style.cssText = 'font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.02em;white-space:nowrap;';
+      nameEl.style.cssText = 'font-size:1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;white-space:nowrap;';
       core.appendChild(nameEl);
-      pill.appendChild(core);
+      pillNav.appendChild(core);
 
       // Expand: divider + nav links — starts collapsed
       var expand = document.createElement('div');
       expand.style.cssText = 'display:flex;align-items:center;max-width:0;overflow:hidden;opacity:0;';
 
       var divider = document.createElement('div');
-      divider.style.cssText = 'width:1px;height:18px;background:rgba(255,255,255,0.15);flex-shrink:0;margin-right:4px;';
+      divider.style.cssText = 'width:1px;height:18px;background:rgba(255,255,255,0.15);flex-shrink:0;margin:0 12px 0 16px;';
       expand.appendChild(divider);
 
       [['Services','#services'],['About','#about'],['Contact','#contact']].forEach(function(l) {
@@ -558,36 +597,30 @@
       });
 
       var pad = document.createElement('div');
-      pad.style.cssText = 'width:8px;flex-shrink:0;';
+      pad.style.cssText = 'width:4px;flex-shrink:0;';
       expand.appendChild(pad);
-      pill.appendChild(expand);
+      pillNav.appendChild(expand);
 
+      pill.appendChild(pillNav);
       document.body.appendChild(pill);
 
       // ── Animation ──
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
+          // 1. Click glow (no scale to prevent size changing)
+          pillNav.style.borderColor = 'rgba(74,128,232,0.85)';
+          pillNav.style.boxShadow   = '0 0 12px rgba(74,128,232,0.4), 0 0 28px rgba(74,128,232,0.18)';
 
-          // 1. Click pop + blue glow
-          pill.style.transition  = 'transform 0.09s ease-out, border-color 0.07s ease, box-shadow 0.07s ease';
-          pill.style.transform   = 'scale(1.11)';
-          pill.style.borderColor = 'rgba(74,128,232,0.85)';
-          pill.style.boxShadow   = '0 0 12px rgba(74,128,232,0.4), 0 0 28px rgba(74,128,232,0.18)';
-
-          // 2. Spring back
+          // 2. Fade glow back and expand
           setTimeout(function () {
-            pill.style.transition  = 'transform 0.2s cubic-bezier(0.34,1.56,0.64,1), border-color 0.35s ease, box-shadow 0.35s ease';
-            pill.style.transform   = 'scale(1)';
-            pill.style.borderColor = 'rgba(255,255,255,0.14)';
-            pill.style.boxShadow   = 'none';
+            pillNav.style.borderColor = 'rgba(255,255,255,0.4)';
+            pillNav.style.boxShadow   = 'none';
 
-            // 3. Expand right to reveal nav links
-            setTimeout(function () {
-              expand.style.transition = 'max-width 0.38s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.28s ease 0.12s';
-              expand.style.maxWidth   = '300px';
-              expand.style.opacity    = '1';
-            }, 160);
-          }, 90);
+            // Expand right to reveal nav links
+            expand.style.transition = 'max-width 0.4s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.3s ease 0.1s';
+            expand.style.maxWidth   = '400px';
+            expand.style.opacity    = '1';
+          }, 150);
         });
       });
     }());
