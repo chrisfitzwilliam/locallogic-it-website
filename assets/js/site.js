@@ -31,9 +31,33 @@
     });
   }
 
+  function initLandingArrival() {
+    var side = sessionStorage.getItem('fromLanding');
+    var isKnownSide = side === 'residential' || side === 'business';
+    if (!isKnownSide || !document.body || !document.body.classList.contains('site-page')) return;
+
+    sessionStorage.removeItem('fromLanding');
+    if (!document.body.classList.contains(side + '-page')) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    document.body.classList.add('is-arriving-from-landing', 'is-arriving-' + side);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        document.body.classList.add('has-arrived');
+      });
+    });
+
+    window.setTimeout(function () {
+      document.body.classList.remove('is-arriving-from-landing', 'is-arriving-' + side, 'has-arrived');
+    }, 1100);
+  }
+
   window.closeMobileMenu = closeAllMobileMenus;
 
-  document.addEventListener('DOMContentLoaded', initMobileMenus);
+  document.addEventListener('DOMContentLoaded', function () {
+    initMobileMenus();
+    initLandingArrival();
+  });
   document.addEventListener('click', function (event) {
     if (!event.target.closest('.nav')) closeAllMobileMenus();
   });

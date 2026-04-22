@@ -23,11 +23,6 @@
     }
 
     /* ── Flash animation (injected on click) ── */
-    @keyframes flash-out {
-      0%   { opacity: 0.8; }
-      100% { opacity: 0;   }
-    }
-
     @keyframes header-arrive {
       from {
         opacity: 0;
@@ -38,13 +33,6 @@
         transform: translateX(-50%) scale(1);
       }
     }
-    @keyframes header-flare {
-      0%, 28% { transform: translateX(-135%) skewX(-18deg); opacity: 0; }
-      38%     { opacity: 0.55; }
-      56%     { transform: translateX(135%) skewX(-18deg); opacity: 0; }
-      100%    { transform: translateX(135%) skewX(-18deg); opacity: 0; }
-    }
-
     /* ── Header — frosted glass pill ── */
     .header {
       position: fixed;
@@ -97,7 +85,7 @@
       pointer-events: none;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
       filter: blur(1px);
-      animation: header-flare 6.8s ease-in-out infinite 1.1s;
+      opacity: 0;
     }
     .header > * {
       position: relative;
@@ -307,35 +295,6 @@
     }
 
     /* ── Breathing glow animations for captions ── */
-    @keyframes glow-gold {
-      0%, 100% {
-        box-shadow:
-          0 0 22px rgba(169,130,54,0.18),
-          0 8px 48px rgba(169,130,54,0.10),
-          inset 0 1px 0 rgba(255,255,255,0.09);
-      }
-      50% {
-        box-shadow:
-          0 0 38px rgba(169,130,54,0.34),
-          0 8px 64px rgba(169,130,54,0.20),
-          inset 0 1px 0 rgba(255,255,255,0.13);
-      }
-    }
-    @keyframes glow-blue {
-      0%, 100% {
-        box-shadow:
-          0 0 22px rgba(199,176,100,0.18),
-          0 8px 48px rgba(199,176,100,0.10),
-          inset 0 1px 0 rgba(255,255,255,0.09);
-      }
-      50% {
-        box-shadow:
-          0 0 38px rgba(199,176,100,0.34),
-          0 8px 64px rgba(199,176,100,0.20),
-          inset 0 1px 0 rgba(255,255,255,0.13);
-      }
-    }
-
     /* ── Centered caption — premium glass card ── */
     .caption-wrapper {
       position: absolute;
@@ -358,7 +317,6 @@
       inset: -55%;
       opacity: 0.92;
       transform-origin: center;
-      animation: border-sweep 5.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
       transition: opacity 0.3s ease, filter 0.3s ease;
     }
     .caption-wrapper--residential::before {
@@ -371,11 +329,6 @@
       opacity: 1;
       filter: saturate(1.18) brightness(1.08);
       animation-duration: 3.4s;
-    }
-    @keyframes border-sweep {
-      0%, 12%   { transform: rotate(-28deg); }
-      44%, 56%  { transform: rotate(142deg); }
-      88%, 100% { transform: rotate(332deg); }
     }
     .half-caption {
       position: relative;
@@ -397,11 +350,9 @@
     /* Brand-coloured glow + border accent */
     .half--residential .half-caption {
       border-color: rgba(169,130,54,0.32) rgba(169,130,54,0.14) rgba(169,130,54,0.08) rgba(169,130,54,0.14);
-      animation: glow-gold 3.6s ease-in-out infinite;
     }
     .half--business .half-caption {
       border-color: rgba(199,176,100,0.32) rgba(199,176,100,0.14) rgba(199,176,100,0.08) rgba(199,176,100,0.14);
-      animation: glow-blue 3.6s ease-in-out infinite;
     }
 
     .half:hover .caption-wrapper {
@@ -457,22 +408,11 @@
     }
 
     /* ── Selection state — FLIP base ── */
-    .half.is-selecting {
-      position: fixed !important;
-      inset: 0 !important;
-      z-index: 100;
-      flex: none;
-      overflow: hidden;
-    }
-    .half.is-selecting .half-overlay  { opacity: 0 !important; transition: opacity 0.12s ease !important; }
-    .half.is-selecting .caption-wrapper,
-    .half.is-selecting .half-caption  { opacity: 0 !important; transition: opacity 0.08s ease !important; }
-
     /* Fade out the non-selected half */
-    .chooser.has-selection .half:not(.is-selecting) {
+    .chooser.has-selection .half:not(.is-selected) {
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.18s ease;
+      transition: opacity 0.32s ease;
     }
 
     /* ── Responsive ── */
@@ -716,105 +656,67 @@
       iframe.style.transform = 'scale(' + scale + ')';
     }
 
-    function injectFlash(color) {
-      var el = document.createElement('div');
-      el.setAttribute('aria-hidden', 'true');
-      el.style.cssText = [
-        'position:fixed',
-        'inset:0',
-        'z-index:200',
-        'pointer-events:none',
-        'background:' + color,
-        'animation:flash-out 0.35s ease-out forwards'
-      ].join(';');
-      document.body.appendChild(el);
-      el.addEventListener('animationend', function() { el.parentNode && el.parentNode.removeChild(el); });
-    }
-
     function selectHalf(half) {
       var chooser = document.getElementById('chooser');
       if (chooser.classList.contains('has-selection')) return;
 
       var dest      = half.dataset.href;
       var isRes     = half.classList.contains('half--residential');
-      var flashColor = isRes
-        ? 'rgba(169,130,54,0.22)'
-        : 'rgba(199,176,100,0.22)';
+      var side      = isRes ? 'residential' : 'business';
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // 1. Inject full-screen flash for immediate "confirmed" feedback
-      injectFlash(flashColor);
-
-      // 2. Hide the other panel
-      chooser.classList.add('has-selection');
-
-      // 3. Snapshot card position before any layout change
-      var cardRect = half.getBoundingClientRect();
-
-      // 4. Expand to fixed fullscreen
-      half.classList.add('is-selecting');
-      var fullRect = half.getBoundingClientRect();
-
-      // 5. FLIP: compute the inverse transform (visually starts at card position)
-      var sx = cardRect.width  / fullRect.width;
-      var sy = cardRect.height / fullRect.height;
-      var tx = cardRect.left   - fullRect.left;
-      var ty = cardRect.top    - fullRect.top;
-
-      // Apply the starting (inverted) state — keep rounded corners at start
-      half.style.borderRadius = '0px';
-      half.style.transition   = 'none';
-      half.style.transform    = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sx + ',' + sy + ')';
-
-      // Force reflow so browser registers starting state
-      void half.offsetHeight;
-
-      // Re-scale the iframe for the now-fullscreen panel
+      chooser.classList.add('has-selection', 'selecting-' + side);
+      half.classList.add('is-selected', 'is-clicked');
       scalePreview(half);
 
-      // 6. Animate to fullscreen — expo-out easing for game-like explosive feel
-      half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
-      half.style.transform  = 'translate(0,0) scale(1,1)';
+      if (isRes) {
+        sessionStorage.setItem('fromLanding', 'residential');
+      } else {
+        sessionStorage.setItem('fromLanding', 'business');
+      }
 
-      // 7. Fly the header bubble to the top-left nav position
+      if (reduceMotion) {
+        window.location.href = dest;
+        return;
+      }
+
       var divider = header.querySelector('.header-divider');
       var tagline = header.querySelector('.header-tagline');
       var nav     = header.querySelector('.header-nav');
       closeHeaderMenu();
 
-      header.style.transition = [
-        'left 0.52s cubic-bezier(0.25,0.46,0.45,0.94)',
-        'top 0.44s cubic-bezier(0.25,0.46,0.45,0.94)',
-        'transform 0.52s cubic-bezier(0.25,0.46,0.45,0.94)'
-      ].join(',');
-      header.style.left      = '32px';
-      header.style.top       = '16px';
-      header.style.transform = 'none';
+      requestAnimationFrame(function() {
+        header.classList.add('is-departing', 'is-departing-' + side);
+        header.style.transition = [
+          'left 0.68s cubic-bezier(0.22,1,0.36,1)',
+          'top 0.68s cubic-bezier(0.22,1,0.36,1)',
+          'transform 0.68s cubic-bezier(0.22,1,0.36,1)',
+          'box-shadow 0.3s ease',
+          'background 0.3s ease'
+        ].join(',');
+        header.style.left      = window.innerWidth <= 767 ? '12px' : '32px';
+        header.style.top       = window.innerWidth <= 767 ? '12px' : '16px';
+        header.style.transform = 'none';
 
-      // Tagline + divider fade out early in the flight
-      setTimeout(function() {
         divider.style.transition = 'opacity 0.18s ease';
         tagline.style.transition = 'opacity 0.18s ease';
         nav.style.transition     = 'opacity 0.18s ease';
         divider.style.opacity    = '0';
         tagline.style.opacity    = '0';
         nav.style.opacity        = '0';
-      }, 130);
+      });
 
-      // Flag destination page to play receiving animation
-      sessionStorage.setItem('fromLanding', '1');
-
-      // Navigate once bubble flight completes
       setTimeout(function() {
         window.location.href = dest;
-      }, 600);
+      }, 760);
     }
 
     function resetState() {
       // Clear all selection state — needed when browser restores page from bfcache
       var chooser = document.getElementById('chooser');
-      chooser.classList.remove('has-selection');
+      chooser.classList.remove('has-selection', 'selecting-residential', 'selecting-business');
       document.querySelectorAll('.half').forEach(function(half) {
-        half.classList.remove('is-selecting');
+        half.classList.remove('is-selected', 'is-clicked');
         half.removeAttribute('style');
       });
       document.querySelectorAll('.half').forEach(scalePreview);
@@ -825,12 +727,16 @@
       header.style.left       = '50%';
       header.style.top        = '18px';
       header.style.transform  = 'translateX(-50%)';
+      header.classList.remove('is-departing', 'is-departing-residential', 'is-departing-business');
       var divider = header.querySelector('.header-divider');
       var tagline = header.querySelector('.header-tagline');
+      var nav = header.querySelector('.header-nav');
       divider.style.transition = 'none';
       tagline.style.transition = 'none';
+      nav.style.transition     = 'none';
       divider.style.opacity    = '';
       tagline.style.opacity    = '';
+      nav.style.opacity        = '';
     }
 
     function init() {
