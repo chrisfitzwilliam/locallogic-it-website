@@ -8,8 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/brand/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="../../assets/brand/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#232425" />
+  <meta property="og:image" content="../../assets/brand/social-card.png" />
   <style>
-    :root { --amber:#7A3B10; --amber-2:#5C2C0B; --gold:#D4722A; --gold-2:#E8A870; --gold-3:#F3C6A1; --paper:#FFF8F2; --ink:#3D2415; --muted:#8A6852; --line:#F0D9C7; }
+    :root { --amber:#232425; --amber-2:#111213; --gold:#A98236; --gold-2:#C7B064; --gold-3:#B99A4D; --paper:#F5F1E7; --ink:#222222; --muted:#5D574C; --line:#C7B064; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--paper); }
@@ -34,20 +39,20 @@
     .nav-mobile-menu a:hover { color: var(--gold); }
     @media (max-width: 767px) { .nav-cta-link { display: none; } .nav-hamburger { display: flex; } .nav { position: relative; } }
     .hero { background: linear-gradient(160deg, var(--amber) 0%, var(--amber-2) 100%); padding: 100px 32px 80px; position: relative; overflow: hidden; text-align: center; }
-    .hero::before { content: ""; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; border: 2px solid rgba(212,114,42,0.18); pointer-events: none; }
-    .hero::after { content: ""; position: absolute; bottom: -120px; left: -100px; width: 500px; height: 500px; border-radius: 50%; border: 2px solid rgba(212,114,42,0.12); pointer-events: none; }
-    .hero-badge { display: inline-block; background: rgba(212,114,42,0.18); color: var(--gold-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 24px; border: 1px solid rgba(212,114,42,0.35); }
+    .hero::before { content: ""; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; border: 2px solid rgba(169,130,54,0.18); pointer-events: none; }
+    .hero::after { content: ""; position: absolute; bottom: -120px; left: -100px; width: 500px; height: 500px; border-radius: 50%; border: 2px solid rgba(169,130,54,0.12); pointer-events: none; }
+    .hero-badge { display: inline-block; background: rgba(169,130,54,0.18); color: var(--gold-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 24px; border: 1px solid rgba(169,130,54,0.35); }
     .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.03em; max-width: 700px; margin: 0 auto 20px; }
     .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 36px; line-height: 1.6; }
-    .hero-cta { display: inline-block; background: var(--gold); color: var(--amber); font-size: 0.9rem; font-weight: 700; padding: 14px 32px; border-radius: 8px; transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease; box-shadow: 0 14px 30px rgba(212,114,42,0.22); }
-    .hero-cta:hover { background: var(--gold-2); transform: translateY(-2px); box-shadow: 0 18px 34px rgba(212,114,42,0.30); }
+    .hero-cta { display: inline-block; background: var(--gold); color: var(--amber); font-size: 0.9rem; font-weight: 700; padding: 14px 32px; border-radius: 8px; transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease; box-shadow: 0 14px 30px rgba(169,130,54,0.22); }
+    .hero-cta:hover { background: var(--gold-2); transform: translateY(-2px); box-shadow: 0 18px 34px rgba(169,130,54,0.30); }
     .hero-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
     .section { padding: 80px 32px; }
     .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 12px; }
     .section-heading { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; text-align: center; color: var(--amber); letter-spacing: -0.02em; margin-bottom: 40px; }
     .includes { background: var(--paper); }
     .includes-list { list-style: none; max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
-    .includes-list li { display: flex; align-items: flex-start; gap: 16px; background: #FFF8F2; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; font-size: 0.95rem; color: var(--ink); line-height: 1.5; font-weight: 500; }
+    .includes-list li { display: flex; align-items: flex-start; gap: 16px; background: #F5F1E7; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; font-size: 0.95rem; color: var(--ink); line-height: 1.5; font-weight: 500; }
     .includes-list li::before { content: ""; display: block; flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; background: var(--gold); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10l3.5 3.5L15 7' stroke='%232B1A00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-size: contain; }
     .trust { background: var(--amber); text-align: center; }
     .trust .section-heading { color: #fff; }
@@ -65,13 +70,15 @@
     .footer strong { color: var(--gold); font-weight: 700; }
     @media (max-width: 767px) { .section { padding: 60px 20px; } .contact-card { padding: 28px 24px; } }
   </style>
+  <link rel="stylesheet" href="../../assets/css/site.css" />
+  <script src="../../assets/js/site.js" defer></script>
 </head>
-<body>
+<body class="site-page">
   <nav class="nav" id="top">
     <div class="nav-left">
       <a class="nav-back" href="../../residential.html">&#8592; Back</a>
       <a class="nav-logo" href="../../residential.html">
-        <img src="../../assets/logo.png" alt="Local Logic IT" />
+        <img src="../../assets/brand/local-logic-mark.svg" alt="Local Logic IT" />
         <span class="nav-logo-name">Local Logic IT</span>
       </a>
     </div>
@@ -128,17 +135,5 @@
       <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
     </footer>
   </main>
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  </script>
 </body>
 </html>

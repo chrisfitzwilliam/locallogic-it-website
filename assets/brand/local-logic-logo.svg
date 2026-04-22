@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 112" role="img" aria-labelledby="title desc">
+  <title id="title">Local Logic IT logo</title>
+  <desc id="desc">Local Logic IT horizontal wordmark with shield mark.</desc>
+  <defs>
+    <linearGradient id="markStroke" x1="14" y1="14" x2="84" y2="94" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C7B064"/>
+      <stop offset="0.55" stop-color="#A98236"/>
+      <stop offset="1" stop-color="#B99A4D"/>
+    </linearGradient>
+    <linearGradient id="markFill" x1="24" y1="20" x2="72" y2="82" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2F3030"/>
+      <stop offset="1" stop-color="#111213"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 8)">
+    <circle cx="48" cy="48" r="36" fill="#232425" opacity="0.98"/>
+    <circle cx="48" cy="48" r="34" fill="none" stroke="url(#markStroke)" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="38 9 6 12" opacity="0.86"/>
+    <path d="M48 15 73 25v21c0 17.5-10.2 29.8-25 36-14.8-6.2-25-18.5-25-36V25l25-10Z" fill="url(#markFill)" stroke="url(#markStroke)" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M34 57 58 33" fill="none" stroke="#C7B064" stroke-width="4" stroke-linecap="round"/>
+    <path d="M38 38h14c4 0 7 3 7 7v13" fill="none" stroke="#A98236" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="34" cy="57" r="4.2" fill="#C7B064"/>
+    <circle cx="48" cy="43" r="3.4" fill="#B99A4D"/>
+    <circle cx="58" cy="33" r="4.2" fill="#C7B064"/>
+  </g>
+  <text x="120" y="55" fill="#232425" font-family="Manrope, Inter, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="0">Local Logic IT</text>
+  <text x="122" y="78" fill="#A98236" font-family="Manrope, Inter, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="1.8">LOCAL SERVICE. LOGICAL SOLUTIONS.</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">Local Logic IT shield mark</title>
+  <desc id="desc">A bronze-gold shield with diagonal logic-line detail and a brushed circular ring.</desc>
+  <defs>
+    <linearGradient id="shieldFill" x1="24" y1="20" x2="72" y2="82" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2F3030"/>
+      <stop offset="1" stop-color="#111213"/>
+    </linearGradient>
+    <linearGradient id="bronzeStroke" x1="18" y1="12" x2="78" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C7B064"/>
+      <stop offset="0.55" stop-color="#A98236"/>
+      <stop offset="1" stop-color="#B99A4D"/>
+    </linearGradient>
+    <radialGradient id="ringGlow" cx="38%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#C7B064" stop-opacity="0.36"/>
+      <stop offset="0.58" stop-color="#A98236" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#111213" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="96" height="96" rx="20" fill="#232425"/>
+  <circle cx="48" cy="48" r="37" fill="url(#ringGlow)"/>
+  <circle cx="48" cy="48" r="34" fill="none" stroke="url(#bronzeStroke)" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="38 9 6 12" opacity="0.86"/>
+  <circle cx="48" cy="48" r="29" fill="none" stroke="#F5F1E7" stroke-width="0.8" opacity="0.18"/>
+  <path d="M48 15 73 25v21c0 17.5-10.2 29.8-25 36-14.8-6.2-25-18.5-25-36V25l25-10Z" fill="url(#shieldFill)" stroke="url(#bronzeStroke)" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M34 57 58 33" fill="none" stroke="#C7B064" stroke-width="4" stroke-linecap="round"/>
+  <path d="M38 38h14c4 0 7 3 7 7v13" fill="none" stroke="#A98236" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+  <circle cx="34" cy="57" r="4.2" fill="#C7B064"/>
+  <circle cx="48" cy="43" r="3.4" fill="#B99A4D"/>
+  <circle cx="58" cy="33" r="4.2" fill="#C7B064"/>
+  <path d="M31 27 48 20l17 7" fill="none" stroke="#F5F1E7" stroke-width="1.2" stroke-linecap="round" opacity="0.22"/>
+</svg>
