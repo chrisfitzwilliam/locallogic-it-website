@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <script>
     if (sessionStorage.getItem('fromLanding')) {
       document.documentElement.classList.add('is-landing-anim');
@@ -265,6 +267,8 @@
       padding: 28px 24px;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: 12px;
       transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
       text-decoration: none;
@@ -280,8 +284,9 @@
       outline-offset: 3px;
     }
     .service-icon {
-      width: 44px;
-      height: 44px;
+      font-size: 44px;
+      display: block;
+      margin-bottom: 24px;
       color: var(--gold);
     }
     .service-title {
@@ -397,83 +402,89 @@
     <div class="services-grid">
 
       <a class="service-card" href="services/residential/pc-repair.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="4" y="8" width="36" height="24" rx="3" stroke="currentColor" stroke-width="2.5"/>
-          <line x1="14" y1="36" x2="30" y2="36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="22" y1="32" x2="22" y2="36" stroke="currentColor" stroke-width="2.5"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/ogjpwrxe.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">PC Repair</span>
         <p class="service-desc">Slow computers, crashes, hardware faults — we diagnose and fix it, in your home or ours.</p>
       </a>
 
       <a class="service-card" href="services/residential/home-networking.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M8 22 C8 14, 36 14, 36 22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M13 27 C13 22, 31 22, 31 27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="22" cy="32" r="3" fill="currentColor"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/jezazvlx.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">Home Networking</span>
-        <p class="service-desc">Wi-Fi dead zones, slow speeds, router setup — we get your whole home connected reliably.</p>
+        <p class="service-desc">Dead zones, slow speeds, or new router setup — we'll blanket your home in fast, reliable Wi-Fi.</p>
       </a>
 
       <a class="service-card" href="services/residential/device-setup-training.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="10" y="6" width="18" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/>
-          <line x1="14" y1="30" x2="24" y2="30" stroke="currentColor" stroke-width="2"/>
-          <path d="M28 18 L38 12 M28 22 L38 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/sobzmbzh.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">Device Setup &amp; Training</span>
-        <p class="service-desc">New phone, tablet, or laptop? We set it up right and walk you through using it with confidence.</p>
+        <p class="service-desc">New phone, tablet, or TV? We set it up and show you exactly how to use it, step by step.</p>
       </a>
 
       <a class="service-card" href="services/residential/virus-malware-removal.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="22" cy="22" r="14" stroke="currentColor" stroke-width="2.5"/>
-          <path d="M17 22 L20 25 L27 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/fedbzost.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">Virus &amp; Malware Removal</span>
         <p class="service-desc">Pop-ups, slow systems, suspicious activity — we clean and protect your devices thoroughly.</p>
       </a>
 
       <a class="service-card" href="services/residential/smart-home-support.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M10 28 L22 10 L34 28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="16" y="32" width="12" height="6" rx="2" stroke="currentColor" stroke-width="2.5"/>
-          <circle cx="30" cy="34" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
-          <path d="M33 37 L36 40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/oeotfwsx.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">Smart Home Support</span>
         <p class="service-desc">Smart speakers, cameras, doorbells, thermostats — we install, connect, and show you how.</p>
       </a>
 
       <a class="service-card" href="services/residential/data-backup-recovery.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M14 30 C14 24 18 20 22 20 C26 20 30 24 30 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M10 34 C10 26 15 22 22 22 C29 22 34 26 34 34" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-          <rect x="14" y="32" width="16" height="8" rx="2" stroke="currentColor" stroke-width="2.5"/>
-          <line x1="22" y1="36" x2="22" y2="36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/xqdfobxg.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">Data Backup &amp; Recovery</span>
-        <p class="service-desc">Photos, files, memories — we protect them with reliable backups and recover what's been lost.</p>
+        <p class="service-desc">Don't lose family photos or critical documents. We set up automatic backups or recover lost data.</p>
       </a>
 
       <a class="service-card" href="services/residential/printer-setup.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="8" y="16" width="28" height="18" rx="2" stroke="currentColor" stroke-width="2.5"/>
-          <rect x="12" y="28" width="20" height="10" rx="1" stroke="currentColor" stroke-width="2"/>
-          <rect x="12" y="8" width="20" height="10" rx="1" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="23" r="2" fill="currentColor" opacity="0.6"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/mudwpdhy.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:54px;height:54px;margin-bottom:16px;">
+        </lord-icon>
         <span class="service-title">Printer Setup &amp; Troubleshooting</span>
         <p class="service-desc">New printer or an old one acting up — we get it connected and printing from all your devices.</p>
       </a>
 
       <a class="service-card" href="services/residential/password-account-help.html">
-        <svg class="service-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="10" y="20" width="24" height="18" rx="3" stroke="currentColor" stroke-width="2.5"/>
-          <path d="M16 20 V14 C16 10 28 10 28 14 V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="22" cy="30" r="3" fill="currentColor" opacity="0.7"/>
-        </svg>
+        <lord-icon
+            src="https://cdn.lordicon.com/adgqyloy.json"
+            trigger="loop"
+            colors="primary:#c97b4b,secondary:#2c140a"
+            style="width:68px;height:68px;margin-bottom:8px;">
+        </lord-icon>
         <span class="service-title">Password &amp; Account Help</span>
         <p class="service-desc">Locked out of your computer or accounts? We get you back in and set up a system that works.</p>
       </a>
