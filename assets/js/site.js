@@ -67,6 +67,14 @@
     };
   }
 
+  function syncPageInlineStyle(doc) {
+    var incomingStyle = doc.head ? doc.head.querySelector('style') : null;
+    var currentStyle = document.head ? document.head.querySelector('style') : null;
+    if (!incomingStyle || !currentStyle) return;
+
+    currentStyle.textContent = incomingStyle.textContent;
+  }
+
   function animateLandingExit(side) {
     var nav = document.querySelector('.landing-page .nav.is-pill');
     if (!nav || !nav.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -90,38 +98,50 @@
     ghost.style.zIndex = '1000';
     ghost.style.pointerEvents = 'none';
     ghost.style.transformOrigin = 'top left';
-    ghost.style.transform = 'translate3d(0, 0, 0) scale(1)';
+    ghost.style.transform = 'translate3d(0, 0, 0)';
     document.body.appendChild(ghost);
 
     nav.classList.add('is-leaving-landing');
-
-    window.setTimeout(function () {
-      ghost.classList.add('is-compact');
-    }, 130);
-
-    var dx = target.left - source.left;
-    var dy = target.top - source.top;
-    var sx = target.width / source.width;
-    var sy = target.height / source.height;
-    var lift = window.matchMedia('(max-width: 767px)').matches ? 5 : 8;
+    ghost.classList.add('is-compact');
+    ghost.getBoundingClientRect();
 
     var animation = ghost.animate([
       {
-        transform: 'translate3d(0, 0, 0) scale(1)',
+        top: source.top + 'px',
+        left: source.left + 'px',
+        width: source.width + 'px',
+        height: source.height + 'px',
+        minHeight: source.height + 'px',
+        transform: 'translate3d(0, 0, 0)',
         filter: 'saturate(1)'
       },
       {
-        transform: 'translate3d(' + Math.round(dx * 0.62) + 'px, ' + Math.round(dy - lift) + 'px, 0) scale(' + (sx + 0.08) + ', ' + (sy + 0.05) + ')',
+        top: Math.round(target.top - 8) + 'px',
+        left: Math.round(target.left) + 'px',
+        width: Math.round(target.width + 18) + 'px',
+        height: Math.round(target.height + 4) + 'px',
+        minHeight: Math.round(target.height + 4) + 'px',
+        transform: 'translate3d(0, 0, 0)',
         filter: 'saturate(1.06)',
         offset: 0.72
       },
       {
-        transform: 'translate3d(' + Math.round(dx) + 'px, ' + Math.round(dy) + 'px, 0) scale(' + (sx * 0.96) + ', ' + (sy * 0.96) + ')',
+        top: Math.round(target.top + 1) + 'px',
+        left: Math.round(target.left) + 'px',
+        width: Math.round(target.width - 6) + 'px',
+        height: Math.round(target.height - 2) + 'px',
+        minHeight: Math.round(target.height - 2) + 'px',
+        transform: 'translate3d(0, 0, 0)',
         filter: 'saturate(1.12)',
         offset: 0.88
       },
       {
-        transform: 'translate3d(' + Math.round(dx) + 'px, ' + Math.round(dy) + 'px, 0) scale(' + sx + ', ' + sy + ')',
+        top: target.top + 'px',
+        left: target.left + 'px',
+        width: target.width + 'px',
+        height: target.height + 'px',
+        minHeight: target.height + 'px',
+        transform: 'translate3d(0, 0, 0)',
         filter: 'saturate(1.04)'
       }
     ], {
@@ -162,6 +182,7 @@
       document.body.classList.add('is-arriving-from-landing', 'is-arriving-' + options.arrivalSide);
     }
 
+    syncPageInlineStyle(doc);
     oldNav.replaceWith(newNav.cloneNode(true));
     oldMain.replaceWith(newMain.cloneNode(true));
 

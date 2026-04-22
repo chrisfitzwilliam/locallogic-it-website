@@ -150,8 +150,7 @@ iframe {
 }
 
 .nav-left,
-.nav-logo,
-.nav-links {
+.nav-logo {
   display: flex;
   align-items: center;
 }
@@ -249,6 +248,8 @@ iframe {
 }
 
 .nav.is-pill .nav-links {
+  display: flex;
+  align-items: center;
   background: rgba(83, 70, 34, 0.08);
   border: 1px solid rgba(83, 70, 34, 0.12);
   border-radius: 999px;
@@ -768,6 +769,15 @@ iframe {
   will-change: transform, filter;
 }
 
+.landing-pill-ghost .nav-logo {
+  flex: 0 0 auto;
+}
+
+.landing-pill-ghost .nav-logo img {
+  flex: 0 0 34px;
+  min-width: 34px;
+}
+
 .landing-pill-ghost .nav-divider,
 .landing-pill-ghost .nav-tagline,
 .landing-pill-ghost .nav-links {
@@ -777,6 +787,7 @@ iframe {
 .landing-pill-ghost.is-compact .nav-divider,
 .landing-pill-ghost.is-compact .nav-tagline,
 .landing-pill-ghost.is-compact .nav-links {
+  display: none;
   opacity: 0;
   transform: translateX(-8px);
 }
