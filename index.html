@@ -512,25 +512,19 @@
 <body class="landing-page">
 
   <!-- Frosted glass pill header -->
-  <header class="header">
-    <a class="header-brand" href="index.html" aria-label="Local Logic IT home">
-      <span class="header-logo">
-        <img src="assets/brand/local-logic-mark.svg" alt="" />
-      </span>
-      <span class="header-name">Local Logic IT</span>
+  <nav class="nav is-pill">
+    <a class="nav-logo" href="index.html" aria-label="Local Logic IT home">
+      <img src="assets/brand/local-logic-mark.svg" alt="" />
+      <span class="nav-logo-name">Local Logic IT</span>
     </a>
-    <div class="header-divider" aria-hidden="true"></div>
-    <span class="header-tagline">Local Service. Logical Solutions.</span>
-    <nav class="header-nav" aria-label="Quick sections">
-      <button class="header-link" type="button" data-section="services" aria-haspopup="menu" aria-expanded="false" aria-controls="headerMenu">Services</button>
-      <button class="header-link" type="button" data-section="about" aria-haspopup="menu" aria-expanded="false" aria-controls="headerMenu">About</button>
-      <button class="header-link" type="button" data-section="contact" aria-haspopup="menu" aria-expanded="false" aria-controls="headerMenu">Contact</button>
-    </nav>
-    <div class="header-menu" id="headerMenu" role="menu" hidden>
-      <a class="header-choice header-choice--home" role="menuitem" data-page="residential.html" href="residential.html#services">Home &amp; Family</a>
-      <a class="header-choice header-choice--business" role="menuitem" data-page="business.html" href="business.html#services">Business &amp; Office</a>
-    </div>
-  </header>
+    <div class="nav-divider" aria-hidden="true"></div>
+    <span class="nav-tagline">Local Service. Logical Solutions.</span>
+    <ul class="nav-links" aria-label="Quick sections">
+      <li><a href="residential.html#services">Services</a></li>
+      <li><a href="residential.html#about">About</a></li>
+      <li><a href="residential.html#contact">Contact</a></li>
+    </ul>
+  </nav>
 
   <main class="chooser" id="chooser">
 
@@ -601,61 +595,6 @@
 
   <script>
     var REF_W = 1440;
-    var header = document.querySelector('.header');
-    var headerMenu = document.getElementById('headerMenu');
-    var headerLinks = document.querySelectorAll('.header-link[data-section]');
-    var headerChoices = document.querySelectorAll('.header-choice[data-page]');
-
-    function closeHeaderMenu() {
-      if (!header || !headerMenu) return;
-      header.classList.remove('is-menu-open');
-      headerMenu.hidden = true;
-      headerLinks.forEach(function(link) {
-        link.classList.remove('is-active');
-        link.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    function openHeaderMenu(section, trigger) {
-      if (!header || !headerMenu) return;
-      var isSameOpen = header.classList.contains('is-menu-open') && headerMenu.dataset.section === section;
-      if (isSameOpen) {
-        closeHeaderMenu();
-        return;
-      }
-
-      headerMenu.dataset.section = section;
-      headerChoices.forEach(function(choice) {
-        choice.href = choice.dataset.page + '#' + section;
-      });
-      headerLinks.forEach(function(link) {
-        var isActive = link === trigger;
-        link.classList.toggle('is-active', isActive);
-        link.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-      });
-      headerMenu.hidden = false;
-      requestAnimationFrame(function() {
-        header.classList.add('is-menu-open');
-      });
-    }
-
-    headerLinks.forEach(function(link) {
-      link.addEventListener('click', function(event) {
-        event.stopPropagation();
-        openHeaderMenu(link.dataset.section, link);
-      });
-    });
-
-    if (header) {
-      header.addEventListener('click', function(event) {
-        event.stopPropagation();
-      });
-    }
-
-    document.addEventListener('click', closeHeaderMenu);
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') closeHeaderMenu();
-    });
 
     function scalePreview(half) {
       var iframe = half.querySelector('.half-preview');
@@ -692,66 +631,20 @@
         return;
       }
 
-      var divider = header.querySelector('.header-divider');
-      var tagline = header.querySelector('.header-tagline');
-      var nav     = header.querySelector('.header-nav');
-      var brand   = header.querySelector('.header-brand');
-      closeHeaderMenu();
-
-      // Lock current width so we can smoothly shrink it
-      var startWidth = header.offsetWidth;
-      header.style.width = startWidth + 'px';
-      // Hide overflow so fading elements don't spill out while shrinking
-      header.style.overflow = 'hidden';
-
-      // Calculate final width (just the brand/logo area)
-      var paddingX = 28; // 18px left padding + 10px right padding
-      var targetWidth = brand.offsetWidth + paddingX;
-
-      requestAnimationFrame(function() {
-        header.classList.add('is-departing', 'is-departing-' + side);
-        
-        var isMobile = window.innerWidth <= 767;
-        var margin = isMobile ? 12 : 32;
-        var targetLeft = window.innerWidth - targetWidth - margin;
-
-        header.style.transition = [
-          'left 0.68s cubic-bezier(0.22,1,0.36,1)',
-          'top 0.68s cubic-bezier(0.22,1,0.36,1)',
-          'width 0.68s cubic-bezier(0.22,1,0.36,1)',
-          'transform 0.68s cubic-bezier(0.34, 1.25, 0.64, 1)',
-          'box-shadow 0.3s ease',
-          'background 0.3s ease'
-        ].join(',');
-        
-        header.style.width     = targetWidth + 'px';
-        header.style.left      = targetLeft + 'px';
-        header.style.top       = margin + 'px';
-        // Remove translateX(-50%) and add a slight scale down for the "click" into place
-        header.style.transform = 'scale(0.95)';
-
-        if (divider) {
-          divider.style.transition = 'opacity 0.2s ease';
-          divider.style.opacity    = '0';
-        }
-        if (tagline) {
-          tagline.style.transition = 'opacity 0.2s ease';
-          tagline.style.opacity    = '0';
-        }
-        if (nav) {
-          nav.style.transition     = 'opacity 0.2s ease';
-          nav.style.opacity        = '0';
-        }
-      });
-
-      setTimeout(function() {
-        window.location.href = dest;
-      }, 760);
+      // Use the Router if available, otherwise fallback
+      if (window.Router && window.Router.navigate) {
+        window.Router.navigate(dest);
+      } else {
+        setTimeout(function() {
+          window.location.href = dest;
+        }, 760);
+      }
     }
 
     function resetState() {
       // Clear all selection state — needed when browser restores page from bfcache
       var chooser = document.getElementById('chooser');
+      if (!chooser) return;
       chooser.classList.remove('has-selection', 'selecting-residential', 'selecting-business');
       document.querySelectorAll('.half').forEach(function(half) {
         half.classList.remove('is-selected', 'is-clicked');
@@ -759,64 +652,39 @@
       });
       document.querySelectorAll('.half').forEach(scalePreview);
 
-      // Reset header bubble back to centered position (no transition — snap immediately)
-      var header = document.querySelector('.header');
-      header.style.transition = 'none';
-      header.style.width      = '';
-      header.style.overflow   = '';
-      header.style.left       = '50%';
-      header.style.top        = '18px';
-      header.style.transform  = 'translateX(-50%)';
-      header.classList.remove('is-departing', 'is-departing-residential', 'is-departing-business');
-      
-      var divider = header.querySelector('.header-divider');
-      var tagline = header.querySelector('.header-tagline');
-      var nav = header.querySelector('.header-nav');
-      if (divider) {
-        divider.style.transition = 'none';
-        divider.style.opacity    = '';
-      }
-      if (tagline) {
-        tagline.style.transition = 'none';
-        tagline.style.opacity    = '';
-      }
+      // Reset header bubble back to centered position
+      var nav = document.querySelector('.nav');
       if (nav) {
-        nav.style.transition     = 'none';
-        nav.style.opacity        = '';
+        nav.classList.add('is-pill');
+        nav.classList.remove('is-locked');
+        nav.style.transition = 'none';
+        requestAnimationFrame(function() {
+          nav.style.transition = '';
+        });
       }
     }
 
-    function init() {
+    function initLandingPage() {
       var halves = document.querySelectorAll('.half');
-
       halves.forEach(function(half) {
         scalePreview(half);
-
-        half.addEventListener('click', function() { selectHalf(this); });
-        half.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            selectHalf(this);
-          }
-        });
-      });
-
-      window.addEventListener('resize', function() {
-        halves.forEach(scalePreview);
-      });
-
-      // When the back button restores this page from bfcache, reset the
-      // selection animation so the chooser is clean and interactive again
-      window.addEventListener('pageshow', function(e) {
-        if (e.persisted) resetState();
+        half.onclick = function() { selectHalf(this); };
       });
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
+    // Initial load
+    window.addEventListener('load', function() {
+      initLandingPage();
+    });
+
+    window.addEventListener('resize', function() {
+      document.querySelectorAll('.half').forEach(scalePreview);
+    });
+
+    window.addEventListener('pageshow', function(e) {
+      if (e.persisted) resetState();
+    });
+  </script>
   </script>
 
 </body>

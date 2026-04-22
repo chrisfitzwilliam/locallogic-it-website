@@ -235,6 +235,13 @@ After production sync:
 - Live `/assets/css/site.css` returned the new CSS.
 - Live `/assets/brand/favicon.svg` returned the new SVG.
 
+## Recent UI & Configuration Updates (April 21, 2026)
+
+- **Landing UI Animations:** Refactored `index.html` split-screen selection from an opacity fade to a smooth `flex-basis` expansion. The header pill now dynamically animates to the top-right corner, shrinks its width, and "clicks" into place with a subtle `scale(0.95)` and bouncy cubic-bezier transition.
+- **Project Context:** Consolidated context by copying `memory.md` to `GEMINI.md` (to serve as default system instructions). Deleted legacy `INIT.md` and old plan/spec files in `docs/superpowers/`.
+- **Commit:** Changes were committed as `feat: update landing UI animations and add GEMINI.md` (commit `475dd05`) and pushed to `main`.
+- **Deployment Pipeline Reminder:** The site deploys automatically. Pushing to the `main` branch triggers a GCP VM systemd timer (`locallogic-autodeploy.timer`) which runs `git pull --ff-only origin main` roughly every minute. The GitHub Actions workflow is for status only.
+
 ## Markdown Policy
 
 This file replaces prior scattered Markdown handoffs and agent instructions. Keep project memory here so every agent reads the same current state.
