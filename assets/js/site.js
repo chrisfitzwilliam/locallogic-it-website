@@ -78,27 +78,42 @@
   function animateLandingExit(side) {
     var nav = document.querySelector('.landing-page .nav.is-pill');
     if (!nav || !nav.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return Promise.resolve();
+      return Promise.resolve(null);
     }
 
     var source = nav.getBoundingClientRect();
     var target = lockedPillRect();
+    var sourceCompactLeft = source.left + ((source.width - target.width) / 2);
+    var sourceCompactTop = source.top + ((source.height - target.height) / 2);
+    var dx = sourceCompactLeft - target.left;
+    var dy = sourceCompactTop - target.top;
+    var surfaceScaleX = Math.max(1, source.width / target.width);
     var ghost = nav.cloneNode(true);
+    var surface = document.createElement('span');
+    var sweep = document.createElement('span');
+
     clearElementIds(ghost);
+    surface.className = 'landing-pill-ghost-surface';
+    sweep.className = 'landing-pill-ghost-sweep';
+    surface.setAttribute('aria-hidden', 'true');
+    sweep.setAttribute('aria-hidden', 'true');
+    ghost.prepend(sweep);
+    ghost.prepend(surface);
+
     ghost.setAttribute('aria-hidden', 'true');
     ghost.classList.add('landing-pill-ghost', 'landing-pill-ghost--' + side);
     ghost.style.position = 'fixed';
-    ghost.style.top = source.top + 'px';
-    ghost.style.left = source.left + 'px';
+    ghost.style.top = target.top + 'px';
+    ghost.style.left = target.left + 'px';
     ghost.style.right = 'auto';
-    ghost.style.width = source.width + 'px';
-    ghost.style.height = source.height + 'px';
-    ghost.style.minHeight = source.height + 'px';
+    ghost.style.width = target.width + 'px';
+    ghost.style.height = target.height + 'px';
+    ghost.style.minHeight = target.height + 'px';
     ghost.style.margin = '0';
     ghost.style.zIndex = '1000';
     ghost.style.pointerEvents = 'none';
-    ghost.style.transformOrigin = 'top left';
-    ghost.style.transform = 'translate3d(0, 0, 0)';
+    ghost.style.transformOrigin = 'center center';
+    ghost.style.transform = 'translate3d(' + dx + 'px, ' + dy + 'px, 0)';
     document.body.appendChild(ghost);
 
     nav.classList.add('is-leaving-landing');
@@ -107,58 +122,119 @@
 
     var animation = ghost.animate([
       {
-        top: source.top + 'px',
-        left: source.left + 'px',
-        width: source.width + 'px',
-        height: source.height + 'px',
-        minHeight: source.height + 'px',
-        transform: 'translate3d(0, 0, 0)',
-        filter: 'saturate(1)'
+        transform: 'translate3d(' + Math.round(dx) + 'px, ' + Math.round(dy) + 'px, 0) scale(1)',
+        filter: 'saturate(1) brightness(1)'
       },
       {
-        top: Math.round(target.top - 8) + 'px',
-        left: Math.round(target.left) + 'px',
-        width: Math.round(target.width + 18) + 'px',
-        height: Math.round(target.height + 4) + 'px',
-        minHeight: Math.round(target.height + 4) + 'px',
-        transform: 'translate3d(0, 0, 0)',
-        filter: 'saturate(1.06)',
-        offset: 0.72
+        transform: 'translate3d(' + Math.round(dx * 0.9) + 'px, ' + Math.round((dy * 0.78) - 8) + 'px, 0) scale(1.006)',
+        filter: 'saturate(1.04) brightness(1.02)',
+        offset: 0.24
       },
       {
-        top: Math.round(target.top + 1) + 'px',
-        left: Math.round(target.left) + 'px',
-        width: Math.round(target.width - 6) + 'px',
-        height: Math.round(target.height - 2) + 'px',
-        minHeight: Math.round(target.height - 2) + 'px',
-        transform: 'translate3d(0, 0, 0)',
-        filter: 'saturate(1.12)',
+        transform: 'translate3d(' + Math.round(dx * 0.48) + 'px, ' + Math.round((dy * 0.34) - 16) + 'px, 0) scale(1.012)',
+        filter: 'saturate(1.1) brightness(1.035)',
+        offset: 0.62
+      },
+      {
+        transform: 'translate3d(' + Math.round(dx * 0.08) + 'px, -8px, 0) scale(1.008)',
+        filter: 'saturate(1.14) brightness(1.035)',
         offset: 0.88
       },
       {
-        top: target.top + 'px',
-        left: target.left + 'px',
-        width: target.width + 'px',
-        height: target.height + 'px',
-        minHeight: target.height + 'px',
-        transform: 'translate3d(0, 0, 0)',
-        filter: 'saturate(1.04)'
+        transform: 'translate3d(0, 0, 0) scale(1)',
+        filter: 'saturate(1.08) brightness(1.02)'
       }
     ], {
-      duration: 760,
-      easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      duration: 1040,
+      easing: 'cubic-bezier(0.34, 0.02, 0.18, 1)',
+      fill: 'forwards'
+    });
+
+    surface.animate([
+      {
+        transform: 'scaleX(' + surfaceScaleX.toFixed(3) + ')',
+        filter: 'saturate(1) brightness(1)'
+      },
+      {
+        transform: 'scaleX(' + Math.max(1.18, surfaceScaleX * 0.62).toFixed(3) + ')',
+        filter: 'saturate(1.08) brightness(1.025)',
+        offset: 0.24
+      },
+      {
+        transform: 'scaleX(1.08)',
+        filter: 'saturate(1.14) brightness(1.04)',
+        offset: 0.58
+      },
+      {
+        transform: 'scaleX(1)',
+        filter: 'saturate(1.1) brightness(1.02)'
+      }
+    ], {
+      duration: 900,
+      easing: 'cubic-bezier(0.34, 0.02, 0.18, 1)',
+      fill: 'forwards'
+    });
+
+    sweep.animate([
+      { opacity: 0, transform: 'translate3d(-150%, 0, 0) skewX(-16deg)' },
+      { opacity: 0.7, transform: 'translate3d(-58%, 0, 0) skewX(-16deg)', offset: 0.24 },
+      { opacity: 0.9, transform: 'translate3d(42%, 0, 0) skewX(-16deg)', offset: 0.68 },
+      { opacity: 0, transform: 'translate3d(150%, 0, 0) skewX(-16deg)' }
+    ], {
+      duration: 1040,
+      easing: 'cubic-bezier(0.22, 0.02, 0.16, 1)',
       fill: 'forwards'
     });
 
     return animation.finished.catch(function () {}).then(function () {
       ghost.classList.add('is-clicked');
-      return new Promise(function (resolve) {
-        window.setTimeout(function () {
-          ghost.remove();
-          nav.classList.remove('is-leaving-landing');
-          resolve();
-        }, 110);
+      var clickAnimation = ghost.animate([
+        { transform: 'translate3d(0, 0, 0) scale(1)', filter: 'saturate(1.08) brightness(1.02)' },
+        { transform: 'translate3d(0, 1px, 0) scale(0.992)', filter: 'saturate(1.18) brightness(1.06)', offset: 0.46 },
+        { transform: 'translate3d(0, 0, 0) scale(1)', filter: 'saturate(1.1) brightness(1.025)' }
+      ], {
+        duration: 180,
+        easing: 'cubic-bezier(0.2, 0, 0, 1)',
+        fill: 'forwards'
       });
+
+      surface.animate([
+        { transform: 'scaleX(1) scaleY(1)' },
+        { transform: 'scaleX(0.986) scaleY(0.965)', offset: 0.44 },
+        { transform: 'scaleX(1) scaleY(1)' }
+      ], {
+        duration: 180,
+        easing: 'cubic-bezier(0.2, 0, 0, 1)',
+        fill: 'forwards'
+      });
+
+      return clickAnimation.finished.catch(function () {}).then(function () {
+        return {
+          ghost: ghost,
+          sourceNav: nav
+        };
+      });
+    });
+  }
+
+  function releaseLandingGhost(handoff) {
+    if (!handoff || !handoff.ghost) return;
+
+    var ghost = handoff.ghost;
+    ghost.classList.add('is-handing-off');
+
+    var fade = ghost.animate([
+      { opacity: 1, transform: 'translate3d(0, 0, 0) scale(1)' },
+      { opacity: 0, transform: 'translate3d(0, 0, 0) scale(0.998)' }
+    ], {
+      duration: 220,
+      easing: 'ease',
+      fill: 'forwards'
+    });
+
+    fade.finished.catch(function () {}).then(function () {
+      ghost.remove();
+      if (handoff.sourceNav) handoff.sourceNav.classList.remove('is-leaving-landing');
     });
   }
 
@@ -247,10 +323,16 @@
 
     Promise.all([pageRequest, exitAnimation])
       .then(function (result) {
+        var handoff = result[1];
+
         replacePageShell(result[0], targetUrl, {
           pushState: true,
           arrivalSide: side
         });
+
+        window.setTimeout(function () {
+          releaseLandingGhost(handoff);
+        }, 190);
       })
       .catch(function () {
         window.location.href = targetUrl.href;
