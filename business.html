@@ -8,18 +8,124 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg" />
-  <link rel="alternate icon" type="image/png" href="assets/brand/favicon-32.png" />
-  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
-  <meta name="theme-color" content="#232425" />
-  <meta property="og:image" content="assets/brand/social-card.png" />
   <style>
+    /* ── Tokens ── */
+    :root {
+      --charcoal:   #0D1B38;
+      --charcoal-2: #070F22;
+      --blue:       #4A80E8;
+      --blue-2:     #7AAAF5;
+      --light:      #EDF2FF;
+      --ink:        #0D1B38;
+      --muted:      #6B7280;
+      --line:       #CDD9F5;
+    }
+
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--light); }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 64px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-back {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--blue); }
+    .nav-back:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-logo-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
+
+    /* Mobile nav */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .nav-hamburger:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
+    .nav-mobile-menu {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--charcoal-2);
+      padding: 16px 24px;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .nav-mobile-menu.open { display: flex; }
+    .nav-mobile-menu a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-mobile-menu a:hover { color: var(--blue); }
+
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav { position: relative; }
+    }
 
     /* ── Hero ── */
     .hero {
@@ -37,7 +143,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      border: 2px solid rgba(199,176,100,0.1);
+      border: 2px solid rgba(74,128,232,0.1);
       pointer-events: none;
     }
     .hero::after {
@@ -48,12 +154,12 @@
       width: 500px;
       height: 500px;
       border-radius: 50%;
-      border: 2px solid rgba(199,176,100,0.06);
+      border: 2px solid rgba(74,128,232,0.06);
       pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(199,176,100,0.15);
+      background: rgba(74,128,232,0.15);
       color: var(--blue);
       font-size: 0.75rem;
       font-weight: 700;
@@ -62,7 +168,7 @@
       padding: 6px 16px;
       border-radius: 999px;
       margin-bottom: 24px;
-      border: 1px solid rgba(199,176,100,0.3);
+      border: 1px solid rgba(74,128,232,0.3);
     }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.25rem);
@@ -88,13 +194,11 @@
       font-weight: 700;
       padding: 14px 32px;
       border-radius: 8px;
-      transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease;
-      box-shadow: 0 14px 30px rgba(199,176,100,0.24);
+      transition: background 0.2s, transform 0.15s;
     }
     .hero-cta:hover {
       background: var(--blue-2);
       transform: translateY(-2px);
-      box-shadow: 0 18px 34px rgba(199,176,100,0.32);
     }
     .hero-cta:focus-visible {
       outline: 3px solid #fff;
@@ -144,7 +248,7 @@
     }
     .service-card:hover {
       border-color: var(--blue);
-      box-shadow: 0 8px 32px rgba(169,130,54,0.12);
+      box-shadow: 0 8px 32px rgba(74,128,232,0.12);
       transform: translateY(-3px);
     }
     .service-card:focus-visible {
@@ -207,35 +311,32 @@
       .contact-card { padding: 28px 24px; }
     }
   </style>
-  <link rel="stylesheet" href="assets/css/site.css" />
-  <script src="assets/js/site.js" defer></script>
 </head>
-<body class="site-page business-page">
+<body>
 
   <!-- Nav -->
-  <div class="nav-wrapper">
-    <div class="glass-stratum"></div>
-    <nav class="nav glass-nav">
-      <a href="index.html" class="nav-logo logo">
-        <img src="assets/brand/local-logic-mark.svg" alt="Local Logic IT" class="logo-mark-svg" />
+  <nav class="nav" id="top">
+    <div class="nav-left">
+      <a class="nav-back" href="index.html">&#8592; Back to Home</a>
+      <a class="nav-logo" href="#top">
+        <img src="assets/logo.png" alt="Local Logic IT" />
         <span class="nav-logo-name">Local Logic IT</span>
       </a>
-
-      <div class="nav-links">
-        <a href="#services" class="nav-item"><span>01</span>Services</a>
-        <a href="#about" class="nav-item"><span>02</span>About</a>
-        <a href="#contact" class="nav-item"><span>03</span>Contact</a>
-      </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-mobile-menu" id="mobileMenu">
-        <a href="#services" onclick="closeMobileMenu()">Services</a>
-        <a href="#about" onclick="closeMobileMenu()">About</a>
-        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-      </div>
-    </nav>
-  </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-mobile-menu" id="mobileMenu">
+      <a href="#services" onclick="closeMobileMenu()">Services</a>
+      <a href="#about" onclick="closeMobileMenu()">About</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    </div>
+  </nav>
 
   <main>
   <!-- Hero -->
@@ -248,8 +349,8 @@
 
   <!-- Services -->
   <section class="section services" id="services">
-    <h2 class="section-heading">What We Do</h2>
-    <p class="section-support">What We Offer</p>
+    <p class="section-label">What We Do</p>
+    <h2 class="section-heading">What We Offer</h2>
     <div class="services-grid">
 
       <a class="service-card" href="services/business/managed-it.html">
@@ -375,6 +476,122 @@
     <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
   </footer>
   </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  </script>
+
+  <script>
+    /* ── Bubble landing + expand animation ── */
+    (function () {
+      if (!sessionStorage.getItem('fromLanding')) return;
+      sessionStorage.removeItem('fromLanding');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // Hide existing nav elements — pill takes over
+      var navLeft  = document.querySelector('.nav-left');
+      var navLinks = document.querySelector('.nav-links');
+      if (navLeft)  { navLeft.style.opacity  = '0'; navLeft.style.pointerEvents  = 'none'; }
+      if (navLinks) { navLinks.style.opacity = '0'; navLinks.style.pointerEvents = 'none'; }
+
+      // ── Outer pill (overflow:hidden clips the expanding section) ──
+      var pill = document.createElement('div');
+      pill.style.cssText = [
+        'position:fixed',
+        'left:32px',
+        'top:7px',
+        'z-index:1000',
+        'display:flex',
+        'align-items:center',
+        'background:rgba(8,8,18,0.92)',
+        'border:1px solid rgba(255,255,255,0.14)',
+        'border-radius:50px',
+        'backdrop-filter:blur(14px)',
+        '-webkit-backdrop-filter:blur(14px)',
+        'overflow:hidden',
+        'transform-origin:left center',
+        'font-family:"Manrope",sans-serif'
+      ].join(';');
+
+      // Core: logo + name — links back to home
+      var core = document.createElement('a');
+      core.href = 'index.html';
+      core.style.cssText = 'display:flex;align-items:center;gap:12px;padding:9px 22px;text-decoration:none;flex-shrink:0;';
+
+      var img = document.createElement('img');
+      img.src = 'assets/logo.png';
+      img.alt = 'Local Logic IT';
+      img.style.cssText = 'height:32px;width:auto;display:block;';
+      core.appendChild(img);
+
+      var nameEl = document.createElement('span');
+      nameEl.textContent = 'Local Logic IT';
+      nameEl.style.cssText = 'font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.02em;white-space:nowrap;';
+      core.appendChild(nameEl);
+      pill.appendChild(core);
+
+      // Expand: divider + nav links — starts collapsed
+      var expand = document.createElement('div');
+      expand.style.cssText = 'display:flex;align-items:center;max-width:0;overflow:hidden;opacity:0;';
+
+      var divider = document.createElement('div');
+      divider.style.cssText = 'width:1px;height:18px;background:rgba(255,255,255,0.15);flex-shrink:0;margin-right:4px;';
+      expand.appendChild(divider);
+
+      [['Services','#services'],['About','#about'],['Contact','#contact']].forEach(function(l) {
+        var a = document.createElement('a');
+        a.href = l[1];
+        a.textContent = l[0];
+        a.style.cssText = 'font-size:0.875rem;font-weight:600;color:rgba(255,255,255,0.7);padding:0 14px;white-space:nowrap;text-decoration:none;';
+        a.addEventListener('mouseover', function() { this.style.color = '#fff'; });
+        a.addEventListener('mouseout',  function() { this.style.color = 'rgba(255,255,255,0.7)'; });
+        expand.appendChild(a);
+      });
+
+      var pad = document.createElement('div');
+      pad.style.cssText = 'width:8px;flex-shrink:0;';
+      expand.appendChild(pad);
+      pill.appendChild(expand);
+
+      document.body.appendChild(pill);
+
+      // ── Animation ──
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+
+          // 1. Click pop + blue glow
+          pill.style.transition  = 'transform 0.09s ease-out, border-color 0.07s ease, box-shadow 0.07s ease';
+          pill.style.transform   = 'scale(1.11)';
+          pill.style.borderColor = 'rgba(74,128,232,0.85)';
+          pill.style.boxShadow   = '0 0 12px rgba(74,128,232,0.4), 0 0 28px rgba(74,128,232,0.18)';
+
+          // 2. Spring back
+          setTimeout(function () {
+            pill.style.transition  = 'transform 0.2s cubic-bezier(0.34,1.56,0.64,1), border-color 0.35s ease, box-shadow 0.35s ease';
+            pill.style.transform   = 'scale(1)';
+            pill.style.borderColor = 'rgba(255,255,255,0.14)';
+            pill.style.boxShadow   = 'none';
+
+            // 3. Expand right to reveal nav links
+            setTimeout(function () {
+              expand.style.transition = 'max-width 0.38s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.28s ease 0.12s';
+              expand.style.maxWidth   = '300px';
+              expand.style.opacity    = '1';
+            }, 160);
+          }, 90);
+        });
+      });
+    }());
+  </script>
 
 </body>
 </html>

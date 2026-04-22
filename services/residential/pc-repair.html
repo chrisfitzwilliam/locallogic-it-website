@@ -8,22 +8,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="../../assets/brand/favicon.svg" />
-  <link rel="alternate icon" type="image/png" href="../../assets/brand/favicon-32.png" />
-  <link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png" />
-  <meta name="theme-color" content="#232425" />
-  <meta property="og:image" content="../../assets/brand/social-card.png" />
   <style>
     :root {
-      --amber:   #232425;
-      --amber-2: #111213;
-      --gold:    #A98236;
-      --gold-2:  #C7B064;
-      --gold-3:  #B99A4D;
-      --paper:   #F5F1E7;
-      --ink:     #222222;
-      --muted:   #5D574C;
-      --line:    #C7B064;
+      --amber:   #2C140A;
+      --amber-2: #1C0C04;
+      --gold:    #C97B4B;
+      --gold-2:  #DCA07A;
+      --gold-3:  #E8BCA0;
+      --paper:   #FBF8F5;
+      --ink:     #2C140A;
+      --muted:   #7A6858;
+      --line:    #EAD8CC;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -82,18 +77,18 @@
     .hero::before {
       content: ""; position: absolute; top: -80px; right: -80px;
       width: 400px; height: 400px; border-radius: 50%;
-      border: 2px solid rgba(169,130,54,0.18); pointer-events: none;
+      border: 2px solid rgba(201,123,75,0.18); pointer-events: none;
     }
     .hero::after {
       content: ""; position: absolute; bottom: -120px; left: -100px;
       width: 500px; height: 500px; border-radius: 50%;
-      border: 2px solid rgba(169,130,54,0.12); pointer-events: none;
+      border: 2px solid rgba(201,123,75,0.12); pointer-events: none;
     }
     .hero-badge {
-      display: inline-block; background: rgba(169,130,54,0.18); color: var(--gold-2);
+      display: inline-block; background: rgba(201,123,75,0.18); color: var(--gold-2);
       font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
       padding: 6px 16px; border-radius: 999px; margin-bottom: 24px;
-      border: 1px solid rgba(169,130,54,0.35);
+      border: 1px solid rgba(201,123,75,0.35);
     }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; color: #fff;
@@ -106,10 +101,9 @@
     .hero-cta {
       display: inline-block; background: var(--gold); color: var(--amber);
       font-size: 0.9rem; font-weight: 700; padding: 14px 32px; border-radius: 8px;
-      transition: background 0.25s ease, color 0.25s ease, transform 0.18s ease, box-shadow 0.25s ease;
-      box-shadow: 0 14px 30px rgba(169,130,54,0.22);
+      transition: background 0.2s, transform 0.15s;
     }
-    .hero-cta:hover { background: var(--gold-2); transform: translateY(-2px); box-shadow: 0 18px 34px rgba(169,130,54,0.30); }
+    .hero-cta:hover { background: var(--gold-2); transform: translateY(-2px); }
     .hero-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
     .section { padding: 80px 32px; }
@@ -129,7 +123,7 @@
     }
     .includes-list li {
       display: flex; align-items: flex-start; gap: 16px;
-      background: #F5F1E7; border: 1px solid var(--line);
+      background: #FFF8F2; border: 1px solid var(--line);
       border-radius: 12px; padding: 18px 20px;
       font-size: 0.95rem; color: var(--ink); line-height: 1.5; font-weight: 500;
     }
@@ -177,16 +171,14 @@
       .contact-card { padding: 28px 24px; }
     }
   </style>
-  <link rel="stylesheet" href="../../assets/css/site.css" />
-  <script src="../../assets/js/site.js" defer></script>
 </head>
-<body class="site-page">
+<body>
 
   <nav class="nav" id="top">
     <div class="nav-left">
       <a class="nav-back" href="../../residential.html">&#8592; Back</a>
       <a class="nav-logo" href="../../residential.html">
-        <img src="../../assets/brand/local-logic-mark.svg" alt="Local Logic IT" />
+        <img src="../../assets/logo.png" alt="Local Logic IT" />
         <span class="nav-logo-name">Local Logic IT</span>
       </a>
     </div>
@@ -248,5 +240,19 @@
       <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
     </footer>
   </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  </script>
+
 </body>
 </html>
