@@ -22,10 +22,10 @@
   <!-- New Glassmorphism Nav Bar -->
   <div class="nav-wrapper">
     <div class="glass-stratum"></div>
-    <nav class="glass-nav">
-      <a href="index.html" class="logo">
+    <nav class="nav glass-nav is-pill">
+      <a href="index.html" class="nav-logo logo">
         <img src="assets/brand/local-logic-mark.svg" alt="Local Logic IT" class="logo-mark-svg" />
-        Local Logic IT
+        <span class="nav-logo-name">Local Logic IT</span>
       </a>
 
       <div class="nav-links">
@@ -33,7 +33,6 @@
         <a href="residential.html#about" class="nav-item"><span>02</span>About</a>
         <a href="residential.html#contact" class="nav-item"><span>03</span>Contact</a>
       </div>
-      <!-- Removed CTA button and mobile toggle for consistency with original landing page header functionality -->
     </nav>
   </div>
 
@@ -138,6 +137,10 @@
 
     // Original landing page script functionality, adapted for new header
     function scalePreview(half) {
+      if (window.LocalLogicLanding) {
+        window.LocalLogicLanding.scalePreview(half);
+        return;
+      }
       // This function scales the iframe previews. It's independent of the header.
       const iframe = half.querySelector('.half-preview');
       if (!iframe) return;
@@ -156,6 +159,10 @@
     }
 
     function selectHalf(half) {
+      if (window.LocalLogicLanding) {
+        window.LocalLogicLanding.select(half);
+        return;
+      }
       const targetUrl = half.dataset.href;
       if (!targetUrl) return;
 
@@ -173,6 +180,10 @@
     }
 
     function resetState() {
+      if (window.LocalLogicLanding) {
+        window.LocalLogicLanding.reset();
+        return;
+      }
       // Clear all selection state — needed when browser restores page from bfcache
       var chooser = document.getElementById('chooser');
       if (!chooser) return;

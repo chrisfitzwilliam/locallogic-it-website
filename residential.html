@@ -233,10 +233,10 @@
   <!-- Nav -->
   <div class="nav-wrapper">
     <div class="glass-stratum"></div>
-    <nav class="glass-nav">
-      <a href="index.html" class="logo">
+    <nav class="nav glass-nav">
+      <a href="index.html" class="nav-logo logo">
         <img src="assets/brand/local-logic-mark.svg" alt="Local Logic IT" class="logo-mark-svg" />
-        Local Logic IT
+        <span class="nav-logo-name">Local Logic IT</span>
       </a>
 
       <div class="nav-links">
@@ -244,7 +244,14 @@
         <a href="#about" class="nav-item"><span>02</span>About</a>
         <a href="#contact" class="nav-item"><span>03</span>Contact</a>
       </div>
-      <!-- Mobile toggle and CTA button are not part of this new nav structure -->
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-mobile-menu" id="mobileMenu">
+        <a href="#services" onclick="closeMobileMenu()">Services</a>
+        <a href="#about" onclick="closeMobileMenu()">About</a>
+        <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+      </div>
     </nav>
   </div>
 
