@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
     :root {
       --quartz-bg: rgba(255, 255, 255, 0.03);
@@ -18,15 +19,18 @@
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
+      --primary: #4A80E8;
     }
 
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { height: 100%; overflow-y: scroll; font-size: 15px; }
-    body { height: 100%; overflow: hidden; }
-    body {
+    html { scroll-behavior: smooth; font-size: 15px; }
+    body { 
+      min-height: 100vh; 
+      overflow-x: hidden;
       font-family: "Manrope", sans-serif;
       background: #07070f;
+      color: #fff;
     }
 
     /* ── Flash animation (injected on click) ── */
@@ -67,26 +71,23 @@
       border: 1px solid var(--quartz-edge);
       position: relative;
       z-index: 1;
-      overflow: visible; /* Changed from hidden to allow dropdown */
-      transition: all 0.8s var(--transition-fluid);
-    }
-
-    .pill-nav::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 100px;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3e%3cfilter id='noiseFilter'%3e%3cfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3e%3c/filter%3e%3crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3e%3c/svg%3e");
-      opacity: 0.04;
-      pointer-events: none;
-      mix-blend-mode: overlay;
-      z-index: -1;
+      overflow: visible;
     }
 
     .header-logo, .header-name {
       position: relative;
       z-index: 2;
     }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+    .header-brand:hover { opacity: 0.8; }
 
     .header-logo {
       display: flex;
@@ -238,7 +239,7 @@
       box-shadow: 0 4px 12px rgba(74,128,232,0.3);
     }
     .btn-support:hover {
-      background: var(--primary-2);
+      background: #3267D1;
       box-shadow: 0 6px 16px rgba(74,128,232,0.4);
     }
 
@@ -312,10 +313,77 @@
     .half.is-selecting .half-caption { opacity: 0 !important; }
     .chooser.has-selection .half:not(.is-selecting) { opacity: 0; pointer-events: none; transition: opacity 0.18s ease; }
 
+    /* ── Generic Sections ── */
+    .section {
+      padding: 120px 32px;
+      text-align: center;
+      background: #07070f;
+      position: relative;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .section-heading {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+    }
+    .section-body {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      max-width: 1000px;
+      margin: 64px auto 0;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--quartz-border);
+      padding: 40px;
+      border-radius: 24px;
+      transition: all 0.3s ease;
+    }
+    .contact-card:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--primary);
+      transform: translateY(-8px);
+    }
+    .contact-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .contact-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+    .contact-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .contact-card a:hover { color: #fff; }
+
+    .footer {
+      padding: 48px 32px;
+      background: #04040a;
+      text-align: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+    }
+
     @media (max-width: 767px) {
       .chooser { flex-direction: column; height: auto; min-height: 100vh; }
       .half { min-height: 44vh; }
       .tagline-pill { top: auto; bottom: 20px; font-size: 0.6rem; }
+      .section { padding: 80px 20px; }
     }
   </style>
 </head>
@@ -325,14 +393,16 @@
   <div class="pill-wrapper" id="quartz-shell">
       <div class="glint" id="refractor"></div>
       <header class="pill-nav">
-          <div class="header-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
-            </svg>
-          </div>
-          <span class="header-name">Local Logic IT</span>
+          <a href="index.html" class="header-brand">
+            <div class="header-logo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <span class="header-name">Local Logic IT</span>
+          </a>
           
           <div class="header-nav-container" id="expanded-nav">
             <div class="pill-divider" aria-hidden="true"></div>
@@ -353,6 +423,7 @@
   </div>
   <div class="tagline-pill">Local Service. Logical Solutions.</div>
 
+  <!-- Landing / Chooser -->
   <main class="chooser" id="chooser">
     <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support" data-href="residential.html">
       <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
@@ -383,6 +454,42 @@
     </div>
   </main>
 
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-heading">Local Service. Logical Solutions.</h2>
+    <div class="section-body">
+      <p>We are your local technology partner, dedicated to providing straightforward, honest IT support for both your home and your business. We believe technology should work for you, not the other way around. No call centers, no confusing jargon—just real people solving real problems with logic and care.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-heading">How Can We Help?</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <i class="ph ph-envelope-simple"></i>
+        <h3>Email Us</h3>
+        <p><a href="mailto:chris@fitzwilliam.net">chris@fitzwilliam.net</a></p>
+      </div>
+      <div class="contact-card">
+        <i class="ph ph-phone"></i>
+        <h3>Call Us</h3>
+        <p><a href="tel:5550000000">(555) 000-0000</a></p>
+      </div>
+      <div class="contact-card">
+        <i class="ph ph-headset"></i>
+        <h3>Quick Support</h3>
+        <p><a href="quick-support.html">Launch Assist</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Local Logic IT &middot; Local Service. Logical Solutions.</p>
+  </footer>
+
   <script>
     function scalePreview(half) {
       var iframe = half.querySelector('.half-preview');
@@ -399,7 +506,7 @@
 
     function injectFlash(color) {
       var el = document.createElement('div');
-      el.style.cssText = 'position:fixed;inset:0;z-index:200;pointer-events:none;background:' + color + ';animation:flash-out 0.35s ease-out forwards';
+      el.style.cssText = 'position:fixed;inset:0;z-index:400;pointer-events:none;background:' + color + ';animation:flash-out 0.35s ease-out forwards';
       document.body.appendChild(el);
       el.addEventListener('animationend', () => el.remove());
     }
