@@ -712,17 +712,37 @@
       drop.appendChild(dropTrig);
 
       var dropCont = document.createElement('div');
-      dropCont.style.cssText = 'display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:rgba(10,10,15,0.9);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px;min-width:160px;box-shadow:0 10px 30px rgba(0,0,0,0.5);z-index:1001;';
-      [['Home & Family','residential.html'],['Business & Office','business.html']].forEach(function(opt){
-        var a = document.createElement('a'); a.href = opt[1]; a.textContent = opt[0];
-        a.style.cssText = 'display:block;padding:8px 12px;border-radius:6px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.8rem;';
-        a.addEventListener('mouseover', function(){this.style.background='rgba(255,255,255,0.05)'; this.style.color='#fff';});
-        a.addEventListener('mouseout', function(){this.style.background='transparent'; this.style.color='rgba(255,255,255,0.7)';});
-        dropCont.appendChild(a);
-      });
+      dropCont.className = 'pill-dropdown-content';
+      dropCont.style.cssText = 'display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);padding-top:12px;z-index:1000;opacity:0;transition:opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);pointer-events:none;';
+
+      var dropInner = document.createElement('div');
+      dropInner.style.cssText = 'background:rgba(10, 10, 15, 0.9);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.12);border-radius:16px;min-width:180px;padding:8px;box-shadow:0 20px 40px rgba(0,0,0,0.5);';
+
+      var link1 = document.createElement('a');
+      link1.href = 'residential.html'; link1.textContent = 'Home & Family';
+      link1.style.cssText = 'display:block;padding:12px 16px;color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;border-radius:8px;transition:all 0.2s;';
+      link1.addEventListener('mouseover', function(){this.style.background='rgba(255,255,255,0.08)';this.style.color='#fff';});
+      link1.addEventListener('mouseout', function(){this.style.background='transparent';this.style.color='rgba(255,255,255,0.5)';});
+
+      var link2 = document.createElement('a');
+      link2.href = 'business.html'; link2.textContent = 'Business & Office';
+      link2.style.cssText = 'display:block;padding:12px 16px;color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.85rem;border-radius:8px;transition:all 0.2s;';
+      link2.addEventListener('mouseover', function(){this.style.background='rgba(255,255,255,0.08)';this.style.color='#fff';});
+      link2.addEventListener('mouseout', function(){this.style.background='transparent';this.style.color='rgba(255,255,255,0.5)';});
+
+      dropInner.appendChild(link1);
+      dropInner.appendChild(link2);
+      dropCont.appendChild(dropInner);
       drop.appendChild(dropCont);
-      drop.addEventListener('mouseenter', function(){ dropCont.style.display='block'; });
-      drop.addEventListener('mouseleave', function(){ dropCont.style.display='none'; });
+
+      drop.addEventListener('mouseenter', function(){ 
+        dropCont.style.display = 'block';
+        setTimeout(() => { dropCont.style.opacity = '1'; dropCont.style.transform = 'translateX(-50%) translateY(0)'; dropCont.style.pointerEvents = 'auto'; }, 10);
+      });
+      drop.addEventListener('mouseleave', function(){ 
+        dropCont.style.opacity = '0'; dropCont.style.transform = 'translateX(-50%) translateY(10px)'; dropCont.style.pointerEvents = 'none';
+        setTimeout(() => { if(dropCont.style.opacity === '0') dropCont.style.display = 'none'; }, 300);
+      });
       expand.appendChild(drop);
 
       [['About','#about'],['Contact','#contact']].forEach(function(l) {
