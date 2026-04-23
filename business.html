@@ -884,6 +884,7 @@
         setTimeout(function () {
           expand.style.maxWidth = '600px';
           expand.style.opacity  = '1';
+          setTimeout(function() { expand.style.overflow = 'visible'; }, 800); // Allow dropdown after expansion
           tp.style.opacity = '1';
           tp.style.transform = 'translateY(0)';
         }, 150);

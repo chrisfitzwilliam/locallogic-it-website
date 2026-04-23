@@ -118,6 +118,7 @@
     .pill-wrapper.is-expanded .header-nav-container {
       max-width: 600px;
       opacity: 1;
+      overflow: visible; /* Allow dropdown to be seen */
     }
 
     .header-links {
@@ -533,12 +534,20 @@
       var header = document.getElementById('quartz-shell');
       if (header) {
         header.style.opacity = '1'; header.style.transform = 'translateX(-50%) translateY(0)'; header.style.animation = 'none';
-        void header.offsetWidth;
-        header.style.transition = 'all 1s var(--transition-fluid)';
-        header.style.left = '32px'; header.style.top = '7px'; header.style.transform = 'translateX(0) translateY(0)';
-      }
+        requestAnimationFrame(function () {
+        setTimeout(function () {
+          var expand = document.getElementById('expanded-nav');
+          var tp = document.querySelector('.tagline-pill');
+          expand.style.maxWidth = '600px';
+          expand.style.opacity  = '1';
+          setTimeout(function() { expand.style.overflow = 'visible'; }, 800); // Allow dropdown after expansion
+          tp.style.opacity = '1';
+          tp.style.transform = 'translateY(0)';
+        }, 150);
+      });
       sessionStorage.setItem('fromLanding', '1');
       setTimeout(() => window.location.href = dest, 1000);
+      }
     }
 
     function init() {
