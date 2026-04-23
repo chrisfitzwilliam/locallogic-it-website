@@ -8,7 +8,7 @@
   <title>Local Logic IT — Business IT Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
   <script>
@@ -19,6 +19,138 @@
       document.documentElement.classList.add('in-iframe');
     }
   </script>
+    <style>
+  /* ── Process Grid (Premium Redesign) ── */
+  .onboarding {
+    position: relative;
+    background: var(--charcoal);
+    color: #f8fafc;
+    padding: 50px 32px 80px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .onboarding .section-heading { color: #fff; }
+  .glow-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(74,128,232,0.12) 0%, rgba(74,128,232,0) 60%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .onboarding .section-label, .onboarding .section-heading {
+    position: relative;
+    z-index: 2;
+  }
+  .process-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 10px auto 0;
+    width: 100%;
+  }
+  .process-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 40px 32px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .process-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+  .process-card:hover::before, .process-card.active::before {
+    opacity: 1;
+  }
+  .process-card.active {
+    background: rgba(74, 128, 232, 0.05);
+    border-color: rgba(74, 128, 232, 0.4);
+    box-shadow: 0 10px 40px rgba(74, 128, 232, 0.15), inset 0 0 20px rgba(74, 128, 232, 0.05);
+    transform: translateY(-8px);
+  }
+  .step-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.08);
+    margin-bottom: 24px;
+    transition: all 0.5s;
+    line-height: 1;
+  }
+  .process-card.active .step-number {
+    color: #4a80e8;
+    text-shadow: 0 0 20px rgba(74, 128, 232, 0.4);
+    transform: scale(1.1) translateX(5%);
+  }
+  .process-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 2;
+  }
+  .process-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.5s;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .process-card.active p {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  
+  .card-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #4a80e8;
+    box-shadow: 0 0 10px #4a80e8;
+    transition: none;
+  }
+  .process-card.active .progress-fill {
+    width: 100%;
+    transition: width 6s linear;
+  }
+
+  @media (max-width: 900px) {
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .process-card.active { transform: translateY(-4px); }
+  }</style>
   <style>
     html.is-landing-anim .nav-left,
     html.is-landing-anim .nav-links,
@@ -152,7 +284,7 @@
     /* ── Hero ── */
     .hero {
       background: linear-gradient(160deg, var(--charcoal) 0%, var(--charcoal-2) 100%);
-      padding: 95px 32px 75px;
+      padding: 50px 32px 50px;
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -335,87 +467,7 @@
       .contact-card { padding: 28px 24px; }
     }
 
-    /* ── Onboarding ── */
-    .onboarding {
-      position: relative;
-      background: var(--charcoal);
-      color: #fff;
-      overflow: hidden;
-      padding-bottom: 100px;
-    }
-    .onboarding .section-heading { color: #fff; }
-    .onboarding-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      opacity: 0.4;
-    }
-    .timeline-wrapper {
-      position: relative;
-      max-width: 1100px;
-      margin: 60px auto 0;
-      padding: 0 40px;
-    }
-    .timeline-svg {
-      position: absolute;
-      top: 25px;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      z-index: 1;
-    }
-    .timeline-line {
-      stroke: var(--blue);
-      stroke-width: 2;
-      stroke-dasharray: 1200;
-      stroke-dashoffset: 1200;
-      opacity: 0.4;
-    }
-    .timeline-steps {
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      z-index: 2;
-    }
-    .timeline-step {
-      flex: 1;
-      text-align: center;
-      padding: 0 15px;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    .step-dot {
-      width: 50px;
-      height: 50px;
-      background: var(--charcoal);
-      border: 2px solid var(--blue);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-weight: 800;
-      color: #fff;
-      position: relative;
-      box-shadow: 0 0 15px rgba(74,128,232,0.2);
-    }
-    .step-dot:hover {
-      border-color: var(--blue-2);
-      box-shadow: 0 0 25px rgba(74,128,232,0.5);
-      transform: scale(1.1);
-      transition: all 0.3s ease;
-    }
-    .step-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
-    .step-text { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
-    @media (max-width: 767px) {
-      .timeline-steps { flex-direction: column; gap: 40px; }
-      .timeline-svg { display: none; }
-      .timeline-step { padding: 0; }
-    }
   </style>
 </head>
 <body>
@@ -457,45 +509,100 @@
     <a class="hero-cta" href="#services">See Our Services</a>
   </section>
 
-  <!-- Onboarding Timeline -->
+  <!-- Premium Process Grid Timeline -->
   <section class="section onboarding" id="process">
-    <canvas id="onboardingCanvas" class="onboarding-canvas"></canvas>
+    <div class="glow-orb"></div>
     <p class="section-label">Our Process</p>
     <h2 class="section-heading">How We Get You Started</h2>
 
-    <div class="timeline-wrapper">
-      <svg class="timeline-svg" preserveAspectRatio="none" aria-hidden="true">
-        <line x1="10%" y1="25" x2="90%" y2="25" class="timeline-line" id="timelineLine" />
-      </svg>
-
-      <ol class="timeline-steps">
-        <li class="timeline-step" data-step="1">
-          <div class="step-dot" aria-hidden="true">1</div>
-          <h3 class="step-title">Analysis & Audit</h3>
-          <p class="step-text">We deep-dive into your current infrastructure and security.</p>
-        </li>
-        <li class="timeline-step" data-step="2">
-          <div class="step-dot" aria-hidden="true">2</div>
-          <h3 class="step-title">Strategy</h3>
-          <p class="step-text">Building a custom roadmap aligned with your business goals.</p>
-        </li>
-        <li class="timeline-step" data-step="3">
-          <div class="step-dot" aria-hidden="true">3</div>
-          <h3 class="step-title">Design</h3>
-          <p class="step-text">Architecting the specific systems or automations needed.</p>
-        </li>
-        <li class="timeline-step" data-step="4">
-          <div class="step-dot" aria-hidden="true">4</div>
-          <h3 class="step-title">Implementation</h3>
-          <p class="step-text">Seamless deployment of new technology with zero downtime.</p>
-        </li>
-        <li class="timeline-step" data-step="5">
-          <div class="step-dot" aria-hidden="true">5</div>
-          <h3 class="step-title">Optimization</h3>
-          <p class="step-text">Continuous monitoring and proactive improvements.</p>
-        </li>
-      </ol>
+    <div class="process-grid">
+      <div class="process-card active">
+        <div class="step-number">01</div>
+        <h3>Discovery & Audit</h3>
+        <p>We conduct a comprehensive technical audit of your current IT infrastructure, identify vulnerabilities, and map out your network assets.</p>
+        <div class="card-progress"><div class="progress-fill"></div></div>
+      </div>
+      <div class="process-card">
+        <div class="step-number">02</div>
+        <h3>Kickoff & Strategy</h3>
+        <p>We align with your team, introduce key technical contacts, define communication protocols, and review the strategic technology roadmap.</p>
+        <div class="card-progress"><div class="progress-fill"></div></div>
+      </div>
+      <div class="process-card">
+        <div class="step-number">03</div>
+        <h3>System Integration</h3>
+        <p>We deploy our Remote Monitoring and Management (RMM) tools, integrate ticketing systems, and begin syncing your network data.</p>
+        <div class="card-progress"><div class="progress-fill"></div></div>
+      </div>
+      <div class="process-card">
+        <div class="step-number">04</div>
+        <h3>Security Hardening</h3>
+        <p>We implement critical baseline security protocols, including Multi-Factor Authentication (MFA), advanced threat protection, and secure backups.</p>
+        <div class="card-progress"><div class="progress-fill"></div></div>
+      </div>
+      <div class="process-card">
+        <div class="step-number">05</div>
+        <h3>Employee Training</h3>
+        <p>We train your staff on the new tools, how to easily submit support requests, and best practices for identifying cybersecurity threats.</p>
+        <div class="card-progress"><div class="progress-fill"></div></div>
+      </div>
+      <div class="process-card">
+        <div class="step-number">06</div>
+        <h3>Go-Live & Optimization</h3>
+        <p>Your systems are fully managed! We transition to ongoing proactive monitoring, regular health checks, and Quarterly Business Reviews.</p>
+        <div class="card-progress"><div class="progress-fill"></div></div>
+      </div>
     </div>
+
+    <script>
+      (function() {
+        const cards = document.querySelectorAll('.process-card');
+        if (!cards.length) return;
+        
+        let currentIndex = 0;
+        let interval;
+        const DURATION = 6000;
+
+        function setActiveCard(index) {
+          cards.forEach((card, i) => {
+            if (i === index) {
+              // Quick reset trick for the progress bar animation
+              card.classList.remove('active');
+              void card.offsetWidth; // trigger reflow
+              card.classList.add('active');
+            } else {
+              card.classList.remove('active');
+            }
+          });
+        }
+
+        function startRotation() {
+          interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            setActiveCard(currentIndex);
+          }, DURATION);
+        }
+
+        function stopRotation() {
+          clearInterval(interval);
+        }
+
+        // Initialize progress bar trick
+        setActiveCard(currentIndex);
+        startRotation();
+
+        cards.forEach((card, index) => {
+          card.addEventListener('mouseenter', () => {
+            stopRotation();
+            currentIndex = index;
+            setActiveCard(currentIndex);
+          });
+          card.addEventListener('mouseleave', () => {
+            startRotation();
+          });
+        });
+      })();
+    </script>
   </section>
 
   <!-- Services -->
@@ -754,109 +861,7 @@
     }());
   </script>
 
-  <script>
-    (function() {
-      const section = document.querySelector('.onboarding');
-      const canvas = document.getElementById('onboardingCanvas');
-      if (!canvas || !section) return;
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-      let animationId;
-      let isVisible = false;
 
-      function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-      }
-
-      class Particle {
-        constructor() {
-          this.init();
-        }
-        init() {
-          this.x = Math.random() * (canvas.width || window.innerWidth);
-          this.y = Math.random() * (canvas.height || window.innerHeight);
-          this.vx = (Math.random() - 0.5) * 0.3;
-          this.vy = (Math.random() - 0.5) * 0.3;
-          this.size = Math.random() * 1.5 + 0.5;
-        }
-        update() {
-          this.x += this.vx;
-          this.y += this.vy;
-          if (this.x < 0) this.x = canvas.width;
-          if (this.x > canvas.width) this.x = 0;
-          if (this.y < 0) this.y = canvas.height;
-          if (this.y > canvas.height) this.y = 0;
-        }
-        draw() {
-          ctx.fillStyle = 'rgba(74, 128, 232, 0.4)';
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      function createParticles() {
-        particles = [];
-        for(let i = 0; i < 40; i++) particles.push(new Particle());
-      }
-
-      function animate() {
-        if (!isVisible) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-          p.update();
-          p.draw();
-        });
-        animationId = requestAnimationFrame(animate);
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        isVisible = entries[0].isIntersecting;
-        if (isVisible) animate();
-        else cancelAnimationFrame(animationId);
-      }, { threshold: 0.1 });
-
-      observer.observe(section);
-
-      window.addEventListener('resize', () => {
-        resize();
-      });
-
-      resize();
-      createParticles();
-    })();
-  </script>
-
-  <script>
-      // Trigger Animations for SVG and Steps
-      const entryObserverOptions = { threshold: 0.3 };
-      const entryObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Animate SVG line
-            const line = document.getElementById('timelineLine');
-            if (line) {
-              line.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)';
-              line.style.strokeDashoffset = '0';
-            }
-
-            // Staggered step entry
-            document.querySelectorAll('.timeline-step').forEach((step, i) => {
-              setTimeout(() => {
-                step.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
-                step.style.opacity = '1';
-                step.style.transform = 'translateY(0)';
-              }, i * 200);
-            });
-
-            entryObserver.unobserve(entry.target);
-          }
-        });
-      }, entryObserverOptions);
-
-      entryObserver.observe(document.querySelector('.onboarding'));
-  </script>
 
 </body>
 </html>
