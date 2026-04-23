@@ -41,7 +41,7 @@
       top: 18px;
       left: 50%;
       z-index: 300;
-      will-change: left, top, transform;
+      will-change: left, top, transform, max-width;
       padding: 4px;
       border-radius: 100px;
       background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
@@ -52,12 +52,13 @@
       opacity: 0;
       transform: translateX(-50%) translateY(20px);
       font-family: 'Inter', sans-serif;
+      transition: all 0.8s var(--transition-fluid);
     }
 
     .pill-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       padding: 6px 14px;
       background: rgba(10, 10, 15, 0.4);
       backdrop-filter: blur(32px) saturate(150%);
@@ -66,9 +67,10 @@
       border: 1px solid var(--quartz-edge);
       position: relative;
       z-index: 1;
+      overflow: visible; /* Changed from hidden to allow dropdown */
+      transition: all 0.8s var(--transition-fluid);
     }
 
-    /* Light Refraction Grain Overlay */
     .pill-nav::before {
       content: "";
       position: absolute;
@@ -78,9 +80,10 @@
       opacity: 0.04;
       pointer-events: none;
       mix-blend-mode: overlay;
+      z-index: -1;
     }
 
-    .header-logo, .header-name, .header-tagline {
+    .header-logo, .header-name {
       position: relative;
       z-index: 2;
     }
@@ -92,11 +95,7 @@
       color: #fff;
     }
 
-    .header-logo svg { 
-      height: 24px; 
-      width: 24px; 
-      display: block; 
-    }
+    .header-logo svg { height: 24px; width: 24px; display: block; }
 
     .header-name {
       font-size: 1rem;
@@ -105,16 +104,144 @@
       letter-spacing: -0.02em;
     }
 
-    .header-tagline {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      padding-right: 8px;
+    /* Cinematic Expansion Segment */
+    .header-nav-container {
+      display: flex;
+      align-items: center;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-width 0.8s var(--transition-fluid), opacity 0.6s ease;
     }
 
-    /* Data Encapsulation Segment */
+    .pill-wrapper.is-expanded .header-nav-container {
+      max-width: 600px;
+      opacity: 1;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 18px;
+      padding: 0 10px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .header-links a, .dropdown-trigger {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease, transform 0.3s ease, opacity 0.5s var(--transition-fluid);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(-10px);
+      cursor: pointer;
+    }
+
+    .header-links a:hover, .dropdown-trigger:hover {
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .pill-wrapper.is-expanded .header-links a,
+    .pill-wrapper.is-expanded .dropdown-trigger {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .pill-wrapper.is-expanded .header-links a:nth-child(1),
+    .pill-wrapper.is-expanded .dropdown-trigger { transition-delay: 0.4s; }
+    .pill-wrapper.is-expanded .header-links a:nth-child(2) { transition-delay: 0.5s; }
+    .pill-wrapper.is-expanded .header-links a:nth-child(3) { transition-delay: 0.6s; }
+    .pill-wrapper.is-expanded .header-links a:nth-child(4) { transition-delay: 0.7s; }
+
+    /* Dropdown Logic */
+    .dropdown { position: relative; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: calc(100% + 15px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--quartz-border);
+      border-radius: 16px;
+      min-width: 180px;
+      padding: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s var(--transition-fluid), transform 0.3s var(--transition-fluid);
+      pointer-events: none;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown.is-open .dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .dropdown-content a {
+      opacity: 1 !important;
+      transform: none !important;
+      padding: 12px 16px;
+      display: block;
+      color: var(--text-secondary) !important;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-content a:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff !important;
+    }
+
+    /* Tagline Pill */
+    .tagline-pill {
+      position: fixed;
+      top: 82px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      padding: 6px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--quartz-border);
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 299;
+      opacity: 0;
+      transition: all 1s var(--transition-fluid);
+      white-space: nowrap;
+    }
+
+    .pill-wrapper.is-expanded + .tagline-pill {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Quick Support Button */
+    .btn-support {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.75rem !important;
+      box-shadow: 0 4px 12px rgba(74,128,232,0.3);
+    }
+    .btn-support:hover {
+      background: var(--primary-2);
+      box-shadow: 0 6px 16px rgba(74,128,232,0.4);
+    }
+
     .pill-divider {
       width: 1px;
       height: 20px;
@@ -131,126 +258,27 @@
       }
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.5; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+    /* Chooser Layout */
+    @keyframes chooser-fade-in { from { opacity: 0; } to { opacity: 1; } }
+    .chooser { display: flex; width: 100%; height: 100vh; overflow: hidden; animation: chooser-fade-in 0.6s ease both; }
+    .half { position: relative; flex: 1; overflow: hidden; cursor: pointer; outline: none; }
+    .half--residential { box-shadow: inset -1px 0 0 rgba(255,255,255,0.08); }
+    .half-preview { position: absolute; top: 0; left: 0; border: none; display: block; pointer-events: none; transform-origin: 0 0; }
+    .half-overlay { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(4,6,14,0.85); backdrop-filter: blur(14px); transition: all 0.4s var(--transition-fluid); }
+    .half:hover .half-overlay { opacity: 0.7; backdrop-filter: blur(10px); }
 
-    /* Refractive Glint Follower (Simplified for CSS) */
-    .pill-wrapper:hover .glint {
-      opacity: 1;
-    }
-
-    .glint {
-      position: absolute;
-      width: 100px;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-      pointer-events: none;
-      transition: transform 0.1s linear;
-      z-index: 0;
-      opacity: 0;
-    }
-
-    /* ── Chooser — full-bleed, no gap ── */
-    @keyframes chooser-fade-in {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    .chooser {
-      display: flex;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      animation: chooser-fade-in 0.6s ease both;
-    }
-
-    /* ── Halves — full-bleed ── */
-    .half {
-      position: relative;
-      flex: 1;
-      overflow: hidden;
-      cursor: pointer;
-      outline: none;
-    }
-    /* Thin line between the two halves */
-    .half--residential {
-      box-shadow: inset -1px 0 0 rgba(255,255,255,0.08);
-    }
-    .half:focus-visible {
-      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.5);
-    }
-
-    /* ── Iframe preview ── */
-    .half-preview {
-      position: absolute;
-      top: 0; left: 0;
-      border: none;
-      display: block;
-      pointer-events: none;
-      transform-origin: 0 0;
-    }
-
-    /* ── Dim overlay — very opaque + heavy blur (frosted glass over preview) ── */
-    .half-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background: rgba(4,6,14,0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition:
-        opacity          0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        backdrop-filter  0.4s ease,
-        -webkit-backdrop-filter 0.4s ease;
-    }
-
-    /* Hover: frost clears slightly ── */
-    .half:hover .half-overlay {
-      opacity: 0.7;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-
-    /* ── Breathing glow animations for captions ── */
     @keyframes glow-gold {
-      0%, 100% {
-        box-shadow:
-          0 0 22px rgba(201,123,75,0.18),
-          0 8px 48px rgba(201,123,75,0.10),
-          inset 0 1px 0 rgba(255,255,255,0.09);
-      }
-      50% {
-        box-shadow:
-          0 0 38px rgba(201,123,75,0.34),
-          0 8px 64px rgba(201,123,75,0.20),
-          inset 0 1px 0 rgba(255,255,255,0.13);
-      }
+      0%, 100% { box-shadow: 0 0 22px rgba(245,158,11,0.18), 0 8px 48px rgba(245,158,11,0.10), inset 0 1px 0 rgba(255,255,255,0.09); }
+      50% { box-shadow: 0 0 38px rgba(245,158,11,0.34), 0 8px 64px rgba(245,158,11,0.20), inset 0 1px 0 rgba(255,255,255,0.13); }
     }
     @keyframes glow-blue {
-      0%, 100% {
-        box-shadow:
-          0 0 22px rgba(74,128,232,0.18),
-          0 8px 48px rgba(74,128,232,0.10),
-          inset 0 1px 0 rgba(255,255,255,0.09);
-      }
-      50% {
-        box-shadow:
-          0 0 38px rgba(74,128,232,0.34),
-          0 8px 64px rgba(74,128,232,0.20),
-          inset 0 1px 0 rgba(255,255,255,0.13);
-      }
+      0%, 100% { box-shadow: 0 0 22px rgba(74,128,232,0.18), 0 8px 48px rgba(74,128,232,0.10), inset 0 1px 0 rgba(255,255,255,0.09); }
+      50% { box-shadow: 0 0 38px rgba(74,128,232,0.34), 0 8px 64px rgba(74,128,232,0.20), inset 0 1px 0 rgba(255,255,255,0.13); }
     }
 
-    /* ── Centered caption — premium glass card ── */
     .half-caption {
       position: absolute;
-      /* Shifted down ~26px from true centre to sit below the header visually */
-      top: calc(50% + 26px);
+      top: calc(50% + 40px);
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
@@ -259,109 +287,41 @@
       background: rgba(6,7,16,0.55);
       border-radius: 18px;
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       pointer-events: none;
       white-space: nowrap;
-      /* Specular top-edge highlight (glass refraction effect) */
       border-top: 1px solid rgba(255,255,255,0.18);
-      border-left: 1px solid rgba(255,255,255,0.07);
-      border-right: 1px solid rgba(255,255,255,0.07);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      transition:
-        transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity   0.38s ease;
+      transition: all 0.38s var(--transition-fluid);
     }
-    /* Brand-coloured glow + border accent */
-    .half--residential .half-caption {
-      border-color: rgba(201,123,75,0.32) rgba(201,123,75,0.14) rgba(201,123,75,0.08) rgba(201,123,75,0.14);
-      animation: glow-gold 3.6s ease-in-out infinite;
-    }
-    .half--business .half-caption {
-      border-color: rgba(74,128,232,0.32) rgba(74,128,232,0.14) rgba(74,128,232,0.08) rgba(74,128,232,0.14);
-      animation: glow-blue 3.6s ease-in-out infinite;
-    }
+    .half--residential .half-caption { border-color: rgba(245,158,11,0.32); animation: glow-gold 3.6s ease-in-out infinite; }
+    .half--business .half-caption { border-color: rgba(74,128,232,0.32); animation: glow-blue 3.6s ease-in-out infinite; }
+    .half:hover .half-caption { transform: translate(-50%, -56%); }
 
-    .half:hover .half-caption {
-      transform: translate(-50%, -56%);
-    }
+    .half-icon { display: block; width: 52px; height: 52px; margin: 0 auto 18px; }
+    .half--residential .half-icon { color: #F59E0B; }
+    .half--business .half-icon { color: #4A80E8; }
+    .half-name { font-size: 1.5rem; font-weight: 800; display: block; margin-bottom: 5px; }
+    .half--residential .half-name { color: #F59E0B; }
+    .half--business .half-name { color: #4A80E8; }
+    .half-sub { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); display: block; }
+    .half-arrow { display: block; margin-top: 18px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    .half--residential .half-arrow { color: rgba(245,158,11,0.85); }
+    .half--business .half-arrow { color: rgba(74,128,232,0.85); }
 
-    /* SVG icon above the label */
-    .half-icon {
-      display: block;
-      width: 52px;
-      height: 52px;
-      margin: 0 auto 18px;
-    }
-    .half--residential .half-icon { color: #DCA07A; }
-    .half--business    .half-icon { color: #4A80E8; }
+    .half.is-selecting { position: fixed !important; inset: 0 !important; z-index: 100; flex: none; overflow: hidden; }
+    .half.is-selecting .half-overlay { opacity: 0 !important; }
+    .half.is-selecting .half-caption { opacity: 0 !important; }
+    .chooser.has-selection .half:not(.is-selecting) { opacity: 0; pointer-events: none; transition: opacity 0.18s ease; }
 
-    .half-name {
-      font-size: 1.5rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      display: block;
-      margin-bottom: 5px;
-    }
-    .half--residential .half-name { color: #DCA07A; }
-    .half--business    .half-name { color: #4A80E8; }
-
-    .half-sub {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      display: block;
-    }
-
-    /* Hint arrow — always visible ── */
-    .half-arrow {
-      display: block;
-      margin-top: 18px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 1;
-      transform: translateY(0);
-      transition: transform 0.3s ease;
-    }
-    .half--residential .half-arrow { color: rgba(201,123,75,0.85); }
-    .half--business    .half-arrow { color: rgba(74,128,232,0.85);  }
-
-    /* ── Selection state — FLIP base ── */
-    .half.is-selecting {
-      position: fixed !important;
-      inset: 0 !important;
-      z-index: 100;
-      flex: none;
-      overflow: hidden;
-    }
-    .half.is-selecting .half-overlay  { opacity: 0 !important; transition: opacity 0.12s ease !important; }
-    .half.is-selecting .half-caption  { opacity: 0 !important; transition: opacity 0.08s ease !important; }
-
-    /* Fade out the non-selected half */
-    .chooser.has-selection .half:not(.is-selecting) {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.18s ease;
-    }
-
-    /* ── Responsive ── */
     @media (max-width: 767px) {
-      html, body { overflow: auto; }
       .chooser { flex-direction: column; height: auto; min-height: 100vh; }
       .half { min-height: 44vh; }
-      .half--residential { box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08); }
-    }
-
-    /* Respect reduced-motion preference */
-    @media (prefers-reduced-motion: reduce) {
-      .chooser, .half-overlay, .half-caption, .half-arrow { animation: none; transition: none; }
+      .tagline-pill { top: auto; bottom: 20px; font-size: 0.6rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- The Quartz Shell -->
+  <!-- The Header Layout -->
   <div class="pill-wrapper" id="quartz-shell">
       <div class="glint" id="refractor"></div>
       <header class="pill-nav">
@@ -373,33 +333,34 @@
             </svg>
           </div>
           <span class="header-name">Local Logic IT</span>
-          <div class="pill-divider" aria-hidden="true"></div>
-          <span class="header-tagline">Local Service. Logical Solutions.</span>
+          
+          <div class="header-nav-container" id="expanded-nav">
+            <div class="pill-divider" aria-hidden="true"></div>
+            <nav class="header-links">
+                <div class="dropdown" id="services-dropdown">
+                  <span class="dropdown-trigger">Services <i class="ph ph-caret-down"></i></span>
+                  <div class="dropdown-content">
+                    <a href="residential.html">Home &amp; Family</a>
+                    <a href="business.html">Business &amp; Office</a>
+                  </div>
+                </div>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="quick-support.html" class="btn-support">Quick Support</a>
+            </nav>
+          </div>
       </header>
   </div>
+  <div class="tagline-pill">Local Service. Logical Solutions.</div>
 
   <main class="chooser" id="chooser">
-
-    <!-- Residential preview panel -->
-    <div class="half half--residential"
-         role="link" tabindex="0"
-         aria-label="Residential IT Support — Home and Family"
-         data-href="residential.html">
-      <iframe class="half-preview"
-              src="residential.html"
-              loading="lazy"
-              scrolling="no"
-              tabindex="-1"
-              aria-hidden="true"
-              title="Residential site preview"></iframe>
+    <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support" data-href="residential.html">
+      <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
-        <!-- House icon -->
         <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="18" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
-          <rect x="37" y="32" width="9" height="8" rx="1.5" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.18"/>
         </svg>
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
@@ -407,30 +368,12 @@
       </div>
     </div>
 
-    <!-- Business preview panel -->
-    <div class="half half--business"
-         role="link" tabindex="0"
-         aria-label="Business IT Services — Business and Office"
-         data-href="business.html">
-      <iframe class="half-preview"
-              src="business.html"
-              loading="lazy"
-              scrolling="no"
-              tabindex="-1"
-              aria-hidden="true"
-              title="Business site preview"></iframe>
+    <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services" data-href="business.html">
+      <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
-        <!-- Office building icon -->
         <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5"/>
-          <line x1="8" y1="26" x2="56" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <line x1="8" y1="40" x2="56" y2="40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <rect x="14" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="28" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="42" y="14" width="8" height="8" rx="1" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="14" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
-          <rect x="42" y="30" width="8" height="7" rx="1" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.5"/>
           <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span class="half-name">Business &amp; Office</span>
@@ -438,7 +381,6 @@
         <span class="half-arrow">Enter &rsaquo;</span>
       </div>
     </div>
-
   </main>
 
   <script>
@@ -446,194 +388,86 @@
       var iframe = half.querySelector('.half-preview');
       if (!iframe) return;
       var REF_W = document.documentElement.clientWidth;
-      var W     = half.offsetWidth;
-      var H     = half.offsetHeight;
+      var W = half.offsetWidth;
+      var H = half.offsetHeight;
       var scale = W / REF_W;
-      
-      // Prevent mobile weirdness where stacking halves could cause issues
-      if (REF_W <= 767) {
-        scale = 1;
-        REF_W = W;
-      }
-      
-      iframe.style.width     = REF_W + 'px';
-      iframe.style.height    = Math.ceil(H / scale) + 'px';
+      if (REF_W <= 767) { scale = 1; REF_W = W; }
+      iframe.style.width = REF_W + 'px';
+      iframe.style.height = Math.ceil(H / scale) + 'px';
       iframe.style.transform = 'scale(' + scale + ')';
     }
 
     function injectFlash(color) {
       var el = document.createElement('div');
-      el.setAttribute('aria-hidden', 'true');
-      el.style.cssText = [
-        'position:fixed',
-        'inset:0',
-        'z-index:200',
-        'pointer-events:none',
-        'background:' + color,
-        'animation:flash-out 0.35s ease-out forwards'
-      ].join(';');
+      el.style.cssText = 'position:fixed;inset:0;z-index:200;pointer-events:none;background:' + color + ';animation:flash-out 0.35s ease-out forwards';
       document.body.appendChild(el);
-      el.addEventListener('animationend', function() { el.parentNode && el.parentNode.removeChild(el); });
+      el.addEventListener('animationend', () => el.remove());
     }
 
     function selectHalf(half) {
       var chooser = document.getElementById('chooser');
       if (chooser.classList.contains('has-selection')) return;
-
-      var dest      = half.dataset.href;
-      var isRes     = half.classList.contains('half--residential');
-      var flashColor = isRes
-        ? 'rgba(201,123,75,0.22)'
-        : 'rgba(74,128,232,0.22)';
-
-      // 1. Inject full-screen flash for immediate "confirmed" feedback
-      injectFlash(flashColor);
-
-      // 2. Hide the other panel
+      var dest = half.dataset.href;
+      var isRes = half.classList.contains('half--residential');
+      injectFlash(isRes ? 'rgba(245,158,11,0.22)' : 'rgba(74,128,232,0.22)');
       chooser.classList.add('has-selection');
-
-      // 3. Snapshot card position before any layout change
       var cardRect = half.getBoundingClientRect();
-
-      // 4. Expand to fixed fullscreen
       half.classList.add('is-selecting');
       var fullRect = half.getBoundingClientRect();
-
-      // 5. FLIP: compute the inverse transform (visually starts at card position)
-      var sx = cardRect.width  / fullRect.width;
-      var sy = cardRect.height / fullRect.height;
-      var tx = cardRect.left   - fullRect.left;
-      var ty = cardRect.top    - fullRect.top;
-
-      // Apply the starting (inverted) state — keep rounded corners at start
+      var sx = cardRect.width / fullRect.width, sy = cardRect.height / fullRect.height;
+      var tx = cardRect.left - fullRect.left, ty = cardRect.top - fullRect.top;
       half.style.borderRadius = '0px';
-      half.style.transition   = 'none';
-      half.style.transform    = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sx + ',' + sy + ')';
-
-      // Force reflow so browser registers starting state
+      half.style.transition = 'none';
+      half.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sx + ',' + sy + ')';
       void half.offsetHeight;
-
-      // Re-scale the iframe for the now-fullscreen panel
       scalePreview(half);
-
-      // 6. Animate to fullscreen — expo-out easing for game-like explosive feel
       half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
-      half.style.transform  = 'translate(0,0) scale(1,1)';
-
-      // 7. Fly the header bubble to the top-left nav position
-      var header  = document.querySelector('.pill-wrapper');
-      var divider = header ? header.querySelector('.pill-divider') : null;
-      var tagline = header ? header.querySelector('.header-tagline') : null;
-
+      half.style.transform = 'translate(0,0) scale(1,1)';
+      var header = document.getElementById('quartz-shell');
       if (header) {
-        // Lock the final animated states to prevent jumping before removing the CSS animation
-        header.style.opacity = '1';
-        header.style.transform = 'translateX(-50%) translateY(0)';
-        header.style.animation = 'none';
-        
-        // Force reflow
+        header.style.opacity = '1'; header.style.transform = 'translateX(-50%) translateY(0)'; header.style.animation = 'none';
         void header.offsetWidth;
-
-        header.style.transition = [
-          'left 1s cubic-bezier(0.25,0.46,0.45,0.94)',
-          'top 1s cubic-bezier(0.25,0.46,0.45,0.94)',
-          'transform 1s cubic-bezier(0.25,0.46,0.45,0.94)'
-        ].join(',');
-        header.style.left      = '32px';
-        header.style.top       = '7px';
-        header.style.transform = 'translateX(0) translateY(0)';
+        header.style.transition = 'all 1s var(--transition-fluid)';
+        header.style.left = '32px'; header.style.top = '7px'; header.style.transform = 'translateX(0) translateY(0)';
       }
-
-      // Fade out some elements early in the flight
-      setTimeout(function() {
-        if (divider) {
-          divider.style.transition = 'opacity 0.5s ease';
-          divider.style.opacity    = '0';
-        }
-        if (tagline) {
-          tagline.style.transition = 'opacity 0.5s ease';
-          tagline.style.opacity    = '0';
-        }
-      }, 200);
-
-      // Flag destination page to play receiving animation
       sessionStorage.setItem('fromLanding', '1');
-
-      // Navigate once bubble flight completes
-      setTimeout(function() {
-        window.location.href = dest;
-      }, 1000);
-    }
-
-    function resetState() {
-      // Clear all selection state — needed when browser restores page from bfcache
-      var chooser = document.getElementById('chooser');
-      chooser.classList.remove('has-selection');
-      document.querySelectorAll('.half').forEach(function(half) {
-        half.classList.remove('is-selecting');
-        half.removeAttribute('style');
-      });
-      document.querySelectorAll('.half').forEach(scalePreview);
-
-      // Reset header bubble back to centered position (no transition — snap immediately)
-      var header = document.querySelector('.pill-wrapper');
-      if (header) {
-        header.style.transition = 'none';
-        header.style.animation  = '';
-        header.style.opacity    = '';
-        header.style.left       = '50%';
-        header.style.top        = '18px';
-        header.style.transform  = 'translateX(-50%) translateY(0)';
-        var divider = header.querySelector('.pill-divider');
-        var tagline = header.querySelector('.header-tagline');
-        if (divider) { divider.style.transition = 'none'; divider.style.opacity = ''; }
-        if (tagline) { tagline.style.transition = 'none'; tagline.style.opacity = ''; }
-      }
+      setTimeout(() => window.location.href = dest, 1000);
     }
 
     function init() {
       var halves = document.querySelectorAll('.half');
-
-      halves.forEach(function(half) {
-        scalePreview(half);
-
-        half.addEventListener('click', function() { selectHalf(this); });
-        half.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            selectHalf(this);
-          }
-        });
+      halves.forEach(h => {
+        scalePreview(h);
+        h.addEventListener('click', function() { selectHalf(this); });
+        h.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') selectHalf(this); });
       });
+      window.addEventListener('resize', () => halves.forEach(scalePreview));
 
-      window.addEventListener('resize', function() {
-        halves.forEach(scalePreview);
-      });
-
-      // When the back button restores this page from bfcache, reset the
-      // selection animation so the chooser is clean and interactive again
-      window.addEventListener('pageshow', function(e) {
-        if (e.persisted) resetState();
-      });
-
-      // Quartz Shell interactions
       const shell = document.getElementById('quartz-shell');
       const glint = document.getElementById('refractor');
-
       if (shell && glint) {
-          shell.addEventListener('mousemove', (e) => {
-              const rect = shell.getBoundingClientRect();
-              const x = e.clientX - rect.left;
-              glint.style.transform = `translateX(${x - 50}px)`;
-          });
+        shell.addEventListener('mousemove', e => {
+          const rect = shell.getBoundingClientRect();
+          glint.style.transform = `translateX(${e.clientX - rect.left - 50}px)`;
+        });
+        setTimeout(() => shell.classList.add('is-expanded'), 1800);
       }
+
+      // Dropdown Toggle for Mobile
+      const dropdown = document.getElementById('services-dropdown');
+      if (dropdown) {
+        dropdown.addEventListener('click', (e) => {
+          if (window.innerWidth <= 767) {
+            e.stopPropagation();
+            dropdown.classList.toggle('is-open');
+          }
+        });
+      }
+      document.addEventListener('click', () => dropdown.classList.remove('is-open'));
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
   </script>
 
 </body>
