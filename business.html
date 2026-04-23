@@ -402,6 +402,12 @@
       position: relative;
       box-shadow: 0 0 15px rgba(74,128,232,0.2);
     }
+    .step-dot:hover {
+      border-color: var(--blue-2);
+      box-shadow: 0 0 25px rgba(74,128,232,0.5);
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
     .step-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
     .step-text { font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
@@ -820,6 +826,36 @@
       resize();
       createParticles();
     })();
+  </script>
+
+  <script>
+      // Trigger Animations for SVG and Steps
+      const entryObserverOptions = { threshold: 0.3 };
+      const entryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Animate SVG line
+            const line = document.getElementById('timelineLine');
+            if (line) {
+              line.style.transition = 'stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1)';
+              line.style.strokeDashoffset = '0';
+            }
+
+            // Staggered step entry
+            document.querySelectorAll('.timeline-step').forEach((step, i) => {
+              setTimeout(() => {
+                step.style.transition = 'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)';
+                step.style.opacity = '1';
+                step.style.transform = 'translateY(0)';
+              }, i * 200);
+            });
+
+            entryObserver.unobserve(entry.target);
+          }
+        });
+      }, entryObserverOptions);
+
+      entryObserver.observe(document.querySelector('.onboarding'));
   </script>
 
 </body>
