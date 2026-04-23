@@ -750,10 +750,13 @@
 
   <script>
     (function() {
+      const section = document.querySelector('.onboarding');
       const canvas = document.getElementById('onboardingCanvas');
-      if (!canvas) return;
+      if (!canvas || !section) return;
       const ctx = canvas.getContext('2d');
       let particles = [];
+      let animationId;
+      let isVisible = false;
 
       function resize() {
         canvas.width = canvas.offsetWidth;
@@ -765,8 +768,8 @@
           this.init();
         }
         init() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
+          this.x = Math.random() * (canvas.width || window.innerWidth);
+          this.y = Math.random() * (canvas.height || window.innerHeight);
           this.vx = (Math.random() - 0.5) * 0.3;
           this.vy = (Math.random() - 0.5) * 0.3;
           this.size = Math.random() * 1.5 + 0.5;
@@ -774,8 +777,10 @@
         update() {
           this.x += this.vx;
           this.y += this.vy;
-          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
         }
         draw() {
           ctx.fillStyle = 'rgba(74, 128, 232, 0.4)';
@@ -785,24 +790,35 @@
         }
       }
 
-      function init() {
-        resize();
+      function createParticles() {
         particles = [];
         for(let i = 0; i < 40; i++) particles.push(new Particle());
       }
 
       function animate() {
+        if (!isVisible) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(p => {
           p.update();
           p.draw();
         });
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
       }
 
-      window.addEventListener('resize', init);
-      init();
-      animate();
+      const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+        if (isVisible) animate();
+        else cancelAnimationFrame(animationId);
+      }, { threshold: 0.1 });
+
+      observer.observe(section);
+
+      window.addEventListener('resize', () => {
+        resize();
+      });
+
+      resize();
+      createParticles();
     })();
   </script>
 
