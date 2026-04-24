@@ -899,7 +899,7 @@
       var tp = document.createElement('div');
       tp.className = 'tagline-pill';
       tp.textContent = 'Local Service. Logical Solutions.';
-      tp.style.cssText = 'position:absolute;top:calc(100% + 4px);left:18px;transform:translateY(10px);background:transparent;backdrop-filter:none;padding:0;color:rgba(255,255,255,0.5);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;z-index:299;opacity:0;transition:all 1s cubic-bezier(0.23, 1, 0.32, 1);white-space:nowrap;pointer-events:none;';
+      tp.style.cssText = 'position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%) translateY(10px);background:transparent;backdrop-filter:none;padding:0;color:rgba(255,255,255,0.5);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;z-index:299;opacity:0;transition:all 1s cubic-bezier(0.23, 1, 0.32, 1);white-space:nowrap;pointer-events:none;';
       pill.appendChild(tp);
 
       requestAnimationFrame(function () {
@@ -908,7 +908,7 @@
           expand.style.opacity  = '1';
           setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
           tp.style.opacity = '0.8';
-          tp.style.transform = 'translateY(0)';
+          tp.style.transform = 'translateX(-50%) translateY(0)';
         }, 150);
       });
     }());

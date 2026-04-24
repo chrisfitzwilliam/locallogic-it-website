@@ -209,8 +209,8 @@
     .tagline-pill {
       position: absolute;
       top: calc(100% + 4px);
-      left: 18px; 
-      transform: translateY(10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
       background: transparent;
       backdrop-filter: none;
       padding: 0;
@@ -229,7 +229,7 @@
 
     .pill-wrapper.is-expanded .tagline-pill {
       opacity: 0.8;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
 
     /* Quick Support Button */
@@ -547,7 +547,7 @@
           var tp = header.querySelector('.tagline-pill');
           if (tp) {
             tp.style.opacity = '0.8';
-            tp.style.transform = 'translateY(0)';
+            tp.style.transform = 'translateX(-50%) translateY(0)';
           }
         }, 150);
       });
