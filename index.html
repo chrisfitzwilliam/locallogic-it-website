@@ -717,9 +717,32 @@
         font-size: 0.9rem;
       }
 
-      /* Hide desktop nav, show hamburger */
+      /* Show nav container but only About + Contact */
       .header-nav-container {
+        display: flex !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        flex: 0 0 auto;
+      }
+
+      .pill-divider,
+      .dropdown,
+      .btn-support {
         display: none !important;
+      }
+
+      .header-links {
+        gap: 6px;
+        padding: 0;
+      }
+
+      .header-links > a:not(.btn-support) {
+        font-size: 0.8rem;
+        padding: 0 8px;
+        color: rgba(255, 255, 255, 0.6);
+        opacity: 1 !important;
+        transform: none !important;
       }
 
       .pill-hamburger {
@@ -867,8 +890,6 @@
     <div class="pill-mobile-menu" id="pill-mobile-menu">
       <a href="residential.html">Home &amp; Family</a>
       <a href="business.html">Business &amp; Office</a>
-      <a href="#about" onclick="closePillMenu()">About</a>
-      <a href="#contact" onclick="closePillMenu()">Contact</a>
       <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
     </div>
   </div>
