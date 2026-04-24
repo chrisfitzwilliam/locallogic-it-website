@@ -30,15 +30,14 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - `contact@locallogicit.com` forwards to the verified destination address `chris@fitzwilliam.net`.
 - Required inbound-mail DNS records now exist on the zone: MX records for `route1.mx.cloudflare.net`, `route2.mx.cloudflare.net`, and `route3.mx.cloudflare.net`; SPF `v=spf1 include:_spf.mx.cloudflare.net ~all`; and DKIM at `cf2024-1._domainkey.locallogicit.com`.
 - This is inbound forwarding only. Replies still send from the underlying mailbox unless a real `@locallogicit.com` mailbox is added later.
-- Local checkout mail links were updated site-wide to `contact@locallogicIT.com` in local-only commit `781fe97` (`content: update website contact email`).
-- Because `781fe97` is local-only, do not assume production mail links have changed until a push/deploy is completed and the live pages are re-verified.
+- Local checkout contact links were updated site-wide to `mailto:contact@locallogicit.com` and `tel:6363526572` in the current working tree.
+- The visible phone text remains `636-352-6572`; only the clickable `tel:` targets use the unformatted digits.
 
 ### Current Local Checkout State (April 23, 2026)
 
 - Branch state is currently `main...origin/main [ahead 1]` because of local-only commit `781fe97` (`content: update website contact email`).
-- There is an additional uncommitted phone-number sweep in the working tree. It updates the visible site phone number to `636-352-6572` and the clickable `tel:` targets to `6363526572`.
-- The phone sweep touches `index.html`, `business.html`, `residential.html`, `quick-support.html`, and all 16 service detail pages under `services/`.
-- `scripts/verify-contact-email.ps1` now verifies both contact email and phone. Latest local run returned: `Verified 19 mailto links use contact@locallogicIT.com and 20 phone displays use 636-352-6572.`
+- The contact-link sweep touches `index.html`, `business.html`, `residential.html`, `quick-support.html`, and all 16 service detail pages under `services/`.
+- `scripts/verify-contact-email.ps1` now verifies both contact email and phone. Latest local run returned: `Verified 19 mailto links use contact@locallogicit.com and 20 phone displays use 636-352-6572.`
 - `memory.md` is dirty while documenting this state. Stage intended files explicitly and keep unrelated untracked files out of any website-only commit.
 
 ## Current Site Shape
