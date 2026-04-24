@@ -11,7 +11,7 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - Local repo path: `C:\Users\DESKTOP\Desktop\LocalLogic\Local Logic IT\locallogic-it-website`
 - Production host: GCP VM `fitzwilliam-web-1`
 - Production web root: `/var/www/locallogic/current`
-- Latest verified production commit: `a407bc5` (`content: finalize contact links, SEO metadata, and landing UI tweaks`)
+- Latest verified production commit: `bac3aef` (`fix: make contact cards fully clickable on landing page`)
 - Stack: static HTML, shared CSS, shared vanilla JS, no framework, no backend, no build step
 
 ## Domain State
