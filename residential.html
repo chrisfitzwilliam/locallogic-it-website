@@ -704,10 +704,10 @@
       if (navLinks) { navLinks.style.opacity = '0'; navLinks.style.pointerEvents = 'none'; }
 
       var pill = document.createElement('div');
-      pill.style.cssText = 'position:fixed;left:32px;top:7px;z-index:1000;padding:4px;border-radius:100px;background:linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);box-shadow:0 20px 40px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.12);transform-origin:left center;font-family:"Inter", sans-serif;transition:all 0.8s cubic-bezier(0.23, 1, 0.32, 1);';
+      pill.style.cssText = 'position:fixed;left:32px;top:7px;z-index:1000;padding:4px;border-radius:100px;background:rgba(255,255,255,0.03);backdrop-filter:blur(20px);box-shadow:0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);transform-origin:left center;font-family:"Inter", sans-serif;transition:all 0.8s cubic-bezier(0.23, 1, 0.32, 1);';
 
       var pillNav = document.createElement('div');
-      pillNav.style.cssText = 'display:flex;align-items:center;padding:6px 14px;background:rgba(10, 10, 15, 0.8);backdrop-filter:blur(32px) saturate(150%);-webkit-backdrop-filter:blur(32px) saturate(150%);border-radius:100px;border:1px solid rgba(255,255,255,0.2);overflow:visible;';
+      pillNav.style.cssText = 'display:flex;align-items:center;padding:4px 14px;background:transparent;backdrop-filter:blur(32px) saturate(150%);-webkit-backdrop-filter:blur(32px) saturate(150%);border-radius:100px;overflow:visible;';
 
       var core = document.createElement('a');
       core.href = 'index.html';
@@ -796,7 +796,7 @@
       var tp = document.createElement('div');
       tp.className = 'tagline-pill';
       tp.textContent = 'Local Service. Logical Solutions.';
-      tp.style.cssText = 'position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(10px);background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);padding:6px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;z-index:299;opacity:0;transition:all 1s cubic-bezier(0.23, 1, 0.32, 1);white-space:nowrap;pointer-events:none;';
+      tp.style.cssText = 'position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);padding:6px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;z-index:299;opacity:0;transition:all 1s cubic-bezier(0.23, 1, 0.32, 1);white-space:nowrap;pointer-events:none;';
       shell.appendChild(tp);
       document.body.appendChild(shell);
 

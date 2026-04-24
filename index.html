@@ -49,10 +49,11 @@
       will-change: left, top, transform, max-width;
       padding: 4px;
       border-radius: 100px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
       box-shadow: 
           0 20px 40px rgba(0,0,0,0.4),
-          inset 0 0 0 1px var(--quartz-border);
+          0 0 0 1px var(--quartz-border);
       animation: quartz-entry 1.2s var(--transition-fluid) forwards;
       opacity: 0;
       transform: translateX(-50%) translateY(20px);
@@ -64,8 +65,8 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 6px 14px;
-      background: rgba(10, 10, 15, 0.4);
+      padding: 4px 14px;
+      background: transparent;
       backdrop-filter: blur(32px) saturate(150%);
       -webkit-backdrop-filter: blur(32px) saturate(150%);
       border-radius: 100px;
@@ -211,7 +212,7 @@
     /* Tagline Pill */
     .tagline-pill {
       position: absolute;
-      top: calc(100% + 8px);
+      top: 100%;
       left: 50%;
       transform: translateX(-50%) translateY(10px);
       background: rgba(255, 255, 255, 0.08);
