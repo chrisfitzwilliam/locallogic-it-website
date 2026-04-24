@@ -26,7 +26,7 @@
     position: relative;
     background: var(--charcoal);
     color: #f8fafc;
-    padding: 50px 32px 80px;
+    padding: 50px clamp(16px, 4vw, 32px) 80px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: clamp(16px, 2vw, 24px);
     max-width: 1200px;
     margin: 10px auto 0;
     width: 100%;
@@ -63,7 +63,7 @@
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 16px;
-    padding: 40px 32px;
+    padding: clamp(24px, 4vw, 40px) clamp(20px, 3vw, 32px);
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     cursor: pointer;
@@ -91,7 +91,7 @@
   }
   .step-number {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 800;
     color: rgba(255, 255, 255, 0.08);
     margin-bottom: 24px;
@@ -189,14 +189,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
+      padding: 0 clamp(16px, 3vw, 32px);
       height: 64px;
       box-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: clamp(10px, 2vw, 20px);
     }
     .nav-back {
       font-size: 0.8rem;
@@ -328,7 +328,7 @@
     /* ── Hero ── */
     .hero {
       background: linear-gradient(135deg, var(--charcoal-2) 0%, var(--charcoal) 100%);
-      padding: 100px 32px 80px;
+      padding: clamp(60px, 8vw, 100px) clamp(16px, 4vw, 32px) clamp(40px, 6vw, 80px);
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -384,7 +384,7 @@
 
     /* ── Section shared ── */
     .section {
-      padding: 60px 32px;
+      padding: clamp(40px, 6vw, 60px) clamp(16px, 4vw, 32px);
     }
     .section-label {
       font-size: 0.75rem;
@@ -408,8 +408,8 @@
     .services { background: var(--light); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(16px, 2vw, 24px);
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -465,8 +465,9 @@
       gap: 16px;
       background: var(--charcoal);
       border-radius: 20px;
-      padding: 32px 48px;
+      padding: clamp(24px, 4vw, 32px) clamp(20px, 5vw, 48px);
       margin: 0 auto;
+      max-width: calc(100vw - 40px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
     .contact-item {
@@ -486,15 +487,19 @@
     .footer {
       background: var(--charcoal-2);
       text-align: center;
-      padding: 24px 32px;
+      padding: clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px);
       color: rgba(255,255,255,0.4);
       font-size: 0.8rem;
     }
     .footer strong { color: var(--blue); font-weight: 700; }
 
     @media (max-width: 767px) {
-      .section { padding: 50px 20px; }
-      .contact-card { padding: 24px 24px; }
+      .nav-back { font-size: 0.7rem; }
+      .nav-logo-name { font-size: 0.85rem; }
+    }
+
+    @media (max-width: 360px) {
+      .nav-back { display: none; }
     }
   </style>
 </head>

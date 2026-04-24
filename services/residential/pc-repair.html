@@ -31,10 +31,10 @@
       position: sticky; top: 0; z-index: 100;
       background: var(--amber);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 32px; height: 64px;
+      padding: 0 clamp(16px, 3vw, 32px); height: 64px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
-    .nav-left { display: flex; align-items: center; gap: 20px; }
+    .nav-left { display: flex; align-items: center; gap: clamp(10px, 2vw, 20px); }
     .nav-back {
       font-size: 0.8rem; font-weight: 600;
       color: rgba(255,255,255,0.5); letter-spacing: 0.04em; transition: color 0.2s;
@@ -66,14 +66,16 @@
     }
     .nav-mobile-menu a:hover { color: var(--gold); }
     @media (max-width: 767px) {
-      .nav-cta-link { display: none; }
+      .nav-cta-link { display: none; } .nav-back { font-size: 0.7rem; } .nav-logo-name { font-size: 0.85rem; }
       .nav-hamburger { display: flex; }
       .nav { position: relative; }
+    }
+    @media (max-width: 360px) { .nav-back { display: none; }
     }
 
     .hero {
       background: linear-gradient(160deg, var(--amber) 0%, var(--amber-2) 100%);
-      padding: 100px 32px 80px; position: relative; overflow: hidden; text-align: center;
+      padding: clamp(60px, 10vw, 100px) clamp(16px, 4vw, 32px) clamp(40px, 8vw, 80px); position: relative; overflow: hidden; text-align: center;
     }
     .hero::before {
       content: ""; position: absolute; top: -80px; right: -80px;
@@ -107,7 +109,7 @@
     .hero-cta:hover { background: var(--gold-2); transform: translateY(-2px); }
     .hero-cta:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 
-    .section { padding: 80px 32px; }
+    .section { padding: clamp(40px, 8vw, 80px) clamp(16px, 4vw, 32px); }
     .section-label {
       font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--gold); text-align: center; margin-bottom: 12px;
@@ -150,7 +152,7 @@
     .contact-card {
       display: inline-flex; flex-direction: column; gap: 16px;
       background: var(--amber); border-radius: 20px;
-      padding: 36px 48px; margin: 0 auto;
+      padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 48px); margin: 0 auto; max-width: calc(100vw - 40px);
     }
     .contact-item {
       display: flex; align-items: center; gap: 14px;
@@ -163,13 +165,13 @@
 
     .footer {
       background: var(--amber-2); text-align: center;
-      padding: 28px 32px; color: rgba(255,255,255,0.4); font-size: 0.8rem;
+      padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 32px); color: rgba(255,255,255,0.4); font-size: 0.8rem;
     }
     .footer strong { color: var(--gold); font-weight: 700; }
 
     @media (max-width: 767px) {
       .section { padding: 60px 20px; }
-      .contact-card { padding: 28px 24px; }
+      .contact-card { max-width: calc(100vw - 32px); }
     }
   </style>
 </head>

@@ -57,14 +57,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
+      padding: 0 clamp(16px, 3vw, 32px);
       height: 64px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
     }
     .nav-left {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: clamp(10px, 2vw, 20px);
     }
     .nav-back {
       font-size: 0.8rem;
@@ -196,7 +196,7 @@
     /* ── Hero ── */
     .hero {
       background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-      padding: 80px 32px;
+      padding: clamp(48px, 8vw, 80px) clamp(16px, 4vw, 32px);
       position: relative;
       overflow: hidden;
       text-align: center;
@@ -284,7 +284,7 @@
 
     /* ── Section shared ── */
     .section {
-      padding: 90px 32px;
+      padding: clamp(50px, 8vw, 90px) clamp(16px, 4vw, 32px);
     }
     .section-label {
       font-size: 0.75rem;
@@ -308,8 +308,8 @@
     .services { background: var(--bg); }
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(20px, 3vw, 32px);
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -319,15 +319,15 @@
       background: #FFF;
       border: 1px solid var(--line);
       border-radius: 24px;
-      padding: 40px;
+      padding: clamp(24px, 5vw, 40px);
       display: flex;
       flex-direction: column;
       text-align: left;
-      gap: 24px;
+      gap: clamp(16px, 3vw, 24px);
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
       color: inherit;
-      min-height: 420px;
+      min-height: auto;
       margin-top: 30px;
     }
 
@@ -348,7 +348,7 @@
       justify-content: center;
       position: absolute;
       top: -30px;
-      left: 40px;
+      left: clamp(24px, 5vw, 40px);
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.02), 0 10px 20px rgba(69,26,3,0.05);
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
@@ -434,8 +434,9 @@
       gap: 16px;
       background: #451A03;
       border-radius: 20px;
-      padding: 36px 48px;
+      padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 48px);
       margin: 0 auto;
+      max-width: calc(100vw - 40px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
     .contact-item {
@@ -455,15 +456,22 @@
     .footer {
       background: #451A03;
       text-align: center;
-      padding: 28px 32px;
+      padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 32px);
       color: rgba(255,255,255,0.4);
       font-size: 0.8rem;
     }
     .footer strong { color: var(--primary); font-weight: 700; }
 
     @media (max-width: 767px) {
-      .section { padding: 60px 20px; }
-      .contact-card { padding: 28px 24px; }
+      .nav-back { font-size: 0.7rem; }
+      .nav-logo-name { font-size: 0.85rem; }
+      .hero { padding: clamp(36px, 8vw, 60px) 16px; }
+      .service-card { border-radius: 18px; }
+      .card-problem { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+    }
+
+    @media (max-width: 360px) {
+      .nav-back { display: none; }
     }
   </style>
 </head>

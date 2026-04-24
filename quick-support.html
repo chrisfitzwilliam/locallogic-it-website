@@ -30,7 +30,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 32px;
+      padding: 0 clamp(16px, 3vw, 32px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -40,7 +40,7 @@
     .container {
       max-width: 1000px;
       margin: 0 auto;
-      padding: 80px 32px;
+      padding: clamp(40px, 8vw, 80px) clamp(16px, 4vw, 32px);
       text-align: center;
     }
     
@@ -52,9 +52,10 @@
       background: #fff;
       border: 1px solid var(--line);
       border-radius: 32px;
-      padding: 48px;
+      padding: clamp(24px, 5vw, 48px);
       box-shadow: 0 40px 80px rgba(15,23,42,0.08);
       margin-bottom: 48px;
+      position: relative;
     }
 
     .assist-image-container {
@@ -164,7 +165,8 @@
 
     @media (max-width: 767px) {
       .steps-grid { grid-template-columns: 1fr; }
-      .assist-card { padding: 32px 24px; }
+      .assist-card { border-radius: 20px; }
+      .phone-link { font-size: clamp(1.25rem, 5vw, 2rem); }
     }
   </style>
 </head>

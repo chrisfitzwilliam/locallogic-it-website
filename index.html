@@ -421,7 +421,7 @@
       border-radius: 18px;
       backdrop-filter: blur(20px);
       pointer-events: none;
-      width: min(88vw, 420px);
+      width: min(88vw, 520px);
       border-top: 1px solid rgba(255, 255, 255, 0.18);
       transition: all 0.38s var(--transition-fluid);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
@@ -519,7 +519,7 @@
 
     /* ── Generic Sections ── */
     .section {
-      padding: 120px 32px;
+      padding: clamp(60px, 10vw, 120px) clamp(16px, 4vw, 32px);
       text-align: center;
       background: #07070f;
       position: relative;
@@ -551,16 +551,16 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(16px, 3vw, 32px);
       max-width: 1000px;
-      margin: 64px auto 0;
+      margin: clamp(32px, 6vw, 64px) auto 0;
     }
 
     .contact-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--quartz-border);
-      padding: 40px;
+      padding: clamp(24px, 4vw, 40px);
       border-radius: 24px;
       transition: all 0.3s ease;
     }
@@ -594,11 +594,90 @@
     }
 
     .footer {
-      padding: 48px 32px;
+      padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 32px);
       background: #04040a;
       text-align: center;
       color: rgba(255, 255, 255, 0.3);
       font-size: 0.85rem;
+    }
+
+    /* ── Mobile Hamburger (inside pill) ── */
+    .pill-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      margin-left: auto;
+      z-index: 2;
+    }
+
+    .pill-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .pill-hamburger:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Mobile drawer under pill */
+    .pill-mobile-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border: 1px solid var(--quartz-border);
+      border-radius: 16px;
+      padding: 12px 16px;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 300;
+    }
+
+    .pill-mobile-menu.open {
+      display: flex;
+    }
+
+    .pill-mobile-menu a {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .pill-mobile-menu a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .pill-mobile-menu .btn-support-mobile {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      font-weight: 700;
+      border-radius: 10px;
+      margin-top: 4px;
+      padding: 10px 12px;
+    }
+
+    .pill-mobile-menu .btn-support-mobile:hover {
+      background: #3267D1;
     }
 
     /* Tablet Viewport */
@@ -638,30 +717,13 @@
         font-size: 0.9rem;
       }
 
-      .header-nav-container,
-      .pill-wrapper.is-expanded .header-nav-container {
+      /* Hide desktop nav, show hamburger */
+      .header-nav-container {
+        display: none !important;
+      }
+
+      .pill-hamburger {
         display: flex;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        flex: 1;
-        justify-content: flex-end;
-      }
-
-      .header-links {
-        gap: 0;
-        padding: 0;
-      }
-
-      .pill-divider,
-      .dropdown,
-      .header-links a:not(.btn-support) {
-        display: none;
-      }
-
-      .btn-support {
-        padding: 6px 12px;
-        font-size: 0.7rem !important;
       }
 
       .tagline-pill {
@@ -675,7 +737,7 @@
       }
 
       .half {
-        min-height: 45vh;
+        min-height: min(45vh, 320px);
         flex: none;
       }
 
@@ -689,9 +751,26 @@
         line-height: 1.2;
         margin-bottom: 8px;
       }
+    }
 
-      .section {
-        padding: 60px 20px;
+    /* Mobile Landscape */
+    @media (max-width: 767px) and (orientation: landscape) {
+      .half {
+        min-height: min(50vh, 260px);
+      }
+
+      .half-caption {
+        padding: 16px 18px;
+      }
+
+      .half-icon {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 10px;
+      }
+
+      .half-arrow {
+        margin-top: 10px;
       }
     }
 
@@ -708,6 +787,17 @@
 
       .half-name {
         font-size: 1.1rem;
+      }
+    }
+
+    /* Ultra-wide */
+    @media (min-width: 1920px) {
+      .section-body {
+        max-width: 900px;
+      }
+
+      .contact-grid {
+        max-width: 1200px;
       }
     }
 
@@ -765,8 +855,22 @@
           <a href="quick-support.html" class="btn-support">Quick Support</a>
         </nav>
       </div>
+
+      <!-- Mobile hamburger (inside pill) -->
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </header>
     <div class="tagline-pill">Local Service. Logical Solutions.</div>
+
+    <!-- Mobile drawer menu -->
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="residential.html">Home &amp; Family</a>
+      <a href="business.html">Business &amp; Office</a>
+      <a href="#about" onclick="closePillMenu()">About</a>
+      <a href="#contact" onclick="closePillMenu()">Contact</a>
+      <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
+    </div>
   </div>
 
   <!-- Landing / Chooser -->
@@ -911,6 +1015,13 @@
       setTimeout(() => window.location.href = dest, 1000);
     }
 
+    function closePillMenu() {
+      var menu = document.getElementById('pill-mobile-menu');
+      var btn = document.getElementById('pill-hamburger');
+      if (menu) menu.classList.remove('open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+
     function init() {
       document.body.classList.add('is-loaded');
 
@@ -934,6 +1045,22 @@
         if (window.innerWidth > 767) {
           setTimeout(() => shell.classList.add('is-expanded'), 1200);
         }
+      }
+
+      // Pill hamburger toggle
+      const pillHamburger = document.getElementById('pill-hamburger');
+      const pillMenu = document.getElementById('pill-mobile-menu');
+      if (pillHamburger && pillMenu) {
+        pillHamburger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = pillMenu.classList.toggle('open');
+          pillHamburger.setAttribute('aria-expanded', isOpen);
+        });
+        document.addEventListener('click', (e) => {
+          if (!pillMenu.contains(e.target) && !pillHamburger.contains(e.target)) {
+            closePillMenu();
+          }
+        });
       }
 
       // Dropdown Toggle for Mobile
