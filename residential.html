@@ -7,6 +7,65 @@
   <meta name="view-transition" content="same-origin" />
   <title>Local Logic IT — Residential IT Support</title>
   <link rel="canonical" href="https://locallogicit.com/residential.html" />
+  <meta property="og:title" content="Local Logic IT — Residential IT Support" />
+  <meta property="og:description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
+  <meta property="og:url" content="https://locallogicit.com/residential.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://locallogicit.com/assets/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Local Logic IT — Residential IT Support" />
+  <meta name="twitter:description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://locallogicit.com/#organization",
+          "name": "Local Logic IT",
+          "url": "https://locallogicit.com/",
+          "logo": "https://locallogicit.com/assets/logo.png",
+          "email": "contact@locallogicit.com",
+          "telephone": "+1-636-352-6572",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "contact@locallogicit.com",
+              "telephone": "+1-636-352-6572",
+              "availableLanguage": [
+                "en"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://locallogicit.com/#website",
+          "url": "https://locallogicit.com/",
+          "name": "Local Logic IT",
+          "publisher": {
+            "@id": "https://locallogicit.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://locallogicit.com/residential.html#webpage",
+          "url": "https://locallogicit.com/residential.html",
+          "name": "Local Logic IT — Residential IT Support",
+          "description": "Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help.",
+          "isPartOf": {
+            "@id": "https://locallogicit.com/#website"
+          },
+          "about": {
+            "@id": "https://locallogicit.com/#organization"
+          },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -706,13 +765,47 @@
       sessionStorage.removeItem('fromLanding');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
+  </footer>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+  </script>
+
+  <script>
+    /* ── Bubble landing + expand animation ── */
+    (function () {
+      if (!sessionStorage.getItem('fromLanding')) return;
+      sessionStorage.removeItem('fromLanding');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
       var navLeft  = document.querySelector('.nav-left');
       var navLinks = document.querySelector('.nav-links');
       if (navLeft)  { navLeft.style.opacity  = '0'; navLeft.style.pointerEvents  = 'none'; }
       if (navLinks) { navLinks.style.opacity = '0'; navLinks.style.pointerEvents = 'none'; }
 
+      var shell = document.createElement('div');
+      shell.id = 'quartz-shell';
+      shell.style.cssText = 'position:fixed;left:50%;top:12px;z-index:1000;width:auto;transform:translateX(-50%) translateY(20px);transition:all 0.8s cubic-bezier(0.23, 1, 0.32, 1);opacity:0;';
+
       var pill = document.createElement('div');
-      pill.style.cssText = 'position:fixed;left:32px;top:7px;z-index:1000;border-radius:100px;background:rgba(15,15,20,0.4);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(255,255,255,0.12);box-shadow:0 20px 40px rgba(0,0,0,0.5);transform-origin:left center;font-family:"Inter", sans-serif;transition:all 0.8s cubic-bezier(0.23, 1, 0.32, 1);opacity:0;transform:translateY(20px);';
+      pill.style.cssText = 'border-radius:100px;background:rgba(15,15,20,0.4);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(255,255,255,0.12);box-shadow:0 20px 40px rgba(0,0,0,0.5);font-family:"Inter", sans-serif;';
 
       var pillNav = document.createElement('div');
       pillNav.style.cssText = 'display:flex;align-items:center;padding:8px 18px;background:transparent;border-radius:100px;overflow:visible;';
@@ -752,7 +845,7 @@
 
       var dropCont = document.createElement('div');
       dropCont.className = 'pill-dropdown-content';
-      dropCont.style.cssText = 'display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);padding-top:12px;z-index:1000;opacity:0;transition:opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);pointer-events:none;';
+      dropCont.style.cssText = 'display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(18px);padding-top:12px;z-index:1000;opacity:0;transition:opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);pointer-events:none;';
 
       var dropInner = document.createElement('div');
       dropInner.style.cssText = 'background:rgba(10, 10, 15, 0.9);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.12);border-radius:16px;min-width:180px;padding:8px;box-shadow:0 20px 40px rgba(0,0,0,0.5);';
@@ -776,7 +869,7 @@
 
       drop.addEventListener('mouseenter', function(){ 
         dropCont.style.display = 'block';
-        setTimeout(() => { dropCont.style.opacity = '1'; dropCont.style.transform = 'translateX(-50%) translateY(0)'; dropCont.style.pointerEvents = 'auto'; }, 10);
+        setTimeout(() => { dropCont.style.opacity = '1'; dropCont.style.transform = 'translateX(-50%) translateY(8px)'; dropCont.style.pointerEvents = 'auto'; }, 10);
       });
       drop.addEventListener('mouseleave', function(){ 
         dropCont.style.opacity = '0'; dropCont.style.transform = 'translateX(-50%) translateY(10px)'; dropCont.style.pointerEvents = 'none';
@@ -810,6 +903,9 @@
 
       requestAnimationFrame(function () {
         setTimeout(function () {
+          shell.style.opacity = '1';
+          shell.style.left = '32px';
+          shell.style.transform = 'translateY(0)';
           expand.style.maxWidth = '600px';
           expand.style.opacity  = '1';
           setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
