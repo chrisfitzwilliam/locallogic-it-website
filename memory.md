@@ -21,7 +21,25 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - `locallogic.fitzwilliam.net` stays live and should continue serving the same site on its own hostname.
 - Deployed HTML pages now include canonical tags pointing at `https://locallogicit.com/...`.
 - The VM has a Let's Encrypt certificate covering `locallogicit.com` and `www.locallogicit.com`.
-- Cloudflare proxy is enabled for apex and `www`. The API token in `keys.txt` could edit DNS but could not read/write zone SSL mode, so if edge SSL settings need review, confirm `Full (strict)` manually in the Cloudflare dashboard.
+- Cloudflare proxy is enabled for apex and `www`.
+- Current Cloudflare edge SSL mode is `Full` with active certificate status. Do not assume `Full (strict)` without re-validating the origin certificate path first.
+
+### Email Routing
+
+- Cloudflare Email Routing for `locallogicit.com` was configured on April 23, 2026 local time. Cloudflare API state reached `status: ready`, `enabled: true`, and `synced: true`.
+- `contact@locallogicit.com` forwards to the verified destination address `chris@fitzwilliam.net`.
+- Required inbound-mail DNS records now exist on the zone: MX records for `route1.mx.cloudflare.net`, `route2.mx.cloudflare.net`, and `route3.mx.cloudflare.net`; SPF `v=spf1 include:_spf.mx.cloudflare.net ~all`; and DKIM at `cf2024-1._domainkey.locallogicit.com`.
+- This is inbound forwarding only. Replies still send from the underlying mailbox unless a real `@locallogicit.com` mailbox is added later.
+- Local checkout mail links were updated site-wide to `contact@locallogicIT.com` in local-only commit `781fe97` (`content: update website contact email`).
+- Because `781fe97` is local-only, do not assume production mail links have changed until a push/deploy is completed and the live pages are re-verified.
+
+### Current Local Checkout State (April 23, 2026)
+
+- Branch state is currently `main...origin/main [ahead 1]` because of local-only commit `781fe97` (`content: update website contact email`).
+- There is an additional uncommitted phone-number sweep in the working tree. It updates the visible site phone number to `636-352-6572` and the clickable `tel:` targets to `6363526572`.
+- The phone sweep touches `index.html`, `business.html`, `residential.html`, `quick-support.html`, and all 16 service detail pages under `services/`.
+- `scripts/verify-contact-email.ps1` now verifies both contact email and phone. Latest local run returned: `Verified 19 mailto links use contact@locallogicIT.com and 20 phone displays use 636-352-6572.`
+- `memory.md` is dirty while documenting this state. Stage intended files explicitly and keep unrelated untracked files out of any website-only commit.
 
 ## Current Site Shape
 
@@ -93,6 +111,9 @@ Key architectural changes:
 - Use PowerShell on Windows.
 - Use `python`, not `py`.
 - Local preview: `python -m http.server <port>`.
+- When Chris says "commit to locallogicit.com" or "commit to website", interpret that as a commit to `main` in `https://github.com/chrisfitzwilliam/locallogic-it-website`; that repo's GitHub Action is what updates the server.
+- Contact sweep verification: `powershell -ExecutionPolicy Bypass -File .\scripts\verify-contact-email.ps1`.
+- `keys.txt` is a local-only secrets file and may contain live Cloudflare API tokens. Keep it untracked and do not commit it.
 - Stage intended files explicitly. Do not use `git add .` or `git add -A`.
 - Before commit: run `git diff --cached --check`.
 - After push: verify the live site directly with cache-busted URLs.
