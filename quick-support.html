@@ -119,32 +119,30 @@
       font-size: 0.85rem;
       box-shadow: 0 2px 0 var(--line);
     }
-    /* Tagline Pill */
     .tagline-pill {
       position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      padding: 6px 20px;
-      border-radius: 999px;
-      border: 1px solid var(--quartz-border);
+      top: calc(100% + 4px);
+      left: 18px;
+      transform: translateY(10px);
+      background: transparent;
+      backdrop-filter: none;
+      padding: 0;
       color: var(--text-secondary);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       z-index: 299;
       opacity: 0;
       transition: all 1s var(--transition-fluid);
       white-space: nowrap;
       pointer-events: none;
+      border: none;
     }
 
     .pill-wrapper.is-expanded .tagline-pill {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      opacity: 0.8;
+      transform: translateY(0);
     }
     .phone-link:hover { color: var(--primary-dark); }
 

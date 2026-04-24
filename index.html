@@ -47,13 +47,13 @@
       left: 50%;
       z-index: 300;
       will-change: left, top, transform, max-width;
-      padding: 4px;
+      padding: 0;
       border-radius: 100px;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      box-shadow: 
-          0 20px 40px rgba(0,0,0,0.4),
-          0 0 0 1px var(--quartz-border);
+      background: rgba(15, 15, 20, 0.4);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
+      border: 1px solid var(--quartz-border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
       animation: quartz-entry 1.2s var(--transition-fluid) forwards;
       opacity: 0;
       transform: translateX(-50%) translateY(20px);
@@ -65,12 +65,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 4px 14px;
+      padding: 8px 18px;
       background: transparent;
-      backdrop-filter: blur(32px) saturate(150%);
-      -webkit-backdrop-filter: blur(32px) saturate(150%);
       border-radius: 100px;
-      border: 1px solid var(--quartz-edge);
       position: relative;
       z-index: 1;
       overflow: visible;
@@ -209,32 +206,30 @@
       color: #fff !important;
     }
 
-    /* Tagline Pill */
     .tagline-pill {
       position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px);
-      padding: 6px 20px;
-      border-radius: 999px;
-      border: 1px solid var(--quartz-border);
+      top: calc(100% + 4px);
+      left: 18px; 
+      transform: translateY(10px);
+      background: transparent;
+      backdrop-filter: none;
+      padding: 0;
       color: var(--text-secondary);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       z-index: 299;
       opacity: 0;
       transition: all 1s var(--transition-fluid);
       white-space: nowrap;
       pointer-events: none;
+      border: none;
     }
 
     .pill-wrapper.is-expanded .tagline-pill {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      opacity: 0.8;
+      transform: translateY(0);
     }
 
     /* Quick Support Button */
@@ -551,8 +546,8 @@
           setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
           var tp = header.querySelector('.tagline-pill');
           if (tp) {
-            tp.style.opacity = '1';
-            tp.style.transform = 'translateX(-50%) translateY(0)';
+            tp.style.opacity = '0.8';
+            tp.style.transform = 'translateY(0)';
           }
         }, 150);
       });
