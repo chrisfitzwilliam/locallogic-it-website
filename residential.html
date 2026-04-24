@@ -789,21 +789,23 @@
 
       pillNav.appendChild(expand);
       pill.appendChild(pillNav);
-      document.body.appendChild(pill);
+      shell.appendChild(pill);
 
       // Tagline Pill
       var tp = document.createElement('div');
+      tp.className = 'tagline-pill';
       tp.textContent = 'Local Service. Logical Solutions.';
-      tp.style.cssText = 'position:fixed;left:32px;top:52px;background:rgba(255,255,255,0.05);backdrop-filter:blur(16px);padding:4px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;z-index:999;opacity:0;transition:all 0.8s ease 0.4s;';
-      document.body.appendChild(tp);
+      tp.style.cssText = 'position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(10px);background:rgba(255,255,255,0.08);backdrop-filter:blur(16px);padding:6px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;z-index:299;opacity:0;transition:all 1s cubic-bezier(0.23, 1, 0.32, 1);white-space:nowrap;pointer-events:none;';
+      shell.appendChild(tp);
+      document.body.appendChild(shell);
 
       requestAnimationFrame(function () {
         setTimeout(function () {
           expand.style.maxWidth = '600px';
           expand.style.opacity  = '1';
-          setTimeout(function() { expand.style.overflow = 'visible'; }, 800); // Allow dropdown after expansion
+          setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
           tp.style.opacity = '1';
-          tp.style.transform = 'translateY(0)';
+          tp.style.transform = 'translateX(-50%) translateY(0)';
         }, 150);
       });
     }());

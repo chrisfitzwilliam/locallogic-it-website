@@ -209,11 +209,11 @@
 
     /* Tagline Pill */
     .tagline-pill {
-      position: fixed;
-      top: 82px;
+      position: absolute;
+      top: calc(100% + 8px);
       left: 50%;
       transform: translateX(-50%) translateY(10px);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(16px);
       padding: 6px 20px;
       border-radius: 999px;
@@ -227,9 +227,10 @@
       opacity: 0;
       transition: all 1s var(--transition-fluid);
       white-space: nowrap;
+      pointer-events: none;
     }
 
-    .pill-wrapper.is-expanded + .tagline-pill {
+    .pill-wrapper.is-expanded .tagline-pill {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
@@ -427,8 +428,8 @@
             </nav>
           </div>
       </header>
+      <div class="tagline-pill">Local Service. Logical Solutions.</div>
   </div>
-  <div class="tagline-pill">Local Service. Logical Solutions.</div>
 
   <!-- Landing / Chooser -->
   <main class="chooser" id="chooser">
@@ -543,12 +544,14 @@
         requestAnimationFrame(function () {
         setTimeout(function () {
           var expand = document.getElementById('expanded-nav');
-          var tp = document.querySelector('.tagline-pill');
           expand.style.maxWidth = '600px';
           expand.style.opacity  = '1';
-          setTimeout(function() { expand.style.overflow = 'visible'; }, 800); // Allow dropdown after expansion
-          tp.style.opacity = '1';
-          tp.style.transform = 'translateY(0)';
+          setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
+          var tp = header.querySelector('.tagline-pill');
+          if (tp) {
+            tp.style.opacity = '1';
+            tp.style.transform = 'translateX(-50%) translateY(0)';
+          }
         }, 150);
       });
       sessionStorage.setItem('fromLanding', '1');

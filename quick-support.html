@@ -118,6 +118,34 @@
       font-size: 0.85rem;
       box-shadow: 0 2px 0 var(--line);
     }
+    /* Tagline Pill */
+    .tagline-pill {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      padding: 6px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--quartz-border);
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 299;
+      opacity: 0;
+      transition: all 1s var(--transition-fluid);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .pill-wrapper.is-expanded .tagline-pill {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .phone-link:hover { color: var(--primary-dark); }
 
     .contact-footer {
       margin-top: 64px;
@@ -134,7 +162,6 @@
       margin-bottom: 16px;
       transition: color 0.2s;
     }
-    .phone-link:hover { color: var(--primary-dark); }
 
     @media (max-width: 767px) {
       .steps-grid { grid-template-columns: 1fr; }
@@ -186,6 +213,7 @@
           <p>Click "Allow" to share your screen so we can see what's happening and fix the issue.</p>
         </div>
       </div>
+      <div class="tagline-pill">Local Service. Logical Solutions.</div>
     </div>
 
     <footer class="contact-footer">
