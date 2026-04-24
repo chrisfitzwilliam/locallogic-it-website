@@ -11,7 +11,7 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - Local repo path: `C:\Users\DESKTOP\Desktop\LocalLogic\Local Logic IT\locallogic-it-website`
 - Production host: GCP VM `fitzwilliam-web-1`
 - Production web root: `/var/www/locallogic/current`
-- Latest verified production commit: `d5fe7f7` (`chore: cut over site metadata to locallogicit.com`)
+- Latest verified production commit: `a407bc5` (`content: finalize contact links, SEO metadata, and landing UI tweaks`)
 - Stack: static HTML, shared CSS, shared vanilla JS, no framework, no backend, no build step
 
 ## Domain State
@@ -33,12 +33,13 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - Local checkout contact links were updated site-wide to `mailto:contact@locallogicit.com` and `tel:6363526572` in the current working tree.
 - The visible phone text remains `636-352-6572`; only the clickable `tel:` targets use the unformatted digits.
 
-### Current Local Checkout State (April 23, 2026)
+### Current Local Checkout State (April 24, 2026)
 
-- Branch state is currently `main...origin/main [ahead 1]` because of local-only commit `781fe97` (`content: update website contact email`).
-- The contact-link sweep touches `index.html`, `business.html`, `residential.html`, `quick-support.html`, and all 16 service detail pages under `services/`.
-- `scripts/verify-contact-email.ps1` now verifies both contact email and phone. Latest local run returned: `Verified 19 mailto links use contact@locallogicit.com and 20 phone displays use 636-352-6572.`
-- `memory.md` is dirty while documenting this state. Stage intended files explicitly and keep unrelated untracked files out of any website-only commit.
+- Branch state is currently up to date with `origin/main`.
+- The contact-link, SEO metadata, and landing UI sweep touched `index.html`, `business.html`, `residential.html`, `quick-support.html`, and all 16 service detail pages under `services/`.
+- `scripts/verify-contact-email.ps1` now verifies both contact email and phone. Latest local run returned: `Verified 19 mailto links use contact@locallogicit.com and 60 phone displays use 636-352-6572.`
+- `robots.txt` and `sitemap.xml` have been added and verified live.
+- `memory.md` is now up to date with the production state.
 
 ## Current Site Shape
 
