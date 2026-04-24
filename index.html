@@ -383,6 +383,56 @@
     }
 
     @media (max-width: 767px) {
+      .pill-wrapper {
+        top: 10px;
+        width: calc(100vw - 16px);
+      }
+      .pill-nav {
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 12px;
+      }
+      .header-brand {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+      }
+      .header-logo svg {
+        width: 20px;
+        height: 20px;
+      }
+      .header-name {
+        font-size: 0.92rem;
+      }
+      .header-nav-container,
+      .pill-wrapper.is-expanded .header-nav-container {
+        flex: 1 1 auto;
+        max-width: none;
+        width: 100%;
+        opacity: 1;
+        overflow: visible;
+        justify-content: flex-end;
+        transition: none;
+      }
+      .header-links {
+        width: auto;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 0;
+        padding: 0;
+      }
+      .pill-divider,
+      .dropdown,
+      .header-links a:not(.btn-support) {
+        display: none;
+      }
+      .btn-support {
+        padding: 5px 10px;
+        font-size: 0.7rem !important;
+      }
+      .dropdown-content {
+        left: 50%;
+      }
+      .tagline-pill { display: none; }
       .chooser { flex-direction: column; height: auto; min-height: 100vh; }
       .half { min-height: 44vh; }
       .tagline-pill { top: auto; bottom: 20px; font-size: 0.6rem; }
@@ -481,7 +531,7 @@
       <div class="contact-card">
         <i class="ph ph-phone"></i>
         <h3>Call Us</h3>
-        <p><a href="tel:5550000000">(555) 000-0000</a></p>
+        <p><a href="tel:6363526572">636-352-6572</a></p>
       </div>
       <div class="contact-card">
         <i class="ph ph-headset"></i>
