@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta name="description"
+    content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
   <meta name="view-transition" content="same-origin" />
   <title>Local Logic IT — Choose Your Service</title>
   <link rel="canonical" href="https://locallogicit.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <style>
     :root {
-      --quartz-bg: rgba(255, 255, 255, 0.03);
+      --quartz-bg: rgba(15, 15, 20, 0.4);
       --quartz-border: rgba(255, 255, 255, 0.12);
       --quartz-edge: rgba(255, 255, 255, 0.4);
       --accent-glow: rgba(200, 220, 255, 0.15);
@@ -21,13 +25,26 @@
       --text-secondary: rgba(255, 255, 255, 0.5);
       --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
       --primary: #4A80E8;
+      --nav-height: 52px;
+      --nav-top: 18px;
     }
 
     /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 15px; }
-    body { 
-      min-height: 100vh; 
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+    }
+
+    body {
+      min-height: 100vh;
       overflow-x: hidden;
       font-family: "Manrope", sans-serif;
       background: #07070f;
@@ -36,29 +53,38 @@
 
     /* ── Flash animation (injected on click) ── */
     @keyframes flash-out {
-      0%   { opacity: 0.8; }
-      100% { opacity: 0;   }
+      0% {
+        opacity: 0.8;
+      }
+
+      100% {
+        opacity: 0;
+      }
     }
 
     /* The Quartz Shell */
     .pill-wrapper {
       position: fixed;
-      top: 18px;
+      top: var(--nav-top);
       left: 50%;
       z-index: 300;
-      will-change: left, top, transform, max-width;
       padding: 0;
       border-radius: 100px;
-      background: rgba(15, 15, 20, 0.4);
+      background: var(--quartz-bg);
       backdrop-filter: blur(24px) saturate(160%);
       -webkit-backdrop-filter: blur(24px) saturate(160%);
       border: 1px solid var(--quartz-border);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      animation: quartz-entry 1.2s var(--transition-fluid) forwards;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
       opacity: 0;
       transform: translateX(-50%) translateY(20px);
       font-family: 'Inter', sans-serif;
-      transition: all 0.8s var(--transition-fluid);
+      transition: opacity 0.8s var(--transition-fluid), transform 0.8s var(--transition-fluid), left 0.4s ease, right 0.4s ease, width 0.4s ease;
+      will-change: transform, opacity;
+    }
+
+    body.is-loaded .pill-wrapper {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     .pill-nav {
@@ -66,14 +92,15 @@
       align-items: center;
       gap: 12px;
       padding: 8px 18px;
+      height: var(--nav-height);
       background: transparent;
       border-radius: 100px;
       position: relative;
       z-index: 1;
-      overflow: visible;
     }
 
-    .header-logo, .header-name {
+    .header-logo,
+    .header-name {
       position: relative;
       z-index: 2;
     }
@@ -86,7 +113,10 @@
       color: inherit;
       transition: opacity 0.2s;
     }
-    .header-brand:hover { opacity: 0.8; }
+
+    .header-brand:hover {
+      opacity: 0.8;
+    }
 
     .header-logo {
       display: flex;
@@ -95,7 +125,11 @@
       color: #fff;
     }
 
-    .header-logo svg { height: 24px; width: 24px; display: block; }
+    .header-logo svg {
+      height: 24px;
+      width: 24px;
+      display: block;
+    }
 
     .header-name {
       font-size: 1rem;
@@ -108,16 +142,16 @@
     .header-nav-container {
       display: flex;
       align-items: center;
-      max-width: 0;
       opacity: 0;
-      overflow: hidden;
-      transition: max-width 0.8s var(--transition-fluid), opacity 0.6s ease;
+      visibility: hidden;
+      transform: translateX(10px);
+      transition: opacity 0.6s var(--transition-fluid), transform 0.6s var(--transition-fluid), visibility 0.6s;
     }
 
     .pill-wrapper.is-expanded .header-nav-container {
-      max-width: 600px;
       opacity: 1;
-      overflow: visible; /* Allow dropdown to be seen */
+      visibility: visible;
+      transform: translateX(0);
     }
 
     .header-links {
@@ -128,7 +162,8 @@
       align-items: center;
     }
 
-    .header-links a, .dropdown-trigger {
+    .header-links a,
+    .dropdown-trigger {
       font-size: 0.8rem;
       font-weight: 600;
       color: var(--text-secondary);
@@ -140,7 +175,8 @@
       cursor: pointer;
     }
 
-    .header-links a:hover, .dropdown-trigger:hover {
+    .header-links a:hover,
+    .dropdown-trigger:hover {
       color: #fff;
       transform: translateY(-1px);
     }
@@ -151,27 +187,46 @@
       transform: translateX(0);
     }
 
-    .pill-wrapper.is-expanded .header-links a:nth-child(1),
-    .pill-wrapper.is-expanded .dropdown-trigger { transition-delay: 0.4s; }
-    .pill-wrapper.is-expanded .header-links a:nth-child(2) { transition-delay: 0.5s; }
-    .pill-wrapper.is-expanded .header-links a:nth-child(3) { transition-delay: 0.6s; }
-    .pill-wrapper.is-expanded .header-links a:nth-child(4) { transition-delay: 0.7s; }
+    .pill-wrapper.is-expanded .header-links>*:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .pill-wrapper.is-expanded .header-links>*:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .pill-wrapper.is-expanded .header-links>*:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .pill-wrapper.is-expanded .header-links>*:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .pill-wrapper.is-expanded .header-links>*:nth-child(5) {
+      transition-delay: 0.5s;
+    }
 
     /* Dropdown Logic */
-    .dropdown { position: relative; }
+    .dropdown {
+      position: relative;
+    }
+
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 100%; /* Contiguous hit area */
+      top: 100%;
+      /* Contiguous hit area */
       left: 50%;
       transform: translateX(-50%) translateY(10px);
-      padding-top: 12px; /* Visual gap that still captures hover */
+      padding-top: 12px;
+      /* Visual gap that still captures hover */
       z-index: 1000;
       opacity: 0;
       transition: opacity 0.3s var(--transition-fluid), transform 0.3s var(--transition-fluid);
       pointer-events: none;
     }
-    
+
     .dropdown-content-inner {
       background: rgba(10, 10, 15, 0.9);
       backdrop-filter: blur(24px);
@@ -179,7 +234,7 @@
       border-radius: 16px;
       min-width: 180px;
       padding: 8px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
     .dropdown:hover .dropdown-content,
@@ -202,7 +257,7 @@
     }
 
     .dropdown-content a:hover {
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: #fff !important;
     }
 
@@ -225,11 +280,13 @@
       white-space: nowrap;
       pointer-events: none;
       border: none;
+      visibility: hidden;
     }
 
     .pill-wrapper.is-expanded .tagline-pill {
       opacity: 0.8;
       transform: translateX(-50%) translateY(0);
+      visibility: visible;
     }
 
     /* Quick Support Button */
@@ -239,11 +296,12 @@
       padding: 6px 14px;
       border-radius: 999px;
       font-size: 0.75rem !important;
-      box-shadow: 0 4px 12px rgba(74,128,232,0.3);
+      box-shadow: 0 4px 12px rgba(74, 128, 232, 0.3);
     }
+
     .btn-support:hover {
       background: #3267D1;
-      box-shadow: 0 6px 16px rgba(74,128,232,0.4);
+      box-shadow: 0 6px 16px rgba(74, 128, 232, 0.4);
     }
 
     .pill-divider {
@@ -255,66 +313,209 @@
       z-index: 2;
     }
 
-    @keyframes quartz-entry {
+    /* Chooser Layout */
+    @keyframes chooser-fade-in {
+      from {
+        opacity: 0;
+      }
+
       to {
-          opacity: 1;
-          transform: translateX(-50%) translateY(0);
+        opacity: 1;
       }
     }
 
-    /* Chooser Layout */
-    @keyframes chooser-fade-in { from { opacity: 0; } to { opacity: 1; } }
-    .chooser { display: flex; width: 100%; height: 100vh; overflow: hidden; animation: chooser-fade-in 0.6s ease both; }
-    .half { position: relative; flex: 1; overflow: hidden; cursor: pointer; outline: none; }
-    .half--residential { box-shadow: inset -1px 0 0 rgba(255,255,255,0.08); }
-    .half-preview { position: absolute; top: 0; left: 0; border: none; display: block; pointer-events: none; transform-origin: 0 0; }
-    .half-overlay { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(4,6,14,0.85); backdrop-filter: blur(14px); transition: all 0.4s var(--transition-fluid); }
-    .half:hover .half-overlay { opacity: 0.7; backdrop-filter: blur(10px); }
+    .chooser {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      animation: chooser-fade-in 0.6s ease both;
+    }
+
+    .half {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      cursor: pointer;
+      outline: none;
+      background: #04060e;
+    }
+
+    .half--residential {
+      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .half-preview {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: none;
+      display: block;
+      pointer-events: none;
+      transform-origin: 0 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .half-preview.is-hidden {
+      opacity: 0;
+      display: none;
+    }
+
+    .half-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(4, 6, 14, 0.85);
+      backdrop-filter: blur(14px);
+      transition: all 0.4s var(--transition-fluid);
+    }
+
+    .half:hover .half-overlay {
+      opacity: 0.7;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Static fallbacks for mobile or performance */
+    .half--residential {
+      background: radial-gradient(circle at center, #1a1a2e 0%, #04060e 100%);
+    }
+
+    .half--business {
+      background: radial-gradient(circle at center, #0d1b38 0%, #04060e 100%);
+    }
 
     @keyframes glow-gold {
-      0%, 100% { box-shadow: 0 0 22px rgba(245,158,11,0.18), 0 8px 48px rgba(245,158,11,0.10), inset 0 1px 0 rgba(255,255,255,0.09); }
-      50% { box-shadow: 0 0 38px rgba(245,158,11,0.34), 0 8px 64px rgba(245,158,11,0.20), inset 0 1px 0 rgba(255,255,255,0.13); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 22px rgba(245, 158, 11, 0.18), 0 8px 48px rgba(245, 158, 11, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      }
+
+      50% {
+        box-shadow: 0 0 38px rgba(245, 158, 11, 0.34), 0 8px 64px rgba(245, 158, 11, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+      }
     }
+
     @keyframes glow-blue {
-      0%, 100% { box-shadow: 0 0 22px rgba(74,128,232,0.18), 0 8px 48px rgba(74,128,232,0.10), inset 0 1px 0 rgba(255,255,255,0.09); }
-      50% { box-shadow: 0 0 38px rgba(74,128,232,0.34), 0 8px 64px rgba(74,128,232,0.20), inset 0 1px 0 rgba(255,255,255,0.13); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 22px rgba(74, 128, 232, 0.18), 0 8px 48px rgba(74, 128, 232, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      }
+
+      50% {
+        box-shadow: 0 0 38px rgba(74, 128, 232, 0.34), 0 8px 64px rgba(74, 128, 232, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+      }
     }
 
     .half-caption {
       position: absolute;
-      top: calc(50% + 40px);
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
       text-align: center;
-      padding: 36px 52px 32px;
-      background: rgba(6,7,16,0.55);
+      padding: clamp(24px, 5vw, 36px) clamp(20px, 6vw, 52px);
+      background: rgba(6, 7, 16, 0.65);
       border-radius: 18px;
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
       pointer-events: none;
-      white-space: nowrap;
-      border-top: 1px solid rgba(255,255,255,0.18);
+      width: min(88vw, 420px);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
       transition: all 0.38s var(--transition-fluid);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
-    .half--residential .half-caption { border-color: rgba(245,158,11,0.32); animation: glow-gold 3.6s ease-in-out infinite; }
-    .half--business .half-caption { border-color: rgba(74,128,232,0.32); animation: glow-blue 3.6s ease-in-out infinite; }
-    .half:hover .half-caption { transform: translate(-50%, -56%); }
 
-    .half-icon { display: block; width: 52px; height: 52px; margin: 0 auto 18px; }
-    .half--residential .half-icon { color: #F59E0B; }
-    .half--business .half-icon { color: #4A80E8; }
-    .half-name { font-size: 1.5rem; font-weight: 800; display: block; margin-bottom: 5px; }
-    .half--residential .half-name { color: #F59E0B; }
-    .half--business .half-name { color: #4A80E8; }
-    .half-sub { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); display: block; }
-    .half-arrow { display: block; margin-top: 18px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-    .half--residential .half-arrow { color: rgba(245,158,11,0.85); }
-    .half--business .half-arrow { color: rgba(74,128,232,0.85); }
+    .half--residential .half-caption {
+      border-color: rgba(245, 158, 11, 0.32);
+      animation: glow-gold 3.6s ease-in-out infinite;
+    }
 
-    .half.is-selecting { position: fixed !important; inset: 0 !important; z-index: 100; flex: none; overflow: hidden; }
-    .half.is-selecting .half-overlay { opacity: 0 !important; }
-    .half.is-selecting .half-caption { opacity: 0 !important; }
-    .chooser.has-selection .half:not(.is-selecting) { opacity: 0; pointer-events: none; transition: opacity 0.18s ease; }
+    .half--business .half-caption {
+      border-color: rgba(74, 128, 232, 0.32);
+      animation: glow-blue 3.6s ease-in-out infinite;
+    }
+
+    .half:hover .half-caption {
+      transform: translate(-50%, -54%);
+    }
+
+    .half-icon {
+      display: block;
+      width: clamp(40px, 8vw, 52px);
+      height: clamp(40px, 8vw, 52px);
+      margin: 0 auto 18px;
+    }
+
+    .half--residential .half-icon {
+      color: #F59E0B;
+    }
+
+    .half--business .half-icon {
+      color: #4A80E8;
+    }
+
+    .half-name {
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      font-weight: 800;
+      display: block;
+      margin-bottom: 5px;
+      white-space: nowrap;
+    }
+
+    .half--residential .half-name {
+      color: #F59E0B;
+    }
+
+    .half--business .half-name {
+      color: #4A80E8;
+    }
+
+    .half-sub {
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 500;
+      color: var(--text-secondary);
+      display: block;
+    }
+
+    .half-arrow {
+      display: block;
+      margin-top: 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .half--residential .half-arrow {
+      color: rgba(245, 158, 11, 0.85);
+    }
+
+    .half--business .half-arrow {
+      color: rgba(74, 128, 232, 0.85);
+    }
+
+    .half.is-selecting {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 100;
+      flex: none;
+      overflow: hidden;
+    }
+
+    .half.is-selecting .half-overlay {
+      opacity: 0 !important;
+    }
+
+    .half.is-selecting .half-caption {
+      opacity: 0 !important;
+    }
+
+    .chooser.has-selection .half:not(.is-selecting) {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
 
     /* ── Generic Sections ── */
     .section {
@@ -323,6 +524,7 @@
       background: #07070f;
       position: relative;
     }
+
     .section-label {
       font-size: 0.75rem;
       font-weight: 700;
@@ -331,12 +533,14 @@
       color: var(--primary);
       margin-bottom: 16px;
     }
+
     .section-heading {
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: 48px;
     }
+
     .section-body {
       max-width: 800px;
       margin: 0 auto;
@@ -352,141 +556,232 @@
       max-width: 1000px;
       margin: 64px auto 0;
     }
+
     .contact-card {
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--quartz-border);
       padding: 40px;
       border-radius: 24px;
       transition: all 0.3s ease;
     }
+
     .contact-card:hover {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border-color: var(--primary);
       transform: translateY(-8px);
     }
+
     .contact-card i {
       font-size: 2.5rem;
       color: var(--primary);
       margin-bottom: 24px;
       display: block;
     }
-    .contact-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
-    .contact-card a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
-    .contact-card a:hover { color: #fff; }
+
+    .contact-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-card a:hover {
+      color: #fff;
+    }
 
     .footer {
       padding: 48px 32px;
       background: #04040a;
       text-align: center;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255, 255, 255, 0.3);
       font-size: 0.85rem;
     }
 
+    /* Tablet Viewport */
+    @media (max-width: 899px) {
+      .header-links {
+        gap: 12px;
+      }
+    }
+
+    /* Mobile Viewport */
     @media (max-width: 767px) {
       .pill-wrapper {
-        top: 10px;
-        width: calc(100vw - 16px);
+        top: 8px;
+        left: 8px !important;
+        right: 8px !important;
+        width: auto !important;
+        transform: translateY(0) !important;
+        border-radius: 16px;
       }
+
       .pill-nav {
         justify-content: space-between;
         gap: 10px;
-        padding: 10px 12px;
+        padding: 0 12px;
       }
+
       .header-brand {
         flex: 0 0 auto;
-        justify-content: flex-start;
       }
+
       .header-logo svg {
         width: 20px;
         height: 20px;
       }
+
       .header-name {
-        font-size: 0.92rem;
+        font-size: 0.9rem;
       }
+
       .header-nav-container,
       .pill-wrapper.is-expanded .header-nav-container {
-        flex: 1 1 auto;
-        max-width: none;
-        width: 100%;
+        display: flex;
         opacity: 1;
-        overflow: visible;
+        visibility: visible;
+        transform: none;
+        flex: 1;
         justify-content: flex-end;
-        transition: none;
       }
+
       .header-links {
-        width: auto;
-        justify-content: flex-end;
-        flex-wrap: nowrap;
         gap: 0;
         padding: 0;
       }
+
       .pill-divider,
       .dropdown,
       .header-links a:not(.btn-support) {
         display: none;
       }
+
       .btn-support {
-        padding: 5px 10px;
+        padding: 6px 12px;
         font-size: 0.7rem !important;
       }
-      .dropdown-content {
-        left: 50%;
+
+      .tagline-pill {
+        display: none;
       }
-      .tagline-pill { display: none; }
-      .chooser { flex-direction: column; height: auto; min-height: 100vh; }
-      .half { min-height: 44vh; }
-      .tagline-pill { top: auto; bottom: 20px; font-size: 0.6rem; }
-      .section { padding: 80px 20px; }
+
+      .chooser {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .half {
+        min-height: 45vh;
+        flex: none;
+      }
+
+      .half-caption {
+        padding: 24px 20px;
+        width: min(90vw, 340px);
+      }
+
+      .half-name {
+        white-space: normal;
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+
+      .section {
+        padding: 60px 20px;
+      }
+    }
+
+    /* Tiny Mobile */
+    @media (max-width: 360px) {
+      .header-name {
+        display: none;
+      }
+
+      .half-caption {
+        width: 92vw;
+        padding: 20px 16px;
+      }
+
+      .half-name {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .pill-wrapper {
+        transform: translateX(-50%) translateY(0) !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- The Header Layout -->
   <div class="pill-wrapper" id="quartz-shell">
-      <div class="glint" id="refractor"></div>
-      <header class="pill-nav">
-          <a href="index.html" class="header-brand">
-            <div class="header-logo">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                <path d="M2 17l10 5 10-5"></path>
-                <path d="M2 12l10 5 10-5"></path>
-              </svg>
+    <div class="glint" id="refractor"></div>
+    <header class="pill-nav">
+      <a href="index.html" class="header-brand">
+        <div class="header-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <span class="header-name">Local Logic IT</span>
+      </a>
+
+      <div class="header-nav-container" id="expanded-nav">
+        <div class="pill-divider" aria-hidden="true"></div>
+        <nav class="header-links">
+          <div class="dropdown" id="services-dropdown">
+            <span class="dropdown-trigger">Services <i class="ph ph-caret-down"></i></span>
+            <div class="dropdown-content">
+              <div class="dropdown-content-inner">
+                <a href="residential.html">Home &amp; Family</a>
+                <a href="business.html">Business &amp; Office</a>
+              </div>
             </div>
-            <span class="header-name">Local Logic IT</span>
-          </a>
-          
-          <div class="header-nav-container" id="expanded-nav">
-            <div class="pill-divider" aria-hidden="true"></div>
-            <nav class="header-links">
-                <div class="dropdown" id="services-dropdown">
-                  <span class="dropdown-trigger">Services <i class="ph ph-caret-down"></i></span>
-                  <div class="dropdown-content">
-                    <div class="dropdown-content-inner">
-                      <a href="residential.html">Home &amp; Family</a>
-                      <a href="business.html">Business &amp; Office</a>
-                    </div>
-                  </div>
-                </div>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-                <a href="quick-support.html" class="btn-support">Quick Support</a>
-            </nav>
           </div>
-      </header>
-      <div class="tagline-pill">Local Service. Logical Solutions.</div>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="quick-support.html" class="btn-support">Quick Support</a>
+        </nav>
+      </div>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
   </div>
 
   <!-- Landing / Chooser -->
   <main class="chooser" id="chooser">
-    <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support" data-href="residential.html">
-      <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+    <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support"
+      data-href="residential.html">
+      <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1"
+        aria-hidden="true"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
         <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
@@ -494,13 +789,16 @@
       </div>
     </div>
 
-    <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services" data-href="business.html">
-      <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+    <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services"
+      data-href="business.html">
+      <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1"
+        aria-hidden="true"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
         <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5"/>
-          <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5" />
+          <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
         </svg>
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Commercial IT Services</span>
@@ -514,7 +812,9 @@
     <p class="section-label">Who We Are</p>
     <h2 class="section-heading">Local Service. Logical Solutions.</h2>
     <div class="section-body">
-      <p>We are your local technology partner, dedicated to providing straightforward, honest IT support for both your home and your business. We believe technology should work for you, not the other way around. No call centers, no confusing jargon—just real people solving real problems with logic and care.</p>
+      <p>We are your local technology partner, dedicated to providing straightforward, honest IT support for both your
+        home and your business. We believe technology should work for you, not the other way around. No call centers, no
+        confusing jargon—just real people solving real problems with logic and care.</p>
     </div>
   </section>
 
@@ -549,11 +849,20 @@
     function scalePreview(half) {
       var iframe = half.querySelector('.half-preview');
       if (!iframe) return;
+
+      // Disable iframes on mobile
+      if (window.innerWidth <= 767) {
+        iframe.classList.add('is-hidden');
+        return;
+      } else {
+        iframe.classList.remove('is-hidden');
+      }
+
       var REF_W = document.documentElement.clientWidth;
       var W = half.offsetWidth;
       var H = half.offsetHeight;
       var scale = W / REF_W;
-      if (REF_W <= 767) { scale = 1; REF_W = W; }
+
       iframe.style.width = REF_W + 'px';
       iframe.style.height = Math.ceil(H / scale) + 'px';
       iframe.style.transform = 'scale(' + scale + ')';
@@ -585,32 +894,30 @@
       scalePreview(half);
       half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
       half.style.transform = 'translate(0,0) scale(1,1)';
+
       var header = document.getElementById('quartz-shell');
       if (header) {
-        header.style.opacity = '1'; header.style.transform = 'translateX(-50%) translateY(0)'; header.style.animation = 'none';
+        header.style.opacity = '1';
+        header.style.transform = 'translateX(-50%) translateY(0)';
+
         requestAnimationFrame(function () {
-        setTimeout(function () {
-          var expand = document.getElementById('expanded-nav');
-          expand.style.maxWidth = '600px';
-          expand.style.opacity  = '1';
-          setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
-          var tp = header.querySelector('.tagline-pill');
-          if (tp) {
-            tp.style.opacity = '0.8';
-            tp.style.transform = 'translateX(-50%) translateY(0)';
-          }
-        }, 150);
-      });
+          setTimeout(function () {
+            header.classList.add('is-expanded');
+          }, 150);
+        });
+      }
+
       sessionStorage.setItem('fromLanding', '1');
       setTimeout(() => window.location.href = dest, 1000);
-      }
     }
 
     function init() {
+      document.body.classList.add('is-loaded');
+
       var halves = document.querySelectorAll('.half');
       halves.forEach(h => {
         scalePreview(h);
-        h.addEventListener('click', function() { selectHalf(this); });
+        h.addEventListener('click', function () { selectHalf(this); });
         h.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') selectHalf(this); });
       });
       window.addEventListener('resize', () => halves.forEach(scalePreview));
@@ -622,7 +929,11 @@
           const rect = shell.getBoundingClientRect();
           glint.style.transform = `translateX(${e.clientX - rect.left - 50}px)`;
         });
-        setTimeout(() => shell.classList.add('is-expanded'), 1800);
+
+        // Only auto-expand on desktop
+        if (window.innerWidth > 767) {
+          setTimeout(() => shell.classList.add('is-expanded'), 1200);
+        }
       }
 
       // Dropdown Toggle for Mobile
@@ -635,7 +946,9 @@
           }
         });
       }
-      document.addEventListener('click', () => dropdown.classList.remove('is-open'));
+      document.addEventListener('click', () => {
+        if (dropdown) dropdown.classList.remove('is-open');
+      });
     }
 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
@@ -643,4 +956,5 @@
   </script>
 
 </body>
+
 </html>
