@@ -4,14 +4,24 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 
 ## Project
 
-- Site: `https://locallogic.fitzwilliam.net`
+- Primary site: `https://locallogicit.com`
+- WWW redirect: `https://www.locallogicit.com` -> `https://locallogicit.com`
+- Legacy hostname: `https://locallogic.fitzwilliam.net`
 - Repo: `chrisfitzwilliam/locallogic-it-website`
 - Local repo path: `C:\Users\DESKTOP\Desktop\LocalLogic\Local Logic IT\locallogic-it-website`
 - Production host: GCP VM `fitzwilliam-web-1`
 - Production web root: `/var/www/locallogic/current`
-- Current production commit before the landing split-palette rollout: `9999e6b` (`feat: apply graphite bronze responsive redesign`)
-- Latest verified production commit: `eea3096` (`Fix: Added hover bridge to services dropdown to prevent premature closing.`)
+- Latest verified production commit: `d5fe7f7` (`chore: cut over site metadata to locallogicit.com`)
 - Stack: static HTML, shared CSS, shared vanilla JS, no framework, no backend, no build step
+
+## Domain State
+
+- Canonical public host is `https://locallogicit.com`.
+- `www.locallogicit.com` should only redirect to the apex domain. Do not treat it as a separate canonical host.
+- `locallogic.fitzwilliam.net` stays live and should continue serving the same site on its own hostname.
+- Deployed HTML pages now include canonical tags pointing at `https://locallogicit.com/...`.
+- The VM has a Let's Encrypt certificate covering `locallogicit.com` and `www.locallogicit.com`.
+- Cloudflare proxy is enabled for apex and `www`. The API token in `keys.txt` could edit DNS but could not read/write zone SSL mode, so if edge SSL settings need review, confirm `Full (strict)` manually in the Cloudflare dashboard.
 
 ## Current Site Shape
 
@@ -94,8 +104,9 @@ Production deploys through a VM-side systemd timer:
 - Service: `locallogic-autodeploy.service`
 - Command: `git pull --ff-only origin main`
 - Working directory: `/var/www/locallogic/current`
+- Nginx serves both `locallogicit.com` and `locallogic.fitzwilliam.net` from the same deployed tree.
 
-Pushing to `main` triggers an automatic deploy within roughly one minute.
+Pushing to `main` triggers an automatic deploy within roughly one minute. Production verification should cover the apex domain, the `www` redirect, and the legacy hostname.
 
 ## Markdown Policy
 
