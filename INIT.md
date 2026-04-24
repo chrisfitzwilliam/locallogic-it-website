@@ -12,7 +12,8 @@ Use that file for the full infrastructure and business handoff. This `INIT.md` i
 
 - Business: Local Logic IT
 - Tagline: `Local Service. Logical Solutions.`
-- Live site: `https://locallogic.fitzwilliam.net`
+- Primary live site: `https://locallogicit.com`
+- Legacy hostname: `https://locallogic.fitzwilliam.net`
 - Repo: `chrisfitzwilliam/locallogic-it-website`
 - Stack: static site, single `index.html`, local asset folder, GitHub Actions deploy
 - Design direction: Travela-inspired marketing layout adapted for IT services

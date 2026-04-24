@@ -4,7 +4,8 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 
 ## Project
 
-- Site: `https://locallogic.fitzwilliam.net`
+- Primary site: `https://locallogicit.com`
+- Legacy hostname: `https://locallogic.fitzwilliam.net`
 - Repo: `chrisfitzwilliam/locallogic-it-website`
 - Local repo path: `C:\Users\DESKTOP\Desktop\LocalLogic\Local Logic IT\locallogic-it-website`
 - Production host: GCP VM `fitzwilliam-web-1`
