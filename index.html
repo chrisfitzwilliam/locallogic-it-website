@@ -125,7 +125,7 @@
     .pill-wrapper {
       position: fixed;
       top: var(--nav-top);
-      left: 50%;
+      left: 0;
       z-index: 300;
       padding: 0;
       border-radius: 100px;
@@ -135,15 +135,15 @@
       border: 1px solid var(--quartz-border);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
       opacity: 0;
-      transform: translateX(-50%) translateY(20px);
+      transform: translateX(calc(50vw - 50%)) translateY(20px);
       font-family: 'Inter', sans-serif;
-      transition: opacity 0.8s var(--transition-fluid), transform 0.8s var(--transition-fluid), left 0.4s ease, right 0.4s ease, width 0.4s ease;
+      transition: opacity 0.8s var(--transition-fluid), transform 0.8s var(--transition-fluid), width 0.4s ease;
       will-change: transform, opacity;
     }
 
     body.is-loaded .pill-wrapper {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(calc(50vw - 50%)) translateY(0);
     }
 
     .pill-nav {
@@ -1110,9 +1110,8 @@
       var header = document.getElementById('quartz-shell');
       if (header) {
         header.style.opacity = '1';
-        // Move to top-left position (32px left, no horizontal centering transform)
-        header.style.left = '32px';
-        header.style.transform = 'translateY(0)';
+        // Move to top-left position (32px left, using translateX for stability)
+        header.style.transform = 'translateX(32px) translateY(0)';
 
         requestAnimationFrame(function () {
           setTimeout(function () {
