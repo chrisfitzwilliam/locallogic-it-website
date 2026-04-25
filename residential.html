@@ -106,14 +106,14 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: #451A03; /* Dark Amber/Brown nav */
+      background: var(--ink);
       display: flex;
       align-items: center;
       justify-content: center; /* Center the pill */
       padding: 0 16px;
-      height: 130px;
-      min-height: 130px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      height: 90px;
+      min-height: 90px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
 
     /* The Main Pill */
@@ -137,8 +137,8 @@
     .pill-nav {
       display: flex;
       align-items: center;
-      padding: 8px 18px;
-      gap: 12px;
+      padding: 8px 20px;
+      gap: 16px;
       border-radius: 100px;
     }
 
@@ -179,7 +179,7 @@
       width: 1px;
       height: 18px;
       background: rgba(255,255,255,0.1);
-      margin: 0 12px 0 16px;
+      margin: 0;
     }
 
     .pill-btn-support {
@@ -189,7 +189,6 @@
       background: #4A80E8;
       padding: 6px 14px !important;
       border-radius: 999px;
-      margin-left: 10px;
       text-decoration: none;
       white-space: nowrap;
       box-shadow: 0 4px 12px rgba(74,128,232,0.3);
@@ -820,7 +819,7 @@
       // Initial state: Small, centered "nucleus"
       shell.style.transition = 'none';
       shell.style.opacity = '0';
-      shell.style.transform = 'translateX(calc(50vw - 50%)) scale(0.8) translateY(15px)';
+      shell.style.transform = 'scale(0.8) translateY(15px)';
       
       expand.style.transition = 'none';
       expand.style.maxWidth = '0';
@@ -837,7 +836,7 @@
           
           setTimeout(function () {
             shell.style.opacity = '1';
-            shell.style.transform = 'translateX(0) scale(1) translateY(0)';
+            shell.style.transform = 'scale(1) translateY(0)';
             
             // Phase 2: Bloom expansion
             setTimeout(function() {
