@@ -74,6 +74,31 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script>
+    if (window.CSS && CSS.supports && CSS.supports('view-transition-name: site-pill')) {
+      document.documentElement.classList.add('supports-view-transitions');
+    }
+  </script>
+  <style>
+    @view-transition {
+      navigation: auto;
+    }
+
+    :root {
+      view-transition-name: none;
+    }
+
+    .supports-view-transitions .pill-wrapper {
+      view-transition-name: site-pill;
+    }
+
+    ::view-transition-group(site-pill),
+    ::view-transition-old(site-pill),
+    ::view-transition-new(site-pill) {
+      animation-duration: 820ms;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  </style>
   <style>
     :root {
       --quartz-bg: rgba(15, 15, 20, 0.4);
@@ -86,6 +111,9 @@
       --primary: #4A80E8;
       --nav-height: 52px;
       --nav-top: 8px;
+      --slot-rail-border: rgba(255, 255, 255, 0.1);
+      --slot-rail-fill: rgba(255, 255, 255, 0.04);
+      --slot-glow: rgba(255, 255, 255, 0.12);
     }
 
     /* ── Reset ── */
@@ -137,13 +165,137 @@
       opacity: 0;
       transform: translateX(-50%) translateY(20px);
       font-family: 'Inter', sans-serif;
-      transition: opacity 0.8s var(--transition-fluid), transform 0.8s var(--transition-fluid), width 0.4s ease;
+      transition: opacity 0.8s var(--transition-fluid), transform 0.8s var(--transition-fluid), width 0.4s ease, box-shadow 0.55s var(--transition-fluid), border-color 0.45s ease;
       will-change: transform, opacity;
+    }
+
+    .pill-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: inherit;
+      border: 1px solid var(--slot-rail-border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 55%), var(--slot-rail-fill);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 0.45s ease, transform 0.55s var(--transition-fluid), box-shadow 0.45s ease;
+      pointer-events: none;
+    }
+
+    .pill-wrapper.is-slot-ready::before,
+    .pill-wrapper.is-slot-arriving::before,
+    .pill-wrapper.is-slot-pulling::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .pill-wrapper.is-slot-arriving,
+    .pill-wrapper.is-slot-pulling {
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--slot-glow);
     }
 
     body.is-loaded .pill-wrapper {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
+    }
+
+    body.is-loaded .pill-wrapper.is-slot-arriving,
+    body.is-loaded .pill-wrapper.is-slot-pulling {
+      transform: translateX(calc(-50% - 28px)) translateY(-6px) scale(1.02, 1.01);
+    }
+
+    body.is-loaded .pill-wrapper.is-slot-ready {
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    body.is-loaded .pill-wrapper.is-slot-pulling {
+      opacity: 0;
+      transform: translateX(calc(-50% - 34vw)) translateY(-2px) scale(0.84);
+    }
+
+    .pill-wrapper[data-nav-theme="residential"] {
+      --slot-rail-fill: rgba(245, 158, 11, 0.08);
+      --slot-rail-border: rgba(245, 158, 11, 0.2);
+      --slot-glow: rgba(245, 158, 11, 0.22);
+    }
+
+    .pill-wrapper[data-nav-theme="business"] {
+      --slot-rail-fill: rgba(74, 128, 232, 0.09);
+      --slot-rail-border: rgba(74, 128, 232, 0.22);
+      --slot-glow: rgba(74, 128, 232, 0.24);
+    }
+
+    .pill-wrapper[data-nav-motion="slot"] .pill-nav {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .pill-wrapper[data-nav-motion="slot"] .pill-nav::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 18%, rgba(255, 255, 255, 0.08) 52%, transparent 86%);
+      opacity: 0;
+      transform: translateX(24px) scaleX(0.96);
+      transition: opacity 0.45s ease, transform 0.72s var(--transition-fluid);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .pill-wrapper.is-slot-arriving[data-nav-motion="slot"] .pill-nav::after,
+    .pill-wrapper.is-slot-pulling[data-nav-motion="slot"] .pill-nav::after,
+    .pill-wrapper.is-slot-ready[data-nav-motion="slot"] .pill-nav::after {
+      opacity: 1;
+      transform: translateX(0) scaleX(1);
+    }
+
+    .pill-wrapper.is-slot-arriving[data-nav-motion="slot"] .header-brand,
+    .pill-wrapper.is-slot-pulling[data-nav-motion="slot"] .header-brand {
+      transform: translateX(-8px);
+    }
+
+    .pill-wrapper.is-slot-arriving[data-nav-motion="slot"] .header-nav-container,
+    .pill-wrapper.is-slot-pulling[data-nav-motion="slot"] .header-nav-container {
+      transform: translateX(18px);
+    }
+
+    .pill-wrapper.is-slot-ready[data-nav-motion="slot"] .header-brand,
+    .pill-wrapper.is-slot-ready[data-nav-motion="slot"] .header-nav-container {
+      transform: translateX(0);
+    }
+
+    .header-brand,
+    .header-nav-container {
+      transition: transform 0.72s var(--transition-fluid), opacity 0.6s var(--transition-fluid), visibility 0.6s;
+    }
+
+    .tagline-pill,
+    .pill-wrapper::before,
+    .pill-wrapper[data-nav-motion="slot"] .pill-nav::after {
+      will-change: transform, opacity;
+    }
+
+    .pill-wrapper.is-slot-arriving .tagline-pill,
+    .pill-wrapper.is-slot-ready .tagline-pill {
+      opacity: 0.8;
+      transform: translateX(-50%) translateY(0);
+      visibility: visible;
+    }
+
+    .pill-wrapper.is-slot-pulling .tagline-pill {
+      opacity: 0;
+      transform: translateX(-50%) translateY(6px);
+      visibility: hidden;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      body.is-loaded .pill-wrapper.is-slot-arriving,
+      body.is-loaded .pill-wrapper.is-slot-ready,
+      body.is-loaded .pill-wrapper.is-slot-pulling {
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
     }
 
     .pill-nav {
@@ -388,6 +540,8 @@
       display: flex;
       width: 100%;
       height: 100vh;
+      padding-top: 16px;
+      box-sizing: border-box;
       overflow: hidden;
       animation: chooser-fade-in 0.6s ease both;
     }
@@ -932,7 +1086,7 @@
 <body>
 
   <!-- The Header Layout -->
-  <div class="pill-wrapper" id="quartz-shell">
+  <div class="pill-wrapper" id="quartz-shell" data-nav-motion="slot" data-nav-theme="neutral">
     <div class="glint" id="refractor"></div>
     <header class="pill-nav">
       <a href="index.html" class="header-brand">
@@ -1092,6 +1246,7 @@
       if (chooser.classList.contains('has-selection')) return;
       var dest = half.dataset.href;
       var isRes = half.classList.contains('half--residential');
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       injectFlash(isRes ? 'rgba(245,158,11,0.22)' : 'rgba(74,128,232,0.22)');
       chooser.classList.add('has-selection');
       var cardRect = half.getBoundingClientRect();
@@ -1108,17 +1263,32 @@
       half.style.transform = 'translate(0,0) scale(1,1)';
 
       var header = document.getElementById('quartz-shell');
+      var theme = isRes ? 'residential' : 'business';
       if (header) {
-        // Variation: "The Nucleus" contract animation
-        header.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
-        header.classList.remove('is-expanded'); // Hide links and contract
-        header.style.opacity = '0';
-        header.style.transform = 'translateX(calc(-50% - 35vw)) translateY(0) scale(0.8)';
+        header.dataset.navMotion = 'slot';
+        header.dataset.navTheme = theme;
+        header.classList.remove('is-slot-arriving', 'is-slot-ready', 'is-slot-pulling');
+        if (!prefersReducedMotion) {
+          var pillFrame = header.getBoundingClientRect();
+          sessionStorage.setItem('landingPillFrame', JSON.stringify({
+            left: pillFrame.left,
+            top: pillFrame.top,
+            width: pillFrame.width,
+            height: pillFrame.height,
+            timestamp: Date.now()
+          }));
+        }
         header.style.pointerEvents = 'none';
       }
 
       sessionStorage.setItem('fromLanding', '1');
-      setTimeout(() => window.location.href = dest, 650);
+      sessionStorage.setItem('navTheme', theme);
+      if (prefersReducedMotion) {
+        sessionStorage.removeItem('landingPillFrame');
+        window.location.href = dest;
+        return;
+      }
+      setTimeout(() => window.location.href = dest, 120);
     }
 
     function closePillMenu() {
