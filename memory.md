@@ -89,6 +89,7 @@ Current asset reality:
 
 - Production deploys through the VM-side systemd timer, not through a local build step.
 - The website is hosted on one VM only; there is no secondary production VM to check.
+- The VM can lag behind GitHub by one timer interval; a fresh push may not be live until the next scheduled pull.
 - Timer: `locallogic-autodeploy.timer`
 - Service: `locallogic-autodeploy.service`
 - Deploy command on the VM: `git pull --ff-only origin main`
