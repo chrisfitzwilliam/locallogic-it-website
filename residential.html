@@ -80,14 +80,7 @@
     }
   </script>
   <style>
-    html.is-landing-anim .nav-left,
-    html.is-landing-anim .nav-links,
-    html.in-iframe .nav-left,
-    html.in-iframe .nav-links,
-    html.in-iframe .nav-hamburger {
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
+
     /* ── Tokens — Golden Home (Amber Contrast) ── */
     :root {
       --primary:   #F59E0B; /* Vibrant Amber */
@@ -118,8 +111,8 @@
       align-items: center;
       justify-content: center; /* Center the pill */
       padding: 0 16px;
-      height: 110px;
-      min-height: 110px;
+      height: 130px;
+      min-height: 130px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
     }
 
@@ -239,7 +232,7 @@
     .nav-mobile-menu {
       display: none;
       position: absolute;
-      top: 110px;
+      top: 130px;
       left: 0;
       right: 0;
       background: #451A03;
@@ -266,6 +259,7 @@
       padding: 8px;
       min-width: 180px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 10;
     }
     .nav-dropdown:hover .nav-dropdown-content {
       display: block;
@@ -811,8 +805,7 @@
   </script>
 
 
-  <script>
-    /* ── Bubble landing + expand animation ── */
+    /* ── Nucleus Bloom Entrance Animation ── */
     (function () {
       if (!sessionStorage.getItem('fromLanding')) return;
       sessionStorage.removeItem('fromLanding');
@@ -824,10 +817,10 @@
 
       if (!shell || !expand || !tp) return;
 
-      // Initial state for animation
+      // Initial state: Small, centered "nucleus"
       shell.style.transition = 'none';
       shell.style.opacity = '0';
-      shell.style.transform = 'translateX(calc(50vw - 50%)) translateY(20px)';
+      shell.style.transform = 'translateX(calc(50vw - 50%)) scale(0.8) translateY(15px)';
       
       expand.style.transition = 'none';
       expand.style.maxWidth = '0';
@@ -839,23 +832,29 @@
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          shell.style.transition = 'transform 0.8s cubic-bezier(0.23,1,0.32,1), opacity 0.8s cubic-bezier(0.23,1,0.32,1)';
-          expand.style.transition = 'all 0.8s ease';
-          tp.style.transition = 'all 1s cubic-bezier(0.23, 1, 0.32, 1)';
-
+          // Phase 1: Fade in and Rise
+          shell.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.7s ease-out';
+          
           setTimeout(function () {
             shell.style.opacity = '1';
-            shell.style.transform = 'translateX(0) translateY(0)'; // Center inside .nav
-            expand.style.maxWidth = '800px';
-            expand.style.opacity  = '1';
-            setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
-            tp.style.opacity = '0.8';
-            tp.style.transform = 'translateX(-50%) translateY(0)';
-          }, 80);
+            shell.style.transform = 'translateX(0) scale(1) translateY(0)';
+            
+            // Phase 2: Bloom expansion
+            setTimeout(function() {
+              expand.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+              expand.style.maxWidth = '800px';
+              expand.style.opacity  = '1';
+              
+              tp.style.transition = 'all 0.9s cubic-bezier(0.23, 1, 0.32, 1)';
+              tp.style.opacity = '0.8';
+              tp.style.transform = 'translateX(-50%) translateY(0)';
+              
+              setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
+            }, 150);
+          }, 50);
         });
       });
     }());
-  </script>
 
 </body>
 </html>
