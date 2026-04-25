@@ -247,6 +247,17 @@
       margin-bottom: 28px;
       box-shadow: 0 2px 16px rgba(0,0,0,0.4);
     }
+
+    .nav::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -28px;
+      height: 28px;
+      background: var(--charcoal-2);
+      pointer-events: none;
+    }
     .nav-left {
       display: flex;
       align-items: center;
@@ -415,6 +426,7 @@
 
     @media (max-width: 767px) {
       .nav { height: 90px; min-height: 90px; margin-bottom: 0; }
+      .nav::after { display: none; }
       .nav-mobile-menu { top: 90px; }
       .pill-wrapper {
         width: 100%;
