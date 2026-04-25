@@ -77,6 +77,7 @@ Current asset reality:
 - Use PowerShell on Windows.
 - Use `python`, not `py`.
 - Local preview: `python -m http.server <port>`.
+- `gcloud` CLI is installed on this host and can be used for VM/deploy checks.
 - Contact verification: `powershell -ExecutionPolicy Bypass -File .\scripts\verify-contact-email.ps1`.
 - `commit to website` means commit the intended change to the GitHub repo that hosts `locallogicit.com`; if Chris explicitly says `commit to main`, `push`, or otherwise asks for production publishing, treat it as the production workflow below.
 - `commit to main` / `commit to locallogicit.com` means: stage only intended files, commit on `main`, push `origin/main`, then verify the live site after the VM auto-deploy delay.
@@ -87,6 +88,7 @@ Current asset reality:
 ## Deployment Reality
 
 - Production deploys through the VM-side systemd timer, not through a local build step.
+- The website is hosted on one VM only; there is no secondary production VM to check.
 - Timer: `locallogic-autodeploy.timer`
 - Service: `locallogic-autodeploy.service`
 - Deploy command on the VM: `git pull --ff-only origin main`
