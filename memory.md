@@ -79,7 +79,7 @@ Current asset reality:
 - Local preview: `python -m http.server <port>`.
 - `gcloud` CLI is installed on this host and can be used for VM/deploy checks.
 - Contact verification: `powershell -ExecutionPolicy Bypass -File .\scripts\verify-contact-email.ps1`.
-- `commit to website` means commit the intended change to the GitHub repo that hosts `locallogicit.com`; if Chris explicitly says `commit to main`, `push`, or otherwise asks for production publishing, treat it as the production workflow below.
+- `commit to website` means do the minimum needed to update the GitHub repo `https://github.com/chrisfitzwilliam/locallogic-it-website`: stage only the intended files, commit them, and push to the repo. Do not add live-site verification or broader production checks unless Chris explicitly asks for `commit to main`, `locallogicit.com`, or live verification.
 - `commit to main` / `commit to locallogicit.com` means: stage only intended files, commit on `main`, push `origin/main`, then verify the live site after the VM auto-deploy delay.
 - Stage intended files explicitly. Do not use `git add .` or `git add -A`.
 - Before commit: run `git diff --cached --check`.
