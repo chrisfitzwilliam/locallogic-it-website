@@ -34,9 +34,7 @@
               "contactType": "customer support",
               "email": "contact@locallogicit.com",
               "telephone": "+1-636-352-6572",
-              "availableLanguage": [
-                "en"
-              ]
+              "availableLanguage": ["en"]
             }
           ]
         },
@@ -45,9 +43,7 @@
           "@id": "https://locallogicit.com/#website",
           "url": "https://locallogicit.com/",
           "name": "Local Logic IT",
-          "publisher": {
-            "@id": "https://locallogicit.com/#organization"
-          }
+          "publisher": { "@id": "https://locallogicit.com/#organization" }
         },
         {
           "@type": "WebPage",
@@ -55,12 +51,8 @@
           "url": "https://locallogicit.com/residential.html",
           "name": "Local Logic IT — Residential IT Support",
           "description": "Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help.",
-          "isPartOf": {
-            "@id": "https://locallogicit.com/#website"
-          },
-          "about": {
-            "@id": "https://locallogicit.com/#organization"
-          },
+          "isPartOf": { "@id": "https://locallogicit.com/#website" },
+          "about": { "@id": "https://locallogicit.com/#organization" },
           "inLanguage": "en"
         }
       ]
@@ -71,10 +63,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="components/pill-nav.css" />
+
   <style>
     :root {
-      --font-main: 'Outfit', sans-serif;
-      --nav-height: 40px;
       --primary:   #F59E0B;
       --primary-2: #D97706;
       --bg:        #FFFFFF;
@@ -83,631 +77,129 @@
       --muted:     #78350F;
       --line:      #FEF3C7;
       --accent:    #4A80E8;
-
-      --quartz-bg: rgba(10, 10, 15, 0.65);
-      --quartz-border: rgba(255, 255, 255, 0.12);
-      --quartz-edge: rgba(255, 255, 255, 0.4);
-      --accent-glow: rgba(200, 220, 255, 0.15);
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.65);
-      --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
-      --nav-top: 12px;
-      --slot-rail-border: rgba(255, 255, 255, 0.1);
-      --slot-rail-fill: rgba(255, 255, 255, 0.04);
-      --slot-glow: rgba(255, 255, 255, 0.12);
-    }
-
-    @view-transition {
-      navigation: auto;
-    }
-
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      animation-duration: 0.3s;
-    }
-
-    ::view-transition-old(main-pill),
-    ::view-transition-new(main-pill) {
-      animation-duration: 0.7s;
-      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { 
-      scroll-behavior: smooth; 
-      font-size: 15px; 
-    }
+    html { scroll-behavior: smooth; font-size: 15px; }
     body {
-      margin: 0;
-      padding: 0;
-      background: #050508;
-      color: #fff;
+      margin: 0; padding: 0;
+      background: #050508; color: #fff;
       font-family: 'Outfit', sans-serif !important;
       -webkit-font-smoothing: antialiased;
     }
 
     body::before {
       content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
+      position: fixed; inset: 0;
+      background-image:
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
       background-size: 60px 60px;
-      pointer-events: none;
-      z-index: -1;
+      pointer-events: none; z-index: -1;
     }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
-
-    /* ── Nav ── */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #050508;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      height: 140px;
-      margin-bottom: 0;
-    }
-    
-    body.is-iframe .nav {
-      display: none !important;
-    }
-
-    /* The Main Pill */
-    .pill-wrapper {
-      view-transition-name: main-pill;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      z-index: 300;
-      border-radius: 100px;
-      padding: 4px 12px;
-      background: rgba(8, 8, 12, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.7),
-        inset 0 1px 1px rgba(255, 255, 255, 0.05);
-      font-family: 'Outfit', sans-serif !important;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-      overflow: visible;
-      will-change: transform, opacity;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Landing Entrance Animation */
-    @keyframes pill-float-in {
-      from {
-        transform: translate(var(--pill-start-x, 0), var(--pill-start-y, 0)) scale(0.95);
-        opacity: 0;
-      }
-      to {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-    }
-
-    .pill-wrapper.is-landing-entrance {
-      animation: pill-float-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    .pill-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 80%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
-
-    .pill-wrapper:hover::before { opacity: 1; }
-
-    .pill-nav {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      height: 40px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Internal Rail Lighting (Subtle White Highlight) */
-    .pill-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      border-radius: inherit;
-      border: 1px solid transparent;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 40%) border-box;
-      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .nav-segment {
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      height: 100%;
-      position: relative;
-    }
-
-    .logo-segment {
-      padding-left: 12px;
-      padding-right: 18px;
-    }
-
-    .links-segment {
-      padding-left: 12px;
-      padding-right: 8px;
-      border-left: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow: hidden;
-    }
-
-    .pill-wrapper[data-nav-motion="slot"] .links-segment {
-      animation: segment-slide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes segment-slide {
-      from { max-width: 0; opacity: 0; transform: translateX(10px); }
-      to { max-width: 800px; opacity: 1; transform: translateX(0); }
-    }
-
-
-
-
-
-    .pill-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-    }
-    .pill-left svg { width: 24px; height: 24px; color: #fff; }
-    .pill-logo-name, .header-name {
-      font-family: var(--font-main) !important;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-      -webkit-font-smoothing: antialiased;
-      white-space: nowrap;
-    }
-
-    .pill-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0 4px;
-      transition: all 0.5s ease;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* The Sliding Pill Background */
-    .nav-indicator {
-      position: absolute;
-      background: #4A80E8;
-      border-radius: 100px;
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      z-index: -1;
-      box-shadow: 0 0 30px rgba(74, 128, 232, 0.5);
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .pill-links a, .pill-links .nav-dropdown > a {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.7);
-      padding: 8px 20px;
-      border-radius: 100px;
-      white-space: nowrap;
-      transition: color 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
-    .pill-links a:hover, .pill-links .nav-dropdown > a:hover { 
-      color: #fff; 
-    }
-    .pill-links a.active, .pill-links .nav-dropdown.active > a {
-      color: #fff;
-    }
-
-    .pill-divider {
-      width: 1px;
-      height: 28px;
-      background: rgba(255,255,255,0.08);
-      margin: 0 12px;
-    }
-
-    .pill-btn-support {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #fff !important;
-      background: #4A80E8;
-      padding: 6px 14px !important;
-      border-radius: 999px;
-      text-decoration: none;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(74,128,232,0.3);
-    }
-
-    /* Tagline Pill */
-    .tagline-pill {
-      position: absolute;
-      top: calc(100% + 22px);
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Outfit', sans-serif !important;
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.85);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      pointer-events: none;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      transition: all 0.4s ease;
-    }
-
-    /* Mobile Menu Adjusted */
-    .nav-hamburger {
-      display: none;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 8px;
-      margin-left: 8px;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      margin: 5px 0;
-    }
-
-    .nav-mobile-menu {
-      display: none;
-      position: absolute;
-      top: 130px;
-      left: 0;
-      right: 0;
-      background: #451A03;
-      padding: 16px 24px;
-      flex-direction: column;
-      gap: 16px;
-      z-index: 200;
-    }
-    .nav-mobile-menu.open { display: flex; }
-
-    /* Services Dropdown in Pill */
-    .nav-dropdown {
-      position: relative;
-    }
-    .nav-dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      padding-top: 12px; /* Bridge gap */
-      z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-    }
-    .nav-dropdown:hover .nav-dropdown-content,
-    .nav-dropdown.is-open .nav-dropdown-content {
-      display: block;
-      opacity: 1;
-      transform: translateX(-50%) translateY(8px);
-      pointer-events: auto;
-    }
-    .nav-dropdown-content-inner {
-      background: #451A03;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 8px;
-      min-width: 180px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .nav-dropdown-content a {
-      display: block;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-    }
-    .nav-dropdown-content a:hover {
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-    }
-
-    @media (max-width: 991px) {
-      .pill-links { display: none; }
-      .nav-hamburger { display: block; }
-    }
-
-    @media (max-width: 767px) {
-      .nav { height: 90px; min-height: 90px; margin-bottom: 0; }
-      .nav-mobile-menu { top: 90px; }
-      .pill-wrapper {
-        width: 100%;
-        border-radius: 16px;
-      }
-      .tagline-pill { display: none; }
-    }
 
     /* ── Hero ── */
     .hero {
       background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
       padding: clamp(48px, 8vw, 80px) clamp(16px, 4vw, 32px);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
+      padding-top: clamp(100px, 12vw, 140px); /* Space for fixed pill */
+      position: relative; overflow: hidden; text-align: center;
     }
-    /* Decorative elements */
     .hero::before {
-      content: "";
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
+      content: ""; position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px; border-radius: 50%;
       background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0) 70%);
       pointer-events: none;
     }
     .hero::after {
-      content: "";
-      position: absolute;
-      bottom: -150px;
-      left: -150px;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
+      content: ""; position: absolute; bottom: -150px; left: -150px;
+      width: 500px; height: 500px; border-radius: 50%;
       background: radial-gradient(circle, rgba(245,158,11,0.05) 0%, rgba(245,158,11,0) 70%);
       pointer-events: none;
     }
     .hero-badge {
-      display: inline-block;
-      background: rgba(245,158,11,0.1);
-      color: var(--primary-2);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(245,158,11,0.2);
-      position: relative;
-      z-index: 1;
+      display: inline-block; background: rgba(245,158,11,0.1); color: var(--primary-2);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 999px; margin-bottom: 24px;
+      border: 1px solid rgba(245,158,11,0.2); position: relative; z-index: 1;
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      color: var(--ink);
-      line-height: 1.1;
-      max-width: 700px;
-      margin: 0 auto 16px;
-      letter-spacing: -0.03em;
-      position: relative;
-      z-index: 1;
+      font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; color: var(--ink);
+      line-height: 1.1; max-width: 700px; margin: 0 auto 16px; letter-spacing: -0.03em;
+      position: relative; z-index: 1;
     }
     .hero-sub {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto 32px auto;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
+      font-size: 1.125rem; color: var(--muted); max-width: 600px;
+      margin: 0 auto 32px auto; line-height: 1.6; position: relative; z-index: 1;
     }
     .hero-cta {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: 700;
-      padding: 14px 32px;
-      border-radius: 8px;
+      display: inline-block; background: var(--primary); color: #fff;
+      font-size: 0.9rem; font-weight: 700; padding: 14px 32px; border-radius: 8px;
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 4px 12px rgba(245,158,11,0.25);
+      position: relative; z-index: 1; box-shadow: 0 4px 12px rgba(245,158,11,0.25);
     }
-    .hero-cta:hover {
-      background: var(--primary-2);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(245,158,11,0.3);
-    }
-    .hero-cta:focus-visible {
-      outline: 3px solid var(--primary);
-      outline-offset: 3px;
-    }
+    .hero-cta:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,158,11,0.3); }
+    .hero-cta:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
 
     /* ── Section shared ── */
-    .section {
-      padding: clamp(50px, 8vw, 90px) clamp(16px, 4vw, 32px);
-    }
+    .section { padding: clamp(50px, 8vw, 90px) clamp(16px, 4vw, 32px); }
     .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--primary-2);
-      text-align: center;
-      margin-bottom: 12px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--primary-2); text-align: center; margin-bottom: 12px;
     }
     .section-heading {
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 800;
-      text-align: center;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      margin-bottom: 48px;
+      font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; text-align: center;
+      color: var(--ink); letter-spacing: -0.02em; margin-bottom: 48px;
     }
 
     /* ── Services ── */
     .services { background: var(--bg); }
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: clamp(20px, 3vw, 32px);
-      max-width: 1200px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(20px, 3vw, 32px); max-width: 1200px; margin: 0 auto;
     }
-
     .service-card {
-      position: relative;
-      background: #FFF;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: clamp(24px, 5vw, 40px);
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      gap: clamp(16px, 3vw, 24px);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      text-decoration: none;
-      color: inherit;
-      min-height: auto;
-      margin-top: 30px;
+      position: relative; background: #FFF; border: 1px solid var(--line); border-radius: 24px;
+      padding: clamp(24px, 5vw, 40px); display: flex; flex-direction: column; text-align: left;
+      gap: clamp(16px, 3vw, 24px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none; color: inherit; min-height: auto; margin-top: 30px;
     }
-
-    .service-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 40px 80px rgba(69,26,3,0.08);
-      transform: translateY(-12px);
-    }
-
+    .service-card:hover { border-color: var(--primary); box-shadow: 0 40px 80px rgba(69,26,3,0.08); transform: translateY(-12px); }
     .card-icon-inset {
-      width: 60px;
-      height: 60px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: -30px;
-      left: clamp(24px, 5vw, 40px);
+      width: 60px; height: 60px; background: var(--surface); border: 1px solid var(--line);
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      position: absolute; top: -30px; left: clamp(24px, 5vw, 40px);
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.02), 0 10px 20px rgba(69,26,3,0.05);
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
-
-    .service-card:hover .card-icon-inset {
-      transform: scale(1.1) rotate(-5deg);
-      border-color: var(--primary);
-    }
-
-    .card-meta {
-      display: flex;
-      flex-direction: column;
-      margin-top: 12px;
-      margin-bottom: 4px;
-    }
-
-    .service-category {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: var(--primary-2);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .service-id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      opacity: 0.7;
-    }
-
-    .card-problem {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--ink);
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-    }
-
+    .service-card:hover .card-icon-inset { transform: scale(1.1) rotate(-5deg); border-color: var(--primary); }
+    .card-meta { display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 4px; }
+    .service-category { font-size: 0.85rem; font-weight: 800; color: var(--primary-2); text-transform: uppercase; letter-spacing: 0.1em; }
+    .service-id { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; opacity: 0.7; }
+    .card-problem { font-size: 1.4rem; font-weight: 800; color: var(--ink); line-height: 1.25; letter-spacing: -0.02em; }
     .card-solution {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.7;
-      padding-left: 20px;
-      border-left: 1px solid var(--line);
-      transition: border-color 0.3s ease;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.7; padding-left: 20px;
+      border-left: 1px solid var(--line); transition: border-color 0.3s ease;
     }
-
-    .service-card:hover .card-solution {
-      border-left-color: var(--primary);
-    }
-
-    .card-solution strong {
-      color: var(--ink);
-      display: block;
-      margin-bottom: 6px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+    .service-card:hover .card-solution { border-left-color: var(--primary); }
+    .card-solution strong { color: var(--ink); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
     /* ── About ── */
-    .about {
-      background: var(--surface);
-      text-align: center;
-    }
+    .about { background: var(--surface); text-align: center; }
     .about .section-heading { color: var(--ink); }
-    .about-body {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+    .about-body { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
     .about-body strong { color: var(--primary-2); }
 
     /* ── Contact ── */
     .contact { background: var(--bg); text-align: center; }
     .contact-card {
-      display: inline-flex;
-      flex-direction: column;
-      gap: 16px;
-      background: #451A03;
-      border-radius: 20px;
-      padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 48px);
-      margin: 0 auto;
-      max-width: calc(100vw - 40px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      display: inline-flex; flex-direction: column; gap: 16px; background: #451A03;
+      border-radius: 20px; padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 48px);
+      margin: 0 auto; max-width: calc(100vw - 40px); box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-    }
+    .contact-item { display: flex; align-items: center; gap: 14px; color: #fff; font-size: 1rem; font-weight: 600; }
     .contact-item svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--primary); }
     .contact-item a { color: #fff; transition: color 0.2s; }
     .contact-item a:hover { color: var(--primary); }
@@ -715,77 +207,77 @@
 
     /* ── Footer ── */
     .footer {
-      background: #451A03;
-      text-align: center;
+      background: #451A03; text-align: center;
       padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 32px);
-      color: rgba(255,255,255,0.4);
-      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4); font-size: 0.8rem;
     }
     .footer strong { color: var(--primary); font-weight: 700; }
 
-    @media (max-width: 767px) {
-      .nav-back { font-size: 0.7rem; }
-      .nav-logo-name { font-size: 0.85rem; }
-      .hero { padding: clamp(36px, 8vw, 60px) 16px; }
-      .service-card { border-radius: 18px; }
-      .card-problem { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+    /* ── Dropdown theme override for residential ── */
+    .dropdown-content-inner {
+      background: #451A03 !important;
     }
 
-    @media (max-width: 360px) {
-      .nav-back { display: none; }
+    @media (max-width: 767px) {
+      .hero { padding: clamp(80px, 12vw, 100px) 16px clamp(36px, 8vw, 60px); }
+      .service-card { border-radius: 18px; }
+      .card-problem { font-size: clamp(1.1rem, 4vw, 1.4rem); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav class="nav" id="top">
-    <div class="pill-wrapper" id="quartz-shell" data-nav-motion="slot" data-nav-theme="residential">
-      <header class="pill-nav">
-        <div class="nav-segment logo-segment">
-          <a class="pill-left" href="index.html">
+  <!-- Pill Nav (fixed, docked top-left) -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
+    <header class="pill-nav">
+      <div class="nav-segment logo-segment">
+        <a class="header-brand" href="index.html">
+          <div class="header-logo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
               <path d="M2 17l10 5 10-5"></path>
               <path d="M2 12l10 5 10-5"></path>
             </svg>
-            <span class="pill-logo-name">Local Logic IT</span>
-          </a>
-        </div>
+          </div>
+          <span class="header-name">Local Logic IT</span>
+        </a>
+      </div>
 
-        <div class="nav-segment links-segment">
-          <div class="pill-links" id="main-pill-links">
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
             <div class="nav-indicator" id="nav-indicator"></div>
             <a href="index.html">Home</a>
-            <div class="nav-dropdown active" id="services-dropdown">
-              <a href="javascript:void(0)">Services</a>
-              <div class="nav-dropdown-content">
-                <div class="nav-dropdown-content-inner">
-                  <a href="residential.html">Home & Family</a>
-                  <a href="business.html">Business & Office</a>
+            <div class="dropdown active" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="residential.html">Home &amp; Family</a>
+                  <a href="business.html">Business &amp; Office</a>
                 </div>
               </div>
             </div>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-          </div>
+          </nav>
         </div>
+      </div>
 
-        <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </header>
-      <div class="tagline-pill">Local Service. Logical Solutions.</div>
-    </div>
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
 
-    <div class="nav-mobile-menu" id="mobileMenu">
-      <a href="residential.html" onclick="closeMobileMenu()">Residential Services</a>
-      <a href="business.html" onclick="closeMobileMenu()">Business Services</a>
-      <a href="#about" onclick="closeMobileMenu()">About</a>
-      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-      <a href="quick-support.html" onclick="closeMobileMenu()" style="color: var(--accent);">Quick Support</a>
+    <!-- Mobile drawer menu -->
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="residential.html">Home &amp; Family</a>
+      <a href="business.html">Business &amp; Office</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
     </div>
-  </nav>
+  </div>
 
   <main>
   <!-- Hero -->
@@ -959,162 +451,8 @@
   </footer>
   </main>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  </script>
+  <!-- Shared Pill Nav Script -->
+  <script src="scripts/pill-nav.js"></script>
 
-
-  <script>
-    /* ── Nucleus Bloom Entrance Animation ── */
-    (function () {
-      if (!sessionStorage.getItem('fromLanding')) return;
-      sessionStorage.removeItem('fromLanding');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      var shell = document.getElementById('quartz-shell');
-      var expand = document.querySelector('.pill-links');
-      var tp = document.querySelector('.tagline-pill');
-
-      if (!shell || !expand || !tp) return;
-
-      // Initial state: Start slightly left for the "glide in"
-      shell.style.transition = 'none';
-      shell.style.opacity = '0';
-      shell.style.transform = 'translateX(-80px) scale(0.9)';
-      
-      expand.style.transition = 'none';
-      expand.style.maxWidth = '0';
-      expand.style.opacity = '0';
-      
-      tp.style.transition = 'none';
-      tp.style.opacity = '0';
-      tp.style.transform = 'translateX(-50%) translateY(10px)';
-
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          // Phase 1: Fade in and slide to position
-          shell.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease-out';
-          
-          setTimeout(function () {
-            shell.style.opacity = '1';
-            shell.style.transform = 'translateX(0) scale(1)';
-            
-            // Phase 2: Bloom expansion
-            setTimeout(function() {
-              expand.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-              expand.style.maxWidth = '800px';
-              expand.style.opacity  = '1';
-              
-              tp.style.transition = 'all 0.9s cubic-bezier(0.23, 1, 0.32, 1)';
-              tp.style.opacity = '0.8';
-              tp.style.transform = 'translateX(-50%) translateY(0)';
-              
-              setTimeout(function() { 
-                expand.style.overflow = 'visible'; 
-                var segment = document.querySelector('.links-segment');
-                if (segment) segment.style.overflow = 'visible';
-              }, 800);
-            }, 150);
-          }, 50);
-        });
-      });
-    }());
-
-    // Sliding Indicator Logic
-    (function() {
-      const navLinks = document.getElementById('main-pill-links');
-      const indicator = document.getElementById('nav-indicator');
-      if (!navLinks || !indicator) return;
-      const triggers = navLinks.querySelectorAll('a, .nav-dropdown > a');
-
-      function moveIndicator(target) {
-        if (!target || !indicator) return;
-        const rect = target.getBoundingClientRect();
-        const parentRect = navLinks.getBoundingClientRect();
-        
-        indicator.style.width = `${rect.width}px`;
-        indicator.style.height = `${rect.height}px`;
-        indicator.style.left = `${rect.left - parentRect.left}px`;
-        indicator.style.top = `${rect.top - parentRect.top}px`;
-        indicator.style.opacity = '1';
-      }
-
-      function updateActiveIndicator() {
-        const activeItem = navLinks.querySelector('.active') || navLinks.querySelector('.nav-dropdown.active > a');
-        if (activeItem) {
-          const target = activeItem.classList.contains('nav-dropdown') ? activeItem.querySelector('a') : activeItem;
-          moveIndicator(target);
-        }
-      }
-
-      triggers.forEach(trigger => {
-        trigger.addEventListener('mouseenter', () => moveIndicator(trigger));
-      });
-
-      navLinks.addEventListener('mouseleave', () => {
-        updateActiveIndicator();
-      });
-
-      // Initial position
-      setTimeout(updateActiveIndicator, 500);
-
-      // Dropdown Toggle
-      const dropdown = document.getElementById('services-dropdown');
-      if (dropdown) {
-        dropdown.addEventListener('click', (e) => {
-          e.stopPropagation();
-          dropdown.classList.toggle('is-open');
-        });
-      }
-      document.addEventListener('click', () => {
-        if (dropdown) dropdown.classList.remove('is-open');
-      });
-    })();
-  </script>
-
-  <script>
-    (function() {
-      const shell = document.getElementById('quartz-shell');
-      if (!shell) return;
-
-      const fromLanding = sessionStorage.getItem('fromLanding');
-      const frameData = sessionStorage.getItem('landingPillFrame');
-
-      if (fromLanding && frameData) {
-        try {
-          const frame = JSON.parse(frameData);
-          const now = Date.now();
-          
-          // Only animate if it's recent (e.g. within 2 seconds)
-          if (now - frame.timestamp < 2000) {
-            const currentRect = shell.getBoundingClientRect();
-            const startX = frame.left - currentRect.left;
-            const startY = frame.top - currentRect.top;
-            
-            shell.style.setProperty('--pill-start-x', `${startX}px`);
-            shell.style.setProperty('--pill-start-y', `${startY}px`);
-            shell.classList.add('is-landing-entrance');
-          }
-        } catch (e) {
-          console.error("Pill animation error:", e);
-        }
-        sessionStorage.removeItem('fromLanding');
-        sessionStorage.removeItem('landingPillFrame');
-      }
-    })();
-
-    if (window.self !== window.top) {
-      document.body.classList.add('is-iframe');
-    }
-  </script>
 </body>
 </html>

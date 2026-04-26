@@ -23,820 +23,151 @@
     {
       "@context": "https://schema.org",
       "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://locallogicit.com/#organization",
-          "name": "Local Logic IT",
-          "url": "https://locallogicit.com/",
-          "logo": "https://locallogicit.com/assets/logo.png",
-          "email": "contact@locallogicit.com",
-          "telephone": "+1-636-352-6572",
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "contactType": "customer support",
-              "email": "contact@locallogicit.com",
-              "telephone": "+1-636-352-6572",
-              "availableLanguage": [
-                "en"
-              ]
-            }
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://locallogicit.com/#website",
-          "url": "https://locallogicit.com/",
-          "name": "Local Logic IT",
-          "publisher": {
-            "@id": "https://locallogicit.com/#organization"
-          }
-        },
-        {
-          "@type": "WebPage",
-          "@id": "https://locallogicit.com/business.html#webpage",
-          "url": "https://locallogicit.com/business.html",
-          "name": "Local Logic IT — Business IT Services",
-          "description": "Local Logic IT business IT services — managed IT, cybersecurity, backup, AI automation, and cloud services for local businesses.",
-          "isPartOf": {
-            "@id": "https://locallogicit.com/#website"
-          },
-          "about": {
-            "@id": "https://locallogicit.com/#organization"
-          },
-          "inLanguage": "en"
-        }
+        { "@type": "Organization", "@id": "https://locallogicit.com/#organization", "name": "Local Logic IT", "url": "https://locallogicit.com/", "logo": "https://locallogicit.com/assets/logo.png", "email": "contact@locallogicit.com", "telephone": "+1-636-352-6572", "contactPoint": [{ "@type": "ContactPoint", "contactType": "customer support", "email": "contact@locallogicit.com", "telephone": "+1-636-352-6572", "availableLanguage": ["en"] }] },
+        { "@type": "WebSite", "@id": "https://locallogicit.com/#website", "url": "https://locallogicit.com/", "name": "Local Logic IT", "publisher": { "@id": "https://locallogicit.com/#organization" } },
+        { "@type": "WebPage", "@id": "https://locallogicit.com/business.html#webpage", "url": "https://locallogicit.com/business.html", "name": "Local Logic IT — Business IT Services", "description": "Local Logic IT business IT services — managed IT, cybersecurity, backup, AI automation, and cloud services for local businesses.", "isPartOf": { "@id": "https://locallogicit.com/#website" }, "about": { "@id": "https://locallogicit.com/#organization" }, "inLanguage": "en" }
       ]
     }
   </script>
-
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
-  <script>
-    if (sessionStorage.getItem('fromLanding')) {
-      document.documentElement.classList.add('is-landing-anim');
-    }
-    if (window !== window.parent) {
-      document.documentElement.classList.add('in-iframe');
-    }
-  </script>
-    <style>
-  /* ── Process Grid (Premium Redesign) ── */
-  .onboarding {
-    position: relative;
-    background: var(--charcoal);
-    color: #f8fafc;
-    padding: 50px clamp(16px, 4vw, 32px) 80px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .onboarding .section-heading { color: #fff; }
-  .glow-orb {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(74,128,232,0.12) 0%, rgba(74,128,232,0) 60%);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 0;
-  }
-  .onboarding .section-label, .onboarding .section-heading {
-    position: relative;
-    z-index: 2;
-  }
-  .process-grid {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(16px, 2vw, 24px);
-    max-width: 1200px;
-    margin: 10px auto 0;
-    width: 100%;
-  }
-  .process-card {
-    position: relative;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    padding: clamp(24px, 4vw, 40px) clamp(20px, 3vw, 32px);
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .process-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
-    opacity: 0;
-    transition: opacity 0.5s;
-    pointer-events: none;
-  }
-  .process-card:hover::before, .process-card.active::before {
-    opacity: 1;
-  }
-  .process-card.active {
-    background: rgba(74, 128, 232, 0.05);
-    border-color: rgba(74, 128, 232, 0.4);
-    box-shadow: 0 10px 40px rgba(74, 128, 232, 0.15), inset 0 0 20px rgba(74, 128, 232, 0.05);
-    transform: translateY(-8px);
-  }
-  .step-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.08);
-    margin-bottom: 24px;
-    transition: all 0.5s;
-    line-height: 1;
-  }
-  .process-card.active .step-number {
-    color: #4a80e8;
-    text-shadow: 0 0 20px rgba(74, 128, 232, 0.4);
-    transform: scale(1.1) translateX(5%);
-  }
-  .process-card h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
-    position: relative;
-    z-index: 2;
-  }
-  .process-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.5);
-    transition: color 0.5s;
-    margin: 0;
-    position: relative;
-    z-index: 2;
-  }
-  .process-card.active p {
-    color: rgba(255, 255, 255, 0.85);
-  }
-  
-  .card-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.05);
-  }
-  .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: #4a80e8;
-    box-shadow: 0 0 10px #4a80e8;
-    transition: none;
-  }
-  .process-card.active .progress-fill {
-    width: 100%;
-    transition: width 6s linear;
-  }
 
-  @media (max-width: 900px) {
-    .process-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 600px) {
-    .process-grid { grid-template-columns: 1fr; }
-    .process-card.active { transform: translateY(-4px); }
-  }</style>
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="components/pill-nav.css" />
+
   <style>
-
-    /* ── Tokens ── */
     :root {
-      --font-main: 'Outfit', sans-serif;
-      --charcoal:   #04060E;
-      --charcoal-2: #070F22;
-      --blue:       #4A80E8;
-      --blue-2:     #7AAAF5;
-      --light:      #EDF2FF;
-      --ink:        #0D1B38;
-      --muted:      #6B7280;
-      --line:       #CDD9F5;
-
-      --quartz-bg: rgba(10, 10, 15, 0.65);
-      --quartz-border: rgba(255, 255, 255, 0.12);
-      --quartz-edge: rgba(255, 255, 255, 0.4);
-      --accent-glow: rgba(200, 220, 255, 0.15);
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.65);
-      --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
-      --nav-height: 40px;
-      --nav-top: 12px;
-      --slot-rail-border: rgba(255, 255, 255, 0.1);
-      --slot-rail-fill: rgba(255, 255, 255, 0.04);
-      --slot-glow: rgba(255, 255, 255, 0.12);
+      --charcoal: #04060E; --charcoal-2: #070F22;
+      --blue: #4A80E8; --blue-2: #7AAAF5;
+      --light: #EDF2FF; --ink: #0D1B38; --muted: #6B7280; --line: #CDD9F5;
     }
-
-    @view-transition {
-      navigation: auto;
-    }
-
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      animation-duration: 0.3s;
-    }
-
-    ::view-transition-old(main-pill),
-    ::view-transition-new(main-pill) {
-      animation-duration: 0.7s;
-      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { 
-      scroll-behavior: smooth; 
-      font-size: 15px; 
-      background: var(--charcoal-2); /* Match top bar for transition */
-    }
-    body { 
-      font-family: "Manrope", sans-serif; 
-      color: var(--ink); 
-      background: #050508; 
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: -1;
-    }
+    html { scroll-behavior: smooth; font-size: 15px; background: var(--charcoal-2); }
+    body { font-family: 'Outfit', sans-serif !important; color: #fff; background: #050508; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: -1; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
 
-    /* ── Nav ── */
-    body {
-      margin: 0;
-      padding: 0;
-      background: #050508;
-      color: #fff;
-      font-family: 'Outfit', sans-serif !important;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #050508;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
-      height: 140px;
-      margin-bottom: 0;
-    }
-    
-    body.is-iframe .nav {
-      display: none !important;
-    }
-
-    .nav::after {
-      display: none;
-    }
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: clamp(10px, 2vw, 20px);
-    }
-    /* The Main Pill */
-    .pill-wrapper {
-      view-transition-name: main-pill;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      z-index: 300;
-      border-radius: 100px;
-      padding: 4px 12px;
-      background: rgba(8, 8, 12, 0.98);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 
-        0 10px 40px rgba(0, 0, 0, 0.7),
-        inset 0 1px 1px rgba(255, 255, 255, 0.05);
-      font-family: 'Outfit', sans-serif !important;
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-      overflow: visible;
-      will-change: transform, opacity;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Landing Entrance Animation */
-    @keyframes pill-float-in {
-      from {
-        transform: translate(var(--pill-start-x, 0), var(--pill-start-y, 0)) scale(0.95);
-        opacity: 0;
-      }
-      to {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-    }
-
-    .pill-wrapper.is-landing-entrance {
-      animation: pill-float-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    .pill-wrapper::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 80%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
-
-    .pill-wrapper:hover::before { opacity: 1; }
-
-    /* Internal Rail Lighting (Subtle White Highlight) */
-    .pill-wrapper::after {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      border-radius: inherit;
-      border: 1px solid transparent;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 40%) border-box;
-      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 5;
-    }
-
-    .pill-nav {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      height: 40px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .nav-segment {
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      height: 100%;
-      position: relative;
-    }
-
-    .logo-segment {
-      padding-left: 12px;
-      padding-right: 18px;
-    }
-
-    .links-segment {
-      padding-left: 12px;
-      padding-right: 8px;
-      border-left: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow: hidden;
-    }
-
-    .pill-wrapper[data-nav-motion="slot"] .links-segment {
-      animation: segment-slide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes segment-slide {
-      from { max-width: 0; opacity: 0; transform: translateX(10px); }
-      to { max-width: 800px; opacity: 1; transform: translateX(0); }
-    }
-
-
-
-
-
-    .pill-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-    }
-    .pill-left svg { width: 24px; height: 24px; color: #fff; }
-    .pill-logo-name, .header-name {
-      font-family: var(--font-main) !important;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-      -webkit-font-smoothing: antialiased;
-    }
-    .pill-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0 4px;
-      transition: all 0.5s ease;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* The Sliding Pill Background */
-    .nav-indicator {
-      position: absolute;
-      background: #4A80E8;
-      border-radius: 100px;
-      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      z-index: -1;
-      box-shadow: 0 0 30px rgba(74, 128, 232, 0.5);
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .pill-links a, .pill-links .nav-dropdown > a {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.7);
-      padding: 8px 20px;
-      border-radius: 100px;
-      white-space: nowrap;
-      transition: color 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
-    .pill-links a:hover, .pill-links .nav-dropdown > a:hover { 
-      color: #fff; 
-    }
-    .pill-links a.active, .pill-links .nav-dropdown.active > a {
-      color: #fff;
-    }
-
-    .pill-divider {
-      width: 1px;
-      height: 28px;
-      background: rgba(255,255,255,0.08);
-      margin: 0 12px;
-    }
-
-    .pill-btn-support {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #fff !important;
-      background: #4A80E8;
-      padding: 6px 14px !important;
-      border-radius: 999px;
-      text-decoration: none;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(74,128,232,0.3);
-    }
-
-    /* Nav Dropdown for Services */
-    .nav-dropdown {
-      position: relative;
-    }
-    .nav-dropdown-content {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      padding-top: 12px; /* Bridge gap */
-      z-index: 1000;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-    }
-    .nav-dropdown:hover .nav-dropdown-content,
-    .nav-dropdown.is-open .nav-dropdown-content {
-      display: block;
-      opacity: 1;
-      transform: translateX(-50%) translateY(8px);
-      pointer-events: auto;
-    }
-    .nav-dropdown-content-inner {
-      background: var(--charcoal-2);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 8px;
-      min-width: 180px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .nav-dropdown-content a {
-      display: block;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-    }
-    .nav-dropdown-content a:hover {
-      background: rgba(255,255,255,0.05);
-    }
-
-    /* Tagline Pill */
-    .tagline-pill {
-      position: absolute;
-      top: calc(100% + 22px);
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Outfit', sans-serif !important;
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.85);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      pointer-events: none;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      transition: all 0.4s ease;
-    }
-
-    /* Mobile Menu Adjusted */
-    .nav-hamburger {
-      display: none;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 8px;
-      margin-left: 8px;
-    }
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      border-radius: 2px;
-      margin: 5px 0;
-    }
-
-    .nav-mobile-menu {
-      display: none;
-      position: absolute;
-      top: 130px;
-      left: 0;
-      right: 0;
-      background: var(--charcoal-2);
-      padding: 16px 24px;
-      flex-direction: column;
-      gap: 16px;
-      z-index: 200;
-    }
-    .nav-mobile-menu.open { display: flex; }
-
-    @media (max-width: 991px) {
-      .pill-links { display: none; }
-      .nav-hamburger { display: block; }
-    }
-
-    @media (max-width: 767px) {
-      .nav { height: 90px; min-height: 90px; margin-bottom: 0; }
-      .nav::after { display: none; }
-      .nav-mobile-menu { top: 90px; }
-      .pill-wrapper {
-        width: 100%;
-        border-radius: 16px;
-      }
-      .tagline-pill { display: none; }
-    }
-
     /* ── Hero ── */
-    .hero {
-      background: linear-gradient(135deg, var(--charcoal-2) 0%, var(--charcoal) 100%);
-      padding: clamp(60px, 8vw, 100px) clamp(16px, 4vw, 32px) clamp(40px, 6vw, 80px);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(74,128,232,0.1);
-      color: var(--blue);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      border: 1px solid rgba(74,128,232,0.2);
-    }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.1;
-      max-width: 800px;
-      margin: 0 auto 16px;
-      letter-spacing: -0.04em;
-    }
-    .hero-sub {
-      font-size: 1.125rem;
-      color: rgba(255,255,255,0.5);
-      max-width: 600px;
-      margin: 0 auto 40px auto;
-      line-height: 1.6;
-    }
-    .hero-cta {
-      display: inline-block;
-      background: var(--blue);
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 700;
-      padding: 16px 40px;
-      border-radius: 8px;
-      transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 12px rgba(74,128,232,0.25);
-    }
-    .hero-cta:hover {
-      background: var(--blue-2);
-      transform: translateY(-2px);
-    }
-    .hero-cta:focus-visible {
-      outline: 3px solid var(--blue);
-      outline-offset: 3px;
-    }
+    .hero { background: linear-gradient(135deg, var(--charcoal-2) 0%, var(--charcoal) 100%); padding: clamp(60px, 8vw, 100px) clamp(16px, 4vw, 32px) clamp(40px, 6vw, 80px); padding-top: clamp(100px, 12vw, 140px); position: relative; overflow: hidden; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(74,128,232,0.1); color: var(--blue); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; margin-bottom: 24px; border: 1px solid rgba(74,128,232,0.2); }
+    .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; color: #fff; line-height: 1.1; max-width: 800px; margin: 0 auto 16px; letter-spacing: -0.04em; }
+    .hero-sub { font-size: 1.125rem; color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto 40px auto; line-height: 1.6; }
+    .hero-cta { display: inline-block; background: var(--blue); color: #fff; font-size: 1rem; font-weight: 700; padding: 16px 40px; border-radius: 8px; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 12px rgba(74,128,232,0.25); }
+    .hero-cta:hover { background: var(--blue-2); transform: translateY(-2px); }
+    .hero-cta:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 
     /* ── Section shared ── */
-    .section {
-      padding: clamp(40px, 6vw, 60px) clamp(16px, 4vw, 32px);
-    }
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .section-heading {
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      font-weight: 800;
-      text-align: center;
-      color: var(--ink);
-      letter-spacing: -0.03em;
-      margin-bottom: 40px;
-    }
+    .section { padding: clamp(40px, 6vw, 60px) clamp(16px, 4vw, 32px); }
+    .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-align: center; margin-bottom: 12px; }
+    .section-heading { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; text-align: center; color: var(--ink); letter-spacing: -0.03em; margin-bottom: 40px; }
 
     /* ── Services ── */
     .services { background: var(--light); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: clamp(16px, 2vw, 24px);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .service-card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 32px;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(13,27,56,0.06);
-      border-color: var(--blue);
-    }
-    .service-title {
-      font-size: 1.125rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--ink);
-    }
-    .service-desc {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: clamp(16px, 2vw, 24px); max-width: 1200px; margin: 0 auto; }
+    .service-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 32px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(13,27,56,0.06); border-color: var(--blue); }
+    .service-title { font-size: 1.125rem; font-weight: 800; margin-bottom: 12px; color: var(--ink); }
+    .service-desc { font-size: 0.9375rem; color: var(--muted); line-height: 1.6; }
 
     /* ── About ── */
-    .about {
-      background: var(--charcoal);
-      color: #fff;
-      text-align: center;
-    }
+    .about { background: var(--charcoal); color: #fff; text-align: center; }
     .about .section-heading { color: #fff; }
-    .about-body {
-      font-size: 1.125rem;
-      color: rgba(255,255,255,0.7);
-      max-width: 650px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+    .about-body { font-size: 1.125rem; color: rgba(255,255,255,0.7); max-width: 650px; margin: 0 auto; line-height: 1.7; }
     .about-body strong { color: var(--blue); }
 
     /* ── Contact ── */
     .contact { background: var(--light); text-align: center; }
-    .contact-card {
-      display: inline-flex;
-      flex-direction: column;
-      gap: 16px;
-      background: var(--charcoal);
-      border-radius: 20px;
-      padding: clamp(24px, 4vw, 32px) clamp(20px, 5vw, 48px);
-      margin: 0 auto;
-      max-width: calc(100vw - 40px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      color: #fff;
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
+    .contact-card { display: inline-flex; flex-direction: column; gap: 16px; background: var(--charcoal); border-radius: 20px; padding: clamp(24px, 4vw, 32px) clamp(20px, 5vw, 48px); margin: 0 auto; max-width: calc(100vw - 40px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .contact-item { display: flex; align-items: center; gap: 14px; color: #fff; font-size: 1.05rem; font-weight: 600; }
     .contact-item svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--blue); }
     .contact-item a { color: #fff; transition: color 0.2s; }
     .contact-item a:hover { color: var(--blue); }
-    .contact-item a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
 
     /* ── Footer ── */
-    .footer {
-      background: var(--charcoal-2);
-      text-align: center;
-      padding: clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px);
-      color: rgba(255,255,255,0.4);
-      font-size: 0.8rem;
-    }
+    .footer { background: var(--charcoal-2); text-align: center; padding: clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px); color: rgba(255,255,255,0.4); font-size: 0.8rem; }
     .footer strong { color: var(--blue); font-weight: 700; }
 
-    @media (max-width: 767px) {
-      .nav-back { font-size: 0.7rem; }
-      .nav-logo-name { font-size: 0.85rem; }
-    }
+    /* ── Dropdown theme override for business ── */
+    .dropdown-content-inner { background: var(--charcoal-2) !important; }
 
-    @media (max-width: 360px) {
-      .nav-back { display: none; }
+    @media (max-width: 767px) {
+      .hero { padding: clamp(80px, 12vw, 100px) 16px clamp(36px, 8vw, 60px); }
     }
+  </style>
+
+  <!-- Process Grid styles (kept inline — page-specific) -->
+  <style>
+  .onboarding { position: relative; background: var(--charcoal); color: #f8fafc; padding: 50px clamp(16px, 4vw, 32px) 80px; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+  .onboarding .section-heading { color: #fff; }
+  .glow-orb { position: absolute; top: 50%; left: 50%; width: 800px; height: 800px; background: radial-gradient(circle, rgba(74,128,232,0.12) 0%, rgba(74,128,232,0) 60%); transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
+  .onboarding .section-label, .onboarding .section-heading { position: relative; z-index: 2; }
+  .process-grid { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px); max-width: 1200px; margin: 10px auto 0; width: 100%; }
+  .process-card { position: relative; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: clamp(24px, 4vw, 40px) clamp(20px, 3vw, 32px); overflow: hidden; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; display: flex; flex-direction: column; justify-content: flex-start; }
+  .process-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+  .process-card:hover::before, .process-card.active::before { opacity: 1; }
+  .process-card.active { background: rgba(74,128,232,0.05); border-color: rgba(74,128,232,0.4); box-shadow: 0 10px 40px rgba(74,128,232,0.15), inset 0 0 20px rgba(74,128,232,0.05); transform: translateY(-8px); }
+  .step-number { font-family: 'JetBrains Mono', monospace; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; color: rgba(255,255,255,0.08); margin-bottom: 24px; transition: all 0.5s; line-height: 1; }
+  .process-card.active .step-number { color: #4a80e8; text-shadow: 0 0 20px rgba(74,128,232,0.4); transform: scale(1.1) translateX(5%); }
+  .process-card h3 { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -0.01em; position: relative; z-index: 2; }
+  .process-card p { font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.5); transition: color 0.5s; margin: 0; position: relative; z-index: 2; }
+  .process-card.active p { color: rgba(255,255,255,0.85); }
+  .card-progress { position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: rgba(255,255,255,0.05); }
+  .progress-fill { height: 100%; width: 0%; background: #4a80e8; box-shadow: 0 0 10px #4a80e8; transition: none; }
+  .process-card.active .progress-fill { width: 100%; transition: width 6s linear; }
+  @media (max-width: 900px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .process-grid { grid-template-columns: 1fr; } .process-card.active { transform: translateY(-4px); } }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav class="nav" id="top">
-    <div class="pill-wrapper" id="quartz-shell" data-nav-motion="slot" data-nav-theme="business">
-      <header class="pill-nav">
-        <div class="nav-segment logo-segment">
-          <a class="pill-left" href="index.html">
+  <!-- Pill Nav (fixed, docked top-left) -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
+    <header class="pill-nav">
+      <div class="nav-segment logo-segment">
+        <a class="header-brand" href="index.html">
+          <div class="header-logo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
               <path d="M2 17l10 5 10-5"></path>
               <path d="M2 12l10 5 10-5"></path>
             </svg>
-            <span class="pill-logo-name">Local Logic IT</span>
-          </a>
-        </div>
-
-        <div class="nav-segment links-segment">
-          <div class="pill-links" id="main-pill-links">
+          </div>
+          <span class="header-name">Local Logic IT</span>
+        </a>
+      </div>
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
             <div class="nav-indicator" id="nav-indicator"></div>
             <a href="index.html">Home</a>
-            <div class="nav-dropdown active" id="services-dropdown">
-              <a href="javascript:void(0)">Services</a>
-              <div class="nav-dropdown-content">
-                <div class="nav-dropdown-content-inner">
-                  <a href="residential.html">Home & Family</a>
-                  <a href="business.html">Business & Office</a>
+            <div class="dropdown active" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="residential.html">Home &amp; Family</a>
+                  <a href="business.html">Business &amp; Office</a>
                 </div>
               </div>
             </div>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-          </div>
+          </nav>
         </div>
-
-        <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </header>
-      <div class="tagline-pill">Local Service. Logical Solutions.</div>
+      </div>
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="residential.html">Home &amp; Family</a>
+      <a href="business.html">Business &amp; Office</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
     </div>
-
-    <div class="nav-mobile-menu" id="mobileMenu">
-      <a href="residential.html" onclick="closeMobileMenu()">Residential Services</a>
-      <a href="business.html" onclick="closeMobileMenu()">Business Services</a>
-      <a href="#about" onclick="closeMobileMenu()">About</a>
-      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-      <a href="quick-support.html" onclick="closeMobileMenu()" style="color: var(--blue);">Quick Support</a>
-    </div>
-  </nav>
+  </div>
 
   <main>
   <!-- Hero -->
@@ -847,106 +178,37 @@
     <a class="hero-cta" href="#onboarding">How We Get Started</a>
   </section>
 
-  <!-- Process / Onboarding Redesign -->
+  <!-- Process / Onboarding -->
   <section class="onboarding" id="onboarding">
     <div class="glow-orb"></div>
     <p class="section-label">Our Process</p>
     <h2 class="section-heading">How We Modernize Your Business</h2>
-    
     <div class="process-grid">
-      <!-- Step 1 -->
-      <div class="process-card active" data-step="1">
-        <div class="step-number">01</div>
-        <h3>The Logic Audit</h3>
-        <p>We perform a deep-dive security and performance audit of your current infrastructure to find the "low hanging fruit" for immediate improvement.</p>
-        <div class="card-progress"><div class="progress-fill"></div></div>
-      </div>
-      
-      <!-- Step 2 -->
-      <div class="process-card" data-step="2">
-        <div class="step-number">02</div>
-        <h3>Standardization</h3>
-        <p>We move your team to a unified stack (M365/Google Workspace) and roll out centralized management for every device you own.</p>
-        <div class="card-progress"><div class="progress-fill"></div></div>
-      </div>
-      
-      <!-- Step 3 -->
-      <div class="process-card" data-step="3">
-        <div class="step-number">03</div>
-        <h3>Security Hardening</h3>
-        <p>We implement a "Zero Trust" posture with Passkeys, advanced DNS filtering, and automated backup testing. Security isn't an option; it's the baseline.</p>
-        <div class="card-progress"><div class="progress-fill"></div></div>
-      </div>
-      
-      <!-- Step 4 -->
-      <div class="process-card" data-step="4">
-        <div class="step-number">04</div>
-        <h3>AI Integration</h3>
-        <p>We identify repetitive workflows and introduce local AI automation tools that save your staff hours of manual data entry every week.</p>
-        <div class="card-progress"><div class="progress-fill"></div></div>
-      </div>
-      
-      <!-- Step 5 -->
-      <div class="process-card" data-step="5">
-        <div class="step-number">05</div>
-        <h3>Ongoing Logic</h3>
-        <p>Your systems are monitored 24/7. When a problem arises, our local team handles it before your staff even realizes there was an issue.</p>
-        <div class="card-progress"><div class="progress-fill"></div></div>
-      </div>
-      
-      <!-- Step 6 -->
-      <div class="process-card" data-step="6">
-        <div class="step-number">06</div>
-        <h3>Quarterly Strategy</h3>
-        <p>Every 90 days, we meet to review your tech roadmap. We ensure your technology is scaling alongside your business, not holding it back.</p>
-        <div class="card-progress"><div class="progress-fill"></div></div>
-      </div>
+      <div class="process-card active" data-step="1"><div class="step-number">01</div><h3>The Logic Audit</h3><p>We perform a deep-dive security and performance audit of your current infrastructure to find the "low hanging fruit" for immediate improvement.</p><div class="card-progress"><div class="progress-fill"></div></div></div>
+      <div class="process-card" data-step="2"><div class="step-number">02</div><h3>Standardization</h3><p>We move your team to a unified stack (M365/Google Workspace) and roll out centralized management for every device you own.</p><div class="card-progress"><div class="progress-fill"></div></div></div>
+      <div class="process-card" data-step="3"><div class="step-number">03</div><h3>Security Hardening</h3><p>We implement a "Zero Trust" posture with Passkeys, advanced DNS filtering, and automated backup testing. Security isn't an option; it's the baseline.</p><div class="card-progress"><div class="progress-fill"></div></div></div>
+      <div class="process-card" data-step="4"><div class="step-number">04</div><h3>AI Integration</h3><p>We identify repetitive workflows and introduce local AI automation tools that save your staff hours of manual data entry every week.</p><div class="card-progress"><div class="progress-fill"></div></div></div>
+      <div class="process-card" data-step="5"><div class="step-number">05</div><h3>Ongoing Logic</h3><p>Your systems are monitored 24/7. When a problem arises, our local team handles it before your staff even realizes there was an issue.</p><div class="card-progress"><div class="progress-fill"></div></div></div>
+      <div class="process-card" data-step="6"><div class="step-number">06</div><h3>Quarterly Strategy</h3><p>Every 90 days, we meet to review your tech roadmap. We ensure your technology is scaling alongside your business, not holding it back.</p><div class="card-progress"><div class="progress-fill"></div></div></div>
     </div>
-
     <script>
       (function() {
         const cards = document.querySelectorAll('.process-card');
-        let currentIndex = 0;
-        let timer = null;
+        let currentIndex = 0, timer = null;
         const DURATION = 6000;
-
         function showStep(index) {
           cards.forEach(c => c.classList.remove('active'));
           cards[index].classList.add('active');
-          
-          // Reset progress bars
           document.querySelectorAll('.progress-fill').forEach(p => p.style.width = '0%');
-          // Start the active one
-          setTimeout(() => {
-             const activeProgress = cards[index].querySelector('.progress-fill');
-             if(activeProgress) activeProgress.style.width = '100%';
-          }, 50);
+          setTimeout(() => { const p = cards[index].querySelector('.progress-fill'); if(p) p.style.width = '100%'; }, 50);
         }
-
-        function nextStep() {
-          currentIndex = (currentIndex + 1) % cards.length;
-          showStep(currentIndex);
-        }
-
-        function startRotation() {
-          if (timer) clearInterval(timer);
-          timer = setInterval(nextStep, DURATION);
-        }
-
+        function nextStep() { currentIndex = (currentIndex + 1) % cards.length; showStep(currentIndex); }
+        function startRotation() { if (timer) clearInterval(timer); timer = setInterval(nextStep, DURATION); }
         cards.forEach((card, idx) => {
-          card.addEventListener('mouseenter', () => {
-            clearInterval(timer);
-            currentIndex = idx;
-            showStep(idx);
-          });
-          card.addEventListener('mouseleave', () => {
-            startRotation();
-          });
+          card.addEventListener('mouseenter', () => { clearInterval(timer); currentIndex = idx; showStep(idx); });
+          card.addEventListener('mouseleave', () => { startRotation(); });
         });
-
-        // Initialize
-        showStep(0);
-        startRotation();
+        showStep(0); startRotation();
       })();
     </script>
   </section>
@@ -956,95 +218,14 @@
     <p class="section-label">What We Do</p>
     <h2 class="section-heading">What We Offer</h2>
     <div class="services-grid">
-
-      <a class="service-card" href="services/business/managed-it.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/ginorzey.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">Managed IT Services</span>
-        <p class="service-desc">Proactive monitoring, helpdesk support, and IT management so your team stays productive.</p>
-      </a>
-
-      <a class="service-card" href="services/business/backup-recovery.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/zmfzhhiu.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">Backup &amp; Recovery</span>
-        <p class="service-desc">Automated backups and tested recovery plans — so a ransomware hit or hardware failure doesn't end your business.</p>
-      </a>
-
-      <a class="service-card" href="services/business/ai-automation.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/nfuackpv.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">AI Automation</span>
-        <p class="service-desc">Practical AI tools and workflow automation that save your team time on repetitive tasks.</p>
-      </a>
-
-      <a class="service-card" href="services/business/cybersecurity.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/apbwvyeg.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">Cybersecurity</span>
-        <p class="service-desc">Endpoint protection, email security, staff training, and vulnerability assessments to keep threats out.</p>
-      </a>
-
-      <a class="service-card" href="services/business/cloud-services.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/kikjlzqr.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">Cloud Services</span>
-        <p class="service-desc">Microsoft 365, cloud migration, and ongoing cloud management — scalable infrastructure without the overhead.</p>
-      </a>
-
-      <a class="service-card" href="services/business/it-consulting.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/jdgfsfzr.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">IT Consulting &amp; Planning</span>
-        <p class="service-desc">Honest, vendor-neutral technology advice and IT roadmapping to help you invest in the right tools.</p>
-      </a>
-
-      <a class="service-card" href="services/business/hardware-procurement.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/rezibkiy.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">Hardware Procurement &amp; Setup</span>
-        <p class="service-desc">The right computers, printers, and networking gear — sourced, configured, and deployed for your team.</p>
-      </a>
-
-      <a class="service-card" href="services/business/voip-phone-systems.html">
-        <lord-icon
-            src="https://cdn.lordicon.com/wtywrnoz.json"
-            trigger="loop"
-            colors="primary:#4a80e8,secondary:#121331"
-            style="width:54px;height:54px;margin-bottom:16px;">
-        </lord-icon>
-        <span class="service-title">VoIP &amp; Phone Systems</span>
-        <p class="service-desc">Modern business phone systems — set up and supported locally so your team stays reachable.</p>
-      </a>
-
+      <a class="service-card" href="services/business/managed-it.html"><lord-icon src="https://cdn.lordicon.com/ginorzey.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">Managed IT Services</span><p class="service-desc">Proactive monitoring, helpdesk support, and IT management so your team stays productive.</p></a>
+      <a class="service-card" href="services/business/backup-recovery.html"><lord-icon src="https://cdn.lordicon.com/zmfzhhiu.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">Backup &amp; Recovery</span><p class="service-desc">Automated backups and tested recovery plans — so a ransomware hit or hardware failure doesn't end your business.</p></a>
+      <a class="service-card" href="services/business/ai-automation.html"><lord-icon src="https://cdn.lordicon.com/nfuackpv.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">AI Automation</span><p class="service-desc">Practical AI tools and workflow automation that save your team time on repetitive tasks.</p></a>
+      <a class="service-card" href="services/business/cybersecurity.html"><lord-icon src="https://cdn.lordicon.com/apbwvyeg.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">Cybersecurity</span><p class="service-desc">Endpoint protection, email security, staff training, and vulnerability assessments to keep threats out.</p></a>
+      <a class="service-card" href="services/business/cloud-services.html"><lord-icon src="https://cdn.lordicon.com/kikjlzqr.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">Cloud Services</span><p class="service-desc">Microsoft 365, cloud migration, and ongoing cloud management — scalable infrastructure without the overhead.</p></a>
+      <a class="service-card" href="services/business/it-consulting.html"><lord-icon src="https://cdn.lordicon.com/jdgfsfzr.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">IT Consulting &amp; Planning</span><p class="service-desc">Honest, vendor-neutral technology advice and IT roadmapping to help you invest in the right tools.</p></a>
+      <a class="service-card" href="services/business/hardware-procurement.html"><lord-icon src="https://cdn.lordicon.com/rezibkiy.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">Hardware Procurement &amp; Setup</span><p class="service-desc">The right computers, printers, and networking gear — sourced, configured, and deployed for your team.</p></a>
+      <a class="service-card" href="services/business/voip-phone-systems.html"><lord-icon src="https://cdn.lordicon.com/wtywrnoz.json" trigger="loop" colors="primary:#4a80e8,secondary:#121331" style="width:54px;height:54px;margin-bottom:16px;"></lord-icon><span class="service-title">VoIP &amp; Phone Systems</span><p class="service-desc">Modern business phone systems — set up and supported locally so your team stays reachable.</p></a>
     </div>
   </section>
 
@@ -1061,179 +242,22 @@
     <h2 class="section-heading">Get in Touch</h2>
     <div class="contact-card">
       <div class="contact-item">
-        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M4 4h14a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.8"/>
-          <path d="M3 5l8 7 8-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4h14a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.8"/><path d="M3 5l8 7 8-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         <a href="mailto:contact@locallogicit.com">contact@locallogicit.com</a>
       </div>
       <div class="contact-item">
-        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M4 4.5C4 3.7 4.7 3 5.5 3h2.2l2 4.5-1.4 1.4a10 10 0 004.8 4.8l1.4-1.4L19 14.3V16.5c0 .8-.7 1.5-1.5 1.5C8.4 18 4 10.6 4 4.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-        </svg>
+        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4.5C4 3.7 4.7 3 5.5 3h2.2l2 4.5-1.4 1.4a10 10 0 004.8 4.8l1.4-1.4L19 14.3V16.5c0 .8-.7 1.5-1.5 1.5C8.4 18 4 10.6 4 4.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
         <a href="tel:6363526572">636-352-6572</a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
   </footer>
   </main>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  </script>
-
-  <script>
-    /* ── Nucleus Bloom Entrance Animation ── */
-    (function () {
-      if (!sessionStorage.getItem('fromLanding')) return;
-      sessionStorage.removeItem('fromLanding');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      var shell = document.getElementById('quartz-shell');
-      var expand = document.querySelector('.pill-links');
-      var tp = document.querySelector('.tagline-pill');
-
-      if (!shell || !expand || !tp) return;
-
-      // Initial state: Start slightly left for the "glide in"
-      shell.style.transition = 'none';
-      shell.style.opacity = '0';
-      shell.style.transform = 'translateX(-80px) scale(0.9)';
-      
-      expand.style.transition = 'none';
-      expand.style.maxWidth = '0';
-      expand.style.opacity = '0';
-      
-      tp.style.transition = 'none';
-      tp.style.opacity = '0';
-      tp.style.transform = 'translateX(-50%) translateY(10px)';
-
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          // Phase 1: Fade in and slide to position
-          shell.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s ease-out';
-          
-          setTimeout(function () {
-            shell.style.opacity = '1';
-            shell.style.transform = 'translateX(0) scale(1)';
-            
-            // Phase 2: Bloom expansion
-            setTimeout(function() {
-              expand.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
-              expand.style.maxWidth = '800px';
-              expand.style.opacity  = '1';
-              
-              tp.style.transition = 'all 0.9s cubic-bezier(0.23, 1, 0.32, 1)';
-              tp.style.opacity = '0.8';
-              tp.style.transform = 'translateX(-50%) translateY(0)';
-              
-              setTimeout(function() { 
-                expand.style.overflow = 'visible'; 
-                var segment = document.querySelector('.links-segment');
-                if (segment) segment.style.overflow = 'visible';
-              }, 800);
-            }, 150);
-          }, 50);
-        });
-      });
-    }());
-
-    // Sliding Indicator Logic
-    (function() {
-      const navLinks = document.getElementById('main-pill-links');
-      const indicator = document.getElementById('nav-indicator');
-      if (!navLinks || !indicator) return;
-      const triggers = navLinks.querySelectorAll('a, .nav-dropdown > a');
-
-      function moveIndicator(target) {
-        if (!target || !indicator) return;
-        const rect = target.getBoundingClientRect();
-        const parentRect = navLinks.getBoundingClientRect();
-        
-        indicator.style.width = `${rect.width}px`;
-        indicator.style.height = `${rect.height}px`;
-        indicator.style.left = `${rect.left - parentRect.left}px`;
-        indicator.style.top = `${rect.top - parentRect.top}px`;
-        indicator.style.opacity = '1';
-      }
-
-      function updateActiveIndicator() {
-        const activeItem = navLinks.querySelector('.active') || navLinks.querySelector('.nav-dropdown.active > a');
-        if (activeItem) {
-          const target = activeItem.classList.contains('nav-dropdown') ? activeItem.querySelector('a') : activeItem;
-          moveIndicator(target);
-        }
-      }
-
-      triggers.forEach(trigger => {
-        trigger.addEventListener('mouseenter', () => moveIndicator(trigger));
-      });
-
-      navLinks.addEventListener('mouseleave', () => {
-        updateActiveIndicator();
-      });
-
-      // Initial position
-      setTimeout(updateActiveIndicator, 500);
-
-      // Dropdown Toggle
-      const dropdown = document.getElementById('services-dropdown');
-      if (dropdown) {
-        dropdown.addEventListener('click', (e) => {
-          e.stopPropagation();
-          dropdown.classList.toggle('is-open');
-        });
-      }
-      document.addEventListener('click', () => {
-        if (dropdown) dropdown.classList.remove('is-open');
-      });
-    })();
-  </script>
-
-  <script>
-    (function() {
-      const shell = document.getElementById('quartz-shell');
-      if (!shell) return;
-
-      const fromLanding = sessionStorage.getItem('fromLanding');
-      const frameData = sessionStorage.getItem('landingPillFrame');
-
-      if (fromLanding && frameData) {
-        try {
-          const frame = JSON.parse(frameData);
-          const now = Date.now();
-          
-          if (now - frame.timestamp < 2000) {
-            const currentRect = shell.getBoundingClientRect();
-            const startX = frame.left - currentRect.left;
-            const startY = frame.top - currentRect.top;
-            
-            shell.style.setProperty('--pill-start-x', `${startX}px`);
-            shell.style.setProperty('--pill-start-y', `${startY}px`);
-            shell.classList.add('is-landing-entrance');
-          }
-        } catch (e) {}
-        sessionStorage.removeItem('fromLanding');
-        sessionStorage.removeItem('landingPillFrame');
-      }
-    })();
-
-    if (window.self !== window.top) {
-      document.body.classList.add('is-iframe');
-    }
-  </script>
+  <!-- Shared Pill Nav Script -->
+  <script src="scripts/pill-nav.js"></script>
 </body>
 </html>

@@ -15,3 +15,14 @@ Thumbs.db
 dist/
 *.zip
 .worktrees/
+
+# Secrets
+keys.txt
+
+# AI / tool generated
+.audit-output/
+.claude/
+.openclaude-profile.json
+.playwright-mcp/
+.superpowers/
+docs/superpowers/
