@@ -11,7 +11,7 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - Local repo path: `C:\Users\DESKTOP\Desktop\LocalLogic\Local Logic IT\locallogic-it-website`
 - Stack: plain static HTML with mostly page-local inline CSS and JS, no framework, no backend, no build step
 - Public site footprint: 20 HTML pages
-- Current local `HEAD`: `d9a1d91` (`feat: implement 'Top-Left Float & Snap' navigation animation variation`)
+- Current local HEAD: `790b5ff` (`refactor: extract navigation logic to shared pill-nav script and componentize styles per memory.md`)
 
 ## Domain State
 
@@ -25,7 +25,7 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 ## Current Local Checkout State (April 25, 2026)
 
 - Branch state is `main...origin/main` with a mixed worktree. Do not assume a clean checkout before making edits.
-- Tracked modifications currently present: `index.html`, `business.html`, `residential.html`, and `memory.md`.
+- Tracked modifications currently present: None (all changes committed).
 - Untracked files currently relevant to site work include `assets/services/`, `components/`, the navbar planning/spec docs under `docs/superpowers/`, and `scripts/magnetic-slot-smoke.cjs`. There are also unrelated untracked support files and folders such as `.superpowers/`, `.audit-output/`, `.claude/`, `.playwright-mcp/`, `.openclaude-profile.json`, `keys.txt`, and `timeline.txt`; do not stage them by accident.
 - `index.html`, `business.html`, `residential.html`, `quick-support.html`, and all 16 service detail pages currently include `<title>`, meta description, canonical, Open Graph metadata, Twitter metadata, and one JSON-LD block with `Organization`, `WebSite`, and `WebPage`.
 - `index.html` now has one visible semantic `h1`: `Choose Your Home or Business IT Support`.
