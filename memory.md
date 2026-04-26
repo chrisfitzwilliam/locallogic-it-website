@@ -11,7 +11,7 @@ This is the single Markdown source of truth for Local Logic IT. Use this file fo
 - Local repo path: `C:\Users\DESKTOP\Desktop\LocalLogic\Local Logic IT\locallogic-it-website`
 - Stack: plain static HTML with mostly page-local inline CSS and JS, no framework, no backend, no build step
 - Public site footprint: 20 HTML pages
-- Current local HEAD: `790b5ff` (`refactor: extract navigation logic to shared pill-nav script and componentize styles per memory.md`)
+- Current local HEAD: `0e09209` (`refactor: optimize mobile navigation pill layout and fix overcrowding`)
 
 ## Domain State
 
