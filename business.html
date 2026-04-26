@@ -334,10 +334,27 @@
       box-shadow: 
         0 10px 40px rgba(0, 0, 0, 0.7),
         inset 0 1px 1px rgba(255, 255, 255, 0.05);
-      font-family: 'Inter', sans-serif;
-      transition: all 0.4s ease;
+      font-family: 'Outfit', sans-serif !important;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
       overflow: visible;
       will-change: transform, opacity;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Landing Entrance Animation */
+    @keyframes pill-float-in {
+      from {
+        transform: translate(var(--pill-start-x, 0), var(--pill-start-y, 0)) scale(0.95);
+        opacity: 0;
+      }
+      to {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .pill-wrapper.is-landing-entrance {
+      animation: pill-float-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     .pill-wrapper::before {
@@ -493,17 +510,27 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      transform: translateX(-50%) translateY(10px);
+      transform: translateX(-50%) translateY(8px);
+      padding-top: 12px; /* Bridge gap */
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    .nav-dropdown:hover .nav-dropdown-content,
+    .nav-dropdown.is-open .nav-dropdown-content {
+      display: block;
+      opacity: 1;
+      transform: translateX(-50%) translateY(8px);
+      pointer-events: auto;
+    }
+    .nav-dropdown-content-inner {
       background: var(--charcoal-2);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 12px;
       padding: 8px;
       min-width: 180px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      z-index: 10;
-    }
-    .nav-dropdown:hover .nav-dropdown-content {
-      display: block;
     }
     .nav-dropdown-content a {
       display: block;
@@ -781,11 +808,13 @@
           <div class="pill-links" id="main-pill-links">
             <div class="nav-indicator" id="nav-indicator"></div>
             <a href="index.html">Home</a>
-            <div class="nav-dropdown active">
+            <div class="nav-dropdown active" id="services-dropdown">
               <a href="javascript:void(0)">Services</a>
               <div class="nav-dropdown-content">
-                <a href="residential.html">Home & Family</a>
-                <a href="business.html">Business & Office</a>
+                <div class="nav-dropdown-content-inner">
+                  <a href="residential.html">Home & Family</a>
+                  <a href="business.html">Business & Office</a>
+                </div>
               </div>
             </div>
             <a href="#about">About</a>
@@ -1111,7 +1140,11 @@
               tp.style.opacity = '0.8';
               tp.style.transform = 'translateX(-50%) translateY(0)';
               
-              setTimeout(function() { expand.style.overflow = 'visible'; }, 800);
+              setTimeout(function() { 
+                expand.style.overflow = 'visible'; 
+                var segment = document.querySelector('.links-segment');
+                if (segment) segment.style.overflow = 'visible';
+              }, 800);
             }, 150);
           }, 50);
         });
@@ -1155,10 +1188,49 @@
 
       // Initial position
       setTimeout(updateActiveIndicator, 500);
+
+      // Dropdown Toggle
+      const dropdown = document.getElementById('services-dropdown');
+      if (dropdown) {
+        dropdown.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dropdown.classList.toggle('is-open');
+        });
+      }
+      document.addEventListener('click', () => {
+        if (dropdown) dropdown.classList.remove('is-open');
+      });
     })();
   </script>
 
   <script>
+    (function() {
+      const shell = document.getElementById('quartz-shell');
+      if (!shell) return;
+
+      const fromLanding = sessionStorage.getItem('fromLanding');
+      const frameData = sessionStorage.getItem('landingPillFrame');
+
+      if (fromLanding && frameData) {
+        try {
+          const frame = JSON.parse(frameData);
+          const now = Date.now();
+          
+          if (now - frame.timestamp < 2000) {
+            const currentRect = shell.getBoundingClientRect();
+            const startX = frame.left - currentRect.left;
+            const startY = frame.top - currentRect.top;
+            
+            shell.style.setProperty('--pill-start-x', `${startX}px`);
+            shell.style.setProperty('--pill-start-y', `${startY}px`);
+            shell.classList.add('is-landing-entrance');
+          }
+        } catch (e) {}
+        sessionStorage.removeItem('fromLanding');
+        sessionStorage.removeItem('landingPillFrame');
+      }
+    })();
+
     if (window.self !== window.top) {
       document.body.classList.add('is-iframe');
     }

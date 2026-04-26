@@ -291,6 +291,7 @@
       max-width: 800px;
       opacity: 1;
       transform: translateX(0);
+      overflow: visible; /* Prevent clipping of dropdowns */
     }
 
     /* Choice Transition States - THE FLOAT */
@@ -397,8 +398,8 @@
       display: block;
     }
 
-    .header-name {
-      font-family: var(--font-main) !important;
+    .pill-logo-name, .header-name {
+      font-family: 'Outfit', sans-serif !important;
       font-size: 1.3rem;
       font-weight: 800;
       color: #ffffff;
@@ -1186,9 +1187,9 @@
         <div class="header-nav-container" id="expanded-nav">
           <nav class="header-links" id="main-nav-links">
             <div class="nav-indicator" id="nav-indicator"></div>
-            <a href="index.html">Home</a>
-            <div class="dropdown active" id="services-dropdown">
-              <span class="dropdown-trigger">Services</span>
+            <a href="index.html" class="active">Home</a>
+            <div class="dropdown" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
               <div class="dropdown-content">
                 <div class="dropdown-content-inner">
                   <a href="residential.html">Home &amp; Family</a>
@@ -1365,8 +1366,8 @@
         sessionStorage.setItem('fromLanding', '1');
         sessionStorage.setItem('navTheme', theme);
 
-        header.classList.add('is-slot-pulling');
-        setTimeout(() => window.location.href = dest, 500);
+        // Don't add is-slot-pulling class here, let view-transition or the next page handle it
+        setTimeout(() => window.location.href = dest, 150);
       }
     }
 
@@ -1422,10 +1423,8 @@
       const dropdown = document.getElementById('services-dropdown');
       if (dropdown) {
         dropdown.addEventListener('click', (e) => {
-          if (window.innerWidth <= 767) {
-            e.stopPropagation();
-            dropdown.classList.toggle('is-open');
-          }
+          e.stopPropagation();
+          dropdown.classList.toggle('is-open');
         });
       }
 
@@ -1485,9 +1484,12 @@
         
         const shell = document.getElementById('quartz-shell');
         if (shell) {
-          shell.classList.remove('is-expanded');
+          shell.classList.remove('is-expanded', 'is-slot-pulling');
           shell.style.transform = '';
           shell.style.opacity = '';
+          shell.style.left = '';
+          shell.style.top = '';
+          
           // Force re-animation of the shell
           document.body.classList.remove('is-loaded');
           void document.body.offsetWidth;
