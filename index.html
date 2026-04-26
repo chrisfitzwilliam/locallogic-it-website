@@ -70,9 +70,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script>
     if (window.CSS && CSS.supports && CSS.supports('view-transition-name: site-pill')) {
@@ -98,22 +96,36 @@
       animation-duration: 820ms;
       animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     }
+    
+    .is-iframe .pill-wrapper {
+      display: none !important;
+    }
   </style>
+
   <style>
     :root {
-      --quartz-bg: rgba(15, 15, 20, 0.4);
+      --font-main: 'Outfit', sans-serif;
+      --quartz-bg: rgba(10, 10, 15, 0.65);
       --quartz-border: rgba(255, 255, 255, 0.12);
       --quartz-edge: rgba(255, 255, 255, 0.4);
       --accent-glow: rgba(200, 220, 255, 0.15);
       --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-secondary: rgba(255, 255, 255, 0.75);
       --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
       --primary: #4A80E8;
-      --nav-height: 52px;
-      --nav-top: 8px;
+      --nav-height: 40px;
+      --nav-top: 24px;
       --slot-rail-border: rgba(255, 255, 255, 0.1);
       --slot-rail-fill: rgba(255, 255, 255, 0.04);
       --slot-glow: rgba(255, 255, 255, 0.12);
+    }
+
+    @view-transition {
+      navigation: auto;
+    }
+
+    .pill-wrapper {
+      view-transition-name: main-pill;
     }
 
     /* ── Reset ── */
@@ -128,14 +140,44 @@
     html {
       scroll-behavior: smooth;
       font-size: 15px;
+      background: #07070f; /* Prevent white flash */
     }
 
     body {
       min-height: 100vh;
       overflow-x: hidden;
-      font-family: "Manrope", sans-serif;
-      background: #07070f;
+      font-family: 'Outfit', sans-serif !important;
+      background: #050508;
       color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ── View Transition Tuning ── */
+    @view-transition {
+      navigation: auto;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.3s;
+    }
+
+    ::view-transition-old(main-pill),
+    ::view-transition-new(main-pill) {
+      animation-duration: 0.7s;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     /* ── Flash animation (injected on click) ── */
@@ -149,122 +191,135 @@
       }
     }
 
-    /* The Quartz Shell */
+    /* ── The Milled Quartz Shell (Superpower Redesign) ── */
     .pill-wrapper {
+      view-transition-name: main-pill;
       position: fixed;
       top: var(--nav-top);
       left: 50%;
       z-index: 300;
-      padding: 0;
+      display: flex;
+      align-items: center;
       border-radius: 100px;
-      background: var(--quartz-bg);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      border: 1px solid var(--quartz-border);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      padding: 4px 12px;
+      background: rgba(8, 8, 12, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
       opacity: 0;
-      transform: translateX(-50%) translateY(20px);
-      font-family: 'Inter', sans-serif;
-      transition: opacity 0.8s var(--transition-fluid), transform 0.8s var(--transition-fluid), width 0.4s ease, box-shadow 0.55s var(--transition-fluid), border-color 0.45s ease;
-      will-change: transform, opacity;
+      transform: translateX(-50%) translateY(20px) scale(0.96);
+      transition: 
+        opacity 0.8s var(--transition-fluid), 
+        transform 0.8s var(--transition-fluid),
+        background 0.4s ease,
+        border-color 0.4s ease;
+      overflow: visible;
+      perspective: 1000px;
+      will-change: transform, opacity, left, top;
     }
 
     .pill-wrapper::before {
       content: "";
       position: absolute;
-      inset: 5px;
-      border-radius: inherit;
-      border: 1px solid var(--slot-rail-border);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 55%), var(--slot-rail-fill);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 80%);
       opacity: 0;
-      transform: scale(0.97);
-      transition: opacity 0.45s ease, transform 0.55s var(--transition-fluid), box-shadow 0.45s ease;
+      transition: opacity 0.5s ease;
       pointer-events: none;
     }
 
-    .pill-wrapper.is-slot-ready::before,
-    .pill-wrapper.is-slot-arriving::before,
-    .pill-wrapper.is-slot-pulling::before {
+    .pill-wrapper:hover::before {
       opacity: 1;
-      transform: scale(1);
     }
 
-    .pill-wrapper.is-slot-arriving,
-    .pill-wrapper.is-slot-pulling {
-      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px var(--slot-glow);
+    /* Internal Rail Lighting */
+    .pill-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 40%) border-box;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
     }
 
     body.is-loaded .pill-wrapper {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    body.is-loaded .pill-wrapper.is-slot-arriving,
-    body.is-loaded .pill-wrapper.is-slot-pulling {
-      transform: translateX(calc(-50% - 28px)) translateY(-6px) scale(1.02, 1.01);
-    }
-
-    body.is-loaded .pill-wrapper.is-slot-ready {
       transform: translateX(-50%) translateY(0) scale(1);
     }
 
-    body.is-loaded .pill-wrapper.is-slot-pulling {
-      opacity: 0;
-      transform: translateX(calc(-50% - 34vw)) translateY(-2px) scale(0.84);
-    }
-
-    .pill-wrapper[data-nav-theme="residential"] {
-      --slot-rail-fill: rgba(245, 158, 11, 0.08);
-      --slot-rail-border: rgba(245, 158, 11, 0.2);
-      --slot-glow: rgba(245, 158, 11, 0.22);
-    }
-
-    .pill-wrapper[data-nav-theme="business"] {
-      --slot-rail-fill: rgba(74, 128, 232, 0.09);
-      --slot-rail-border: rgba(74, 128, 232, 0.22);
-      --slot-glow: rgba(74, 128, 232, 0.24);
-    }
-
-    .pill-wrapper[data-nav-motion="slot"] .pill-nav {
+    /* Segmented Navigation */
+    .pill-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: var(--nav-height);
       position: relative;
-      isolation: isolate;
+      z-index: 2;
     }
 
-    .pill-wrapper[data-nav-motion="slot"] .pill-nav::after {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05) 18%, rgba(255, 255, 255, 0.08) 52%, transparent 86%);
+    .nav-segment {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      height: 100%;
+      position: relative;
+    }
+
+    .logo-segment {
+      padding-left: 12px;
+      padding-right: 18px;
+    }
+
+    .links-segment {
+      padding-left: 12px;
+      padding-right: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 0;
       opacity: 0;
-      transform: translateX(24px) scaleX(0.96);
-      transition: opacity 0.45s ease, transform 0.72s var(--transition-fluid);
-      pointer-events: none;
-      z-index: 0;
+      transform: translateX(10px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
     }
 
-    .pill-wrapper.is-slot-arriving[data-nav-motion="slot"] .pill-nav::after,
-    .pill-wrapper.is-slot-pulling[data-nav-motion="slot"] .pill-nav::after,
-    .pill-wrapper.is-slot-ready[data-nav-motion="slot"] .pill-nav::after {
+    .pill-wrapper.is-expanded .links-segment {
+      max-width: 800px;
       opacity: 1;
-      transform: translateX(0) scaleX(1);
-    }
-
-    .pill-wrapper.is-slot-arriving[data-nav-motion="slot"] .header-brand,
-    .pill-wrapper.is-slot-pulling[data-nav-motion="slot"] .header-brand {
-      transform: translateX(-8px);
-    }
-
-    .pill-wrapper.is-slot-arriving[data-nav-motion="slot"] .header-nav-container,
-    .pill-wrapper.is-slot-pulling[data-nav-motion="slot"] .header-nav-container {
-      transform: translateX(18px);
-    }
-
-    .pill-wrapper.is-slot-ready[data-nav-motion="slot"] .header-brand,
-    .pill-wrapper.is-slot-ready[data-nav-motion="slot"] .header-nav-container {
       transform: translateX(0);
     }
+
+    /* Choice Transition States - THE FLOAT */
+    body.is-loaded .pill-wrapper.is-slot-pulling {
+      opacity: 1;
+      left: clamp(20px, 5vw, 60px);
+      top: 22px;
+      transform: translateX(0) scale(1);
+      transition: 
+        left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+        top 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 500;
+    }
+
+    .pill-wrapper.is-slot-pulling .links-segment {
+      max-width: 800px;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .pill-wrapper.is-slot-pulling .tagline-pill {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+
+    /* Removed slot themes to fix red shadow */
+
+    /* Removed slot themes and highlights to fix red line */
 
     .header-brand,
     .header-nav-container {
@@ -272,8 +327,7 @@
     }
 
     .tagline-pill,
-    .pill-wrapper::before,
-    .pill-wrapper[data-nav-motion="slot"] .pill-nav::after {
+    .pill-wrapper::before {
       will-change: transform, opacity;
     }
 
@@ -301,9 +355,9 @@
     .pill-nav {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 18px;
-      height: var(--nav-height);
+      gap: 0;
+      padding: 0;
+      height: 40px;
       background: transparent;
       border-radius: 100px;
       position: relative;
@@ -323,6 +377,7 @@
       text-decoration: none;
       color: inherit;
       transition: opacity 0.2s;
+      white-space: nowrap;
     }
 
     .header-brand:hover {
@@ -343,10 +398,13 @@
     }
 
     .header-name {
-      font-size: 1rem;
+      font-family: var(--font-main) !important;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: var(--text-primary);
+      color: #ffffff;
       letter-spacing: -0.02em;
+      -webkit-font-smoothing: antialiased;
+      text-transform: none;
     }
 
     /* Cinematic Expansion Segment */
@@ -367,29 +425,53 @@
 
     .header-links {
       display: flex;
-      gap: 18px;
-      padding: 0 10px;
+      gap: 4px;
+      padding: 0 4px;
       list-style: none;
       align-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* The Sliding Pill Background */
+    .nav-indicator {
+      position: absolute;
+      background: #4A80E8;
+      border-radius: 100px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      z-index: -1;
+      box-shadow: 0 0 30px rgba(74, 128, 232, 0.5);
+      pointer-events: none;
+      opacity: 0;
     }
 
     .header-links a,
     .dropdown-trigger {
-      font-size: 0.8rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.7);
       text-decoration: none;
-      transition: color 0.3s ease, transform 0.3s ease, opacity 0.5s var(--transition-fluid);
+      padding: 8px 20px;
+      border-radius: 100px;
+      transition: color 0.3s ease;
       white-space: nowrap;
       opacity: 0;
       transform: translateX(-10px);
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .header-links a:hover,
     .dropdown-trigger:hover {
       color: #fff;
-      transform: translateY(-1px);
+    }
+
+    .header-links a.active,
+    .dropdown.active .dropdown-trigger {
+      color: #fff;
     }
 
     .pill-wrapper.is-expanded .header-links a,
@@ -474,24 +556,21 @@
 
     .tagline-pill {
       position: absolute;
-      top: calc(100% + 8px);
+      top: calc(100% + 22px);
       left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: transparent;
-      backdrop-filter: none;
-      padding: 0;
-      color: var(--text-secondary);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+      transform: translateX(-50%);
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      z-index: 1;
-      opacity: 0;
-      transition: all 1s var(--transition-fluid);
       white-space: nowrap;
       pointer-events: none;
-      border: none;
-      visibility: hidden;
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     .pill-wrapper.is-expanded .tagline-pill {
@@ -517,9 +596,9 @@
 
     .pill-divider {
       width: 1px;
-      height: 20px;
-      background: var(--quartz-border);
-      margin: 0 4px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 0 12px;
       position: relative;
       z-index: 2;
     }
@@ -1089,37 +1168,40 @@
   <div class="pill-wrapper" id="quartz-shell" data-nav-motion="slot" data-nav-theme="neutral">
     <div class="glint" id="refractor"></div>
     <header class="pill-nav">
-      <a href="index.html" class="header-brand">
-        <div class="header-logo">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            <path d="M2 17l10 5 10-5"></path>
-            <path d="M2 12l10 5 10-5"></path>
-          </svg>
-        </div>
-        <span class="header-name">Local Logic IT</span>
-      </a>
-
-      <div class="header-nav-container" id="expanded-nav">
-        <div class="pill-divider" aria-hidden="true"></div>
-        <nav class="header-links">
-          <div class="dropdown" id="services-dropdown">
-            <span class="dropdown-trigger">Services <i class="ph ph-caret-down"></i></span>
-            <div class="dropdown-content">
-              <div class="dropdown-content-inner">
-                <a href="residential.html">Home &amp; Family</a>
-                <a href="business.html">Business &amp; Office</a>
-              </div>
-            </div>
+      <div class="nav-segment logo-segment">
+        <a href="index.html" class="header-brand">
+          <div class="header-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
           </div>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <a href="quick-support.html" class="btn-support">Quick Support</a>
-        </nav>
+          <span class="header-name">Local Logic IT</span>
+        </a>
       </div>
 
-      <!-- Mobile hamburger (inside pill) -->
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="index.html">Home</a>
+            <div class="dropdown active" id="services-dropdown">
+              <span class="dropdown-trigger">Services</span>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="residential.html">Home &amp; Family</a>
+                  <a href="business.html">Business &amp; Office</a>
+                </div>
+              </div>
+            </div>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
       <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1267,7 +1349,7 @@
       if (header) {
         header.dataset.navMotion = 'slot';
         header.dataset.navTheme = theme;
-        header.classList.remove('is-slot-arriving', 'is-slot-ready', 'is-slot-pulling');
+        
         if (!prefersReducedMotion) {
           var pillFrame = header.getBoundingClientRect();
           sessionStorage.setItem('landingPillFrame', JSON.stringify({
@@ -1278,17 +1360,14 @@
             timestamp: Date.now()
           }));
         }
+        
         header.style.pointerEvents = 'none';
-      }
+        sessionStorage.setItem('fromLanding', '1');
+        sessionStorage.setItem('navTheme', theme);
 
-      sessionStorage.setItem('fromLanding', '1');
-      sessionStorage.setItem('navTheme', theme);
-      if (prefersReducedMotion) {
-        sessionStorage.removeItem('landingPillFrame');
-        window.location.href = dest;
-        return;
+        header.classList.add('is-slot-pulling');
+        setTimeout(() => window.location.href = dest, 500);
       }
-      setTimeout(() => window.location.href = dest, 120);
     }
 
     function closePillMenu() {
@@ -1349,6 +1428,43 @@
           }
         });
       }
+
+      // Sliding Indicator Logic
+      const navLinks = document.getElementById('main-nav-links');
+      const indicator = document.getElementById('nav-indicator');
+      const triggers = navLinks.querySelectorAll('a, .dropdown-trigger');
+
+      function moveIndicator(target) {
+        if (!target || !indicator) return;
+        const rect = target.getBoundingClientRect();
+        const parentRect = navLinks.getBoundingClientRect();
+        
+        indicator.style.width = `${rect.width}px`;
+        indicator.style.height = `${rect.height}px`;
+        indicator.style.left = `${rect.left - parentRect.left}px`;
+        indicator.style.top = `${rect.top - parentRect.top}px`;
+        indicator.style.opacity = '1';
+      }
+
+      function updateActiveIndicator() {
+        const activeItem = navLinks.querySelector('.active') || navLinks.querySelector('.dropdown.active .dropdown-trigger');
+        if (activeItem) {
+          const target = activeItem.classList.contains('dropdown-trigger') ? activeItem : activeItem;
+          moveIndicator(target);
+        }
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', () => moveIndicator(trigger));
+      });
+
+      navLinks.addEventListener('mouseleave', () => {
+        updateActiveIndicator();
+      });
+
+      // Initial position
+      setTimeout(updateActiveIndicator, 1500); // Wait for expansion animation
+
       document.addEventListener('click', () => {
         if (dropdown) dropdown.classList.remove('is-open');
       });

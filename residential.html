@@ -66,82 +66,187 @@
       ]
     }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.lordicon.com/lordicon.js"></script>
-  <script>
-    if (sessionStorage.getItem('fromLanding')) {
-      document.documentElement.classList.add('is-landing-anim');
-    }
-    if (window !== window.parent) {
-      document.documentElement.classList.add('in-iframe');
-    }
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-
-    /* ── Tokens — Golden Home (Amber Contrast) ── */
     :root {
-      --primary:   #F59E0B; /* Vibrant Amber */
-      --primary-2: #D97706; /* Deep Amber */
+      --font-main: 'Outfit', sans-serif;
+      --nav-height: 40px;
+      --primary:   #F59E0B;
+      --primary-2: #D97706;
       --bg:        #FFFFFF;
-      --surface:   #FFFBEB; /* Soft Amber Tint */
-      --ink:       #451A03; /* Dark Amber/Brown */
+      --surface:   #FFFBEB;
+      --ink:       #451A03;
       --muted:     #78350F;
-      --line:      #FEF3C7; /* Light Amber Border */
-      --accent:    #4A80E8; /* Brand Blue */
+      --line:      #FEF3C7;
+      --accent:    #4A80E8;
+
+      --quartz-bg: rgba(10, 10, 15, 0.65);
+      --quartz-border: rgba(255, 255, 255, 0.12);
+      --quartz-edge: rgba(255, 255, 255, 0.4);
+      --accent-glow: rgba(200, 220, 255, 0.15);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.65);
+      --transition-fluid: cubic-bezier(0.23, 1, 0.32, 1);
+      --nav-top: 12px;
+      --slot-rail-border: rgba(255, 255, 255, 0.1);
+      --slot-rail-fill: rgba(255, 255, 255, 0.04);
+      --slot-glow: rgba(255, 255, 255, 0.12);
     }
 
-    /* ── Reset ── */
+    @view-transition {
+      navigation: auto;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation-duration: 0.3s;
+    }
+
+    ::view-transition-old(main-pill),
+    ::view-transition-new(main-pill) {
+      animation-duration: 0.7s;
+      animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 15px; }
-    body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--bg); }
+    html { 
+      scroll-behavior: smooth; 
+      font-size: 15px; 
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #050508;
+      color: #fff;
+      font-family: 'Outfit', sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: -1;
+    }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
 
     /* ── Nav ── */
-    /* ── Nav (Header Bar) ── */
     .nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--ink);
+      background: #050508;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* Float to the left */
-      padding: 0 clamp(20px, 5vw, 60px);
-      height: 90px;
-      min-height: 90px;
-      margin-bottom: 28px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+      justify-content: center;
+      padding: 0 20px;
+      height: 140px;
+      margin-bottom: 0;
+    }
+    
+    body.is-iframe .nav {
+      display: none !important;
     }
 
     /* The Main Pill */
     .pill-wrapper {
+      view-transition-name: main-pill;
       position: relative;
       display: inline-flex;
-      flex-direction: column;
       align-items: center;
       z-index: 300;
-      padding: 0;
       border-radius: 100px;
-      background: rgba(15,15,20,0.4);
-      backdrop-filter: blur(24px) saturate(160%);
-      -webkit-backdrop-filter: blur(24px) saturate(160%);
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      padding: 4px 12px;
+      background: rgba(8, 8, 12, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
       font-family: 'Inter', sans-serif;
       transition: all 0.4s ease;
+      overflow: visible;
+      will-change: transform, opacity;
     }
+
+    .pill-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 80%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .pill-wrapper:hover::before { opacity: 1; }
 
     .pill-nav {
       display: flex;
       align-items: center;
-      padding: 8px 20px;
-      gap: 16px;
-      border-radius: 100px;
+      gap: 0;
+      height: 40px;
+      position: relative;
+      z-index: 2;
     }
+
+    /* Internal Rail Lighting (Subtle White Highlight) */
+    .pill-wrapper::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      border: 1px solid transparent;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent 40%) border-box;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .nav-segment {
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      height: 100%;
+      position: relative;
+    }
+
+    .logo-segment {
+      padding-left: 12px;
+      padding-right: 18px;
+    }
+
+    .links-segment {
+      padding-left: 12px;
+      padding-right: 8px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .pill-wrapper[data-nav-motion="slot"] .links-segment {
+      animation: segment-slide 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes segment-slide {
+      from { max-width: 0; opacity: 0; transform: translateX(10px); }
+      to { max-width: 800px; opacity: 1; transform: translateX(0); }
+    }
+
+
+
+
 
     .pill-left {
       display: flex;
@@ -151,36 +256,61 @@
       color: #fff;
     }
     .pill-left svg { width: 24px; height: 24px; color: #fff; }
-    .pill-logo-name {
-      font-size: 1rem;
+    .pill-logo-name, .header-name {
+      font-family: var(--font-main) !important;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: #fff;
+      color: #ffffff;
       letter-spacing: -0.02em;
+      -webkit-font-smoothing: antialiased;
+      white-space: nowrap;
     }
 
     .pill-links {
       display: flex;
       align-items: center;
-      gap: 0;
-      overflow: hidden;
+      gap: 4px;
+      padding: 0 4px;
       transition: all 0.5s ease;
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* The Sliding Pill Background */
+    .nav-indicator {
+      position: absolute;
+      background: #4A80E8;
+      border-radius: 100px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      z-index: -1;
+      box-shadow: 0 0 30px rgba(74, 128, 232, 0.5);
+      pointer-events: none;
+      opacity: 0;
     }
 
     .pill-links a, .pill-links .nav-dropdown > a {
-      font-size: 0.875rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      padding: 0 14px;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 8px 20px;
+      border-radius: 100px;
       white-space: nowrap;
-      transition: color 0.2s;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
-    .pill-links a:hover { color: #fff; }
+    .pill-links a:hover, .pill-links .nav-dropdown > a:hover { 
+      color: #fff; 
+    }
+    .pill-links a.active, .pill-links .nav-dropdown.active > a {
+      color: #fff;
+    }
 
     .pill-divider {
       width: 1px;
-      height: 18px;
-      background: rgba(255,255,255,0.1);
-      margin: 0;
+      height: 28px;
+      background: rgba(255,255,255,0.08);
+      margin: 0 12px;
     }
 
     .pill-btn-support {
@@ -198,16 +328,19 @@
     /* Tagline Pill */
     .tagline-pill {
       position: absolute;
-      top: calc(100% + 6px);
+      top: calc(100% + 22px);
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       white-space: nowrap;
       pointer-events: none;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       transition: all 0.4s ease;
     }
 
@@ -578,35 +711,39 @@
 
   <!-- Nav -->
   <nav class="nav" id="top">
-    <div class="pill-wrapper" id="quartz-shell">
-      <div class="pill-nav">
-        <a class="pill-left" href="index.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            <path d="M2 17l10 5 10-5"></path>
-            <path d="M2 12l10 5 10-5"></path>
-          </svg>
-          <span class="pill-logo-name">Local Logic IT</span>
-        </a>
+    <div class="pill-wrapper" id="quartz-shell" data-nav-motion="slot" data-nav-theme="residential">
+      <header class="pill-nav">
+        <div class="nav-segment logo-segment">
+          <a class="pill-left" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="pill-logo-name">Local Logic IT</span>
+          </a>
+        </div>
 
-        <div class="pill-links">
-          <div class="pill-divider"></div>
-          <div class="nav-dropdown">
-            <a href="javascript:void(0)">Services <i class="ph ph-caret-down"></i></a>
-            <div class="nav-dropdown-content">
-              <a href="residential.html">Home & Family</a>
-              <a href="business.html">Business & Office</a>
+        <div class="nav-segment links-segment">
+          <div class="pill-links" id="main-pill-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="index.html">Home</a>
+            <div class="nav-dropdown active">
+              <a href="javascript:void(0)">Services</a>
+              <div class="nav-dropdown-content">
+                <a href="residential.html">Home & Family</a>
+                <a href="business.html">Business & Office</a>
+              </div>
             </div>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
           </div>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <a href="quick-support.html" class="pill-btn-support">Quick Support</a>
         </div>
 
         <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
-      </div>
+      </header>
       <div class="tagline-pill">Local Service. Logical Solutions.</div>
     </div>
 
@@ -805,6 +942,7 @@
   </script>
 
 
+  <script>
     /* ── Nucleus Bloom Entrance Animation ── */
     (function () {
       if (!sessionStorage.getItem('fromLanding')) return;
@@ -856,5 +994,50 @@
       });
     }());
 
+    // Sliding Indicator Logic
+    (function() {
+      const navLinks = document.getElementById('main-pill-links');
+      const indicator = document.getElementById('nav-indicator');
+      if (!navLinks || !indicator) return;
+      const triggers = navLinks.querySelectorAll('a, .nav-dropdown > a');
+
+      function moveIndicator(target) {
+        if (!target || !indicator) return;
+        const rect = target.getBoundingClientRect();
+        const parentRect = navLinks.getBoundingClientRect();
+        
+        indicator.style.width = `${rect.width}px`;
+        indicator.style.height = `${rect.height}px`;
+        indicator.style.left = `${rect.left - parentRect.left}px`;
+        indicator.style.top = `${rect.top - parentRect.top}px`;
+        indicator.style.opacity = '1';
+      }
+
+      function updateActiveIndicator() {
+        const activeItem = navLinks.querySelector('.active') || navLinks.querySelector('.nav-dropdown.active > a');
+        if (activeItem) {
+          const target = activeItem.classList.contains('nav-dropdown') ? activeItem.querySelector('a') : activeItem;
+          moveIndicator(target);
+        }
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', () => moveIndicator(trigger));
+      });
+
+      navLinks.addEventListener('mouseleave', () => {
+        updateActiveIndicator();
+      });
+
+      // Initial position
+      setTimeout(updateActiveIndicator, 500);
+    })();
+  </script>
+
+  <script>
+    if (window.self !== window.top) {
+      document.body.classList.add('is-iframe');
+    }
+  </script>
 </body>
 </html>
