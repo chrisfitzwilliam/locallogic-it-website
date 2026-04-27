@@ -24,13 +24,36 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
+          "@type": "LocalBusiness",
           "@id": "https://locallogicit.com/#organization",
           "name": "Local Logic IT",
           "url": "https://locallogicit.com/",
           "logo": "https://locallogicit.com/assets/logo.png",
           "email": "contact@locallogicit.com",
           "telephone": "+1-636-352-6572",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "St. Charles",
+            "addressRegion": "MO",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 38.7881,
+            "longitude": -90.4974
+          },
+          "areaServed": [
+            { "@type": "City", "name": "St. Charles" },
+            { "@type": "City", "name": "O'Fallon" },
+            { "@type": "City", "name": "Wentzville" },
+            { "@type": "City", "name": "Lake St. Louis" },
+            { "@type": "City", "name": "St. Peters" },
+            { "@type": "City", "name": "Cottleville" },
+            { "@type": "City", "name": "Weldon Spring" },
+            { "@type": "City", "name": "Chesterfield" },
+            { "@type": "City", "name": "Ballwin" },
+            { "@type": "City", "name": "Maryland Heights" }
+          ],
           "contactPoint": [
             {
               "@type": "ContactPoint",
@@ -115,8 +138,8 @@
       z-index: 4;
       width: min(88vw, 600px);
       text-align: center;
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      font-weight: 800;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.04em;
       color: #fff;
@@ -229,8 +252,8 @@
     .half--business .half-icon { color: var(--accent-blue); }
 
     .half-name {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.4rem;
+      font-weight: 600;
       display: block;
       margin-bottom: 8px;
       color: #fff;
@@ -330,6 +353,7 @@
                 <div class="dropdown-content-inner">
                   <a href="residential.html">Home &amp; Family</a>
                   <a href="business.html">Business &amp; Office</a>
+                  <a href="service-area.html">Service Area</a>
                 </div>
               </div>
             </div>
@@ -358,6 +382,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="residential.html">Home &amp; Family</a>
       <a href="business.html">Business &amp; Office</a>
+      <a href="service-area.html">Service Area</a>
       <a href="#about" onclick="closeMobileMenu()">About</a>
       <a href="#contact" onclick="closeMobileMenu()">Contact Info</a>
       <a href="javascript:void(0)" onclick="Tawk_API.maximize(); closeMobileMenu()">Live Chat</a>

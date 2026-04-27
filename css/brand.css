@@ -56,8 +56,8 @@ body.is-iframe {
 
 /* Typography */
 h1, h2, h3, h4 {
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 .text-gradient-blue {
@@ -156,7 +156,8 @@ h1, h2, h3, h4 {
 }
 
 .section-title {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+    font-weight: 700; /* Keeping section titles slightly bolder but smaller */
     margin-bottom: 48px;
     text-align: center;
 }
@@ -254,9 +255,9 @@ h1, h2, h3, h4 {
 }
 
 .footer-brand-name {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     color: #fff;
     margin-bottom: 8px;
     text-transform: uppercase;

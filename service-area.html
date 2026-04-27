@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local Logic IT serves St. Charles, O'Fallon, Wentzville, and the Greater St. Louis area with managed IT, cybersecurity, and home tech support. On-site and remote available." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <meta name="view-transition" content="same-origin" />
+  <title>IT Support — St. Charles, O'Fallon & Greater St. Louis MO | Local Logic IT</title>
+  <link rel="canonical" href="https://locallogicit.com/service-area.html" />
+  <meta property="og:title" content="IT Support — St. Charles, O'Fallon & Greater St. Louis MO | Local Logic IT" />
+  <meta property="og:description" content="Dedicated local IT support for home and business across St. Charles County and St. Louis. On-site visits and remote support." />
+  <meta property="og:url" content="https://locallogicit.com/service-area.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="IT Support — St. Charles, O'Fallon & Greater St. Louis MO" />
+  <meta name="twitter:description" content="Managed IT and residential support serving St. Charles, MO & the Greater St. Louis Area." />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
+  
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Local Logic IT",
+      "url": "https://locallogicit.com/",
+      "telephone": "+1-636-352-6572",
+      "email": "contact@locallogicit.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "St. Charles",
+        "addressRegion": "MO",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.7881,
+        "longitude": -90.4974
+      },
+      "areaServed": [
+        { "@type": "City", "name": "St. Charles" },
+        { "@type": "City", "name": "O'Fallon" },
+        { "@type": "City", "name": "Wentzville" },
+        { "@type": "City", "name": "Lake St. Louis" },
+        { "@type": "City", "name": "St. Peters" },
+        { "@type": "City", "name": "Cottleville" },
+        { "@type": "City", "name": "Weldon Spring" },
+        { "@type": "City", "name": "Chesterfield" },
+        { "@type": "City", "name": "Ballwin" },
+        { "@type": "City", "name": "Maryland Heights" }
+      ],
+      "sameAs": []
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="css/brand.css" />
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="components/pill-nav.css" />
+
+  <style>
+    /* ── Hero ── */
+    .hero {
+        padding: clamp(120px, 15vw, 180px) 24px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+        font-weight: 700;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-sub {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: var(--text-secondary);
+    }
+
+    /* ── Coverage Area Grid ── */
+    .coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .city-card {
+        padding: 32px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: var(--transition);
+        border: 1px solid var(--border-glass);
+        background: var(--glass-bg);
+        border-radius: 24px;
+    }
+
+    .city-card:hover {
+        background: var(--glass-bg-hover);
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .city-card.highlight {
+        background: rgba(0, 102, 255, 0.05);
+        border-color: var(--accent-blue);
+        box-shadow: 0 10px 30px rgba(0, 102, 255, 0.1);
+    }
+
+    .city-card i {
+        font-size: 2rem;
+        color: var(--accent-blue);
+    }
+
+    .city-card.highlight i {
+        color: #fff;
+    }
+
+    .city-name {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .city-state {
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-secondary);
+    }
+
+    .city-note {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+    }
+
+    /* ── How We Serve ── */
+    .service-modes {
+        background: var(--bg-darker);
+    }
+
+    .modes-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 60px;
+    }
+
+    .mode-card {
+        padding: 48px;
+        text-align: left;
+        border-radius: 32px;
+    }
+
+    .mode-icon {
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-glass);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+
+    .mode-icon i {
+        font-size: 2rem;
+        color: var(--accent-blue);
+    }
+
+    .mode-card h3 {
+        font-size: 1.75rem;
+        margin-bottom: 16px;
+        color: #fff;
+    }
+
+    .mode-card p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 1.05rem;
+    }
+
+    @media (max-width: 767px) {
+        .modes-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        .mode-card {
+            padding: 32px;
+        }
+    }
+  </style>
+</head>
+<body class="service-area-page">
+  <div class="bg-pattern"></div>
+  <div class="bg-network"></div>
+
+  <!-- Pill Nav (fixed, docked top-left) -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
+    <header class="pill-nav">
+      <div class="nav-segment logo-segment">
+        <a class="header-brand" href="index.html">
+          <div class="header-logo">
+            <img src="assets/logo.png" alt="Local Logic IT Logo" width="32" height="32">
+          </div>
+          <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
+        </a>
+      </div>
+
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="index.html">Home</a>
+            <div class="dropdown active" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="residential.html">Home &amp; Family</a>
+                  <a href="business.html">Business &amp; Office</a>
+                  <a href="service-area.html" class="active">Service Area</a>
+                </div>
+              </div>
+            </div>
+            <a href="#about">About</a>
+            <div class="dropdown" id="contact-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="#contact">Contact Info</a>
+                  <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
+
+    <!-- Mobile drawer menu -->
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="residential.html">Home &amp; Family</a>
+      <a href="business.html">Business &amp; Office</a>
+      <a href="service-area.html" class="active">Service Area</a>
+      <a href="#about" onclick="closeMobileMenu()">About</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact Info</a>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize(); closeMobileMenu()">Live Chat</a>
+      <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="section-label">Where We Operate</div>
+      <h1>IT Support Serving <span class="text-gradient-blue">St. Charles, MO</span> & the Greater St. Louis Area</h1>
+      <p class="hero-sub">Local Logic IT provides premium on-site and remote technology services across St. Charles County and western St. Louis. We're your local neighbors, not a faceless helpdesk.</p>
+      <a class="btn btn-primary" href="#coverage">View Coverage Area <i class="ph ph-arrow-down"></i></a>
+    </section>
+
+    <!-- Coverage Grid -->
+    <section class="section coverage" id="coverage">
+      <span class="section-label">Locations</span>
+      <h2 class="section-title">Areas We <span class="text-gradient-blue">Cover</span></h2>
+      
+      <div class="coverage-grid">
+        <!-- St. Charles (Primary) -->
+        <div class="city-card highlight">
+          <i class="ph-fill ph-map-pin"></i>
+          <div>
+            <span class="city-state">Primary Hub</span>
+            <div class="city-name">St. Charles, MO</div>
+          </div>
+          <p class="city-note">Full on-site + remote support available for homes and businesses.</p>
+        </div>
+
+        <!-- O'Fallon -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">O'Fallon</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Wentzville -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Wentzville</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Lake St. Louis -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Lake St. Louis</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- St. Peters -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">St. Peters</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Cottleville -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Cottleville</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Weldon Spring -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Weldon Spring</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Chesterfield -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Chesterfield</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Ballwin -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Ballwin</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Maryland Heights -->
+        <div class="city-card">
+          <i class="ph ph-map-pin"></i>
+          <div>
+            <span class="city-state">Missouri</span>
+            <div class="city-name">Maryland Heights</div>
+          </div>
+          <p class="city-note">On-site + remote available.</p>
+        </div>
+
+        <!-- Catch-all -->
+        <div class="city-card" style="border-style: dashed; opacity: 0.8;">
+          <i class="ph ph-plus-circle"></i>
+          <div>
+            <span class="city-state">Surrounding Areas</span>
+            <div class="city-name">And More...</div>
+          </div>
+          <p class="city-note">Don't see your city? Just ask—we likely cover it!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How We Serve You -->
+    <section class="section service-modes" id="modes">
+      <span class="section-label">Method of Service</span>
+      <h2 class="section-title">How We <span class="text-gradient-blue">Serve</span> You</h2>
+      
+      <div class="modes-grid">
+        <div class="mode-card glass-panel">
+          <div class="mode-icon">
+            <i class="ph ph-car"></i>
+          </div>
+          <h3>On-Site Visits</h3>
+          <p>For problems that require a physical presence—like hardware repairs, networking setup, or printer troubleshooting—we come directly to your home or office. Our service area covers most of St. Charles and St. Louis counties.</p>
+        </div>
+
+        <div class="mode-card glass-panel">
+          <div class="mode-icon">
+            <i class="ph ph-monitor"></i>
+          </div>
+          <h3>Remote Support</h3>
+          <p>Many software issues, security audits, and general training can be handled instantly via a secure remote connection. This allows for faster response times and lower costs, no matter where you are located.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">How Can We <span class="text-gradient-blue">Help?</span></h2>
+      <div class="contact-grid">
+        <a href="mailto:contact@locallogicit.com" class="contact-card">
+          <i class="ph ph-envelope-simple"></i>
+          <h3>Email Us</h3>
+          <p>contact@locallogicit.com</p>
+        </a>
+        <a href="tel:6363526572" class="contact-card">
+          <i class="ph ph-phone"></i>
+          <h3>Call Us</h3>
+          <p>636-352-6572</p>
+        </a>
+        <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
+          <i class="ph ph-chat-centered-text"></i>
+          <h3>Live Chat</h3>
+          <p>Chat With Us Now</p>
+        </a>
+        <a href="quick-support.html" class="contact-card">
+          <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
+          <h3>Quick Support</h3>
+          <p>Launch Assist</p>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="Local Logic IT Logo" width="48" height="48">
+      </div>
+      <h3 class="footer-brand-name">Local Logic IT</h3>
+      <p class="footer-tagline">Local Service. Logical Solutions.</p>
+      <div class="footer-copyright">
+        &copy; 2026 Local Logic IT &middot; All Rights Reserved.
+      </div>
+    </footer>
+  </main>
+
+  <!-- Shared Pill Nav Script -->
+  <script src="scripts/pill-nav.js"></script>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    Tawk_API.onLoad = function () {
+      Tawk_API.minimize();
+    };
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>
