@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local Logic IT Quick Support — Get fast remote assistance using Windows Quick Assist." />
+  <meta name="view-transition" content="same-origin" />
+  <title>Local Logic IT — Quick Support</title>
+  <link rel="canonical" href="https://locallogicit.com/quick-support.html" />
+  <meta property="og:title" content="Local Logic IT — Quick Support" />
+  <meta property="og:description" content="Local Logic IT Quick Support — Get fast remote assistance using Windows Quick Assist." />
+  <meta property="og:url" content="https://locallogicit.com/quick-support.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://locallogicit.com/assets/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Local Logic IT — Quick Support" />
+  <meta name="twitter:description" content="Local Logic IT Quick Support — Get fast remote assistance using Windows Quick Assist." />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://locallogicit.com/#organization",
+          "name": "Local Logic IT",
+          "url": "https://locallogicit.com/",
+          "logo": "https://locallogicit.com/assets/logo.png",
+          "email": "contact@locallogicit.com",
+          "telephone": "+1-636-352-6572",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "contact@locallogicit.com",
+              "telephone": "+1-636-352-6572",
+              "availableLanguage": [
+                "en"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://locallogicit.com/#website",
+          "url": "https://locallogicit.com/",
+          "name": "Local Logic IT",
+          "publisher": {
+            "@id": "https://locallogicit.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://locallogicit.com/quick-support.html#webpage",
+          "url": "https://locallogicit.com/quick-support.html",
+          "name": "Local Logic IT — Quick Support",
+          "description": "Local Logic IT Quick Support — Get fast remote assistance using Windows Quick Assist.",
+          "isPartOf": {
+            "@id": "https://locallogicit.com/#website"
+          },
+          "about": {
+            "@id": "https://locallogicit.com/#organization"
+          },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --primary: #4A80E8;
+      --primary-dark: #3267D1;
+      --bg: #FFFFFF;
+      --surface: #F8FAFC;
+      --ink: #0F172A;
+      --muted: #64748B;
+      --line: #E2E8F0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Manrope", sans-serif; color: var(--ink); background: var(--bg); }
+    
+    .nav {
+      background: #0F172A;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 clamp(16px, 3vw, 32px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { color: #fff; font-weight: 800; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: clamp(40px, 8vw, 80px) clamp(16px, 4vw, 32px);
+      text-align: center;
+    }
+    
+    .support-header { margin-bottom: 64px; }
+    .support-header h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.03em; }
+    .support-header p { font-size: 1.125rem; color: var(--muted); max-width: 600px; margin: 0 auto; line-height: 1.6; }
+
+    .assist-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: clamp(24px, 5vw, 48px);
+      box-shadow: 0 40px 80px rgba(15,23,42,0.08);
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .assist-image-container {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 48px;
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+    }
+    .assist-image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: left;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.875rem;
+    }
+    .step h3 { font-size: 1.125rem; font-weight: 700; color: var(--ink); }
+    .step p { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+
+    .shortcut-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F1F5F9;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--primary);
+      border: 1px solid var(--line);
+      margin-top: 24px;
+    }
+    .shortcut-pill kbd {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: var(--ink);
+      font-size: 0.85rem;
+      box-shadow: 0 2px 0 var(--line);
+    }
+    .tagline-pill {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: transparent;
+      backdrop-filter: none;
+      padding: 0;
+      color: var(--text-secondary);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 299;
+      opacity: 0;
+      transition: all 1s var(--transition-fluid);
+      white-space: nowrap;
+      pointer-events: none;
+      border: none;
+    }
+
+    .pill-wrapper.is-expanded .tagline-pill {
+      opacity: 0.8;
+      transform: translateX(-50%) translateY(0);
+    }
+    .phone-link:hover { color: var(--primary-dark); }
+
+    .contact-footer {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--line);
+    }
+    .contact-footer h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+    .phone-link {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 16px;
+      transition: color 0.2s;
+    }
+
+    @media (max-width: 767px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .assist-card { border-radius: 20px; }
+      .phone-link { font-size: clamp(1.25rem, 5vw, 2rem); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 17l10 5 10-5"></path>
+        <path d="M2 12l10 5 10-5"></path>
+      </svg>
+      <span>Local Logic IT</span>
+    </a>
+  </nav>
+
+  <main class="container">
+    <header class="support-header">
+      <h1>Need a Hand?</h1>
+      <p>We use Windows Quick Assist to provide secure, instant remote support. Follow the steps below to get started.</p>
+    </header>
+
+    <div class="assist-card">
+      <div class="assist-image-container">
+        <!-- Assuming the user saves the uploaded image as assets/quick-assist-guide.png -->
+        <img src="assets/quick-assist-guide.png" alt="Keyboard shortcut to open Windows Quick Assist: Ctrl + Windows + Q">
+      </div>
+
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Open Quick Assist</h3>
+          <p>Press the shortcut on your keyboard to launch the app instantly.</p>
+          <div class="shortcut-pill">
+            <kbd>Ctrl</kbd> + <kbd>⊞</kbd> + <kbd>Q</kbd>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Enter the Code</h3>
+          <p>Your technician will provide a 6-digit security code. Enter it into the box.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Share Screen</h3>
+          <p>Click "Allow" to share your screen so we can see what's happening and fix the issue.</p>
+        </div>
+      </div>
+      <div class="tagline-pill">Local Service. Logical Solutions.</div>
+    </div>
+
+    <footer class="contact-footer">
+      <h2>Not at your computer?</h2>
+      <p>Give us a call and we'll talk you through it.</p>
+      <a href="tel:6363526572" class="phone-link">636-352-6572</a>
+    </footer>
+  </main>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>

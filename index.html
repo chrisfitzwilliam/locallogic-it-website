@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta name="view-transition" content="same-origin" />
+  <title>Local Logic IT — Choose Your Service</title>
+  <link rel="canonical" href="https://locallogicit.com/" />
+  <meta property="og:title" content="Local Logic IT — Choose Your Service" />
+  <meta property="og:description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta property="og:url" content="https://locallogicit.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://locallogicit.com/assets/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Local Logic IT — Choose Your Service" />
+  <meta name="twitter:description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://locallogicit.com/#organization",
+          "name": "Local Logic IT",
+          "url": "https://locallogicit.com/",
+          "logo": "https://locallogicit.com/assets/logo.png",
+          "email": "contact@locallogicit.com",
+          "telephone": "+1-636-352-6572",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "contact@locallogicit.com",
+              "telephone": "+1-636-352-6572",
+              "availableLanguage": [
+                "en"
+              ]
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://locallogicit.com/#website",
+          "url": "https://locallogicit.com/",
+          "name": "Local Logic IT",
+          "publisher": {
+            "@id": "https://locallogicit.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://locallogicit.com/#webpage",
+          "url": "https://locallogicit.com/",
+          "name": "Local Logic IT — Choose Your Service",
+          "description": "Local Logic IT — Local Service. Logical Solutions. IT support for home and business.",
+          "isPartOf": {
+            "@id": "https://locallogicit.com/#website"
+          },
+          "about": {
+            "@id": "https://locallogicit.com/#organization"
+          },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="components/pill-nav.css" />
+
+  <style>
+    /* ── Reset ── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+      background: #07070f;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Outfit', sans-serif !important;
+      background: #050508;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ── Chooser Layout ── */
+    @keyframes chooser-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .chooser {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      padding-top: 16px;
+      box-sizing: border-box;
+      overflow: hidden;
+      animation: chooser-fade-in 0.6s ease both;
+    }
+
+    .chooser-heading {
+      position: absolute;
+      top: clamp(110px, 13vw, 150px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      width: min(88vw, 560px);
+      margin: 0;
+      text-align: center;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: #fff;
+      text-shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+    }
+
+    .half {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      cursor: pointer;
+      outline: none;
+      background: #04060e;
+    }
+
+    .half--residential {
+      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at center, #1a1a2e 0%, #04060e 100%);
+    }
+
+    .half--business {
+      background: radial-gradient(circle at center, #0d1b38 0%, #04060e 100%);
+    }
+
+    .half-preview {
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: none;
+      display: block;
+      pointer-events: none;
+      transform-origin: 0 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .half-preview.is-hidden {
+      opacity: 0;
+      display: none;
+    }
+
+    .half-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: rgba(4, 6, 14, 0.85);
+      backdrop-filter: blur(14px);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .half:hover .half-overlay {
+      opacity: 0.7;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes glow-gold {
+      0%, 100% {
+        box-shadow: 0 0 22px rgba(245, 158, 11, 0.18), 0 8px 48px rgba(245, 158, 11, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      }
+      50% {
+        box-shadow: 0 0 38px rgba(245, 158, 11, 0.34), 0 8px 64px rgba(245, 158, 11, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+      }
+    }
+
+    @keyframes glow-blue {
+      0%, 100% {
+        box-shadow: 0 0 22px rgba(74, 128, 232, 0.18), 0 8px 48px rgba(74, 128, 232, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      }
+      50% {
+        box-shadow: 0 0 38px rgba(74, 128, 232, 0.34), 0 8px 64px rgba(74, 128, 232, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+      }
+    }
+
+    .half-caption {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      text-align: center;
+      padding: clamp(24px, 5vw, 36px) clamp(20px, 6vw, 52px);
+      background: rgba(6, 7, 16, 0.65);
+      border-radius: 18px;
+      backdrop-filter: blur(20px);
+      pointer-events: none;
+      width: min(88vw, 520px);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.38s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .half--residential .half-caption {
+      border-color: rgba(245, 158, 11, 0.32);
+      animation: glow-gold 3.6s ease-in-out infinite;
+    }
+
+    .half--business .half-caption {
+      border-color: rgba(74, 128, 232, 0.32);
+      animation: glow-blue 3.6s ease-in-out infinite;
+    }
+
+    .half:hover .half-caption {
+      transform: translate(-50%, -54%);
+    }
+
+    .half-icon {
+      display: block;
+      width: clamp(40px, 8vw, 52px);
+      height: clamp(40px, 8vw, 52px);
+      margin: 0 auto 18px;
+    }
+
+    .half--residential .half-icon { color: #F59E0B; }
+    .half--business .half-icon { color: #4A80E8; }
+
+    .half-name {
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      font-weight: 800;
+      display: block;
+      margin-bottom: 5px;
+      white-space: nowrap;
+    }
+
+    .half--residential .half-name { color: #F59E0B; }
+    .half--business .half-name { color: #4A80E8; }
+
+    .half-sub {
+      font-size: clamp(0.75rem, 2vw, 0.8rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.75);
+      display: block;
+    }
+
+    .half-arrow {
+      display: block;
+      margin-top: 18px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .half--residential .half-arrow { color: rgba(245, 158, 11, 0.85); }
+    .half--business .half-arrow { color: rgba(74, 128, 232, 0.85); }
+
+    .half.is-selecting {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 100;
+      flex: none;
+      overflow: hidden;
+    }
+
+    .half.is-selecting .half-overlay { opacity: 0 !important; }
+    .half.is-selecting .half-caption { opacity: 0 !important; }
+
+    .chooser.has-selection .half:not(.is-selecting) {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+    }
+
+    /* ── Generic Sections ── */
+    .section {
+      padding: clamp(60px, 10vw, 120px) clamp(16px, 4vw, 32px);
+      text-align: center;
+      background: #07070f;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #4A80E8;
+      margin-bottom: 16px;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+    }
+
+    .section-body {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(16px, 3vw, 32px);
+      max-width: 1000px;
+      margin: clamp(32px, 6vw, 64px) auto 0;
+    }
+
+    .contact-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: clamp(24px, 4vw, 40px);
+      border-radius: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #4A80E8;
+      transform: translateY(-8px);
+    }
+
+    .contact-card i {
+      font-size: 2.5rem;
+      color: #4A80E8;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .contact-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p {
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.2s;
+    }
+
+    .contact-card:hover p {
+      color: #fff;
+    }
+
+    .footer {
+      padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 32px);
+      background: #04040a;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.85rem;
+    }
+
+    /* ── Mobile Chooser ── */
+    @media (max-width: 767px) {
+      .chooser {
+        flex-direction: column;
+        height: 100vh;
+        padding-top: 64px;
+      }
+
+      .chooser-heading {
+        top: 84px;
+        width: min(90vw, 340px);
+        font-size: clamp(1rem, 5vw, 1.35rem);
+      }
+
+      .half {
+        flex: 1;
+        min-height: 0;
+      }
+
+      .half-caption {
+        padding: 24px 20px;
+        width: min(85vw, 320px);
+      }
+
+      .half-name {
+        white-space: normal;
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+    }
+
+    /* Mobile Landscape */
+    @media (max-width: 767px) and (orientation: landscape) {
+      .half {
+        min-height: min(50vh, 260px);
+      }
+
+      .half-caption {
+        padding: 16px 18px;
+      }
+
+      .half-icon {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 10px;
+      }
+
+      .half-arrow {
+        margin-top: 10px;
+      }
+    }
+
+    /* Ultra-wide */
+    @media (min-width: 1920px) {
+      .section-body {
+        max-width: 900px;
+      }
+
+      .contact-grid {
+        max-width: 1200px;
+      }
+    }
+
+    /* Reduced Motion Support */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- The Header Layout -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="center">
+    <header class="pill-nav">
+      <div class="nav-segment logo-segment">
+        <a href="index.html" class="header-brand">
+          <div class="header-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5"></path>
+              <path d="M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <span class="header-name">Local Logic IT</span>
+        </a>
+      </div>
+
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="index.html" class="active">Home</a>
+            <div class="dropdown" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="residential.html">Home &amp; Family</a>
+                  <a href="business.html">Business &amp; Office</a>
+                </div>
+              </div>
+            </div>
+            <a href="#about">About</a>
+            <div class="dropdown" id="contact-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="#contact">Contact Info</a>
+                  <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
+
+    <!-- Mobile drawer menu -->
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="index.html" class="active">Home</a>
+      <a href="residential.html">Home &amp; Family</a>
+      <a href="business.html">Business &amp; Office</a>
+      <a href="#about" onclick="closeMobileMenu()">About</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact Info</a>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize(); closeMobileMenu()">Live Chat</a>
+      <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
+    </div>
+  </div>
+
+  <!-- Landing / Chooser -->
+  <main class="chooser" id="chooser">
+    <h1 class="chooser-heading">Choose Your Home or Business IT Support</h1>
+    <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support"
+      data-href="residential.html">
+      <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1"
+        aria-hidden="true"></iframe>
+      <div class="half-overlay"></div>
+      <div class="half-caption">
+        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="half-name">Home &amp; Family</span>
+        <span class="half-sub">Residential IT Support</span>
+        <span class="half-arrow">Enter &rsaquo;</span>
+      </div>
+    </div>
+
+    <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services"
+      data-href="business.html">
+      <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1"
+        aria-hidden="true"></iframe>
+      <div class="half-overlay"></div>
+      <div class="half-caption">
+        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5" />
+          <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="half-name">Business &amp; Office</span>
+        <span class="half-sub">Commercial IT Services</span>
+        <span class="half-arrow">Enter &rsaquo;</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-heading">Local Service. Logical Solutions.</h2>
+    <div class="section-body">
+      <p>We are your local technology partner, dedicated to providing straightforward, honest IT support for both your
+        home and your business. We believe technology should work for you, not the other way around. No call centers, no
+        confusing jargon—just real people solving real problems with logic and care.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-heading">How Can We Help?</h2>
+    <div class="contact-grid">
+      <a href="mailto:contact@locallogicit.com" class="contact-card">
+        <i class="ph ph-envelope-simple"></i>
+        <h3>Email Us</h3>
+        <p>contact@locallogicit.com</p>
+      </a>
+      <a href="tel:6363526572" class="contact-card">
+        <i class="ph ph-phone"></i>
+        <h3>Call Us</h3>
+        <p>636-352-6572</p>
+      </a>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
+        <i class="ph ph-chat-centered-text"></i>
+        <h3>Live Chat</h3>
+        <p>Chat With Us Now</p>
+      </a>
+      <a href="quick-support.html" class="contact-card">
+        <i class="ph ph-headset"></i>
+        <h3>Quick Support</h3>
+        <p>Launch Assist</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Local Logic IT &middot; Local Service. Logical Solutions.</p>
+  </footer>
+
+  <!-- Chooser-specific JS (iframe scaling + half selection) -->
+  <script>
+    function scalePreview(half) {
+      var iframe = half.querySelector('.half-preview');
+      if (!iframe) return;
+
+      // Disable iframes on mobile
+      if (window.innerWidth <= 767) {
+        iframe.classList.add('is-hidden');
+        return;
+      } else {
+        iframe.classList.remove('is-hidden');
+      }
+
+      var REF_W = document.documentElement.clientWidth;
+      var W = half.offsetWidth;
+      var H = half.offsetHeight;
+      var scale = W / REF_W;
+
+      iframe.style.width = REF_W + 'px';
+      iframe.style.height = Math.ceil(H / scale) + 'px';
+      iframe.style.transform = 'scale(' + scale + ')';
+    }
+
+    function injectFlash(color) {
+      var el = document.createElement('div');
+      el.style.cssText = 'position:fixed;inset:0;z-index:400;pointer-events:none;background:' + color + ';animation:flash-out 0.35s ease-out forwards';
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+
+    function selectHalf(half) {
+      var chooser = document.getElementById('chooser');
+      if (chooser.classList.contains('has-selection')) return;
+      var dest = half.dataset.href;
+      var isRes = half.classList.contains('half--residential');
+
+      // Flash overlay
+      injectFlash(isRes ? 'rgba(245,158,11,0.22)' : 'rgba(74,128,232,0.22)');
+      chooser.classList.add('has-selection');
+
+      // Expand the half to fullscreen
+      var cardRect = half.getBoundingClientRect();
+      half.classList.add('is-selecting');
+      var fullRect = half.getBoundingClientRect();
+      var sx = cardRect.width / fullRect.width, sy = cardRect.height / fullRect.height;
+      var tx = cardRect.left - fullRect.left, ty = cardRect.top - fullRect.top;
+      half.style.borderRadius = '0px';
+      half.style.transition = 'none';
+      half.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sx + ',' + sy + ')';
+      void half.offsetHeight;
+      scalePreview(half);
+      half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
+      half.style.transform = 'translate(0,0) scale(1,1)';
+
+      // Dock the pill to top-left (the View Transition API will animate this across pages)
+      var header = document.getElementById('quartz-shell');
+      if (header) {
+        header.classList.add('is-docking');
+        header.style.pointerEvents = 'none';
+      }
+
+      // Navigate after the expand animation settles
+      setTimeout(function() { window.location.href = dest; }, 200);
+    }
+
+    // Init chooser
+    (function() {
+      var halves = document.querySelectorAll('.half');
+      halves.forEach(function(h) {
+        scalePreview(h);
+        h.addEventListener('click', function () { selectHalf(this); });
+        h.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') selectHalf(this); });
+      });
+      window.addEventListener('resize', function() { halves.forEach(scalePreview); });
+    }());
+  </script>
+
+  <!-- Shared Pill Nav Script -->
+  <script src="scripts/pill-nav.js"></script>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    Tawk_API.onLoad = function () {
+      Tawk_API.minimize();
+    };
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+
+</html>

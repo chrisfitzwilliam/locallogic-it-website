@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celestial Filament Timeline</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;800&family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030407;
+            --filament-dim: rgba(140, 160, 255, 0.15);
+            --filament-bright: #6366f1;
+            --accent-gold: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #64748b;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .universe {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            padding: 80px 20px;
+            z-index: 1;
+        }
+
+        /* Celestial Dust Background */
+        .nebula {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #030407 70%);
+            opacity: 0.4;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .star-field {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: 
+                radial-gradient(1px 1px at 10% 10%, #fff 100%, transparent),
+                radial-gradient(1px 1px at 20% 50%, #fff 100%, transparent),
+                radial-gradient(2px 2px at 90% 90%, #fff 100%, transparent),
+                radial-gradient(1.5px 1.5px at 70% 20%, #fff 100%, transparent);
+            background-size: 200px 200px;
+            opacity: 0.2;
+            animation: drift 120s linear infinite;
+        }
+
+        @keyframes drift {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        /* The Filament Path */
+        .filament-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .weave-path {
+            fill: none;
+            stroke: var(--filament-dim);
+            stroke-width: 1;
+            stroke-dasharray: 4 8;
+        }
+
+        .active-path {
+            fill: none;
+            stroke: url(#filamentGradient);
+            stroke-width: 2;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 8px var(--filament-bright));
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 4s ease-out forwards;
+        }
+
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Timeline Components */
+        .timeline-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+        }
+
+        .constellation-node {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 120px 1fr;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .constellation-node:nth-child(1) { animation-delay: 0.2s; }
+        .constellation-node:nth-child(2) { animation-delay: 0.5s; }
+        .constellation-node:nth-child(3) { animation-delay: 0.8s; }
+        .constellation-node:nth-child(4) { animation-delay: 1.1s; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .node-content {
+            padding: 20px;
+        }
+
+        .node-content.right { text-align: left; grid-column: 3; }
+        .node-content.left { text-align: right; grid-column: 1; }
+
+        .node-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--filament-bright);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .node-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 12px;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .node-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 320px;
+            display: inline-block;
+        }
+
+        .node-content.left .node-desc { margin-left: auto; }
+
+        /* The Star Core */
+        .star-anchor {
+            grid-column: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .star-core {
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 
+                0 0 20px 2px var(--filament-bright),
+                0 0 40px 10px rgba(99, 102, 241, 0.2);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .constellation-node:hover .star-core {
+            transform: scale(1.8);
+            box-shadow: 0 0 30px 5px var(--accent-gold);
+            background: var(--accent-gold);
+        }
+
+        .star-halo {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 50%;
+            animation: pulse 4s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .constellation-node {
+                grid-template-columns: 60px 1fr;
+                gap: 20px;
+            }
+            .star-anchor { grid-column: 1; }
+            .node-content.left, .node-content.right { 
+                grid-column: 2; 
+                text-align: left !important;
+            }
+            .node-desc { max-width: 100%; }
+            .filament-svg { display: none; }
+            .node-title { font-size: 1.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nebula"></div>
+    <div class="star-field"></div>
+
+    <div class="universe">
+        <!-- SVG Weaving Filaments -->
+        <svg class="filament-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="filamentGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#818cf8" />
+                    <stop offset="50%" stop-color="#6366f1" />
+                    <stop offset="100%" stop-color="#f59e0b" />
+                </linearGradient>
+            </defs>
+            <path class="weave-path" d="M500,80 C650,200 350,300 500,450 C650,600 350,700 500,900" />
+            <path class="active-path" d="M500,80 C650,200 350,300 500,450 C650,600 350,700 500,900" />
+        </svg>
+
+        <div class="timeline-container">
+            <!-- Node 1 -->
+            <div class="constellation-node">
+                <div class="node-content left">
+                    <span class="node-meta">Phase 01 / Origins</span>
+                    <h2 class="node-title">Nebula Genesis</h2>
+                    <p class="node-desc">Deep space observation and conceptual cold-start. We define the gravitational bounds of the project.</p>
+                </div>
+                <div class="star-anchor">
+                    <div class="star-halo"></div>
+                    <div class="star-core"></div>
+                </div>
+            </div>
+
+            <!-- Node 2 -->
+            <div class="constellation-node">
+                <div class="star-anchor">
+                    <div class="star-halo" style="animation-delay: -1s"></div>
+                    <div class="star-core"></div>
+                </div>
+                <div class="node-content right">
+                    <span class="node-meta">Phase 02 / Formation</span>
+                    <h2 class="node-title">Stellar Accretion</h2>
+                    <p class="node-desc">Rapid prototyping where particles of data coalesce into a functional core structure.</p>
+                </div>
+            </div>
+
+            <!-- Node 3 -->
+            <div class="constellation-node">
+                <div class="node-content left">
+                    <span class="node-meta">Phase 03 / Ignition</span>
+                    <h2 class="node-title">Fusion Process</h2>
+                    <p class="node-desc">Internal logic goes live. The system begins generating its own light through rigorous automation.</p>
+                </div>
+                <div class="star-anchor">
+                    <div class="star-halo" style="animation-delay: -2s"></div>
+                    <div class="star-core"></div>
+                </div>
+            </div>
+
+            <!-- Node 4 -->
+            <div class="constellation-node">
+                <div class="star-anchor">
+                    <div class="star-halo" style="animation-delay: -3s"></div>
+                    <div class="star-core"></div>
+                </div>
+                <div class="node-content right">
+                    <span class="node-meta">Phase 04 / Expansion</span>
+                    <h2 class="node-title">Supernova Array</h2>
+                    <p class="node-desc">Scale distribution across the cluster. The final result becomes a permanent fixture in the digital firmament.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Subtle Mouse Parallax for Stars
+        document.addEventListener('mousemove', (e) => {
+            const stars = document.querySelector('.star-field');
+            const x = (e.clientX / window.innerWidth) * 20;
+            const y = (e.clientY / window.innerHeight) * 20;
+            stars.style.transform = `translate3d(-${x}px, -${y}px, 0)`;
+        });
+
+        // Dynamic SVG Path Adjustment (Simplified logic)
+        function updatePath() {
+            const nodes = document.querySelectorAll('.star-anchor');
+            const svg = document.querySelector('.filament-svg');
+            const paths = document.querySelectorAll('.filament-svg path');
+            
+            if(window.innerWidth < 768) return;
+
+            let pathData = `M 500,${nodes[0].offsetTop + 40}`;
+            
+            for (let i = 1; i < nodes.length; i++) {
+                const prev = nodes[i-1].offsetTop + 40;
+                const curr = nodes[i].offsetTop + 40;
+                const cp1y = prev + (curr - prev) / 2;
+                const cp2y = prev + (curr - prev) / 2;
+                
+                // Create a weaving curve
+                const cp1x = i % 2 === 0 ? 350 : 650;
+                const cp2x = i % 2 === 0 ? 650 : 350;
+                
+                pathData += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} 500,${curr}`;
+            }
+
+            paths.forEach(p => p.setAttribute('d', pathData));
+        }
+
+        window.addEventListener('resize', updatePath);
+        window.addEventListener('load', updatePath);
+    </script>
+</body>
+</html>
