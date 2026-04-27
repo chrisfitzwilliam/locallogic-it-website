@@ -201,9 +201,10 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   z-index: 2;
 }
 
-.header-logo svg {
+.header-logo svg,
+.header-logo img {
   height: 24px;
-  width: 24px;
+  width: auto;
   display: block;
 }
 

@@ -211,10 +211,18 @@
     }
 
     .half-icon {
-      display: block;
-      width: 48px;
-      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
       margin: 0 auto 20px;
+    }
+
+    .half-icon img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
 
     .half--residential .half-icon { color: var(--accent-amber); }
@@ -305,7 +313,7 @@
       <div class="nav-segment logo-segment">
         <a href="index.html" class="header-brand">
           <div class="header-logo">
-            <img src="assets/logo-mark.svg" alt="Local Logic IT Logo" width="32" height="32">
+            <img src="assets/logo.png" alt="Local Logic IT Logo" width="32" height="32">
           </div>
           <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
         </a>
@@ -367,10 +375,7 @@
       <div class="half-overlay"></div>
       <div class="half-caption">
         <div class="half-icon">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M25 15V75H65" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M45 45V75H75" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <img src="assets/logo.png" alt="Logo Icon">
         </div>
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
@@ -385,10 +390,7 @@
       <div class="half-overlay"></div>
       <div class="half-caption">
         <div class="half-icon">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M25 15V75H65" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M45 45V75H75" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <img src="assets/logo.png" alt="Logo Icon">
         </div>
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Commercial IT Services</span>
@@ -429,7 +431,7 @@
         <p>Chat With Us Now</p>
       </a>
       <a href="quick-support.html" class="contact-card">
-        <i class="ph ph-headset"></i>
+        <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
         <h3>Quick Support</h3>
         <p>Launch Assist</p>
       </a>
@@ -438,7 +440,7 @@
 
   <footer class="footer">
     <div class="footer-logo">
-      <img src="assets/logo-mark.svg" alt="Local Logic IT Logo" width="48" height="48">
+      <img src="assets/logo.png" alt="Local Logic IT Logo" width="48" height="48">
     </div>
     <h3 class="footer-brand-name">Local Logic IT</h3>
     <p class="footer-tagline">Local Service. Logical Solutions.</p>
