@@ -389,7 +389,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   will-change: transform, opacity;
-  z-index: 10;
+  z-index: 1;
 }
 
 .pill-wrapper.is-expanded .tagline-pill {
