@@ -1,0 +1,16 @@
+name: Deployment Status
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deployment-status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report server-side deployment mode
+        run: |
+          echo "Production deployment is handled on the server by a systemd timer."
+          echo "Pushes to main are pulled into /var/www/locallogic/current automatically."
+          echo "Expected production update window: about 1 minute."
