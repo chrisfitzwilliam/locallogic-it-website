@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta name="view-transition" content="same-origin" />
   <title>Local Logic IT — Residential IT Support</title>
   <link rel="canonical" href="https://locallogicit.com/residential.html" />
-  <meta property="og:title" content="Local Logic IT — Residential IT Support" />
-  <meta property="og:description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
+  <meta property="og:title" content="Residential IT Support — Local Logic IT" />
+  <meta property="og:description" content="Personal IT support for your home. PC repair, Wi-Fi, smart home, and more." />
   <meta property="og:url" content="https://locallogicit.com/residential.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://locallogicit.com/assets/logo.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Local Logic IT — Residential IT Support" />
   <meta name="twitter:description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
@@ -58,175 +59,68 @@
       ]
     }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
+  <link rel="stylesheet" href="css/brand.css" />
   <!-- Shared Pill Nav Styles -->
   <link rel="stylesheet" href="components/pill-nav.css" />
 
   <style>
-    :root {
-      --primary:   #F59E0B;
-      --primary-2: #D97706;
-      --bg:        #FFFFFF;
-      --surface:   #FFFBEB;
-      --ink:       #451A03;
-      --muted:     #78350F;
-      --line:      #FEF3C7;
-      --accent:    #4A80E8;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 15px; }
-    body {
-      margin: 0; padding: 0;
-      background: #050508; color: #fff;
-      font-family: 'Outfit', sans-serif !important;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body::before {
-      content: "";
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none; z-index: -1;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-      padding: clamp(48px, 8vw, 80px) clamp(16px, 4vw, 32px);
-      padding-top: clamp(100px, 12vw, 140px); /* Space for fixed pill */
-      position: relative; overflow: hidden; text-align: center;
+        padding: clamp(120px, 15vw, 180px) 24px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 0%, rgba(255, 138, 0, 0.15) 0%, transparent 70%);
     }
-    .hero::before {
-      content: ""; position: absolute; top: -100px; right: -100px;
-      width: 400px; height: 400px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0) 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: ""; position: absolute; bottom: -150px; left: -150px;
-      width: 500px; height: 500px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,158,11,0.05) 0%, rgba(245,158,11,0) 70%);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-block; background: rgba(245,158,11,0.1); color: var(--primary-2);
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 6px 16px; border-radius: 999px; margin-bottom: 24px;
-      border: 1px solid rgba(245,158,11,0.2); position: relative; z-index: 1;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; color: var(--ink);
-      line-height: 1.1; max-width: 700px; margin: 0 auto 16px; letter-spacing: -0.03em;
-      position: relative; z-index: 1;
-    }
-    .hero-sub {
-      font-size: 1.125rem; color: var(--muted); max-width: 600px;
-      margin: 0 auto 32px auto; line-height: 1.6; position: relative; z-index: 1;
-    }
-    .hero-cta {
-      display: inline-block; background: var(--primary); color: #fff;
-      font-size: 0.9rem; font-weight: 700; padding: 14px 32px; border-radius: 8px;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      position: relative; z-index: 1; box-shadow: 0 4px 12px rgba(245,158,11,0.25);
-    }
-    .hero-cta:hover { background: var(--primary-2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,158,11,0.3); }
-    .hero-cta:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
 
-    /* ── Section shared ── */
-    .section { padding: clamp(50px, 8vw, 90px) clamp(16px, 4vw, 32px); }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--primary-2); text-align: center; margin-bottom: 12px;
+    .hero h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
     }
-    .section-heading {
-      font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; text-align: center;
-      color: var(--ink); letter-spacing: -0.02em; margin-bottom: 48px;
+
+    .hero-sub {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: var(--text-secondary);
     }
 
     /* ── Services ── */
-    .services { background: var(--bg); }
+    .residential .section-label {
+        color: var(--accent-amber);
+    }
+
     .services-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: clamp(20px, 3vw, 32px); max-width: 1200px; margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 32px;
     }
+
     .service-card {
-      position: relative; background: #FFF; border: 1px solid var(--line); border-radius: 24px;
-      padding: clamp(24px, 5vw, 40px); display: flex; flex-direction: column; text-align: left;
-      gap: clamp(16px, 3vw, 24px); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      text-decoration: none; color: inherit; min-height: auto; margin-top: 30px;
+        padding: 40px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
     }
-    .service-card:hover { border-color: var(--primary); box-shadow: 0 40px 80px rgba(69,26,3,0.08); transform: translateY(-12px); }
+
     .card-icon-inset {
-      width: 60px; height: 60px; background: var(--surface); border: 1px solid var(--line);
-      border-radius: 14px; display: flex; align-items: center; justify-content: center;
-      position: absolute; top: -30px; left: clamp(24px, 5vw, 40px);
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.02), 0 10px 20px rgba(69,26,3,0.05);
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      margin-bottom: 24px;
     }
-    .service-card:hover .card-icon-inset { transform: scale(1.1) rotate(-5deg); border-color: var(--primary); }
-    .card-meta { display: flex; flex-direction: column; margin-top: 12px; margin-bottom: 4px; }
-    .service-category { font-size: 0.85rem; font-weight: 800; color: var(--primary-2); text-transform: uppercase; letter-spacing: 0.1em; }
-    .service-id { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; opacity: 0.7; }
-    .card-problem { font-size: 1.4rem; font-weight: 800; color: var(--ink); line-height: 1.25; letter-spacing: -0.02em; }
-    .card-solution {
-      font-size: 0.95rem; color: var(--muted); line-height: 1.7; padding-left: 20px;
-      border-left: 1px solid var(--line); transition: border-color 0.3s ease;
-    }
-    .service-card:hover .card-solution { border-left-color: var(--primary); }
-    .card-solution strong { color: var(--ink); display: block; margin-bottom: 6px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
-
-    /* ── About ── */
-    .about { background: var(--surface); text-align: center; }
-    .about .section-heading { color: var(--ink); }
-    .about-body { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
-    .about-body strong { color: var(--primary-2); }
-
-    /* ── Contact ── */
-    .contact { background: var(--bg); text-align: center; }
-    .contact-card {
-      display: inline-flex; flex-direction: column; gap: 16px; background: #451A03;
-      border-radius: 20px; padding: clamp(24px, 4vw, 36px) clamp(20px, 5vw, 48px);
-      margin: 0 auto; max-width: calc(100vw - 40px); box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    .contact-item { display: flex; align-items: center; gap: 14px; color: #fff; font-size: 1rem; font-weight: 600; }
-    .contact-item svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--primary); }
-    .contact-item a { color: #fff; transition: color 0.2s; }
-    .contact-item a:hover { color: var(--primary); }
-    .contact-item a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 2px; }
-
-    /* ── Footer ── */
-    .footer {
-      background: #451A03; text-align: center;
-      padding: clamp(20px, 4vw, 28px) clamp(16px, 4vw, 32px);
-      color: rgba(255,255,255,0.4); font-size: 0.8rem;
-    }
-    .footer strong { color: var(--primary); font-weight: 700; }
-
-    /* ── Dropdown theme override for residential ── */
-    .dropdown-content-inner {
-      background: #451A03 !important;
-    }
-
-
-    @media (max-width: 767px) {
-      .hero { padding: clamp(80px, 12vw, 100px) 16px clamp(36px, 8vw, 60px); }
-      .service-card { border-radius: 18px; }
-      .card-problem { font-size: clamp(1.1rem, 4vw, 1.4rem); }
-    }
+    .service-card { border-radius: 24px; }
+    .card-problem { font-size: 1.25rem; margin-bottom: 16px; }
   </style>
 </head>
-<body>
+<body class="residential-page">
+  <div class="bg-pattern"></div>
+  <div class="bg-network"></div>
 
   <!-- Pill Nav (fixed, docked top-left) -->
   <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
@@ -234,13 +128,9 @@
       <div class="nav-segment logo-segment">
         <a class="header-brand" href="index.html">
           <div class="header-logo">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
-            </svg>
+            <img src="assets/logo-mark.svg" alt="Local Logic IT Logo" width="32" height="32">
           </div>
-          <span class="header-name">Local Logic IT</span>
+          <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
         </a>
       </div>
 
@@ -293,184 +183,151 @@
   <main>
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">Residential IT Support</div>
-    <h1>IT Support That Comes to You</h1>
+    <div class="section-label">Residential IT Support</div>
+    <h1>IT Support That <span class="text-gradient-amber">Comes to You.</span></h1>
     <p class="hero-sub">Friendly, no-jargon tech help for your home and family. We come to you — fixing computers, setting up networks, and solving tech problems the simple way.</p>
-    <a class="hero-cta" href="#services">See What We Can Help With</a>
+    <a class="btn btn-secondary" href="#services">See What We Can Help With <i class="ph ph-arrow-down"></i></a>
   </section>
 
   <!-- Services -->
   <section class="section services" id="services">
-    <p class="section-label">What We Do</p>
-    <h2 class="section-heading">What We Can Help With</h2>
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Home Tech <span class="text-gradient-amber">Solutions</span></h2>
     <div class="services-grid">
 
-      <a class="service-card" href="services/residential/pc-repair.html">
+      <a class="service-card glass-panel" href="services/residential/pc-repair.html">
         <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/jezazvlx.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
+          <lord-icon src="https://cdn.lordicon.com/vlupreun.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
         </div>
         <div class="card-meta">
           <span class="service-category">PC Repair</span>
-          <span class="service-id">CASE_ID: 0xP01R</span>
         </div>
         <h3 class="card-problem">"My computer is running slow, freezing, or refusing to start when I need it."</h3>
         <p class="card-solution">
           <strong>The Logic Fix</strong>
-          We diagnose Windows desktop and laptop issues, resolve crashes and startup problems, and get your everyday computer back into usable shape.
+          We diagnose Windows desktop and laptop issues, resolve crashes and startup problems.
         </p>
       </a>
 
-      <a class="service-card" href="services/residential/smart-home-support.html">
+      <a class="service-card glass-panel" href="services/residential/smart-home-support.html">
         <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/oeotfwsx.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
+          <lord-icon src="https://cdn.lordicon.com/oeotfwsx.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
         </div>
         <div class="card-meta">
           <span class="service-category">Smart Home Support</span>
-          <span class="service-id">CASE_ID: 0xS02R</span>
         </div>
-        <h3 class="card-problem">"My smart lights, cameras, and thermostat don't talk to each other and keep dropping offline."</h3>
+        <h3 class="card-problem">"My smart lights, cameras, and thermostat don't talk to each other."</h3>
         <p class="card-solution">
           <strong>The Logic Fix</strong>
-          We help sort out device setup, account connections, and network issues so your smart home works more consistently.
+          We help sort out device setup, account connections, and network issues.
         </p>
       </a>
 
-      <a class="service-card" href="services/residential/device-setup-training.html">
+      <a class="service-card glass-panel" href="services/residential/device-setup-training.html">
         <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/sobzmbzh.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
+          <lord-icon src="https://cdn.lordicon.com/sobzmbzh.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
         </div>
         <div class="card-meta">
           <span class="service-category">Setup & Training</span>
-          <span class="service-id">CASE_ID: 0xT03R</span>
         </div>
-        <h3 class="card-problem">"I just bought new tech and I want to make sure it's set up 'the right way' from the start."</h3>
+        <h3 class="card-problem">"I just bought new tech and I want to make sure it's set up 'the right way'."</h3>
         <p class="card-solution">
           <strong>The Logic Fix</strong>
-          We handle the white-glove setup of your new PCs, tablets, or phones and provide 1-on-1 coaching so you can use your tech with total confidence.
+          We handle the white-glove setup of your new PCs, tablets, or phones.
         </p>
       </a>
 
-      <a class="service-card" href="services/residential/virus-malware-removal.html">
+      <a class="service-card glass-panel" href="services/residential/virus-malware-removal.html">
         <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/xqdfobxg.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
+          <lord-icon src="https://cdn.lordicon.com/xqdfobxg.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
         </div>
         <div class="card-meta">
-          <span class="service-category">Virus & Malware Removal</span>
-          <span class="service-id">CASE_ID: 0xV04R</span>
+          <span class="service-category">Virus Removal</span>
         </div>
-        <h3 class="card-problem">"My PC has pop-ups, strange alerts, or started acting differently after a download or email link."</h3>
+        <h3 class="card-problem">"My PC has pop-ups, strange alerts, or started acting differently."</h3>
         <p class="card-solution">
           <strong>The Logic Fix</strong>
-          We clean up malware, review Windows Security settings, and explain the next steps in plain language.
+          We clean up malware, review Windows Security settings, and explain the next steps.
         </p>
       </a>
 
-      <a class="service-card" href="services/residential/password-account-help.html">
+      <a class="service-card glass-panel" href="services/residential/password-account-help.html">
         <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/fedbzost.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
+          <lord-icon src="https://cdn.lordicon.com/fedbzost.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
         </div>
         <div class="card-meta">
-          <span class="service-category">Password & Account Help</span>
-          <span class="service-id">CASE_ID: 0xA05R</span>
+          <span class="service-category">Passwords & Security</span>
         </div>
-        <h3 class="card-problem">"I am locked out of an account, overwhelmed by passwords, or worried about someone else getting access."</h3>
+        <h3 class="card-problem">"I am locked out of an account or overwhelmed by passwords."</h3>
         <p class="card-solution">
           <strong>The Logic Fix</strong>
-          We guide you through safer recovery steps, stronger sign-in habits, password managers, and multi-factor security where it fits.
+          We guide you through safer recovery steps and password managers.
         </p>
       </a>
 
-      <a class="service-card" href="services/residential/data-backup-recovery.html">
+      <a class="service-card glass-panel" href="services/residential/home-networking.html">
         <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/xqdfobxg.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
-        </div>
-        <div class="card-meta">
-          <span class="service-category">Data Backup & Recovery</span>
-          <span class="service-id">CASE_ID: 0xD06R</span>
-        </div>
-        <h3 class="card-problem">"I do not want to lose family photos, documents, or years of files if a laptop or hard drive fails."</h3>
-        <p class="card-solution">
-          <strong>The Logic Fix</strong>
-          We set up practical backup plans, review recovery options, and help protect the files you cannot easily replace.
-        </p>
-      </a>
-
-      <a class="service-card" href="services/residential/home-networking.html">
-        <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/oeotfwsx.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
+          <lord-icon src="https://cdn.lordicon.com/oeotfwsx.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
         </div>
         <div class="card-meta">
           <span class="service-category">Home Networking</span>
-          <span class="service-id">CASE_ID: 0xN07R</span>
         </div>
-        <h3 class="card-problem">"My Wi-Fi is spotty, some rooms are dead zones, and my home office never feels reliably connected."</h3>
+        <h3 class="card-problem">"My Wi-Fi is spotty and some rooms are dead zones."</h3>
         <p class="card-solution">
           <strong>The Logic Fix</strong>
-          We tune routers, mesh systems, and wired connections so your home network is stronger, more secure, and easier to use.
-        </p>
-      </a>
-
-      <a class="service-card" href="services/residential/printer-setup.html">
-        <div class="card-icon-inset">
-          <lord-icon src="https://cdn.lordicon.com/kikjlzqr.json" trigger="loop" colors="primary:#F59E0B,secondary:#451A03" style="width:40px;height:40px;"></lord-icon>
-        </div>
-        <div class="card-meta">
-          <span class="service-category">Printer Setup</span>
-          <span class="service-id">CASE_ID: 0xR08R</span>
-        </div>
-        <h3 class="card-problem">"My printer will not stay connected, print from every device, or scan the way it is supposed to."</h3>
-        <p class="card-solution">
-          <strong>The Logic Fix</strong>
-          We connect printers to your network, fix driver and queue issues, and make everyday printing less frustrating.
+          We tune routers, mesh systems, and wired connections.
         </p>
       </a>
 
     </div>
   </section>
 
-  <!-- About -->
+   <!-- About -->
   <section class="section about" id="about">
-    <p class="section-label">Who We Are</p>
-    <h2 class="section-heading">Local People, Real Help</h2>
-    <p class="about-body">We're a <strong>local IT team</strong> that speaks plain English, shows up on time, and actually fixes the problem. No call centres, no jargon — just friendly, practical support for you and your family. When something goes wrong with your tech, we're the neighbour you call.</p>
+    <span class="section-label">Who We Are</span>
+    <h2 class="section-title">Your Local <span class="text-gradient-amber">Tech Partner.</span></h2>
+    <div class="glass-panel" style="padding: 40px; max-width: 800px; margin: 0 auto;">
+        <p class="about-body" style="color: var(--text-secondary);">We provide straightforward, honest IT support for your home and family. We believe technology should work for you, not the other way around. No call centers, no confusing jargon—just real people solving real problems.</p>
+    </div>
   </section>
 
   <!-- Contact -->
   <section class="section contact" id="contact">
-    <p class="section-label">Reach Out</p>
-    <h2 class="section-heading">Get in Touch</h2>
-    <div class="contact-card">
-      <div class="contact-item">
-        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M4 4h14a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.8"/>
-          <path d="M3 5l8 7 8-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <a href="mailto:contact@locallogicit.com">contact@locallogicit.com</a>
-      </div>
-      <div class="contact-item">
-        <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M4 4.5C4 3.7 4.7 3 5.5 3h2.2l2 4.5-1.4 1.4a10 10 0 004.8 4.8l1.4-1.4L19 14.3V16.5c0 .8-.7 1.5-1.5 1.5C8.4 18 4 10.6 4 4.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-        </svg>
-        <a href="tel:6363526572">636-352-6572</a>
-      </div>
-      <div class="contact-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
-      </div>
+    <span class="section-label">Reach Out</span>
+    <h2 class="section-title">Get in <span class="text-gradient-amber">Touch</span></h2>
+    <div class="contact-grid">
+      <a href="mailto:contact@locallogicit.com" class="contact-card">
+        <i class="ph ph-envelope-simple"></i>
+        <h3>Email Us</h3>
+        <p>contact@locallogicit.com</p>
+      </a>
+      <a href="tel:6363526572" class="contact-card">
+        <i class="ph ph-phone"></i>
+        <h3>Call Us</h3>
+        <p>636-352-6572</p>
+      </a>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
+        <i class="ph ph-chat-centered-text"></i>
+        <h3>Live Chat</h3>
+        <p>Chat With Us Now</p>
+      </a>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
-    <strong>Local Logic IT</strong> &mdash; Local Service. Logical Solutions. &nbsp;&middot;&nbsp; &copy; 2026 Local Logic IT
+    <div class="footer-logo">
+      <img src="assets/logo-mark.svg" alt="Local Logic IT Logo" width="48" height="48">
+    </div>
+    <h3 class="footer-brand-name">Local Logic IT</h3>
+    <p class="footer-tagline">Local Service. Logical Solutions.</p>
+    <div class="footer-copyright">
+      &copy; 2026 Local Logic IT &middot; All Rights Reserved.
+    </div>
   </footer>
   </main>
 
   <!-- Shared Pill Nav Script -->
   <script src="scripts/pill-nav.js"></script>
-
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();

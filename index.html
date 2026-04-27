@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
   <meta name="description"
     content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
   <meta name="view-transition" content="same-origin" />
   <title>Local Logic IT — Choose Your Service</title>
   <link rel="canonical" href="https://locallogicit.com/" />
-  <meta property="og:title" content="Local Logic IT — Choose Your Service" />
-  <meta property="og:description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta property="og:title" content="Local Logic IT — Local Service. Logical Solutions." />
+  <meta property="og:description" content="Local Logic IT provides premium managed IT, cybersecurity, and residential support services with a focus on logical solutions and exceptional service." />
   <meta property="og:url" content="https://locallogicit.com/" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://locallogicit.com/assets/logo.png" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Local Logic IT — Choose Your Service" />
   <meta name="twitter:description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
@@ -70,53 +71,30 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="css/brand.css" />
 
   <!-- Shared Pill Nav Styles -->
   <link rel="stylesheet" href="components/pill-nav.css" />
 
   <style>
-    /* ── Reset ── */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     html {
       scroll-behavior: smooth;
-      font-size: 15px;
-      background: #07070f;
+      background: var(--bg-graphite);
     }
 
     body {
       min-height: 100vh;
-      overflow-x: hidden;
-      font-family: 'Outfit', sans-serif !important;
-      background: #050508;
-      color: #fff;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: -1;
+      background: var(--bg-graphite);
+      color: var(--text-primary);
     }
 
     /* ── Chooser Layout ── */
     @keyframes chooser-fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .chooser {
@@ -125,26 +103,24 @@
       width: 100%;
       height: 100vh;
       padding-top: 16px;
-      box-sizing: border-box;
       overflow: hidden;
-      animation: chooser-fade-in 0.6s ease both;
+      animation: chooser-fade-in 0.8s cubic-bezier(0.2, 1, 0.3, 1) both;
     }
 
     .chooser-heading {
       position: absolute;
-      top: clamp(110px, 13vw, 150px);
+      top: clamp(120px, 15vw, 180px);
       left: 50%;
       transform: translateX(-50%);
       z-index: 4;
-      width: min(88vw, 560px);
-      margin: 0;
+      width: min(88vw, 600px);
       text-align: center;
-      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
       font-weight: 800;
       line-height: 1.1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       color: #fff;
-      text-shadow: 0 18px 38px rgba(0, 0, 0, 0.45);
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       pointer-events: none;
     }
 
@@ -154,16 +130,21 @@
       overflow: hidden;
       cursor: pointer;
       outline: none;
-      background: #04060e;
+      background: var(--bg-darker);
+      transition: flex 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    }
+
+    .half:hover {
+        flex: 1.1;
     }
 
     .half--residential {
-      box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.08);
-      background: radial-gradient(circle at center, #1a1a2e 0%, #04060e 100%);
+      box-shadow: inset -1px 0 0 var(--border-glass);
+      background: radial-gradient(circle at center, rgba(255, 138, 0, 0.08) 0%, var(--bg-darker) 100%);
     }
 
     .half--business {
-      background: radial-gradient(circle at center, #0d1b38 0%, #04060e 100%);
+      background: radial-gradient(circle at center, rgba(0, 102, 255, 0.08) 0%, var(--bg-darker) 100%);
     }
 
     .half-preview {
@@ -175,6 +156,11 @@
       pointer-events: none;
       transform-origin: 0 0;
       transition: opacity 0.5s ease;
+      filter: grayscale(0.2) brightness(0.6);
+    }
+
+    .half:hover .half-preview {
+        filter: grayscale(0) brightness(0.8);
     }
 
     .half-preview.is-hidden {
@@ -187,286 +173,131 @@
       inset: 0;
       z-index: 2;
       pointer-events: none;
-      background: rgba(4, 6, 14, 0.85);
-      backdrop-filter: blur(14px);
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      background: rgba(11, 15, 25, 0.6);
+      backdrop-filter: blur(8px);
+      transition: all 0.5s var(--transition-fluid);
     }
 
     .half:hover .half-overlay {
-      opacity: 0.7;
-      backdrop-filter: blur(10px);
-    }
-
-    @keyframes glow-gold {
-      0%, 100% {
-        box-shadow: 0 0 22px rgba(245, 158, 11, 0.18), 0 8px 48px rgba(245, 158, 11, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.09);
-      }
-      50% {
-        box-shadow: 0 0 38px rgba(245, 158, 11, 0.34), 0 8px 64px rgba(245, 158, 11, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.13);
-      }
-    }
-
-    @keyframes glow-blue {
-      0%, 100% {
-        box-shadow: 0 0 22px rgba(74, 128, 232, 0.18), 0 8px 48px rgba(74, 128, 232, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.09);
-      }
-      50% {
-        box-shadow: 0 0 38px rgba(74, 128, 232, 0.34), 0 8px 64px rgba(74, 128, 232, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.13);
-      }
+      background: rgba(11, 15, 25, 0.3);
+      backdrop-filter: blur(2px);
     }
 
     .half-caption {
       position: absolute;
-      top: 50%;
+      top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 3;
       text-align: center;
-      padding: clamp(24px, 5vw, 36px) clamp(20px, 6vw, 52px);
-      background: rgba(6, 7, 16, 0.65);
-      border-radius: 18px;
+      padding: 40px;
+      background: rgba(11, 15, 25, 0.7);
+      border: 1px solid var(--border-glass);
+      border-radius: 32px;
       backdrop-filter: blur(20px);
       pointer-events: none;
-      width: min(88vw, 520px);
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-      transition: all 0.38s cubic-bezier(0.23, 1, 0.32, 1);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      width: min(88vw, 400px);
+      transition: all 0.4s var(--transition-fluid);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
-    .half--residential .half-caption {
-      border-color: rgba(245, 158, 11, 0.32);
-      animation: glow-gold 3.6s ease-in-out infinite;
-    }
-
-    .half--business .half-caption {
-      border-color: rgba(74, 128, 232, 0.32);
-      animation: glow-blue 3.6s ease-in-out infinite;
-    }
+    .half--residential .half-caption { border-color: rgba(255, 138, 0, 0.3); }
+    .half--business .half-caption { border-color: rgba(0, 102, 255, 0.3); }
 
     .half:hover .half-caption {
-      transform: translate(-50%, -54%);
+      transform: translate(-50%, -55%);
+      background: rgba(11, 15, 25, 0.85);
+      border-color: rgba(255, 255, 255, 0.4);
     }
 
     .half-icon {
       display: block;
-      width: clamp(40px, 8vw, 52px);
-      height: clamp(40px, 8vw, 52px);
-      margin: 0 auto 18px;
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 20px;
     }
 
-    .half--residential .half-icon { color: #F59E0B; }
-    .half--business .half-icon { color: #4A80E8; }
+    .half--residential .half-icon { color: var(--accent-amber); }
+    .half--business .half-icon { color: var(--accent-blue); }
 
     .half-name {
-      font-size: clamp(1.2rem, 4vw, 1.5rem);
-      font-weight: 800;
+      font-size: 1.5rem;
+      font-weight: 700;
       display: block;
-      margin-bottom: 5px;
-      white-space: nowrap;
+      margin-bottom: 8px;
+      color: #fff;
     }
 
-    .half--residential .half-name { color: #F59E0B; }
-    .half--business .half-name { color: #4A80E8; }
-
     .half-sub {
-      font-size: clamp(0.75rem, 2vw, 0.8rem);
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
       display: block;
     }
 
     .half-arrow {
-      display: block;
-      margin-top: 18px;
-      font-size: 0.75rem;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      font-weight: 600;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      gap: 8px;
     }
 
-    .half--residential .half-arrow { color: rgba(245, 158, 11, 0.85); }
-    .half--business .half-arrow { color: rgba(74, 128, 232, 0.85); }
+    .half-arrow::after {
+        content: '→';
+        transition: transform 0.3s ease;
+    }
+
+    .half:hover .half-arrow::after {
+        transform: translateX(5px);
+    }
 
     .half.is-selecting {
       position: fixed !important;
       inset: 0 !important;
-      z-index: 100;
+      z-index: 400;
       flex: none;
-      overflow: hidden;
     }
 
-    .half.is-selecting .half-overlay { opacity: 0 !important; }
-    .half.is-selecting .half-caption { opacity: 0 !important; }
-
-    .chooser.has-selection .half:not(.is-selecting) {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.18s ease;
+    /* ── About Section ── */
+    .section.about {
+        background: transparent;
     }
 
-    /* ── Generic Sections ── */
-    .section {
-      padding: clamp(60px, 10vw, 120px) clamp(16px, 4vw, 32px);
-      text-align: center;
-      background: #07070f;
-      position: relative;
-    }
 
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #4A80E8;
-      margin-bottom: 16px;
-    }
 
-    .section-heading {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 48px;
-    }
-
-    .section-body {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.125rem;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.75);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-      gap: clamp(16px, 3vw, 32px);
-      max-width: 1000px;
-      margin: clamp(32px, 6vw, 64px) auto 0;
-    }
-
-    .contact-card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: clamp(24px, 4vw, 40px);
-      border-radius: 24px;
-      transition: all 0.3s ease;
-    }
-
-    .contact-card:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: #4A80E8;
-      transform: translateY(-8px);
-    }
-
-    .contact-card i {
-      font-size: 2.5rem;
-      color: #4A80E8;
-      margin-bottom: 24px;
-      display: block;
-    }
-
-    .contact-card h3 {
-      font-size: 1.25rem;
-      margin-bottom: 12px;
-    }
-
-    .contact-card p {
-      color: rgba(255, 255, 255, 0.75);
-      transition: color 0.2s;
-    }
-
-    .contact-card:hover p {
-      color: #fff;
-    }
-
-    .footer {
-      padding: clamp(24px, 5vw, 48px) clamp(16px, 4vw, 32px);
-      background: #04040a;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 0.85rem;
-    }
-
-    /* ── Mobile Chooser ── */
     @media (max-width: 767px) {
       .chooser {
-        flex-direction: column;
-        height: 100vh;
-        padding-top: 64px;
+        display: block;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 140px;
       }
-
       .chooser-heading {
-        top: 84px;
-        width: min(90vw, 340px);
-        font-size: clamp(1rem, 5vw, 1.35rem);
+        position: relative;
+        top: 0;
+        left: auto;
+        transform: none;
+        width: 90%;
+        margin: 0 auto 60px;
+        z-index: 5;
+        display: block;
       }
-
       .half {
-        flex: 1;
-        min-height: 0;
+        height: 50vh;
+        width: 100%;
       }
-
-      .half-caption {
-        padding: 24px 20px;
-        width: min(85vw, 320px);
-      }
-
-      .half-name {
-        white-space: normal;
-        line-height: 1.2;
-        margin-bottom: 8px;
-      }
-    }
-
-    /* Mobile Landscape */
-    @media (max-width: 767px) and (orientation: landscape) {
-      .half {
-        min-height: min(50vh, 260px);
-      }
-
-      .half-caption {
-        padding: 16px 18px;
-      }
-
-      .half-icon {
-        width: 32px;
-        height: 32px;
-        margin-bottom: 10px;
-      }
-
-      .half-arrow {
-        margin-top: 10px;
-      }
-    }
-
-    /* Ultra-wide */
-    @media (min-width: 1920px) {
-      .section-body {
-        max-width: 900px;
-      }
-
-      .contact-grid {
-        max-width: 1200px;
-      }
-    }
-
-    /* Reduced Motion Support */
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
+      .half-caption { padding: 32px; width: 85vw; }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-pattern"></div>
+  <div class="bg-network"></div>
 
   <!-- The Header Layout -->
   <div class="pill-wrapper" id="quartz-shell" data-pill-position="center">
@@ -474,14 +305,9 @@
       <div class="nav-segment logo-segment">
         <a href="index.html" class="header-brand">
           <div class="header-logo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-              <path d="M2 17l10 5 10-5"></path>
-              <path d="M2 12l10 5 10-5"></path>
-            </svg>
+            <img src="assets/logo-mark.svg" alt="Local Logic IT Logo" width="32" height="32">
           </div>
-          <span class="header-name">Local Logic IT</span>
+          <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
         </a>
       </div>
 
@@ -540,15 +366,15 @@
         aria-hidden="true"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
-        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M6 30L32 8L58 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <path d="M12 25V56H26V42C26 40.895 26.895 40 28 40H36C37.105 40 38 40.895 38 42V56H52V25"
-            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <div class="half-icon">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 15V75H65" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M45 45V75H75" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
-        <span class="half-arrow">Enter &rsaquo;</span>
+        <span class="half-arrow">Explore Solutions</span>
       </div>
     </div>
 
@@ -558,23 +384,24 @@
         aria-hidden="true"></iframe>
       <div class="half-overlay"></div>
       <div class="half-caption">
-        <svg class="half-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="8" y="10" width="48" height="46" rx="2" stroke="currentColor" stroke-width="2.5" />
-          <path d="M26 56V46H38V56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-            stroke-linejoin="round" />
-        </svg>
+        <div class="half-icon">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 15V75H65" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M45 45V75H75" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Commercial IT Services</span>
-        <span class="half-arrow">Enter &rsaquo;</span>
+        <span class="half-arrow">Enterprise Support</span>
       </div>
     </div>
   </main>
 
   <!-- About Section -->
   <section class="section about" id="about">
-    <p class="section-label">Who We Are</p>
-    <h2 class="section-heading">Local Service. Logical Solutions.</h2>
-    <div class="section-body">
+    <span class="section-label">Who We Are</span>
+    <h2 class="section-title">Local Service. <span class="text-gradient-blue">Logical Solutions.</span></h2>
+    <div class="section-body" style="padding: 24px; text-align: left; background: rgba(255, 255, 255, 0.02); border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.05);">
       <p>We are your local technology partner, dedicated to providing straightforward, honest IT support for both your
         home and your business. We believe technology should work for you, not the other way around. No call centers, no
         confusing jargon—just real people solving real problems with logic and care.</p>
@@ -583,8 +410,8 @@
 
   <!-- Contact Section -->
   <section class="section contact" id="contact">
-    <p class="section-label">Get In Touch</p>
-    <h2 class="section-heading">How Can We Help?</h2>
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">How Can We <span class="text-gradient-amber">Help?</span></h2>
     <div class="contact-grid">
       <a href="mailto:contact@locallogicit.com" class="contact-card">
         <i class="ph ph-envelope-simple"></i>
@@ -610,7 +437,14 @@
   </section>
 
   <footer class="footer">
-    <p>&copy; 2026 Local Logic IT &middot; Local Service. Logical Solutions.</p>
+    <div class="footer-logo">
+      <img src="assets/logo-mark.svg" alt="Local Logic IT Logo" width="48" height="48">
+    </div>
+    <h3 class="footer-brand-name">Local Logic IT</h3>
+    <p class="footer-tagline">Local Service. Logical Solutions.</p>
+    <div class="footer-copyright">
+      &copy; 2026 Local Logic IT &middot; All Rights Reserved.
+    </div>
   </footer>
 
   <!-- Chooser-specific JS (iframe scaling + half selection) -->
@@ -651,7 +485,7 @@
       var isRes = half.classList.contains('half--residential');
 
       // Flash overlay
-      injectFlash(isRes ? 'rgba(245,158,11,0.22)' : 'rgba(74,128,232,0.22)');
+      injectFlash(isRes ? 'rgba(255, 138, 0, 0.22)' : 'rgba(0, 102, 255, 0.22)');
       chooser.classList.add('has-selection');
 
       // Expand the half to fullscreen
