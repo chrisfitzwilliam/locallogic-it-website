@@ -133,11 +133,19 @@
     .chooser {
       position: relative;
       display: flex;
+      flex-direction: column;
       width: 100%;
       height: 100vh;
       padding-top: 16px;
       overflow: hidden;
       animation: chooser-fade-in 0.8s cubic-bezier(0.2, 1, 0.3, 1) both;
+    }
+
+    .half-row {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      height: 100%;
     }
 
     .chooser-heading {
@@ -252,9 +260,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 20px;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 24px;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
     }
 
     .half-icon img {
@@ -351,9 +360,10 @@
       .chooser .half-row {
         display: flex;
         gap: 12px;
-        padding: 0 16px;
+        padding: 0 20px;
         width: 100%;
         flex: none;
+        align-items: center;
       }
 
       .half {
@@ -362,7 +372,7 @@
         justify-content: center;
         flex: 1;
         height: auto;
-        width: 100%;
+        min-width: 0;
         padding: 0;
         border-radius: 20px;
         min-height: 0;
@@ -385,11 +395,12 @@
         top: auto;
         left: auto;
         transform: none;
-        padding: 28px 16px;
+        padding: 24px 12px;
         width: 100%;
         border-radius: 20px;
-        box-shadow: none;
-        background: rgba(11, 15, 25, 0.6);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        background: rgba(5, 7, 10, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       .half:hover .half-caption {
@@ -401,9 +412,9 @@
       }
 
       .half-icon {
-        width: 40px;
-        height: 40px;
-        margin: 0 auto 10px;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 15px;
       }
 
       .half-name {
@@ -507,33 +518,35 @@
   <!-- Landing / Chooser -->
   <main class="chooser" id="chooser">
     <h1 class="chooser-heading">Choose Your Home or Business IT Support</h1>
-    <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support"
-      data-href="residential.html">
-      <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1"
-        aria-hidden="true"></iframe>
-      <div class="half-overlay"></div>
-      <div class="half-caption">
-        <div class="half-icon">
-          <img src="assets/logo.png" alt="Logo Icon">
+    <div class="half-row">
+      <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support"
+        data-href="residential.html">
+        <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1"
+          aria-hidden="true"></iframe>
+        <div class="half-overlay"></div>
+        <div class="half-caption">
+          <div class="half-icon">
+            <img src="assets/logo.png" alt="Logo Icon">
+          </div>
+          <span class="half-name">Home &amp; Family</span>
+          <span class="half-sub">Residential IT Support</span>
+          <span class="half-arrow">Explore Solutions</span>
         </div>
-        <span class="half-name">Home &amp; Family</span>
-        <span class="half-sub">Residential IT Support</span>
-        <span class="half-arrow">Explore Solutions</span>
       </div>
-    </div>
 
-    <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services"
-      data-href="business.html">
-      <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1"
-        aria-hidden="true"></iframe>
-      <div class="half-overlay"></div>
-      <div class="half-caption">
-        <div class="half-icon">
-          <img src="assets/logo.png" alt="Logo Icon">
+      <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services"
+        data-href="business.html">
+        <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1"
+          aria-hidden="true"></iframe>
+        <div class="half-overlay"></div>
+        <div class="half-caption">
+          <div class="half-icon">
+            <img src="assets/logo.png" alt="Logo Icon">
+          </div>
+          <span class="half-name">Business &amp; Office</span>
+          <span class="half-sub">Commercial IT Services</span>
+          <span class="half-arrow">Enterprise Support</span>
         </div>
-        <span class="half-name">Business &amp; Office</span>
-        <span class="half-sub">Commercial IT Services</span>
-        <span class="half-arrow">Enterprise Support</span>
       </div>
     </div>
   </main>
