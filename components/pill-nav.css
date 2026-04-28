@@ -624,10 +624,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   transform: translateY(-1px);
 }
 
-/* ── Hide pill when inside iframes ── */
-.is-iframe .pill-wrapper {
-  display: none !important;
-}
+/* Iframe detection removed */
 
 /* ══════════════════════════════
    Responsive Breakpoints

@@ -103,7 +103,7 @@
   <link rel="stylesheet" href="css/brand.css" />
 
   <!-- Shared Pill Nav Styles -->
-  <link rel="stylesheet" href="components/pill-nav.css" />
+  <link rel="stylesheet" href="components/pill-nav.css?v=2" />
 
   <style>
     html {
@@ -119,15 +119,8 @@
 
     /* ── Chooser Layout ── */
     @keyframes chooser-fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .chooser {
@@ -146,23 +139,7 @@
       flex: 1;
       width: 100%;
       height: 100%;
-    }
-
-    .chooser-heading {
-      position: absolute;
-      top: clamp(120px, 15vw, 180px);
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      width: min(88vw, 600px);
-      text-align: center;
-      font-size: clamp(1.5rem, 4vw, 2.25rem);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      color: #fff;
-      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      pointer-events: none;
+      position: relative;
     }
 
     .half {
@@ -171,149 +148,93 @@
       overflow: hidden;
       cursor: pointer;
       outline: none;
-      background: var(--bg-darker);
-      transition: flex 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 40px;
+      text-align: center;
+      transition: flex 0.55s cubic-bezier(0.2, 1, 0.3, 1);
     }
-
-    .half:hover {
-      flex: 1.1;
-    }
+    .half:hover { flex: 1.2; }
 
     .half--residential {
-      box-shadow: inset -1px 0 0 var(--border-glass);
-      background: radial-gradient(circle at center, rgba(255, 138, 0, 0.08) 0%, var(--bg-darker) 100%);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      background: radial-gradient(ellipse at 50% 25%, rgba(255,138,0,0.11) 0%, transparent 65%), var(--bg-graphite);
     }
-
     .half--business {
-      background: radial-gradient(circle at center, rgba(0, 102, 255, 0.08) 0%, var(--bg-darker) 100%);
+      background: radial-gradient(ellipse at 50% 25%, rgba(0,102,255,0.11) 0%, transparent 65%), var(--bg-graphite);
     }
+    .half--residential:hover { background: radial-gradient(ellipse at 50% 25%, rgba(255,138,0,0.20) 0%, transparent 65%), var(--bg-graphite); }
+    .half--business:hover    { background: radial-gradient(ellipse at 50% 25%, rgba(0,102,255,0.20) 0%, transparent 65%), var(--bg-graphite); }
 
-    .half-preview {
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: none;
-      display: block;
-      pointer-events: none;
-      transform-origin: 0 0;
-      transition: opacity 0.5s ease;
-      filter: grayscale(0.2) brightness(0.6);
-    }
-
-    .half:hover .half-preview {
-      filter: grayscale(0) brightness(0.8);
-    }
-
-    .half-preview.is-hidden {
-      opacity: 0;
-      display: none;
-    }
-
-    .half-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      pointer-events: none;
-      background: rgba(11, 15, 25, 0.6);
-      backdrop-filter: blur(8px);
-      transition: all 0.5s var(--transition-fluid);
-    }
-
-    .half:hover .half-overlay {
-      background: rgba(11, 15, 25, 0.3);
-      backdrop-filter: blur(2px);
-    }
-
-    .half-caption {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-      text-align: center;
-      padding: 40px;
-      background: rgba(11, 15, 25, 0.7);
-      border: 1px solid var(--border-glass);
-      border-radius: 32px;
-      backdrop-filter: blur(20px);
-      pointer-events: none;
-      width: min(88vw, 400px);
-      transition: all 0.4s var(--transition-fluid);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    }
-
-    .half--residential .half-caption {
-      border-color: rgba(255, 138, 0, 0.3);
-    }
-
-    .half--business .half-caption {
-      border-color: rgba(0, 102, 255, 0.3);
-    }
-
-    .half:hover .half-caption {
-      transform: translate(-50%, -55%);
-      background: rgba(11, 15, 25, 0.85);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    .half-icon {
+    .half-icon-wrap {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 24px;
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+      height: 190px;
     }
-
-    .half-icon img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
+    .half-icon-wrap::after {
+      content: '';
+      position: absolute;
+      width: 160px; height: 70px;
+      border-radius: 50%;
+      bottom: -14px;
+      filter: blur(28px);
+      opacity: 0.45;
+      pointer-events: none;
     }
-
-    .half--residential .half-icon {
-      color: var(--accent-amber);
-    }
-
-    .half--business .half-icon {
-      color: var(--accent-blue);
-    }
+    .half--residential .half-icon-wrap::after { background: var(--accent-amber); }
+    .half--business    .half-icon-wrap::after { background: var(--accent-blue); }
 
     .half-name {
-      font-size: 1.4rem;
-      font-weight: 600;
-      display: block;
-      margin-bottom: 8px;
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
       color: #fff;
     }
-
     .half-sub {
-      font-size: 0.9rem;
+      font-size: clamp(0.72rem, 1.2vw, 0.85rem);
       color: var(--text-secondary);
-      display: block;
+      line-height: 1.5;
     }
-
-    .half-arrow {
-      display: inline-flex;
-      align-items: center;
-      margin-top: 24px;
-      font-size: 0.8rem;
+    .half-pill {
+      margin-top: 4px;
+      padding: 9px 24px;
+      border-radius: 999px;
+      font-size: clamp(0.65rem, 1vw, 0.75rem);
       font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: #fff;
-      gap: 8px;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
     }
+    .half--residential .half-pill { background: rgba(255,138,0,0.1); color: var(--accent-amber); border: 1px solid rgba(255,138,0,0.3); }
+    .half--business    .half-pill { background: rgba(0,102,255,0.1); color: var(--accent-blue);  border: 1px solid rgba(0,102,255,0.3); }
+    .half:hover .half-pill { transform: scale(1.05); }
 
-    .half-arrow::after {
-      content: '→';
-      transition: transform 0.3s ease;
+    .or-divider {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg-graphite);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.28);
+      letter-spacing: 0.04em;
+      pointer-events: none;
+      font-family: var(--font-main);
+      transition: opacity 0.3s ease;
     }
-
-    .half:hover .half-arrow::after {
-      transform: translateX(5px);
-    }
+    .half-row:hover .or-divider { opacity: 0; }
 
     .half.is-selecting {
       position: fixed !important;
@@ -322,130 +243,116 @@
       flex: none;
     }
 
+    /* Animations */
+    @keyframes hub-float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    @keyframes dash-travel  { to{stroke-dashoffset:-20} }
+    @keyframes node-pop     { 0%,100%{r:4.5} 50%{r:6.5} }
+    @keyframes server-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    @keyframes led-blink-1  { 0%,100%{opacity:1} 50%{opacity:.15} }
+    @keyframes led-blink-2  { 0%,100%{opacity:.3} 40%{opacity:1} }
+    @keyframes led-blink-3  { 0%,100%{opacity:1} 70%{opacity:.15} }
+
     /* ── About Section ── */
-    .section.about {
-      background: transparent;
-    }
-
-
+    .section.about { background: transparent; }
 
     @media (max-width: 767px) {
       .chooser {
-        display: flex;
-        flex-direction: column;
         height: auto;
-        min-height: 100vh;
         min-height: 100dvh;
         padding-top: 80px;
         padding-bottom: 24px;
         overflow-y: visible;
         justify-content: center;
-        gap: 0;
       }
-
-      .chooser-heading {
-        position: relative;
-        top: 0;
-        left: auto;
-        transform: none;
-        width: 90%;
-        margin: 0 auto 20px;
-        z-index: 5;
-        display: block;
-        flex: none;
-        font-size: clamp(1.3rem, 5.5vw, 1.6rem);
-      }
-
-      /* Systematic side-by-side card row */
       .chooser .half-row {
-        display: flex;
+        flex-direction: column;
         gap: 12px;
         padding: 0 24px;
-        /* Standardized with other sections */
-        width: 100%;
         flex: none;
-        align-items: stretch;
-        justify-content: center;
-        max-width: 500px;
-        margin: 0 auto;
-        box-sizing: border-box;
       }
-
       .half {
-        display: block;
-        /* Simplified from flex */
-        flex: 1;
-        min-width: 0;
-        border-radius: 20px;
-        /* Removed overflow:hidden to prevent border clipping */
-      }
-
-      .half--residential {
-        box-shadow: none;
-      }
-
-      .half-preview {
-        display: none !important;
-      }
-
-      .half-overlay {
-        display: none;
-      }
-
-      .half-caption {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none !important;
-        /* Explicitly kill desktop transform */
-        padding: 24px 10px;
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        background: rgba(5, 7, 10, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        flex: none;
         min-height: 220px;
-        box-sizing: border-box;
+        border-radius: 20px;
+        padding: 28px 20px;
+        gap: 12px;
       }
+      .half--residential { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .half-icon-wrap { height: 120px; }
+      .half-name { font-size: 1.2rem; }
+    }
 
-      .half:hover .half-caption {
-        transform: none;
-      }
+    /* ── Animated Navbar Border + Particles ── */
+    @keyframes nav-border-shift {
+      0%,100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+    @keyframes nav-particle-float {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      12%  { opacity: 0.8; }
+      88%  { opacity: 0.8; }
+      100% { transform: translateY(-56px) translateX(8px); opacity: 0; }
+    }
+    /* Gradient border on pill wrapper */
+    #quartz-shell::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: inherit;
+      background: linear-gradient(115deg,
+        rgba(0,102,255,0.55) 0%,
+        rgba(110,55,210,0.3) 38%,
+        rgba(255,138,0,0.55) 68%,
+        rgba(0,102,255,0.55) 100%
+      );
+      background-size: 250% 250%;
+      animation: nav-border-shift 7s ease infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+    /* SVG trail overlay */
+    .pill-trail-svg {
+      position: absolute;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 10;
+      overflow: visible;
+    }
+    /* Particles inside pill */
+    .pill-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      border-radius: inherit;
+      z-index: 0;
+    }
+    .pill-particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: nav-particle-float linear infinite;
+    }
 
-      .half:active .half-caption {
-        transform: scale(0.98);
-      }
+    /* ── Hide tagline when dropdown is open ── */
+    .tagline-pill.dropdown-active {
+      opacity: 0 !important;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(4px) !important;
+    }
 
-      .half-icon {
-        width: clamp(50px, 18vw, 75px);
-        height: clamp(50px, 18vw, 75px);
-        margin: 0 auto 12px;
-        flex-shrink: 0;
-      }
-
-      .half-name {
-        font-size: clamp(0.9rem, 4vw, 1.1rem);
-        margin-bottom: 4px;
-        line-height: 1.2;
-      }
-
-      .half-sub {
-        font-size: clamp(0.7rem, 3vw, 0.8rem);
-        opacity: 0.8;
-        line-height: 1.3;
-      }
-
-      .half-arrow {
-        margin-top: 14px;
-        font-size: 0.7rem;
-      }
+    /* ── Magnetic tagline snap on nav hover ── */
+    .pill-wrapper.tagline-anchored .tagline-pill {
+      left: 0 !important;
+      transform: translateX(0) translateY(0) !important;
+      transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  opacity 0.3s ease !important;
+    }
+    /* Smooth return to center */
+    .pill-wrapper:not(.tagline-anchored) .tagline-pill {
+      transition: left 0.45s cubic-bezier(0.2, 1, 0.3, 1),
+                  transform 0.45s cubic-bezier(0.2, 1, 0.3, 1),
+                  opacity 0.3s ease !important;
     }
   </style>
 </head>
@@ -456,7 +363,30 @@
 
   <!-- The Header Layout -->
   <div class="pill-wrapper" id="quartz-shell" data-pill-position="center">
+    <!-- Animated trail SVG -->
+    <svg class="pill-trail-svg" id="navTrailSvg" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="navTrailGrad" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="rgba(80,160,255,0)"/>
+          <stop offset="45%"  stop-color="rgba(100,180,255,0.4)"/>
+          <stop offset="75%"  stop-color="rgba(180,220,255,0.8)"/>
+          <stop offset="100%" stop-color="white"/>
+        </linearGradient>
+      </defs>
+      <path id="navTrailStroke" fill="none" stroke="url(#navTrailGrad)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
     <header class="pill-nav">
+      <!-- Floating particles -->
+      <div class="pill-particles">
+        <div class="pill-particle" style="left:5%;bottom:10%;width:2.5px;height:2.5px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.4s;animation-delay:0s"></div>
+        <div class="pill-particle" style="left:14%;bottom:22%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.3s;animation-delay:1s"></div>
+        <div class="pill-particle" style="left:26%;bottom:7%;width:2px;height:2px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.9s;animation-delay:1.7s"></div>
+        <div class="pill-particle" style="left:41%;bottom:17%;width:2.5px;height:2.5px;background:#FF8A00;box-shadow:0 0 6px #FF8A00;animation-duration:5s;animation-delay:0.4s"></div>
+        <div class="pill-particle" style="left:56%;bottom:8%;width:2px;height:2px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.6s;animation-delay:1.3s"></div>
+        <div class="pill-particle" style="left:68%;bottom:20%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.5s;animation-delay:0.7s"></div>
+        <div class="pill-particle" style="left:80%;bottom:11%;width:2.5px;height:2.5px;background:#0066FF;box-shadow:0 0 6px #0066FF;animation-duration:4.1s;animation-delay:2s"></div>
+        <div class="pill-particle" style="left:91%;bottom:6%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.8s;animation-delay:0.5s"></div>
+      </div>
       <div class="nav-segment logo-segment">
         <a href="index.html" class="header-brand">
           <div class="header-logo">
@@ -526,36 +456,77 @@
 
   <!-- Landing / Chooser -->
   <main class="chooser" id="chooser">
-    <h1 class="chooser-heading">Choose Your Home or Business IT Support</h1>
     <div class="half-row">
-      <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support"
-        data-href="residential.html">
-        <iframe class="half-preview" src="residential.html" loading="lazy" scrolling="no" tabindex="-1"
-          aria-hidden="true"></iframe>
-        <div class="half-overlay"></div>
-        <div class="half-caption">
-          <div class="half-icon">
-            <img src="assets/logo.png" alt="Logo Icon">
-          </div>
-          <span class="half-name">Home &amp; Family</span>
-          <span class="half-sub">Residential IT Support</span>
-          <span class="half-arrow">Explore Solutions</span>
+      <!-- OR badge -->
+      <div class="or-divider">OR</div>
+
+      <div class="half half--residential" role="link" tabindex="0" aria-label="Residential IT Support" data-href="residential.html">
+        <div class="half-icon-wrap" style="transform:translate(-6px,8px)">
+          <svg style="animation:hub-float 7s ease-in-out infinite;overflow:visible" width="180" height="180" viewBox="0 0 110 110" fill="none">
+            <line x1="55" y1="55" x2="28" y2="32" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite"/>
+            <line x1="55" y1="55" x2="82" y2="32" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.1s"/>
+            <line x1="55" y1="55" x2="82" y2="78" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.2s"/>
+            <line x1="55" y1="55" x2="28" y2="78" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.3s"/>
+            <line x1="55" y1="55" x2="55" y2="20" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.4s"/>
+            <line x1="55" y1="55" x2="90" y2="55" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.5s"/>
+            <line x1="55" y1="55" x2="55" y2="90" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.6s"/>
+            <line x1="55" y1="55" x2="20" y2="55" stroke="#FF8A00" stroke-width="1" stroke-dasharray="5 3" opacity=".35" style="animation:dash-travel 1.6s linear infinite;animation-delay:.7s"/>
+            <line x1="28" y1="32" x2="55" y2="20" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="82" y1="32" x2="55" y2="20" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="82" y1="32" x2="90" y2="55" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="82" y1="78" x2="90" y2="55" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="82" y1="78" x2="55" y2="90" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="28" y1="78" x2="55" y2="90" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="28" y1="78" x2="20" y2="55" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <line x1="28" y1="32" x2="20" y2="55" stroke="#FF8A00" stroke-width=".8" opacity=".2"/>
+            <circle cx="28" cy="32" r="4.5" fill="rgba(255,138,0,0.3)" stroke="#FF8A00" stroke-width="1.3" style="animation:node-pop 4s ease-in-out infinite"/>
+            <circle cx="82" cy="32" r="4.5" fill="rgba(255,138,0,0.3)" stroke="#FF8A00" stroke-width="1.3" style="animation:node-pop 4s ease-in-out infinite;animation-delay:.3s"/>
+            <circle cx="82" cy="78" r="4.5" fill="rgba(255,138,0,0.3)" stroke="#FF8A00" stroke-width="1.3" style="animation:node-pop 4s ease-in-out infinite;animation-delay:.6s"/>
+            <circle cx="28" cy="78" r="4.5" fill="rgba(255,138,0,0.3)" stroke="#FF8A00" stroke-width="1.3" style="animation:node-pop 4s ease-in-out infinite;animation-delay:.9s"/>
+            <circle cx="55" cy="20" r="4"   fill="rgba(255,138,0,0.25)" stroke="#FF8A00" stroke-width="1.2" style="animation:node-pop 4s ease-in-out infinite;animation-delay:.15s"/>
+            <circle cx="90" cy="55" r="4"   fill="rgba(255,138,0,0.25)" stroke="#FF8A00" stroke-width="1.2" style="animation:node-pop 4s ease-in-out infinite;animation-delay:.45s"/>
+            <circle cx="55" cy="90" r="4"   fill="rgba(255,138,0,0.25)" stroke="#FF8A00" stroke-width="1.2" style="animation:node-pop 4s ease-in-out infinite;animation-delay:.75s"/>
+            <circle cx="20" cy="55" r="4"   fill="rgba(255,138,0,0.25)" stroke="#FF8A00" stroke-width="1.2" style="animation:node-pop 4s ease-in-out infinite;animation-delay:1.05s"/>
+            <circle cx="55" cy="55" r="19" fill="rgba(255,138,0,0.15)" stroke="#FF8A00" stroke-width="2"/>
+            <path d="M45 57L55 47L65 57V66H61V59H49V66H45V57Z" fill="#FF8A00" opacity=".9"/>
+          </svg>
         </div>
+        <span class="half-name">Home &amp; Family</span>
+        <span class="half-sub">PC repair · Networking · Smart Home</span>
+        <span class="half-pill">Explore Solutions →</span>
       </div>
 
-      <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services"
-        data-href="business.html">
-        <iframe class="half-preview" src="business.html" loading="lazy" scrolling="no" tabindex="-1"
-          aria-hidden="true"></iframe>
-        <div class="half-overlay"></div>
-        <div class="half-caption">
-          <div class="half-icon">
-            <img src="assets/logo.png" alt="Logo Icon">
-          </div>
-          <span class="half-name">Business &amp; Office</span>
-          <span class="half-sub">Commercial IT Services</span>
-          <span class="half-arrow">Enterprise Support</span>
+      <div class="half half--business" role="link" tabindex="0" aria-label="Business IT Services" data-href="business.html">
+        <div class="half-icon-wrap">
+          <svg style="animation:server-float 7s ease-in-out infinite;overflow:visible" width="150" height="150" viewBox="0 0 110 110" fill="none">
+            <rect x="24" y="16" width="62" height="78" rx="7" fill="rgba(0,102,255,0.1)" stroke="#0066FF" stroke-width="2.2"/>
+            <rect x="30" y="24" width="50" height="11" rx="3.5" fill="rgba(0,102,255,0.18)" stroke="#0066FF" stroke-width="1.3"/>
+            <circle cx="40" cy="29.5" r="2.5" fill="#0066FF" style="animation:led-blink-1 3.6s ease-in-out infinite"/>
+            <rect x="50" y="27" width="24" height="2" rx="1" fill="rgba(0,102,255,0.5)"/>
+            <rect x="50" y="31" width="17" height="2" rx="1" fill="rgba(0,102,255,0.3)"/>
+            <rect x="30" y="39" width="50" height="11" rx="3.5" fill="rgba(0,102,255,0.18)" stroke="#0066FF" stroke-width="1.3"/>
+            <circle cx="40" cy="44.5" r="2.5" fill="#0066FF" style="animation:led-blink-2 4.2s ease-in-out infinite;animation-delay:.4s"/>
+            <rect x="50" y="42" width="24" height="2" rx="1" fill="rgba(0,102,255,0.5)"/>
+            <rect x="50" y="46" width="20" height="2" rx="1" fill="rgba(0,102,255,0.3)"/>
+            <rect x="30" y="54" width="50" height="11" rx="3.5" fill="rgba(0,102,255,0.18)" stroke="#0066FF" stroke-width="1.3"/>
+            <circle cx="40" cy="59.5" r="2.5" fill="#0066FF" style="animation:led-blink-3 3s ease-in-out infinite;animation-delay:.8s"/>
+            <rect x="50" y="57" width="24" height="2" rx="1" fill="rgba(0,102,255,0.5)"/>
+            <rect x="50" y="61" width="13" height="2" rx="1" fill="rgba(0,102,255,0.3)"/>
+            <rect x="30" y="69" width="50" height="11" rx="3.5" fill="rgba(0,102,255,0.18)" stroke="#0066FF" stroke-width="1.3"/>
+            <circle cx="40" cy="74.5" r="2.5" fill="#0066FF" style="animation:led-blink-1 4.8s ease-in-out infinite;animation-delay:1.1s"/>
+            <rect x="50" y="72" width="24" height="2" rx="1" fill="rgba(0,102,255,0.5)"/>
+            <rect x="50" y="76" width="19" height="2" rx="1" fill="rgba(0,102,255,0.3)"/>
+            <line x1="20" y1="36" x2="24" y2="36" stroke="#0066FF" stroke-width="1.5" stroke-dasharray="3 2" style="animation:dash-travel 1.2s linear infinite"/>
+            <line x1="20" y1="51" x2="24" y2="51" stroke="#0066FF" stroke-width="1.5" stroke-dasharray="3 2" style="animation:dash-travel 1.2s linear infinite;animation-delay:.2s"/>
+            <line x1="20" y1="66" x2="24" y2="66" stroke="#0066FF" stroke-width="1.5" stroke-dasharray="3 2" style="animation:dash-travel 1.2s linear infinite;animation-delay:.4s"/>
+            <line x1="86" y1="44" x2="90" y2="44" stroke="#0066FF" stroke-width="1.5" stroke-dasharray="3 2" style="animation:dash-travel 1.2s linear infinite;animation-delay:.1s"/>
+            <line x1="86" y1="59" x2="90" y2="59" stroke="#0066FF" stroke-width="1.5" stroke-dasharray="3 2" style="animation:dash-travel 1.2s linear infinite;animation-delay:.35s"/>
+            <line x1="86" y1="74" x2="90" y2="74" stroke="#0066FF" stroke-width="1.5" stroke-dasharray="3 2" style="animation:dash-travel 1.2s linear infinite;animation-delay:.55s"/>
+          </svg>
         </div>
+        <span class="half-name">Business &amp; Office</span>
+        <span class="half-sub">Managed IT · Security · Cloud</span>
+        <span class="half-pill">Enterprise Support →</span>
       </div>
     </div>
   </main>
@@ -576,34 +547,113 @@
   <section class="section contact" id="contact">
     <span class="section-label">Get In Touch</span>
     <h2 class="section-title">How Can We <span class="text-gradient-amber">Help?</span></h2>
-    <div class="contact-grid">
-      <a href="mailto:contact@locallogicit.com" class="contact-card">
-        <i class="ph ph-envelope-simple"></i>
-        <h3>Email Us</h3>
-        <p>contact@locallogicit.com</p>
+    <div class="contact-row">
+      <a href="mailto:contact@locallogicit.com" class="contact-pill">
+        <div class="contact-pill-icon"><i class="ph ph-envelope-simple"></i></div>
+        <div class="contact-pill-text">
+          <h3>Email Us</h3>
+          <p>contact@locallogicit.com</p>
+        </div>
       </a>
-      <a href="tel:6363526572" class="contact-card">
-        <i class="ph ph-phone"></i>
-        <h3>Call Us</h3>
-        <p>636-352-6572</p>
+      <a href="tel:6363526572" class="contact-pill">
+        <div class="contact-pill-icon"><i class="ph ph-phone"></i></div>
+        <div class="contact-pill-text">
+          <h3>Call Us</h3>
+          <p>636-352-6572</p>
+        </div>
       </a>
-      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
-        <i class="ph ph-chat-centered-text"></i>
-        <h3>Live Chat</h3>
-        <p>Chat With Us Now</p>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-pill">
+        <div class="contact-pill-icon"><i class="ph ph-chat-centered-text"></i></div>
+        <div class="contact-pill-text">
+          <h3>Live Chat</h3>
+          <p>Chat With Us Now</p>
+        </div>
       </a>
-      <a href="quick-support.html" class="contact-card">
-        <img src="assets/logo.png" alt="Local Logic IT Logo"
-          style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
-        <h3>Quick Support</h3>
-        <p>Launch Assist</p>
+      <a href="quick-support.html" class="contact-pill contact-pill--highlight">
+        <div class="contact-pill-icon contact-pill-icon--logo">
+          <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 40px; height: auto;">
+        </div>
+        <div class="contact-pill-text">
+          <h3>Quick Support</h3>
+          <p>Launch Assist</p>
+        </div>
       </a>
     </div>
   </section>
 
+  <style>
+    .contact-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .contact-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 36px 20px;
+      background: var(--glass-bg);
+      border: 1px solid var(--border-glass);
+      border-radius: 28px;
+      text-decoration: none;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .contact-pill:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--accent-amber);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(255, 138, 0, 0.12);
+    }
+    .contact-pill--highlight {
+      border-color: rgba(255, 138, 0, 0.2);
+      background: rgba(255, 138, 0, 0.04);
+    }
+    .contact-pill-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .contact-pill-icon i {
+      font-size: 1.8rem;
+    }
+    .contact-pill:nth-child(1) .contact-pill-icon { background: rgba(0, 102, 255, 0.12); }
+    .contact-pill:nth-child(1) .contact-pill-icon i { color: var(--accent-blue); }
+    .contact-pill:nth-child(2) .contact-pill-icon { background: rgba(255, 138, 0, 0.12); }
+    .contact-pill:nth-child(2) .contact-pill-icon i { color: var(--accent-amber); }
+    .contact-pill:nth-child(3) .contact-pill-icon { background: rgba(0, 102, 255, 0.12); }
+    .contact-pill:nth-child(3) .contact-pill-icon i { color: var(--accent-blue); }
+    .contact-pill-icon--logo {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .contact-pill-text h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .contact-pill-text p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+    @media (max-width: 767px) {
+      .contact-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 400px) {
+      .contact-row { grid-template-columns: 1fr; }
+    }
+  </style>
+
   <footer class="footer">
     <div class="footer-logo">
-      <img src="assets/logo.png" alt="Local Logic IT Logo" width="48" height="48">
+      <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 160px; height: auto;">
     </div>
     <h3 class="footer-brand-name">Local Logic IT</h3>
     <p class="footer-tagline">Local Service. Logical Solutions.</p>
@@ -614,28 +664,6 @@
 
   <!-- Chooser-specific JS (iframe scaling + half selection) -->
   <script>
-    function scalePreview(half) {
-      var iframe = half.querySelector('.half-preview');
-      if (!iframe) return;
-
-      // Disable iframes on mobile
-      if (window.innerWidth <= 767) {
-        iframe.classList.add('is-hidden');
-        return;
-      } else {
-        iframe.classList.remove('is-hidden');
-      }
-
-      var REF_W = document.documentElement.clientWidth;
-      var W = half.offsetWidth;
-      var H = half.offsetHeight;
-      var scale = W / REF_W;
-
-      iframe.style.width = REF_W + 'px';
-      iframe.style.height = Math.ceil(H / scale) + 'px';
-      iframe.style.transform = 'scale(' + scale + ')';
-    }
-
     function injectFlash(color) {
       var el = document.createElement('div');
       el.style.cssText = 'position:fixed;inset:0;z-index:400;pointer-events:none;background:' + color + ';animation:flash-out 0.35s ease-out forwards';
@@ -663,7 +691,6 @@
       half.style.transition = 'none';
       half.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sx + ',' + sy + ')';
       void half.offsetHeight;
-      scalePreview(half);
       half.style.transition = 'transform 0.36s cubic-bezier(0.19,1,0.22,1)';
       half.style.transform = 'translate(0,0) scale(1,1)';
 
@@ -682,16 +709,14 @@
     (function () {
       var halves = document.querySelectorAll('.half');
       halves.forEach(function (h) {
-        scalePreview(h);
         h.addEventListener('click', function () { selectHalf(this); });
         h.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') selectHalf(this); });
       });
-      window.addEventListener('resize', function () { halves.forEach(scalePreview); });
     }());
   </script>
 
   <!-- Shared Pill Nav Script -->
-  <script src="scripts/pill-nav.js"></script>
+  <script src="scripts/pill-nav.js?v=2"></script>
 
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">

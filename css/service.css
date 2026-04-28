@@ -73,6 +73,7 @@ body {
     color: #fff;
     letter-spacing: -0.02em;
     font-size: 1.1rem;
+    white-space: nowrap;
 }
 
 .nav-cta-link {

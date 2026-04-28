@@ -44,6 +44,13 @@ Compact project memory for `locallogic-it-website`. Keep this file current and t
 - After a push, production may lag until the VM timer runs; GitHub is not instantly live.
 - Verify live site state after publish when the task affects production.
 
+## Dead Code Removal (completed 2026-04-28)
+- Deleted: `assets/gunmetal_texture.png`, `components/variations/residential-content.html`, `components/variations/whats-included.html`, `scripts/magnetic-slot-smoke.cjs`, `scripts/responsive-audit.cjs`, `scripts/verify-contact-email.ps1`
+- CSS trimmed: removed `.muted`, `.rounded-xl`, `.mb-4`, `.mb-8` from `brand.css`; removed `.btn-support`, `.pill-divider`, `.mobile-service-row`/`.mobile-service-btn` blocks from `components/pill-nav.css`
+- Total: 1,057 lines removed across 8 files
+
 ## Open Items
 - Service detail pages still need schema markup.
-- Keep the residential and business service grids aligned with the sitemap.
+- `business.html` service grid shows 6 of 8 business services — missing `hardware-procurement.html` and `voip-phone-systems.html`.
+- `residential.html` service grid shows 6 of 8 residential services — missing `data-backup-recovery.html` and `printer-setup.html`.
+- GitHub remote was severed during git reinit; reconnect with: `git remote add origin git@github.com:chrisfitzwilliam/locallogic-it-website.git`

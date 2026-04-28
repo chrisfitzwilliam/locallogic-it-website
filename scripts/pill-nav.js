@@ -9,12 +9,6 @@
   var shell = document.getElementById('quartz-shell');
   if (!shell) return;
 
-  // ── Iframe Detection ──
-  if (window.self !== window.top) {
-    document.body.classList.add('is-iframe');
-    return; // Skip all nav logic inside iframes
-  }
-
   // ── Core References ──
   var navLinksContainer = document.getElementById('main-nav-links');
   var indicator = document.getElementById('nav-indicator');
@@ -76,6 +70,13 @@
   };
 
   // ── Dropdown Toggle ──
+  var taglinePill = document.querySelector('.tagline-pill');
+  function setTaglineVisible(visible) {
+    if (!taglinePill) return;
+    taglinePill.style.opacity = visible ? '' : '0';
+    taglinePill.style.pointerEvents = visible ? '' : 'none';
+  }
+
   var dropdowns = document.querySelectorAll('.dropdown, .mobile-dropdown');
   dropdowns.forEach(function (dd) {
     dd.addEventListener('click', function (e) {
@@ -85,6 +86,8 @@
         if (other !== dd) other.classList.remove('is-open');
       });
       dd.classList.toggle('is-open');
+      var anyOpen = !!document.querySelector('.dropdown.is-open');
+      setTaglineVisible(!anyOpen);
     });
   });
 
@@ -92,7 +95,25 @@
     dropdowns.forEach(function (dd) {
       dd.classList.remove('is-open');
     });
+    setTaglineVisible(true);
+    shell.classList.remove('tagline-anchored');
   });
+
+  // ── Magnetic tagline: snaps left on nav hover ──
+  var navLinksEl = document.getElementById('main-nav-links');
+  if (navLinksEl && isLanding) {
+    var navTriggers = navLinksEl.querySelectorAll('a, .dropdown-trigger');
+    navTriggers.forEach(function(el) {
+      el.addEventListener('mouseenter', function() {
+        shell.classList.add('tagline-anchored');
+      });
+    });
+    navLinksEl.addEventListener('mouseleave', function() {
+      if (!document.querySelector('.dropdown.is-open')) {
+        shell.classList.remove('tagline-anchored');
+      }
+    });
+  }
 
   // ── Sliding Indicator Logic ──
   if (navLinksContainer && indicator) {

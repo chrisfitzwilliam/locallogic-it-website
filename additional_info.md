@@ -43,24 +43,17 @@ locallogic-it-website/
 │   ├── logo-mark.svg                   # Logomark SVG (used on service detail pages)
 │   ├── favicon.png                     # Same as logo.png (32×32 display)
 │   ├── og-image.png                    # Open Graph social share image
-│   ├── gunmetal_texture.png            # Background texture (available, not always used)
 │   └── quick-assist-guide.png          # Screenshot for quick-support.html
 │
 ├── css/
 │   ├── brand.css                       # ⭐ GLOBAL design system (tokens, typography, layout, footer, contact grid, buttons)
-│   └── service.css                     # Styles specific to service detail pages (services/*)
+│   └── service.css                     # Styles for service detail pages; @import url('brand.css') at top
 │
 ├── components/
-│   ├── pill-nav.css                    # ⭐ Pill navigation component styles (shared by index, residential, business)
-│   └── variations/
-│       ├── residential-content.html    # (Variant/prototype content for residential)
-│       └── whats-included.html         # (Variant/prototype for service includes)
+│   └── pill-nav.css                    # ⭐ Pill navigation component styles (shared by index, residential, business)
 │
 ├── scripts/
-│   ├── pill-nav.js                     # ⭐ Pill navigation component JS (shared by index, residential, business)
-│   ├── magnetic-slot-smoke.cjs         # Dev/prototype script (not in production)
-│   ├── responsive-audit.cjs            # Dev audit tool
-│   └── verify-contact-email.ps1        # PowerShell diagnostic script
+│   └── pill-nav.js                     # ⭐ Pill navigation component JS (shared by index, residential, business)
 │
 └── services/
     ├── business/                       # 8 business service detail pages
@@ -292,7 +285,7 @@ The nav is a distinctive floating "pill" (rounded capsule) that:
 1. `css/brand.css` — global tokens, resets, typography, shared components (buttons, sections, contact grid, footer). Loaded first on all main pages.
 2. `components/pill-nav.css` — pill nav styles. Loaded after brand.css. Has its own `:root` block with nav-specific tokens.
 3. Page-level `<style>` blocks — each main page has a `<style>` tag in `<head>` for page-specific overrides
-4. `css/service.css` — used only by `services/**` pages. Standalone (does not import brand.css)
+4. `css/service.css` — used only by `services/**` pages. Uses `@import url('brand.css')` at the top so service pages get all global tokens via a single stylesheet
 
 ### Responsive Breakpoints
 - `767px` — major mobile breakpoint (nav collapses, layouts stack)
@@ -356,7 +349,7 @@ Logo image → Company name → Tagline → Copyright line
 - No build system — plain HTML/CSS/JS, static files
 - No package.json, no node_modules, no bundler
 - `robots.txt` allows all crawlers; points to sitemap
-- Sitemap covers 19 URLs (all pages currently indexed)
+- Sitemap covers 21 URLs (5 main pages + 8 business service pages + 8 residential service pages)
 
 ---
 
@@ -378,12 +371,11 @@ If you are an AI agent working on this project, follow these rules:
 
 ---
 
-## 15. Open Tasks / Known Issues (as of 2026-04-27)
+## 15. Open Tasks / Known Issues (as of 2026-04-28)
 
 - [x] **Service area / geo SEO addressed** — `service-area.html` created, `LocalBusiness` schema added to index and service area pages.
+- [x] **Dead code removed** — deleted `gunmetal_texture.png`, `components/variations/`, and 3 dev scripts; trimmed dead CSS from `brand.css` and `pill-nav.css` (1,057 lines total).
 - [ ] Service detail pages (`services/**`) have no schema markup
-- [ ] The `printer-setup.html` residential page is in `sitemap.xml` but not linked from `residential.html` services grid (it has 6 cards, the sitemap has 8 residential pages)
-- [ ] `data-backup-recovery.html` also not linked from residential.html services grid (same issue)
-- [ ] `voip-phone-systems.html` and `hardware-procurement.html` linked in sitemap but not in business.html services grid (it shows 6 of 8)
-- [ ] The `gunmetal_texture.png` asset exists but is not currently used
-- [ ] `components/variations/` files appear to be prototype/scratchpad pages, not production
+- [ ] `printer-setup.html` and `data-backup-recovery.html` are in `sitemap.xml` but not linked from `residential.html` service grid (shows 6 of 8)
+- [ ] `voip-phone-systems.html` and `hardware-procurement.html` are in `sitemap.xml` but not linked from `business.html` service grid (shows 6 of 8)
+- [ ] GitHub remote needs reconnecting after git reinit: `git remote add origin git@github.com:chrisfitzwilliam/locallogic-it-website.git`
