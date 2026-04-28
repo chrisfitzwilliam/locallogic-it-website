@@ -22,7 +22,12 @@ Compact project memory for `locallogic-it-website`. Keep this file current and t
 - Treat `memory.md` as the first file to update when durable repo facts change.
 - If you need deeper background on a section, codebase area, or historical detail, check `additional_info.md` first before loading anything else.
 - Keep `additional_info.md` as the detailed reference and avoid reading it unless the task needs extra context.
-- For this repo, "commit to website" means: make the intended git commit, push `main` to GitHub, and verify the live site only if the change affects production.
+- For this repo, "commit to website", "push to website", or "commit to main" means:
+  1. stage only the intended files
+  2. run `git diff --cached --check`
+  3. make a local commit
+  4. push `origin main`
+  5. verify the live site only if the change affects production
 - GitHub is the source of truth for the website release history; a local commit alone does not update the live site.
 - Do not overwrite unrelated working-tree edits.
 - Check `git status` before staging anything.
@@ -41,6 +46,7 @@ Compact project memory for `locallogic-it-website`. Keep this file current and t
 - The production host is `fitzwilliam-web-1` in `us-central1-a`.
 - Expect `locallogic-autodeploy.timer` / `.service` to pull `origin/main` with possible lag.
 - Pushes to `main` are what trigger the deploy flow; local commits by themselves are not enough.
+- After a push, production may lag until the VM timer runs; do not assume GitHub means live immediately.
 - Verify live site state after publish when the task affects production.
 
 ## Open Items
