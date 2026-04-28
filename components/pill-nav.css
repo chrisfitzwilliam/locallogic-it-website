@@ -203,7 +203,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 
 .header-logo svg,
 .header-logo img {
-  height: 24px;
+  height: 30px;
   width: auto;
   display: block;
 }
