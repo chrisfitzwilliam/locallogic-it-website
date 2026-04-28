@@ -614,7 +614,8 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 }
 
 /* ── Nav Links ── */
-.pill-mobile-menu a.mobile-nav-link {
+.pill-mobile-menu a.mobile-nav-link,
+.pill-mobile-menu .mobile-nav-link {
   font-size: 0.88rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.6);
@@ -625,10 +626,12 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 }
 
 .pill-mobile-menu a.mobile-nav-link:hover,
-.pill-mobile-menu a.mobile-nav-link:active {
+.pill-mobile-menu a.mobile-nav-link:active,
+.pill-mobile-menu .mobile-nav-link:hover {
   background: rgba(255, 255, 255, 0.06);
   color: #fff;
 }
@@ -643,6 +646,61 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   width: 20px;
   text-align: center;
   opacity: 0.5;
+}
+
+/* ── Mobile Dropdown Specifics ── */
+.mobile-dropdown {
+  flex-direction: column;
+  align-items: stretch !important;
+  gap: 0 !important;
+  padding: 0 !important;
+}
+
+.mobile-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-dropdown-trigger::after {
+  content: '\e9b2'; /* ph ph-caret-down */
+  font-family: "Phosphor-Icons" !important;
+  margin-left: auto;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.is-open .mobile-dropdown-trigger::after {
+  transform: rotate(180deg);
+}
+
+.mobile-dropdown-content {
+  display: none;
+  flex-direction: column;
+  padding: 4px 0 8px 44px;
+  gap: 4px;
+}
+
+.mobile-dropdown.is-open .mobile-dropdown-content {
+  display: flex;
+}
+
+.mobile-dropdown-content a {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.mobile-dropdown-content a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ── Quick Support Button (bottom of menu) ── */

@@ -96,8 +96,9 @@
 
     .process-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
         gap: 24px;
+        justify-content: center;
         margin-top: 48px;
     }
 
@@ -293,7 +294,6 @@
                 </div>
               </div>
             </div>
-            <a href="#about">About</a>
             <div class="dropdown" id="contact-dropdown">
               <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
               <div class="dropdown-content">
@@ -312,22 +312,17 @@
     </header>
     <div class="tagline-pill">Local Service. Logical Solutions.</div>
     <div class="pill-mobile-menu" id="pill-mobile-menu">
-      <div class="mobile-service-row">
-        <a href="residential.html" class="mobile-service-btn mobile-service-btn--residential">
-          <span class="service-icon">🏠</span>
-          Residential
-          <span class="service-label">Home &amp; Family</span>
-        </a>
-        <a href="business.html" class="mobile-service-btn mobile-service-btn--business">
-          <span class="service-icon">🏢</span>
-          Business
-          <span class="service-label">Office &amp; Enterprise</span>
-        </a>
-      </div>
-      <div class="mobile-menu-divider"></div>
       <a href="index.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
+      <div class="mobile-dropdown mobile-nav-link">
+        <div class="mobile-dropdown-trigger">
+          <span class="mobile-nav-icon"><i class="ph ph-briefcase"></i></span> Services
+        </div>
+        <div class="mobile-dropdown-content">
+          <a href="residential.html" onclick="closeMobileMenu()">Residential (Home & Family)</a>
+          <a href="business.html" onclick="closeMobileMenu()">Business (Office & Enterprise)</a>
+        </div>
+      </div>
       <a href="service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-map-pin"></i></span> Service Area</a>
-      <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-info"></i></span> About</a>
       <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-phone"></i></span> Contact</a>
       <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
       <div class="mobile-menu-divider"></div>

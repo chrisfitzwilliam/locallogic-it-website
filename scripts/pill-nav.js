@@ -76,7 +76,7 @@
   };
 
   // ── Dropdown Toggle ──
-  var dropdowns = document.querySelectorAll('.dropdown');
+  var dropdowns = document.querySelectorAll('.dropdown, .mobile-dropdown');
   dropdowns.forEach(function (dd) {
     dd.addEventListener('click', function (e) {
       e.stopPropagation();
