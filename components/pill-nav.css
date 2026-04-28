@@ -398,6 +398,10 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   visibility: visible;
 }
 
+.pill-wrapper[data-pill-position="docked"] .tagline-pill {
+  left: calc(50vw - var(--nav-left-docked));
+}
+
 /* Hide tagline when docking */
 .pill-wrapper.is-docking .tagline-pill {
   opacity: 0;
