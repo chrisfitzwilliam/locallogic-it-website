@@ -72,10 +72,6 @@ h1, h2, h3, h4 {
     -webkit-text-fill-color: transparent;
 }
 
-.muted {
-    color: var(--text-secondary);
-}
-
 /* Components */
 .glass-panel {
     background: var(--glass-bg);
@@ -175,11 +171,6 @@ h1, h2, h3, h4 {
 .residential-page .section-label {
     color: var(--accent-amber);
 }
-
-/* Utilities */
-.rounded-xl { border-radius: 24px; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-8 { margin-bottom: 2rem; }
 
 /* ── Contact Grid ── */
 .contact-grid {
