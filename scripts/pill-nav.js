@@ -53,16 +53,27 @@
     hamburgerBtn.addEventListener('click', function (e) {
       e.stopPropagation();
       var isOpen = mobileMenu.classList.toggle('open');
+      hamburgerBtn.classList.toggle('is-active', isOpen);
       hamburgerBtn.setAttribute('aria-expanded', isOpen);
     });
 
     document.addEventListener('click', function (e) {
       if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
         mobileMenu.classList.remove('open');
+        hamburgerBtn.classList.remove('is-active');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
       }
     });
   }
+
+  // ── Global close function for mobile menu onclick handlers ──
+  window.closeMobileMenu = function () {
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    if (hamburgerBtn) {
+      hamburgerBtn.classList.remove('is-active');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+  };
 
   // ── Dropdown Toggle ──
   var dropdowns = document.querySelectorAll('.dropdown');

@@ -306,9 +306,12 @@
         flex-direction: column;
         height: auto;
         min-height: 100vh;
-        padding-top: 100px;
-        padding-bottom: 0px;
+        min-height: 100dvh;
+        padding-top: 80px;
+        padding-bottom: 24px;
         overflow-y: visible;
+        justify-content: center;
+        gap: 0;
       }
       .chooser-heading {
         position: relative;
@@ -316,12 +319,22 @@
         left: auto;
         transform: none;
         width: 90%;
-        margin: 0 auto 16px;
+        margin: 0 auto 20px;
         z-index: 5;
         display: block;
         flex: none;
-        font-size: clamp(1.4rem, 6vw, 1.75rem);
+        font-size: clamp(1.3rem, 5.5vw, 1.6rem);
       }
+
+      /* Side-by-side card row */
+      .chooser .half-row {
+        display: flex;
+        gap: 12px;
+        padding: 0 16px;
+        width: 100%;
+        flex: none;
+      }
+
       .half {
         display: flex;
         align-items: center;
@@ -329,34 +342,51 @@
         flex: 1;
         height: auto;
         width: 100%;
-        padding: 24px 0;
+        padding: 0;
+        border-radius: 20px;
+        min-height: 0;
       }
       .half--residential {
-        box-shadow: inset 0 -1px 0 var(--border-glass); /* border on bottom instead of right */
+        box-shadow: none;
+      }
+      .half-preview {
+        display: none !important;
+      }
+      .half-overlay {
+        display: none;
       }
       .half-caption { 
         position: relative;
         top: auto;
         left: auto;
         transform: none;
-        padding: 32px 20px; 
-        width: 88vw; 
-        border-radius: 24px;
+        padding: 28px 16px;
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: none;
+        background: rgba(11, 15, 25, 0.6);
       }
       .half:hover .half-caption {
-        transform: scale(1.02);
+        transform: none;
+      }
+      .half:active .half-caption {
+        transform: scale(0.98);
       }
       .half-icon {
-        width: 48px;
-        height: 48px;
-        margin: 0 auto 12px;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto 10px;
       }
       .half-name {
-        font-size: 1.25rem;
-        margin-bottom: 4px;
+        font-size: 1.05rem;
+        margin-bottom: 2px;
+      }
+      .half-sub {
+        font-size: 0.78rem;
       }
       .half-arrow {
-        margin-top: 16px;
+        margin-top: 14px;
+        font-size: 0.7rem;
       }
     }
   </style>
@@ -415,14 +445,26 @@
 
     <!-- Mobile drawer menu -->
     <div class="pill-mobile-menu" id="pill-mobile-menu">
-      <a href="index.html" class="active">Home</a>
-      <a href="residential.html">Home &amp; Family</a>
-      <a href="business.html">Business &amp; Office</a>
-      <a href="service-area.html">Service Area</a>
-      <a href="#about" onclick="closeMobileMenu()">About</a>
-      <a href="#contact" onclick="closeMobileMenu()">Contact Info</a>
-      <a href="javascript:void(0)" onclick="Tawk_API.maximize(); closeMobileMenu()">Live Chat</a>
-      <a href="quick-support.html" class="btn-support-mobile">Quick Support</a>
+      <div class="mobile-service-row">
+        <a href="residential.html" class="mobile-service-btn mobile-service-btn--residential">
+          <span class="service-icon">🏠</span>
+          Residential
+          <span class="service-label">Home &amp; Family</span>
+        </a>
+        <a href="business.html" class="mobile-service-btn mobile-service-btn--business">
+          <span class="service-icon">🏢</span>
+          Business
+          <span class="service-label">Office &amp; Enterprise</span>
+        </a>
+      </div>
+      <div class="mobile-menu-divider"></div>
+      <a href="index.html" class="mobile-nav-link active"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
+      <a href="service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-map-pin"></i></span> Service Area</a>
+      <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-info"></i></span> About</a>
+      <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-phone"></i></span> Contact</a>
+      <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
+      <div class="mobile-menu-divider"></div>
+      <a href="quick-support.html" class="btn-support-mobile"><i class="ph ph-desktop-tower"></i> Quick Support</a>
     </div>
   </div>
 
