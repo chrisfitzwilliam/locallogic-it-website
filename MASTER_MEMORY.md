@@ -374,6 +374,7 @@ If you are an AI agent working on this project, follow these rules:
 8. **Tawk.to is on every page.** The widget ID is `69ee4a2453f59e1c3596b2ef`, channel `1jn5d37fc`. Do not change it.
 9. **Sitemap must be updated** when adding new pages.
 10. **Service area is the #1 SEO priority.** Any changes that improve local geo-targeting are high-value.
+11. **Always commit to GitHub.** Always commit and push changes to GitHub after finishing a task.
 
 ---
 
