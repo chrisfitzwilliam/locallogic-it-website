@@ -162,7 +162,9 @@ The nav is a distinctive floating "pill" (rounded capsule) that:
 - Includes "Quick Support" button in mobile drawer (→ `quick-support.html`)
 
 ### Tagline Pill
-- `<div class="tagline-pill">Local Service. Logical Solutions.</div>` renders below the pill nav when expanded
+- `<div class="tagline-pill">Local Service. Logical Solutions.</div>` renders below the pill nav when expanded.
+- **Docked Behavior:** When the main pill is docked to the top-left, the tagline pill aligns to the left (12px offset from the wrapper edge) rather than centering. This ensures it does not visually overlap with the center dropdown menus (like Services).
+- **Z-Index:** The tagline pill has `z-index: 1` so it falls safely behind the dropdown menus if any overlap occurs.
 
 ---
 
