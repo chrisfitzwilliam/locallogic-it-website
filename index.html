@@ -391,9 +391,13 @@
 
       .half-caption {
         position: relative;
+        top: auto;
+        left: auto;
+        transform: none !important; /* Explicitly kill desktop transform */
         padding: 24px 10px;
         width: 100%;
-        height: 100%; /* Fill the flex parent height */
+        max-width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -403,7 +407,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         background: rgba(5, 7, 10, 0.85);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        min-height: 220px; /* Reduced slightly for smaller screens */
+        min-height: 220px;
         box-sizing: border-box;
       }
 
