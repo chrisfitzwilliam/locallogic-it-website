@@ -400,7 +400,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 
 .pill-wrapper[data-pill-position="docked"] .tagline-pill,
 .pill-wrapper[data-pill-position="docked"].is-docking .tagline-pill {
-  left: 24px;
+  left: 12px;
   transform: translateY(10px);
 }
 
