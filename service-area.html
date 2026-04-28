@@ -47,7 +47,12 @@
         { "@type": "City", "name": "Weldon Spring" },
         { "@type": "City", "name": "Chesterfield" },
         { "@type": "City", "name": "Ballwin" },
-        { "@type": "City", "name": "Maryland Heights" }
+        { "@type": "City", "name": "Maryland Heights" },
+        { "@type": "City", "name": "Troy" },
+        { "@type": "City", "name": "Earth City" },
+        { "@type": "City", "name": "Bridgeton" },
+        { "@type": "City", "name": "Dardenne Prairie" },
+        { "@type": "City", "name": "Warrenton" }
       ],
       "sameAs": []
     }
@@ -57,6 +62,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
   <link rel="stylesheet" href="css/brand.css" />
   <!-- Shared Pill Nav Styles -->
@@ -205,6 +214,103 @@
             padding: 32px;
         }
     }
+
+    /* ── Service Area Map ── */
+    #service-map {
+        height: 450px;
+        width: 100%;
+        border-radius: 24px;
+        margin: 40px 0;
+        background: var(--bg-darker);
+        border: 1px solid var(--border-glass);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        position: relative;
+        z-index: 1; /* Keep map below the pill nav */
+    }
+
+    /* Override Leaflet defaults for dark glass theme */
+    .leaflet-container {
+        background: transparent;
+        font-family: 'Poppins', sans-serif;
+    }
+    .leaflet-bar a {
+        background-color: var(--glass-bg) !important;
+        border-bottom: 1px solid var(--border-glass) !important;
+        color: #fff !important;
+    }
+    .leaflet-bar a:hover {
+        background-color: var(--glass-bg-hover) !important;
+    }
+    .leaflet-control-zoom {
+        border: 1px solid var(--border-glass) !important;
+        border-radius: 8px !important;
+        overflow: hidden;
+    }
+
+    /* Pulsing Markers */
+    .pulse-marker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .pulse-dot {
+        width: 12px;
+        height: 12px;
+        background-color: var(--accent-blue);
+        border-radius: 50%;
+        position: relative;
+        box-shadow: 0 0 10px var(--accent-blue);
+    }
+    .pulse-dot::after {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
+        border-radius: 50%;
+        border: 2px solid var(--accent-blue);
+        animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        opacity: 0;
+    }
+
+    .pulse-marker.primary .pulse-dot {
+        background-color: var(--accent-amber);
+        box-shadow: 0 0 12px var(--accent-amber);
+        width: 16px;
+        height: 16px;
+    }
+    .pulse-marker.primary .pulse-dot::after {
+        border-color: var(--accent-amber);
+        top: -8px; left: -8px; right: -8px; bottom: -8px;
+    }
+
+    @keyframes pulse-ring {
+        0% { transform: scale(0.5); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* Custom Popup Styling */
+    .leaflet-popup-content-wrapper {
+        background: var(--bg-darker);
+        color: #fff;
+        border: 1px solid var(--border-glass);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .leaflet-popup-tip {
+        background: var(--bg-darker);
+        border: 1px solid var(--border-glass);
+        border-top: none;
+        border-left: none;
+    }
+    .leaflet-popup-content {
+        margin: 12px 16px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+    }
   </style>
 </head>
 <body class="service-area-page">
@@ -291,6 +397,9 @@
       <span class="section-label">Locations</span>
       <h2 class="section-title">Areas We <span class="text-gradient-blue">Cover</span></h2>
       
+      <!-- Interactive Service Area Map -->
+      <div id="service-map"></div>
+
       <div class="coverage-grid">
         <!-- St. Charles (Primary) -->
         <div class="city-card highlight">
@@ -470,6 +579,65 @@
 
   <!-- Shared Pill Nav Script -->
   <script src="scripts/pill-nav.js"></script>
+
+  <!-- Interactive Map Initialization -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Initialize map, centered roughly on St. Charles / St. Louis region
+      // Zoom level 10 gives a good view of the whole metro area
+      var map = L.map('service-map', {
+        scrollWheelZoom: false // Prevent accidental zooming when scrolling down the page
+      }).setView([38.7881, -90.5974], 10);
+
+      // Add CartoDB Dark Matter tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      }).addTo(map);
+
+      // Locations Data
+      const locations = [
+        { name: "St. Charles, MO (Primary Hub)", lat: 38.7881, lng: -90.4974, primary: true },
+        { name: "O'Fallon, MO", lat: 38.8106, lng: -90.6998 },
+        { name: "Wentzville, MO", lat: 38.8114, lng: -90.8523 },
+        { name: "Troy, MO", lat: 38.9796, lng: -90.9806 },
+        { name: "Earth City, MO", lat: 38.7698, lng: -90.4682 },
+        { name: "Bridgeton, MO", lat: 38.7618, lng: -90.4077 },
+        { name: "Lake St. Louis, MO", lat: 38.7963, lng: -90.7850 },
+        { name: "St. Peters, MO", lat: 38.7904, lng: -90.6279 },
+        { name: "Cottleville, MO", lat: 38.7511, lng: -90.6554 },
+        { name: "Weldon Spring, MO", lat: 38.7132, lng: -90.6976 },
+        { name: "Chesterfield, MO", lat: 38.6631, lng: -90.5771 },
+        { name: "Ballwin, MO", lat: 38.5956, lng: -90.5448 },
+        { name: "Maryland Heights, MO", lat: 38.7131, lng: -90.4298 },
+        { name: "Dardenne Prairie, MO", lat: 38.7492, lng: -90.7387 },
+        { name: "Warrenton, MO", lat: 38.8114, lng: -91.1440 }
+      ];
+
+      // Define custom HTML markers
+      const standardIcon = L.divIcon({
+        className: 'pulse-marker',
+        html: '<div class="pulse-dot"></div>',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      });
+
+      const primaryIcon = L.divIcon({
+        className: 'pulse-marker primary',
+        html: '<div class="pulse-dot"></div>',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+      });
+
+      // Add markers to map
+      locations.forEach(loc => {
+        const iconToUse = loc.primary ? primaryIcon : standardIcon;
+        const marker = L.marker([loc.lat, loc.lng], { icon: iconToUse }).addTo(map);
+        marker.bindPopup(loc.name);
+      });
+    });
+  </script>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
