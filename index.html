@@ -12,12 +12,14 @@
   <title>Local Logic IT — Choose Your Service</title>
   <link rel="canonical" href="https://locallogicit.com/" />
   <meta property="og:title" content="Local Logic IT — Local Service. Logical Solutions." />
-  <meta property="og:description" content="Local Logic IT provides premium managed IT, cybersecurity, and residential support services with a focus on logical solutions and exceptional service." />
+  <meta property="og:description"
+    content="Local Logic IT provides premium managed IT, cybersecurity, and residential support services with a focus on logical solutions and exceptional service." />
   <meta property="og:url" content="https://locallogicit.com/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Local Logic IT — Choose Your Service" />
-  <meta name="twitter:description" content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
+  <meta name="twitter:description"
+    content="Local Logic IT — Local Service. Logical Solutions. IT support for home and business." />
   <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
   <script type="application/ld+json">
     {
@@ -94,7 +96,8 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <link rel="stylesheet" href="css/brand.css" />
@@ -116,8 +119,15 @@
 
     /* ── Chooser Layout ── */
     @keyframes chooser-fade-in {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .chooser {
@@ -158,7 +168,7 @@
     }
 
     .half:hover {
-        flex: 1.1;
+      flex: 1.1;
     }
 
     .half--residential {
@@ -183,7 +193,7 @@
     }
 
     .half:hover .half-preview {
-        filter: grayscale(0) brightness(0.8);
+      filter: grayscale(0) brightness(0.8);
     }
 
     .half-preview.is-hidden {
@@ -224,8 +234,13 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
-    .half--residential .half-caption { border-color: rgba(255, 138, 0, 0.3); }
-    .half--business .half-caption { border-color: rgba(0, 102, 255, 0.3); }
+    .half--residential .half-caption {
+      border-color: rgba(255, 138, 0, 0.3);
+    }
+
+    .half--business .half-caption {
+      border-color: rgba(0, 102, 255, 0.3);
+    }
 
     .half:hover .half-caption {
       transform: translate(-50%, -55%);
@@ -248,8 +263,13 @@
       object-fit: contain;
     }
 
-    .half--residential .half-icon { color: var(--accent-amber); }
-    .half--business .half-icon { color: var(--accent-blue); }
+    .half--residential .half-icon {
+      color: var(--accent-amber);
+    }
+
+    .half--business .half-icon {
+      color: var(--accent-blue);
+    }
 
     .half-name {
       font-size: 1.4rem;
@@ -278,12 +298,12 @@
     }
 
     .half-arrow::after {
-        content: '→';
-        transition: transform 0.3s ease;
+      content: '→';
+      transition: transform 0.3s ease;
     }
 
     .half:hover .half-arrow::after {
-        transform: translateX(5px);
+      transform: translateX(5px);
     }
 
     .half.is-selecting {
@@ -295,7 +315,7 @@
 
     /* ── About Section ── */
     .section.about {
-        background: transparent;
+      background: transparent;
     }
 
 
@@ -313,6 +333,7 @@
         justify-content: center;
         gap: 0;
       }
+
       .chooser-heading {
         position: relative;
         top: 0;
@@ -346,16 +367,20 @@
         border-radius: 20px;
         min-height: 0;
       }
+
       .half--residential {
         box-shadow: none;
       }
+
       .half-preview {
         display: none !important;
       }
+
       .half-overlay {
         display: none;
       }
-      .half-caption { 
+
+      .half-caption {
         position: relative;
         top: auto;
         left: auto;
@@ -366,24 +391,30 @@
         box-shadow: none;
         background: rgba(11, 15, 25, 0.6);
       }
+
       .half:hover .half-caption {
         transform: none;
       }
+
       .half:active .half-caption {
         transform: scale(0.98);
       }
+
       .half-icon {
         width: 40px;
         height: 40px;
         margin: 0 auto 10px;
       }
+
       .half-name {
         font-size: 1.05rem;
         margin-bottom: 2px;
       }
+
       .half-sub {
         font-size: 0.78rem;
       }
+
       .half-arrow {
         margin-top: 14px;
         font-size: 0.7rem;
@@ -458,11 +489,16 @@
         </a>
       </div>
       <div class="mobile-menu-divider"></div>
-      <a href="index.html" class="mobile-nav-link active"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
-      <a href="service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-map-pin"></i></span> Service Area</a>
-      <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-info"></i></span> About</a>
-      <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-phone"></i></span> Contact</a>
-      <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
+      <a href="index.html" class="mobile-nav-link active"><span class="mobile-nav-icon"><i
+            class="ph ph-house"></i></span> Home</a>
+      <a href="service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i
+            class="ph ph-map-pin"></i></span> Service Area</a>
+      <a href="#about" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i
+            class="ph ph-info"></i></span> About</a>
+      <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i
+            class="ph ph-phone"></i></span> Contact</a>
+      <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span
+          class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
       <div class="mobile-menu-divider"></div>
       <a href="quick-support.html" class="btn-support-mobile"><i class="ph ph-desktop-tower"></i> Quick Support</a>
     </div>
@@ -478,7 +514,7 @@
       <div class="half-overlay"></div>
       <div class="half-caption">
         <div class="half-icon">
-            <img src="assets/logo.png" alt="Logo Icon">
+          <img src="assets/logo.png" alt="Logo Icon">
         </div>
         <span class="half-name">Home &amp; Family</span>
         <span class="half-sub">Residential IT Support</span>
@@ -493,7 +529,7 @@
       <div class="half-overlay"></div>
       <div class="half-caption">
         <div class="half-icon">
-            <img src="assets/logo.png" alt="Logo Icon">
+          <img src="assets/logo.png" alt="Logo Icon">
         </div>
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Commercial IT Services</span>
@@ -506,7 +542,8 @@
   <section class="section about" id="about">
     <span class="section-label">Who We Are</span>
     <h2 class="section-title">Local Service. <span class="text-gradient-blue">Logical Solutions.</span></h2>
-    <div class="section-body" style="padding: 24px; text-align: left; background: rgba(255, 255, 255, 0.02); border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.05);">
+    <div class="section-body"
+      style="padding: 24px; text-align: left; background: rgba(255, 255, 255, 0.02); border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.05);">
       <p>We are your local technology partner, dedicated to providing straightforward, honest IT support for both your
         home and your business. We believe technology should work for you, not the other way around. No call centers, no
         confusing jargon—just real people solving real problems with logic and care.</p>
@@ -534,7 +571,8 @@
         <p>Chat With Us Now</p>
       </a>
       <a href="quick-support.html" class="contact-card">
-        <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
+        <img src="assets/logo.png" alt="Local Logic IT Logo"
+          style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
         <h3>Quick Support</h3>
         <p>Launch Assist</p>
       </a>
@@ -615,18 +653,18 @@
       }
 
       // Navigate after the expand animation settles
-      setTimeout(function() { window.location.href = dest; }, 200);
+      setTimeout(function () { window.location.href = dest; }, 200);
     }
 
     // Init chooser
-    (function() {
+    (function () {
       var halves = document.querySelectorAll('.half');
-      halves.forEach(function(h) {
+      halves.forEach(function (h) {
         scalePreview(h);
         h.addEventListener('click', function () { selectHalf(this); });
-        h.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') selectHalf(this); });
+        h.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') selectHalf(this); });
       });
-      window.addEventListener('resize', function() { halves.forEach(scalePreview); });
+      window.addEventListener('resize', function () { halves.forEach(scalePreview); });
     }());
   </script>
 
