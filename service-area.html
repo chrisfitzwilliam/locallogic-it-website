@@ -233,7 +233,36 @@
     .mode-card p {
         color: var(--text-secondary);
         line-height: 1.6;
-        font-size: 1.05rem;
+        font-size: 0.95rem;
+    }
+
+    .mode-list {
+        margin-top: 24px;
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mode-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.95rem;
+        color: #fff;
+    }
+
+    .mode-list li i {
+        font-size: 1.2rem;
+    }
+
+    .mode-card--residential .mode-list li i {
+        color: var(--accent-amber);
+    }
+
+    .mode-card--business .mode-list li i {
+        color: var(--accent-blue);
     }
 
     @media (max-width: 767px) {
@@ -557,6 +586,13 @@
           </div>
           <h3>Home &amp; Family</h3>
           <p>We provide responsive, on-site assistance for home networks, PC repairs, and smart home setups across St. Charles. We come directly to you so you don't have to unplug your life.</p>
+          <ul class="mode-list">
+            <li><i class="ph-fill ph-check-circle"></i> PC & Laptop Repair</li>
+            <li><i class="ph-fill ph-check-circle"></i> Home Network & Wi-Fi Setup</li>
+            <li><i class="ph-fill ph-check-circle"></i> Smart Home Integration</li>
+            <li><i class="ph-fill ph-check-circle"></i> Malware & Virus Removal</li>
+            <li><i class="ph-fill ph-check-circle"></i> Data Backup Solutions</li>
+          </ul>
         </div>
 
         <div class="mode-card mode-card--business glass-panel">
@@ -565,6 +601,13 @@
           </div>
           <h3>Business &amp; Office</h3>
           <p>From responsive remote helpdesk support to rapid on-site dispatch for hardware emergencies, we keep your business operations running smoothly without interruption.</p>
+          <ul class="mode-list">
+            <li><i class="ph-fill ph-check-circle"></i> Proactive Managed IT</li>
+            <li><i class="ph-fill ph-check-circle"></i> 24/7 Network Monitoring</li>
+            <li><i class="ph-fill ph-check-circle"></i> Cybersecurity & Compliance</li>
+            <li><i class="ph-fill ph-check-circle"></i> Cloud & Server Migrations</li>
+            <li><i class="ph-fill ph-check-circle"></i> Remote Helpdesk Support</li>
+          </ul>
         </div>
       </div>
     </section>
