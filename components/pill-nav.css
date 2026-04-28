@@ -398,8 +398,14 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   visibility: visible;
 }
 
-.pill-wrapper[data-pill-position="docked"] .tagline-pill {
-  left: calc(50vw - var(--nav-left-docked));
+.pill-wrapper[data-pill-position="docked"] .tagline-pill,
+.pill-wrapper[data-pill-position="docked"].is-docking .tagline-pill {
+  left: 24px;
+  transform: translateY(10px);
+}
+
+.pill-wrapper[data-pill-position="docked"].is-expanded .tagline-pill {
+  transform: translateY(0);
 }
 
 /* Hide tagline when docking */
