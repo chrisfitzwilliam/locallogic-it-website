@@ -304,11 +304,11 @@
       .chooser {
         display: flex;
         flex-direction: column;
-        height: 100vh;
-        height: 100dvh;
+        height: auto;
         min-height: 100vh;
-        padding-top: 110px;
-        padding-bottom: 20px;
+        padding-top: 100px;
+        padding-bottom: 24px;
+        overflow-y: visible;
       }
       .chooser-heading {
         position: relative;
@@ -316,26 +316,32 @@
         left: auto;
         transform: none;
         width: 90%;
-        margin: 0 auto 24px;
+        margin: 0 auto 16px;
         z-index: 5;
         display: block;
         flex: none;
         font-size: clamp(1.4rem, 6vw, 1.75rem);
       }
       .half {
-        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
         height: auto;
         width: 100%;
-        min-height: 200px;
+        padding: 24px 0;
       }
       .half-caption { 
-        top: 50%;
-        padding: 24px 20px; 
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        padding: 32px 20px; 
         width: 88vw; 
         border-radius: 24px;
       }
       .half:hover .half-caption {
-        transform: translate(-50%, -50%) scale(1.02);
+        transform: scale(1.02);
       }
       .half-icon {
         width: 48px;
