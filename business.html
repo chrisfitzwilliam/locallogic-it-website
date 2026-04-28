@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local Logic IT business IT services — managed IT, cybersecurity, backup, AI automation, and cloud services for local businesses." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <meta name="view-transition" content="same-origin" />
+  <title>Local Logic IT — Business IT Services</title>
+  <link rel="canonical" href="https://locallogicit.com/business.html" />
+  <meta property="og:title" content="Business IT Solutions — Local Logic IT" />
+  <meta property="og:description" content="Logical IT solutions for your business. Managed services, cybersecurity, cloud, and more." />
+  <meta property="og:url" content="https://locallogicit.com/business.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Local Logic IT — Business IT Services" />
+  <meta name="twitter:description" content="Local Logic IT business IT services — managed IT, cybersecurity, backup, AI automation, and cloud services for local businesses." />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "Organization", "@id": "https://locallogicit.com/#organization", "name": "Local Logic IT", "url": "https://locallogicit.com/", "logo": "https://locallogicit.com/assets/logo.png", "email": "contact@locallogicit.com", "telephone": "+1-636-352-6572", "contactPoint": [{ "@type": "ContactPoint", "contactType": "customer support", "email": "contact@locallogicit.com", "telephone": "+1-636-352-6572", "availableLanguage": ["en"] }] },
+        { "@type": "WebSite", "@id": "https://locallogicit.com/#website", "url": "https://locallogicit.com/", "name": "Local Logic IT", "publisher": { "@id": "https://locallogicit.com/#organization" } },
+        { "@type": "WebPage", "@id": "https://locallogicit.com/business.html#webpage", "url": "https://locallogicit.com/business.html", "name": "Local Logic IT — Business IT Services", "description": "Local Logic IT business IT services — managed IT, cybersecurity, backup, AI automation, and cloud services for local businesses.", "isPartOf": { "@id": "https://locallogicit.com/#website" }, "about": { "@id": "https://locallogicit.com/#organization" }, "inLanguage": "en" }
+      ]
+    }
+  </script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <link rel="stylesheet" href="css/brand.css" />
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="components/pill-nav.css" />
+
+  <style>
+    /* ── Hero ── */
+    .hero {
+        padding: clamp(120px, 15vw, 180px) 24px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+        font-size: clamp(2.25rem, 7vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+        font-weight: 700;
+    }
+
+    .hero-sub {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: var(--text-secondary);
+    }
+
+    /* ── Services ── */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .service-card {
+        padding: 48px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        margin: 20px 0 12px;
+        color: #fff;
+    }
+
+    .service-desc {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    /* ── Process Grid ── */
+    .onboarding {
+        background: var(--bg-darker);
+    }
+
+    .process-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 24px;
+        justify-content: center;
+        margin-top: 48px;
+    }
+
+    .process-card {
+        position: relative;
+        padding: 40px;
+        transition: var(--transition);
+        cursor: pointer;
+    }
+
+    .process-card.active {
+        background: rgba(0, 102, 255, 0.05);
+        border-color: var(--accent-blue);
+    }
+
+    .step-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.05);
+        line-height: 1;
+        margin-bottom: 16px;
+    }
+
+    .process-card.active .step-number {
+        color: var(--accent-blue);
+        opacity: 0.2;
+    }
+
+    .progress-fill {
+        background: var(--accent-blue);
+    }
+
+    /* ── Revamped About Section ── */
+    .about {
+        padding: 120px 24px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 100px;
+        align-items: start;
+    }
+
+    .about-heading {
+        font-size: clamp(2rem, 5.5vw, 3.5rem);
+        line-height: 1;
+        margin-bottom: 24px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    .about-text {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        margin-bottom: 40px;
+        line-height: 1.6;
+        max-width: 500px;
+    }
+
+    .about-features {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 32px;
+        background: rgba(255, 255, 255, 0.01);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        transition: all 0.4s var(--transition-fluid);
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .feature-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--accent-blue);
+        opacity: 0.3;
+        transition: opacity 0.4s ease;
+    }
+
+    .feature-item:hover {
+        background: rgba(0, 102, 255, 0.04);
+        border-color: rgba(0, 102, 255, 0.2);
+        transform: translateX(12px);
+    }
+
+    .feature-item:hover::before {
+        opacity: 1;
+        box-shadow: 0 0 15px var(--accent-blue);
+    }
+
+    .feature-icon {
+        flex-shrink: 0;
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 102, 255, 0.1);
+        border: 1px solid rgba(0, 102, 255, 0.2);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .feature-item:hover .feature-icon {
+        background: var(--accent-blue);
+        transform: scale(1.1) rotate(-5deg);
+    }
+
+    .feature-icon i {
+        font-size: 1.6rem;
+        color: var(--accent-blue);
+        transition: color 0.3s ease;
+    }
+
+    .feature-item:hover .feature-icon i {
+        color: #fff;
+    }
+
+    .feature-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 4px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    .feature-content p {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.4;
+    }
+
+    @media (max-width: 1100px) {
+        .about-grid { gap: 40px; }
+    }
+
+    @media (max-width: 991px) {
+        .about-grid { grid-template-columns: 1fr; gap: 64px; text-align: center; }
+        .about-features { max-width: 700px; margin: 0 auto; }
+        .about-text { margin: 0 auto 40px; }
+        .feature-item:hover { transform: translateY(-5px); }
+    }
+
+    @media (max-width: 640px) {
+        .feature-item { flex-direction: column; align-items: center; text-align: center; padding: 24px; }
+        .feature-item::before { width: 100%; height: 4px; top: auto; bottom: 0; }
+        .process-card { padding: 24px; }
+        .hero { padding-top: 140px; }
+    }
+  </style>
+</head>
+<body class="business-page">
+  <div class="bg-pattern"></div>
+  <div class="bg-network"></div>
+
+  <!-- Pill Nav (fixed, docked top-left) -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
+    <header class="pill-nav">
+      <div class="nav-segment logo-segment">
+        <a class="header-brand" href="index.html">
+          <div class="header-logo">
+            <img src="assets/logo.png" alt="Local Logic IT Logo" width="32" height="32">
+          </div>
+          <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
+        </a>
+      </div>
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="index.html">Home</a>
+            <div class="dropdown active" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="residential.html">Home &amp; Family</a>
+                  <a href="business.html">Business &amp; Office</a>
+                  <a href="service-area.html">Service Area</a>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown" id="contact-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="#contact">Contact Info</a>
+                  <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="index.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
+      <div class="mobile-dropdown mobile-nav-link">
+        <div class="mobile-dropdown-trigger">
+          <span class="mobile-nav-icon"><i class="ph ph-briefcase"></i></span> Services
+        </div>
+        <div class="mobile-dropdown-content">
+          <a href="residential.html" onclick="closeMobileMenu()">Residential (Home & Family)</a>
+          <a href="business.html" onclick="closeMobileMenu()">Business (Office & Enterprise)</a>
+        </div>
+      </div>
+      <a href="service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-map-pin"></i></span> Service Area</a>
+      <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-phone"></i></span> Contact</a>
+      <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
+      <div class="mobile-menu-divider"></div>
+      <a href="quick-support.html" class="btn-support-mobile"><i class="ph ph-desktop-tower"></i> Quick Support</a>
+    </div>
+  </div>
+
+  <main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="section-label">Business IT Services</div>
+    <h1>Enterprise-Grade <span class="text-gradient-blue">IT.</span><br>Local Accountability.</h1>
+    <p class="hero-sub">Managed IT, cybersecurity, and practical AI solutions for local businesses that need technology to just work.</p>
+    <a class="btn btn-primary" href="#onboarding">How We Get Started <i class="ph ph-arrow-right"></i></a>
+  </section>
+
+  <!-- Process / Onboarding -->
+  <section class="onboarding" id="onboarding">
+    <div class="section">
+        <span class="section-label">Our Process</span>
+        <h2 class="section-title">How We <span class="text-gradient-blue">Modernize</span> Your Business</h2>
+        <div class="process-grid">
+            <div class="process-card glass-panel active" data-step="1">
+                <div class="step-number">01</div>
+                <h3>The Logic Audit</h3>
+                <p>We perform a deep-dive security and performance audit of your current infrastructure to find the "low hanging fruit" for immediate improvement.</p>
+                <div class="card-progress"><div class="progress-fill"></div></div>
+            </div>
+            <div class="process-card glass-panel" data-step="2">
+                <div class="step-number">02</div>
+                <h3>Standardization</h3>
+                <p>We move your team to a unified stack (M365/Google Workspace) and roll out centralized management for every device you own.</p>
+                <div class="card-progress"><div class="progress-fill"></div></div>
+            </div>
+            <div class="process-card glass-panel" data-step="3">
+                <div class="step-number">03</div>
+                <h3>Security Hardening</h3>
+                <p>We implement a "Zero Trust" posture with Passkeys, advanced DNS filtering, and automated backup testing.</p>
+                <div class="card-progress"><div class="progress-fill"></div></div>
+            </div>
+            <div class="process-card glass-panel" data-step="4">
+                <div class="step-number">04</div>
+                <h3>AI Integration</h3>
+                <p>We identify repetitive workflows and introduce local AI automation tools that save your staff hours of manual data entry.</p>
+                <div class="card-progress"><div class="progress-fill"></div></div>
+            </div>
+            <div class="process-card glass-panel" data-step="5">
+                <div class="step-number">05</div>
+                <h3>Ongoing Logic</h3>
+                <p>Your systems are monitored 24/7. When a problem arises, our local team handles it before your staff even realizes.</p>
+                <div class="card-progress"><div class="progress-fill"></div></div>
+            </div>
+            <div class="process-card glass-panel" data-step="6">
+                <div class="step-number">06</div>
+                <h3>Quarterly Strategy</h3>
+                <p>Every 90 days, we meet to review your tech roadmap. We ensure your technology is scaling alongside your business.</p>
+                <div class="card-progress"><div class="progress-fill"></div></div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section services" id="services">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Business IT <span class="text-gradient-blue">Solutions</span></h2>
+    <div class="services-grid">
+      <a class="service-card glass-panel" href="services/business/managed-it.html">
+          <lord-icon src="https://cdn.lordicon.com/ginorzey.json" trigger="loop" colors="primary:#0066FF,secondary:#FFFFFF" style="width:54px;height:54px;"></lord-icon>
+          <span class="service-title">Managed IT Services</span>
+          <p class="service-desc">Proactive monitoring, helpdesk support, and IT management so your team stays productive.</p>
+      </a>
+      <a class="service-card glass-panel" href="services/business/backup-recovery.html">
+          <lord-icon src="https://cdn.lordicon.com/zmfzhhiu.json" trigger="loop" colors="primary:#0066FF,secondary:#FFFFFF" style="width:54px;height:54px;"></lord-icon>
+          <span class="service-title">Backup &amp; Recovery</span>
+          <p class="service-desc">Automated backups and tested recovery plans — so a ransomware hit or hardware failure doesn't end your business.</p>
+      </a>
+      <a class="service-card glass-panel" href="services/business/ai-automation.html">
+          <lord-icon src="https://cdn.lordicon.com/nfuackpv.json" trigger="loop" colors="primary:#0066FF,secondary:#FFFFFF" style="width:54px;height:54px;"></lord-icon>
+          <span class="service-title">AI Automation</span>
+          <p class="service-desc">Practical AI tools and workflow automation that save your team time on repetitive tasks.</p>
+      </a>
+      <a class="service-card glass-panel" href="services/business/cybersecurity.html">
+          <lord-icon src="https://cdn.lordicon.com/apbwvyeg.json" trigger="loop" colors="primary:#0066FF,secondary:#FFFFFF" style="width:54px;height:54px;"></lord-icon>
+          <span class="service-title">Cybersecurity</span>
+          <p class="service-desc">Endpoint protection, email security, staff training, and vulnerability assessments to keep threats out.</p>
+      </a>
+      <a class="service-card glass-panel" href="services/business/cloud-services.html">
+          <lord-icon src="https://cdn.lordicon.com/kikjlzqr.json" trigger="loop" colors="primary:#0066FF,secondary:#FFFFFF" style="width:54px;height:54px;"></lord-icon>
+          <span class="service-title">Cloud Services</span>
+          <p class="service-desc">Microsoft 365, cloud migration, and ongoing cloud management — scalable infrastructure.</p>
+      </a>
+      <a class="service-card glass-panel" href="services/business/it-consulting.html">
+          <lord-icon src="https://cdn.lordicon.com/jdgfsfzr.json" trigger="loop" colors="primary:#0066FF,secondary:#FFFFFF" style="width:54px;height:54px;"></lord-icon>
+          <span class="service-title">IT Consulting</span>
+          <p class="service-desc">Honest, vendor-neutral technology advice and IT roadmapping to help you invest in the right tools.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section about" id="about">
+    <div class="about-grid">
+      <div class="about-content">
+        <span class="section-label" style="text-align: left;">Who We Are</span>
+        <h2 class="about-heading">Not Just a Vendor. <br><span class="text-gradient-blue">A Local Partner.</span></h2>
+        <p class="about-text">We believe business technology should be an asset, not a bottleneck. While most IT companies hide behind ticketing systems and slow response times, we provide direct, accountable support.</p>
+        <a href="#contact" class="btn btn-primary">Start a Partnership <i class="ph ph-arrow-right"></i></a>
+      </div>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="ph ph-map-pin"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Local & Responsive</h3>
+            <p>Based in St. Louis. Here when you need us, on-site or remote.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="ph ph-shield-check"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Real Accountability</h3>
+            <p>No faceless helpdesks. You know our names, we take the ownership.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="ph ph-lightning"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Fast Turnaround</h3>
+            <p>No waiting for days in a queue. We move as fast as your business does.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="ph ph-brain"></i>
+          </div>
+          <div class="feature-content">
+            <h3>Logical Solutions</h3>
+            <p>Practical tech that works for your bottom line, not just IT jargon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <span class="section-label">Reach Out</span>
+    <h2 class="section-title">Get in <span class="text-gradient-blue">Touch</span></h2>
+    <div class="contact-grid">
+      <a href="mailto:contact@locallogicit.com" class="contact-card">
+        <i class="ph ph-envelope-simple"></i>
+        <h3>Email Us</h3>
+        <p>contact@locallogicit.com</p>
+      </a>
+      <a href="tel:6363526572" class="contact-card">
+        <i class="ph ph-phone"></i>
+        <h3>Call Us</h3>
+        <p>636-352-6572</p>
+      </a>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
+        <i class="ph ph-chat-centered-text"></i>
+        <h3>Live Chat</h3>
+        <p>Chat With Us Now</p>
+      </a>
+      <a href="quick-support.html" class="contact-card">
+        <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
+        <h3>Quick Support</h3>
+        <p>Launch Assist</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="assets/logo.png" alt="Local Logic IT Logo" width="48" height="48">
+    </div>
+    <h3 class="footer-brand-name">Local Logic IT</h3>
+    <p class="footer-tagline">Local Service. Logical Solutions.</p>
+    <div class="footer-copyright">
+      &copy; 2026 Local Logic IT &middot; All Rights Reserved.
+    </div>
+  </footer>
+  </main>
+
+  <!-- Shared Pill Nav Script -->
+  <script src="scripts/pill-nav.js"></script>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    Tawk_API.onLoad = function () {
+      Tawk_API.minimize();
+    };
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>

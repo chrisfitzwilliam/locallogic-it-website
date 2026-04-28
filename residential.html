@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <meta name="view-transition" content="same-origin" />
+  <title>Local Logic IT — Residential IT Support</title>
+  <link rel="canonical" href="https://locallogicit.com/residential.html" />
+  <meta property="og:title" content="Residential IT Support — Local Logic IT" />
+  <meta property="og:description" content="Personal IT support for your home. PC repair, Wi-Fi, smart home, and more." />
+  <meta property="og:url" content="https://locallogicit.com/residential.html" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Local Logic IT — Residential IT Support" />
+  <meta name="twitter:description" content="Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help." />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/logo.png" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://locallogicit.com/#organization",
+          "name": "Local Logic IT",
+          "url": "https://locallogicit.com/",
+          "logo": "https://locallogicit.com/assets/logo.png",
+          "email": "contact@locallogicit.com",
+          "telephone": "+1-636-352-6572",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "contact@locallogicit.com",
+              "telephone": "+1-636-352-6572",
+              "availableLanguage": ["en"]
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://locallogicit.com/#website",
+          "url": "https://locallogicit.com/",
+          "name": "Local Logic IT",
+          "publisher": { "@id": "https://locallogicit.com/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://locallogicit.com/residential.html#webpage",
+          "url": "https://locallogicit.com/residential.html",
+          "name": "Local Logic IT — Residential IT Support",
+          "description": "Local Logic IT residential IT support — PC repair, home networking, device setup, virus removal, and smart home help.",
+          "isPartOf": { "@id": "https://locallogicit.com/#website" },
+          "about": { "@id": "https://locallogicit.com/#organization" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+  <link rel="stylesheet" href="css/brand.css" />
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="components/pill-nav.css" />
+
+  <style>
+    /* ── Hero ── */
+    .hero {
+        padding: clamp(120px, 15vw, 180px) 24px 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 50% 0%, rgba(255, 138, 0, 0.15) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+        font-size: clamp(2.25rem, 7vw, 3.5rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+        font-weight: 700;
+    }
+
+    .hero-sub {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: var(--text-secondary);
+    }
+
+    /* ── Services ── */
+    .residential .section-label {
+        color: var(--accent-amber);
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+        gap: 24px;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .service-card {
+        padding: 40px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+    }
+
+    .card-icon-inset {
+      margin-bottom: 24px;
+    }
+    .service-card { border-radius: 24px; }
+    .card-problem { font-size: 1.25rem; margin-bottom: 16px; }
+  </style>
+</head>
+<body class="residential-page">
+  <div class="bg-pattern"></div>
+  <div class="bg-network"></div>
+
+  <!-- Pill Nav (fixed, docked top-left) -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
+    <header class="pill-nav">
+      <div class="nav-segment logo-segment">
+        <a class="header-brand" href="index.html">
+          <div class="header-logo">
+            <img src="assets/logo.png" alt="Local Logic IT Logo" width="32" height="32">
+          </div>
+          <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
+        </a>
+      </div>
+
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="index.html">Home</a>
+            <div class="dropdown active" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                   <a href="residential.html">Home &amp; Family</a>
+                   <a href="business.html">Business &amp; Office</a>
+                   <a href="service-area.html">Service Area</a>
+                 </div>
+               </div>
+             </div>
+            <div class="dropdown" id="contact-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="#contact">Contact Info</a>
+                  <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
+
+    <!-- Mobile drawer menu -->
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="index.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
+      <div class="mobile-dropdown mobile-nav-link">
+        <div class="mobile-dropdown-trigger">
+          <span class="mobile-nav-icon"><i class="ph ph-briefcase"></i></span> Services
+        </div>
+        <div class="mobile-dropdown-content">
+          <a href="residential.html" onclick="closeMobileMenu()">Residential (Home & Family)</a>
+          <a href="business.html" onclick="closeMobileMenu()">Business (Office & Enterprise)</a>
+        </div>
+      </div>
+      <a href="service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-map-pin"></i></span> Service Area</a>
+      <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-phone"></i></span> Contact</a>
+      <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
+      <div class="mobile-menu-divider"></div>
+      <a href="quick-support.html" class="btn-support-mobile"><i class="ph ph-desktop-tower"></i> Quick Support</a>
+    </div>
+  </div>
+
+  <main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="section-label">Residential IT Support</div>
+    <h1>IT Support That <span class="text-gradient-amber">Comes to You.</span></h1>
+    <p class="hero-sub">Friendly, no-jargon tech help for your home and family. We come to you — fixing computers, setting up networks, and solving tech problems the simple way.</p>
+    <a class="btn btn-secondary" href="#services">See What We Can Help With <i class="ph ph-arrow-down"></i></a>
+  </section>
+
+  <!-- Services -->
+  <section class="section services" id="services">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Home Tech <span class="text-gradient-amber">Solutions</span></h2>
+    <div class="services-grid">
+
+      <a class="service-card glass-panel" href="services/residential/pc-repair.html">
+        <div class="card-icon-inset">
+          <lord-icon src="https://cdn.lordicon.com/vlupreun.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
+        </div>
+        <div class="card-meta">
+          <span class="service-category">PC Repair</span>
+        </div>
+        <h3 class="card-problem">"My computer is running slow, freezing, or refusing to start when I need it."</h3>
+        <p class="card-solution">
+          <strong>The Logic Fix</strong>
+          We diagnose Windows desktop and laptop issues, resolve crashes and startup problems.
+        </p>
+      </a>
+
+      <a class="service-card glass-panel" href="services/residential/smart-home-support.html">
+        <div class="card-icon-inset">
+          <lord-icon src="https://cdn.lordicon.com/oeotfwsx.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
+        </div>
+        <div class="card-meta">
+          <span class="service-category">Smart Home Support</span>
+        </div>
+        <h3 class="card-problem">"My smart lights, cameras, and thermostat don't talk to each other."</h3>
+        <p class="card-solution">
+          <strong>The Logic Fix</strong>
+          We help sort out device setup, account connections, and network issues.
+        </p>
+      </a>
+
+      <a class="service-card glass-panel" href="services/residential/device-setup-training.html">
+        <div class="card-icon-inset">
+          <lord-icon src="https://cdn.lordicon.com/sobzmbzh.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
+        </div>
+        <div class="card-meta">
+          <span class="service-category">Setup & Training</span>
+        </div>
+        <h3 class="card-problem">"I just bought new tech and I want to make sure it's set up 'the right way'."</h3>
+        <p class="card-solution">
+          <strong>The Logic Fix</strong>
+          We handle the white-glove setup of your new PCs, tablets, or phones.
+        </p>
+      </a>
+
+      <a class="service-card glass-panel" href="services/residential/virus-malware-removal.html">
+        <div class="card-icon-inset">
+          <lord-icon src="https://cdn.lordicon.com/xqdfobxg.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
+        </div>
+        <div class="card-meta">
+          <span class="service-category">Virus Removal</span>
+        </div>
+        <h3 class="card-problem">"My PC has pop-ups, strange alerts, or started acting differently."</h3>
+        <p class="card-solution">
+          <strong>The Logic Fix</strong>
+          We clean up malware, review Windows Security settings, and explain the next steps.
+        </p>
+      </a>
+
+      <a class="service-card glass-panel" href="services/residential/password-account-help.html">
+        <div class="card-icon-inset">
+          <lord-icon src="https://cdn.lordicon.com/fedbzost.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
+        </div>
+        <div class="card-meta">
+          <span class="service-category">Passwords & Security</span>
+        </div>
+        <h3 class="card-problem">"I am locked out of an account or overwhelmed by passwords."</h3>
+        <p class="card-solution">
+          <strong>The Logic Fix</strong>
+          We guide you through safer recovery steps and password managers.
+        </p>
+      </a>
+
+      <a class="service-card glass-panel" href="services/residential/home-networking.html">
+        <div class="card-icon-inset">
+          <lord-icon src="https://cdn.lordicon.com/oeotfwsx.json" trigger="loop" colors="primary:#FF8A00,secondary:#FFFFFF" style="width:40px;height:40px;"></lord-icon>
+        </div>
+        <div class="card-meta">
+          <span class="service-category">Home Networking</span>
+        </div>
+        <h3 class="card-problem">"My Wi-Fi is spotty and some rooms are dead zones."</h3>
+        <p class="card-solution">
+          <strong>The Logic Fix</strong>
+          We tune routers, mesh systems, and wired connections.
+        </p>
+      </a>
+
+    </div>
+  </section>
+
+   <!-- About -->
+  <section class="section about" id="about">
+    <span class="section-label">Who We Are</span>
+    <h2 class="section-title">Your Local <span class="text-gradient-amber">Tech Partner.</span></h2>
+    <div class="glass-panel" style="padding: 40px; max-width: 800px; margin: 0 auto;">
+        <p class="about-body" style="color: var(--text-secondary);">We provide straightforward, honest IT support for your home and family. We believe technology should work for you, not the other way around. No call centers, no confusing jargon—just real people solving real problems.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section contact" id="contact">
+    <span class="section-label">Reach Out</span>
+    <h2 class="section-title">Get in <span class="text-gradient-amber">Touch</span></h2>
+    <div class="contact-grid">
+      <a href="mailto:contact@locallogicit.com" class="contact-card">
+        <i class="ph ph-envelope-simple"></i>
+        <h3>Email Us</h3>
+        <p>contact@locallogicit.com</p>
+      </a>
+      <a href="tel:6363526572" class="contact-card">
+        <i class="ph ph-phone"></i>
+        <h3>Call Us</h3>
+        <p>636-352-6572</p>
+      </a>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
+        <i class="ph ph-chat-centered-text"></i>
+        <h3>Live Chat</h3>
+        <p>Chat With Us Now</p>
+      </a>
+      <a href="quick-support.html" class="contact-card">
+        <img src="assets/logo.png" alt="Local Logic IT Logo" style="width: 48px; height: 48px; margin-bottom: 24px; object-fit: contain;">
+        <h3>Quick Support</h3>
+        <p>Launch Assist</p>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">
+      <img src="assets/logo.png" alt="Local Logic IT Logo" width="48" height="48">
+    </div>
+    <h3 class="footer-brand-name">Local Logic IT</h3>
+    <p class="footer-tagline">Local Service. Logical Solutions.</p>
+    <div class="footer-copyright">
+      &copy; 2026 Local Logic IT &middot; All Rights Reserved.
+    </div>
+  </footer>
+  </main>
+
+  <!-- Shared Pill Nav Script -->
+  <script src="scripts/pill-nav.js"></script>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    Tawk_API.onLoad = function () {
+      Tawk_API.minimize();
+    };
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>
