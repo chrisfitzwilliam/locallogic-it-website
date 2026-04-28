@@ -1,5 +1,5 @@
-# MASTER MEMORY — Local Logic IT Website
-> **Purpose:** This file is the single source of truth for the Local Logic IT website project. It is written for both human developers and AI agents who may have zero prior context. Read this fully before making any changes to the codebase.
+# Additional Info — Local Logic IT Website
+> **Purpose:** This is the detailed background reference for the Local Logic IT website project. `memory.md` is the compact operational file to keep current first. Read this file when you need fuller structure, design, or historical context.
 
 ---
 
