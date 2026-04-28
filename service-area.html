@@ -174,6 +174,19 @@
         padding: 48px;
         text-align: left;
         border-radius: 32px;
+        transition: var(--transition);
+    }
+
+    .mode-card--residential:hover {
+        border-color: rgba(255, 138, 0, 0.3);
+        box-shadow: 0 16px 40px rgba(255, 138, 0, 0.08);
+        transform: translateY(-5px);
+    }
+    
+    .mode-card--business:hover {
+        border-color: rgba(0, 102, 255, 0.3);
+        box-shadow: 0 16px 40px rgba(0, 102, 255, 0.08);
+        transform: translateY(-5px);
     }
 
     .mode-icon {
@@ -186,11 +199,29 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 24px;
+        transition: var(--transition);
     }
 
     .mode-icon i {
         font-size: 2rem;
+    }
+
+    .mode-card--residential .mode-icon i {
+        color: var(--accent-amber);
+    }
+
+    .mode-card--residential:hover .mode-icon {
+        background: rgba(255, 138, 0, 0.1);
+        border-color: var(--accent-amber);
+    }
+
+    .mode-card--business .mode-icon i {
         color: var(--accent-blue);
+    }
+
+    .mode-card--business:hover .mode-icon {
+        background: rgba(0, 102, 255, 0.1);
+        border-color: var(--accent-blue);
     }
 
     .mode-card h3 {
@@ -517,23 +548,23 @@
     <!-- How We Serve You -->
     <section class="section service-modes" id="modes">
       <span class="section-label">Method of Service</span>
-      <h2 class="section-title">How We <span class="text-gradient-blue">Serve</span> You</h2>
+      <h2 class="section-title">Tailored Service for <span class="text-gradient-blue">Homes &amp; Businesses</span></h2>
       
       <div class="modes-grid">
-        <div class="mode-card glass-panel">
+        <div class="mode-card mode-card--residential glass-panel">
           <div class="mode-icon">
-            <i class="ph ph-car"></i>
+            <i class="ph ph-house"></i>
           </div>
-          <h3>On-Site Visits</h3>
-          <p>For problems that require a physical presence—like hardware repairs, networking setup, or printer troubleshooting—we come directly to your home or office. Our service area covers most of St. Charles and St. Louis counties.</p>
+          <h3>Home &amp; Family</h3>
+          <p>We provide responsive, on-site assistance for home networks, PC repairs, and smart home setups across St. Charles. We come directly to you so you don't have to unplug your life.</p>
         </div>
 
-        <div class="mode-card glass-panel">
+        <div class="mode-card mode-card--business glass-panel">
           <div class="mode-icon">
-            <i class="ph ph-monitor"></i>
+            <i class="ph ph-briefcase"></i>
           </div>
-          <h3>Remote Support</h3>
-          <p>Many software issues, security audits, and general training can be handled instantly via a secure remote connection. This allows for faster response times and lower costs, no matter where you are located.</p>
+          <h3>Business &amp; Office</h3>
+          <p>From responsive remote helpdesk support to rapid on-site dispatch for hardware emergencies, we keep your business operations running smoothly without interruption.</p>
         </div>
       </div>
     </section>
