@@ -8,7 +8,7 @@ Compact project memory for `locallogic-it-website`. Keep this file current and t
 - Canonical site: `https://locallogicit.com/`
 - Contact email: `contact@locallogicit.com`
 - Contact phone: `636-352-6572`
-- Default mail link: `mailto:contact@locallogicit.com`
+- Default mail link: `mailto:chris@locallogicit.com`
 - Default phone link: `tel:6363526572`
 - Service region: St. Charles, MO and Greater St. Louis metro
 
