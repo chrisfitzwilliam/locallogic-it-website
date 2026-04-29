@@ -1,8 +1,8 @@
 param(
     [string]$ExpectedEmail = 'contact@locallogicIT.com',
     [string]$LegacyEmail = 'chris@fitzwilliam.net',
-    [string]$ExpectedPhoneDisplay = '636-352-6572',
-    [string]$ExpectedPhoneHref = '6363526572',
+    [string]$ExpectedPhoneDisplay = '636-244-8827',
+    [string]$ExpectedPhoneHref = '6362448827',
     [string]$LegacyPhoneDisplay = '(555) 000-0000',
     [string]$LegacyPhoneHref = '5550000000'
 )

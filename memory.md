@@ -7,9 +7,9 @@ Compact project memory for `locallogic-it-website`. Keep this file current and t
 - Tagline: `Local Service. Logical Solutions.`
 - Canonical site: `https://locallogicit.com/`
 - Contact email: `contact@locallogicit.com`
-- Contact phone: `636-352-6572`
-- Default mail link: `mailto:chris@locallogicit.com`
-- Default phone link: `tel:6363526572`
+- Contact phone: `636-244-8827`
+- Default mail link: `mailto:contact@locallogicit.com`
+- Default phone link: `tel:6362448827`
 - Service region: St. Charles, MO and Greater St. Louis metro
 
 ## Repo Shape
@@ -64,6 +64,7 @@ Compact project memory for `locallogic-it-website`. Keep this file current and t
 - Top-level pages (`index`, `business`, `residential`, `service-area`) now use `assets/og-image.png` for `og:image` / `twitter:image` and `summary_large_image` cards; `quick-support.html` gained `Organization` + `WebPage` JSON-LD.
 - `sitemap.xml` now includes `<lastmod>` entries; URL inventory unchanged (21 URLs, matches actual pages).
 - Pattern to reuse for new service pages: insert metadata block immediately after `<link rel="canonical">` and before the first `<link rel="preconnect">`.
+- **2026-04-29:** Updated `assets/og-image.png` with current storefront branding (blue/orange logo + tagline + service icons) to fix outdated preview in messaging app link shares.
 
 ## Open Items
 - `business.html` service grid shows 6 of 8 business services — missing `hardware-procurement.html` and `voip-phone-systems.html`.

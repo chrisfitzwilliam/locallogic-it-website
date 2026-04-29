@@ -10,7 +10,7 @@
 | **Company Name** | Local Logic IT |
 | **Tagline** | "Local Service. Logical Solutions." |
 | **Website** | https://locallogicit.com/ |
-| **Phone** | 636-352-6572 (area code 636 = St. Charles / St. Louis, MO) |
+| **Phone** | 636-244-8827 (area code 636 = St. Charles / St. Louis, MO) |
 | **Email** | contact@locallogicit.com |
 | **Primary Service Region** | St. Charles, MO and surrounding Greater St. Louis metro area |
 | **Service Model** | On-site and remote IT support for residential (home/family) and business clients |
@@ -193,7 +193,7 @@ The nav is a distinctive floating "pill" (rounded capsule) that:
 - **Purpose:** Guide for Windows Quick Assist remote sessions
 - **Nav:** Simple centered pill (NOT the shared pill-nav component)
 - **Content:** Image guide + 3-step instructions (Ctrl+Win+Q → Enter code → Allow screen)
-- **Contact footer:** Phone link 636-352-6572
+- **Contact footer:** Phone link 636-244-8827
 
 ### `services/business/*.html` — Business Service Detail Pages (8 pages)
 - **Shared nav:** Simple bar with back arrow + logo + "Get in Touch" link
