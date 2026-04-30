@@ -285,6 +285,82 @@
         .process-card { padding: 24px; }
         .hero { padding-top: 140px; }
     }
+
+    /* ── Partnership Badge ── */
+    .hero-partnership {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        padding: 8px 16px;
+        margin-bottom: 24px;
+        margin-top: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        animation: fadeInUp 1s ease-out both;
+    }
+
+    .partnership-logos {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .partnership-logo {
+        height: 24px;
+        width: auto;
+        opacity: 0.9;
+        transition: var(--transition);
+    }
+
+    .partnership-logo:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    .partnership-text {
+        text-align: left;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 16px;
+    }
+
+    .partnership-title {
+        display: block;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1.2;
+    }
+
+    .partnership-sub {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        margin-top: 2px;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+        .hero-partnership {
+            flex-direction: column;
+            text-align: center;
+            gap: 12px;
+            padding: 20px;
+        }
+        .partnership-text {
+            border-left: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 0;
+            padding-top: 12px;
+            text-align: center;
+        }
+    }
   </style>
 </head>
 <body class="business-page">
@@ -358,6 +434,17 @@
   <!-- Hero -->
   <section class="hero">
     <div class="section-label">Business IT Services</div>
+    
+    <div class="hero-partnership">
+      <div class="partnership-logos">
+        <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" class="partnership-logo" style="height: 16px;">
+        <span style="font-size: 0.8rem; font-weight: 500; color: #fff; opacity: 0.8;">for Startups</span>
+      </div>
+      <div class="partnership-text">
+        <span class="partnership-title" style="font-size: 0.75rem; letter-spacing: 0.02em;">Google for Startups <span class="text-gradient-blue" style="font-weight: 700;">AI Grant Recipient</span></span>
+      </div>
+    </div>
+
     <h1>Enterprise-Grade <span class="text-gradient-blue">IT.</span><br>Local Accountability.</h1>
     <p class="hero-sub">Managed IT, cybersecurity, and practical AI solutions for local businesses that need technology to just work.</p>
     <a class="btn btn-primary" href="#onboarding">How We Get Started <i class="ph ph-arrow-right"></i></a>
