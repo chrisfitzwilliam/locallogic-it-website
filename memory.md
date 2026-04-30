@@ -45,10 +45,14 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Production host is apex `https://locallogicit.com/`.
 - `https://www.locallogicit.com/` redirects to apex.
 
-## Known Site Content Gaps
-- `business.html` service grid is missing links/cards for:
+## Recent SEO Remediation
+- `SEO_AUDIT.md` records the 2026-04 SEO audit recommendations and approval-gated items.
+- Hub service-grid gaps were fixed locally by adding cards for:
   - `services/business/hardware-procurement.html`
   - `services/business/voip-phone-systems.html`
-- `residential.html` service grid is missing links/cards for:
   - `services/residential/data-backup-recovery.html`
   - `services/residential/printer-setup.html`
+- Missing image attributes were fixed locally using exact PNG dimensions:
+  - `assets/logo.png`: `1024x682`
+  - `assets/quick-assist-guide.png`: `1024x576`
+- Cloudflare cache purge for `/assets/lordicon/lordicon.js` and `/assets/og-image.png` remained blocked because no Cloudflare API token/session was available on this host. Edge may stay stale until a targeted purge is performed.
