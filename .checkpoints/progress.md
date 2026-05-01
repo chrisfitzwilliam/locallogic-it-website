@@ -1,15 +1,15 @@
 # Service Page Enrichment Progress
-Last update: 2026-05-01T01:56:00-05:00
+Last update: 2026-05-01T01:49:04-05:00
 Pre-phase-0 anchor: d9ab93e
-Last commit: 212d0dd on origin/main
+Last commit: pending Phase 4 QA commit
 
 ## Phase status
 - [x] Phase 0 - Bootstrap (commit 7cd1ddd)
 - [x] Phase 1 - Business pages (commit 31a0554)
 - [x] Phase 2 - Residential pages part A (commit 212d0dd)
-- [ ] Phase 3 - Residential pages part B
-- [ ] Phase 4a - Proofread
-- [ ] Phase 4b - Responsive
+- [x] Phase 3 - Residential pages part B (commit 56b0684)
+- [x] Phase 4a - Proofread (pending Phase 4 QA commit)
+- [x] Phase 4b - Responsive (pending Phase 4 QA commit)
 - [ ] Phase 5 - Wrap
 
 ## Per-page status
@@ -27,10 +27,10 @@ Last commit: 212d0dd on origin/main
 | services/residential/smart-home-support.html | done | 212d0dd |
 | services/residential/device-setup-training.html | done | 212d0dd |
 | services/residential/virus-malware-removal.html | done | 212d0dd |
-| services/residential/password-account-help.html | done | pending phase 3 commit |
-| services/residential/data-backup-recovery.html | done | pending phase 3 commit |
-| services/residential/printer-setup.html | done | pending phase 3 commit |
-| services/residential/home-networking.html | done | pending phase 3 commit |
+| services/residential/password-account-help.html | done | 56b0684 |
+| services/residential/data-backup-recovery.html | done | 56b0684 |
+| services/residential/printer-setup.html | done | 56b0684 |
+| services/residential/home-networking.html | done | 56b0684 |
 
 ## Open issues
 - Plan scope drift: current `business.html` links 8 business sub-card pages, so this run includes `voip-phone-systems.html` and `it-consulting.html` in addition to the 14 pages listed in the original plan.
