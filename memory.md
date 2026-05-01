@@ -60,3 +60,9 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - UI Fix (2026-05-01): Standardized contact section to a uniform 3-card grid site-wide, moved "Quick Support" to a global footer pill, and added a "Testimonials" section to main hub pages.
 - Cleanup: Fixed capitalization (PC Repair, passkeys) and removed redundant phrasing in business service descriptions.
 - Deployment: All changes pushed to origin main and verified on production.
+
+## Recent Service Detail Enrichment
+- On 2026-05-01, all 16 current chooser-card service detail pages were enriched with a `How It Works` pipeline section and a `Real-World Example` section between the includes and trust sections.
+- Shared pipeline styling lives in `css/service.css` (`.pipeline`, `.pipeline-flow`, `.pipeline-step`, `.pipeline-icon`), including mobile stacking and reduced-motion handling.
+- Current service detail scope is 8 business pages and 8 residential pages. The business scope includes `voip-phone-systems.html` and `it-consulting.html` because those pages are linked from `business.html`.
+- Service detail contact cards use `mailto:contact@locallogicit.com`.

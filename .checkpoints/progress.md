@@ -1,16 +1,16 @@
 # Service Page Enrichment Progress
-Last update: 2026-05-01T01:49:04-05:00
+Last update: 2026-05-01T01:49:46-05:00
 Pre-phase-0 anchor: d9ab93e
-Last commit: pending Phase 4 QA commit
+Last commit: pending Phase 5 wrap commit
 
 ## Phase status
 - [x] Phase 0 - Bootstrap (commit 7cd1ddd)
 - [x] Phase 1 - Business pages (commit 31a0554)
 - [x] Phase 2 - Residential pages part A (commit 212d0dd)
 - [x] Phase 3 - Residential pages part B (commit 56b0684)
-- [x] Phase 4a - Proofread (pending Phase 4 QA commit)
-- [x] Phase 4b - Responsive (pending Phase 4 QA commit)
-- [ ] Phase 5 - Wrap
+- [x] Phase 4a - Proofread (commit f0315f8)
+- [x] Phase 4b - Responsive (commit f0315f8)
+- [x] Phase 5 - Wrap (pending Phase 5 wrap commit)
 
 ## Per-page status
 | Page | Done? | Commit |
@@ -32,6 +32,6 @@ Last commit: pending Phase 4 QA commit
 | services/residential/printer-setup.html | done | 56b0684 |
 | services/residential/home-networking.html | done | 56b0684 |
 
-## Open issues
-- Plan scope drift: current `business.html` links 8 business sub-card pages, so this run includes `voip-phone-systems.html` and `it-consulting.html` in addition to the 14 pages listed in the original plan.
-- Plan memory path drift: current repo memory is root `memory.md`; `memory/project_design.md` does not exist.
+## Resolved plan drift
+- Scope: current `business.html` links 8 business sub-card pages, so this run included `voip-phone-systems.html` and `it-consulting.html` in addition to the 14 pages listed in the original plan.
+- Memory: current repo memory is root `memory.md`; `memory/project_design.md` does not exist.
