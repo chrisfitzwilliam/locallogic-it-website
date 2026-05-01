@@ -643,10 +643,10 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   .pill-wrapper[data-pill-position="center"],
   .pill-wrapper[data-pill-position="docked"] {
     top: 10px;
-    left: 14px !important;
-    right: 14px !important;
+    left: 50% !important;
+    right: auto !important;
     width: auto !important;
-    transform: translateY(0) !important;
+    transform: translateX(-50%) !important;
     border-radius: 100px;
     padding: 4px 8px;
     opacity: 1;
@@ -655,6 +655,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
     box-shadow:
       0 8px 32px rgba(0, 0, 0, 0.4),
       inset 0 1px 1px rgba(255, 255, 255, 0.06);
+    max-width: calc(100vw - 28px);
   }
 
   .pill-nav {
@@ -700,6 +701,14 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   .tagline-pill {
     display: none;
   }
+
+  /* Make mobile menu span near-full viewport width */
+  .pill-mobile-menu {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: calc(100vw - 28px);
+  }
 }
 
 /* Ultra-thin Mobile logic */
@@ -709,8 +718,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   }
 
   .pill-wrapper {
-    left: 10px !important;
-    right: 10px !important;
+    max-width: calc(100vw - 20px);
   }
 
 }
