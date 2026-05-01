@@ -570,22 +570,13 @@
           <p>Chat With Us Now</p>
         </div>
       </a>
-      <a href="quick-support.html" class="contact-pill contact-pill--highlight">
-        <div class="contact-pill-icon contact-pill-icon--logo">
-        <img src="assets/logo.png" alt="Local Logic IT Logo" width="1024" height="682" style="width: 40px; height: auto;">
-        </div>
-        <div class="contact-pill-text">
-          <h3>Quick Support</h3>
-          <p>Launch Assist</p>
-        </div>
-      </a>
     </div>
   </section>
 
   <style>
     .contact-row {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-auto-rows: 1fr;
       gap: 16px;
       margin-top: 48px;
@@ -646,9 +637,6 @@
       color: var(--text-secondary);
     }
     @media (max-width: 767px) {
-      .contact-row { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 400px) {
       .contact-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -659,6 +647,9 @@
     </div>
     <h3 class="footer-brand-name">Local Logic IT</h3>
     <p class="footer-tagline">Local Service. Logical Solutions.</p>
+    <a href="quick-support.html" class="footer-support-pill">
+      <i class="ph ph-desktop-tower"></i> Quick Support
+    </a>
     <div class="footer-copyright">
       &copy; 2026 Local Logic IT &middot; All Rights Reserved.
     </div>
