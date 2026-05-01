@@ -705,22 +705,70 @@ body {
     .hero { padding: 140px 20px 60px; }
     .hero h1 { font-size: 2.5rem; }
     .hero-sub { font-size: 1.1rem; }
-    .section { padding: 60px 20px; }
+    .section { padding: 60px 16px; }
+    .section-heading { font-size: 1.6rem; margin-bottom: 32px; }
 
-    /* Includes: 1 column on mobile */
-    .includes-list { grid-template-columns: 1fr; }
-    .includes-list li { padding: 24px; }
+    /* ── Includes: compact list on mobile ── */
+    .includes-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .includes-list > li {
+        padding: 20px;
+        gap: 10px;
+        border-radius: 16px;
+    }
+    /* Shrink icon and put inline with title */
+    .includes-list > li .includes-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    .includes-list > li .includes-icon i {
+        font-size: 1.2rem;
+    }
+    .includes-list > li h3 {
+        font-size: 1rem;
+    }
+    /* Hide the description paragraph on mobile — bullets say it all */
+    .includes-list > li > p {
+        display: none;
+    }
+    /* Compact bullet sub-list */
+    .includes-list > li > ul {
+        gap: 4px;
+        margin-top: 2px;
+    }
+    .includes-list > li > ul li {
+        font-size: 0.85rem;
+        gap: 8px;
+        line-height: 1.4;
+        padding: 0;
+    }
 
-    /* Pipeline: 1 column on mobile */
+    /* ── Pipeline: compact on mobile ── */
     .pipeline-flow {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
     }
+    .pipeline-step {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    .pipeline-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+    }
+    .pipeline-icon i { font-size: 1.4rem; }
+    .pipeline-step h3 { font-size: 1rem; margin-bottom: 8px; }
+    .pipeline-step p { font-size: 0.88rem; line-height: 1.5; }
     .pipeline-step::after {
         top: calc(100% + 2px);
         left: 32px;
         width: 2px;
-        height: calc(20px - 4px);
+        height: calc(16px - 4px);
         transform: none;
         background:
             linear-gradient(
@@ -742,18 +790,44 @@ body {
         background-size: 100% 220%;
     }
 
-    /* Examples: 1 column on mobile */
+    /* ── Examples: compact on mobile ── */
     .examples-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
+    .example-card {
+        padding: 20px;
+        border-radius: 16px;
+        gap: 10px;
+    }
+    .example-card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    .example-card-icon i { font-size: 1.2rem; }
+    .example-card h3 { font-size: 0.95rem; }
+    .example-card p { font-size: 0.88rem; line-height: 1.5; }
+    .example-card .example-outcome { font-size: 0.82rem; padding-top: 6px; }
 
-    /* Trust features: 1 column */
+    /* ── Trust: compact on mobile ── */
+    .trust { padding: 48px 20px; }
+    .trust-body { font-size: 1.05rem; }
     .trust-features {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
+        margin-top: 32px;
     }
+    .trust-feature-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+    }
+    .trust-feature-icon i { font-size: 1.2rem; }
+    .trust-feature h4 { font-size: 0.95rem; }
+    .trust-feature p { font-size: 0.85rem; }
 
-    /* Contact: 1 column on mobile */
+    /* ── Contact: 1 column on mobile ── */
     .contact .contact-grid {
         grid-template-columns: 1fr;
     }
