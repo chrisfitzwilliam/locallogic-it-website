@@ -15,6 +15,11 @@ Thumbs.db
 dist/
 *.zip
 .worktrees/
+node_modules/
+qa-tmp/
+.venv/
+__pycache__/
+*.pyc
 
 # Secrets
 keys.txt
