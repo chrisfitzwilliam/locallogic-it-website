@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   border-radius: 100px;
-  padding: 4px 12px;
+  padding: 4px 16px;
   background: rgba(11, 15, 25, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -79,23 +79,24 @@ body.is-loaded .pill-wrapper[data-pill-position="center"] {
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
-/* ── Service pages (docked top-left) ── */
+/* ── Service pages (Now centered on desktop too) ── */
 .pill-wrapper[data-pill-position="docked"] {
   top: var(--nav-top);
-  left: var(--nav-left-docked);
-  transform: none;
+  left: 50%;
+  transform: translateX(-50%);
   opacity: 1;
   transition:
     transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-    opacity 0.4s ease;
+    opacity 0.4s ease,
+    left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ── Landing → Docked transition (during selection) ── */
+/* ── Landing → Docked transition (unified to center) ── */
 body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   opacity: 1;
-  left: var(--nav-left-docked);
+  left: 50%;
   top: var(--nav-top);
-  transform: translateX(0) scale(1);
+  transform: translateX(-50%) scale(1);
   transition:
     left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
     top 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
@@ -156,12 +157,12 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 
 .logo-segment {
   padding-left: 12px;
-  padding-right: 18px;
+  padding-right: 16px;
 }
 
 .links-segment {
-  padding-left: 12px;
-  padding-right: 8px;
+  padding-left: 16px;
+  padding-right: 12px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   max-width: 0;
   opacity: 0;
@@ -398,14 +399,8 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   visibility: visible;
 }
 
-.pill-wrapper[data-pill-position="docked"] .tagline-pill,
-.pill-wrapper[data-pill-position="docked"].is-docking .tagline-pill {
-  left: 12px;
-  transform: translateY(10px);
-}
-
 .pill-wrapper[data-pill-position="docked"].is-expanded .tagline-pill {
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Hide tagline when docking */

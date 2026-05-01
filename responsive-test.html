@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Test Harness — Local Logic IT</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0a0c14;
+      color: #fff;
+      font-family: 'Poppins', -apple-system, system-ui, sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #fff, #0066FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .controls label {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .controls select, .controls input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: inherit;
+    }
+    .controls button {
+      background: #0066FF;
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .controls button:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .viewport-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .viewport-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .viewport-label {
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.78rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .viewport-label .device-name { font-weight: 600; color: #fff; }
+    .viewport-label .device-size { color: #0066FF; font-weight: 500; }
+    .viewport-card iframe {
+      border: none;
+      background: #0B0F19;
+    }
+    .scale-info {
+      font-size: 0.7rem;
+      color: #555;
+      padding: 6px 14px;
+      background: rgba(0,0,0,0.3);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📱 Responsive Test Harness</h1>
+<p class="subtitle">Side-by-side viewport comparison — all frames are live & interactive</p>
+
+<div class="controls">
+  <label>Page:
+    <select id="page-select">
+      <option value="index.html">index.html (Home)</option>
+      <option value="business.html" selected>business.html (Business)</option>
+      <option value="residential.html">residential.html (Residential)</option>
+      <option value="service-area.html">service-area.html (Service Area)</option>
+      <option value="quick-support.html">quick-support.html (Quick Support)</option>
+    </select>
+  </label>
+  <label>Scale:
+    <select id="scale-select">
+      <option value="0.4">40%</option>
+      <option value="0.5" selected>50%</option>
+      <option value="0.6">60%</option>
+      <option value="0.75">75%</option>
+      <option value="1.0">100%</option>
+    </select>
+  </label>
+  <button onclick="renderViewports()">Refresh All</button>
+</div>
+
+<div class="viewport-grid" id="viewport-grid"></div>
+
+<script>
+  const DEVICES = [
+    { name: 'iPhone 12 Pro',     w: 390,  h: 844  },
+    { name: 'Galaxy S22 Ultra',  w: 412,  h: 915  },
+    { name: 'iPad (Portrait)',   w: 768,  h: 1024 },
+    { name: 'iPad (Landscape)',  w: 1024, h: 768  },
+    { name: 'MacBook Pro 14"',   w: 1440, h: 900  },
+    { name: 'Desktop 1080p',    w: 1920, h: 1080 },
+  ];
+
+  function renderViewports() {
+    const page = document.getElementById('page-select').value;
+    const scale = parseFloat(document.getElementById('scale-select').value);
+    const grid = document.getElementById('viewport-grid');
+    grid.innerHTML = '';
+
+    DEVICES.forEach(d => {
+      const card = document.createElement('div');
+      card.className = 'viewport-card';
+      card.style.width = (d.w * scale) + 'px';
+
+      const label = document.createElement('div');
+      label.className = 'viewport-label';
+      label.innerHTML = `<span class="device-name">${d.name}</span><span class="device-size">${d.w}×${d.h}</span>`;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = page;
+      iframe.width = d.w;
+      iframe.height = d.h;
+      iframe.style.width = d.w + 'px';
+      iframe.style.height = d.h + 'px';
+      iframe.style.transform = `scale(${scale})`;
+      iframe.style.transformOrigin = 'top left';
+
+      // Container to hold scaled iframe
+      const iframeWrap = document.createElement('div');
+      iframeWrap.style.width = (d.w * scale) + 'px';
+      iframeWrap.style.height = (d.h * scale) + 'px';
+      iframeWrap.style.overflow = 'hidden';
+      iframeWrap.appendChild(iframe);
+
+      const info = document.createElement('div');
+      info.className = 'scale-info';
+      info.textContent = `Rendered at ${d.w}×${d.h} · Scaled to ${Math.round(scale*100)}%`;
+
+      card.appendChild(label);
+      card.appendChild(iframeWrap);
+      card.appendChild(info);
+      grid.appendChild(card);
+    });
+  }
+
+  renderViewports();
+</script>
+
+</body>
+</html>
