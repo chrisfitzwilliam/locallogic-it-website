@@ -1,10 +1,10 @@
 # Service Page Enrichment Progress
-Last update: 2026-05-01T01:36:00-05:00
+Last update: 2026-05-01T01:42:00-05:00
 Pre-phase-0 anchor: d9ab93e
-Last commit: pending
+Last commit: 7cd1ddd on origin/main
 
 ## Phase status
-- [ ] Phase 0 - Bootstrap
+- [x] Phase 0 - Bootstrap (commit 7cd1ddd)
 - [ ] Phase 1 - Business pages
 - [ ] Phase 2 - Residential pages part A
 - [ ] Phase 3 - Residential pages part B
@@ -15,14 +15,14 @@ Last commit: pending
 ## Per-page status
 | Page | Done? | Commit |
 | --- | --- | --- |
-| services/business/managed-it.html | done | pending phase 0 commit |
-| services/business/backup-recovery.html | pending | pending |
-| services/business/ai-automation.html | pending | pending |
-| services/business/cybersecurity.html | pending | pending |
-| services/business/cloud-services.html | pending | pending |
-| services/business/hardware-procurement.html | pending | pending |
-| services/business/voip-phone-systems.html | pending | pending |
-| services/business/it-consulting.html | pending | pending |
+| services/business/managed-it.html | done | 7cd1ddd |
+| services/business/backup-recovery.html | done | pending phase 1 commit |
+| services/business/ai-automation.html | done | pending phase 1 commit |
+| services/business/cybersecurity.html | done | pending phase 1 commit |
+| services/business/cloud-services.html | done | pending phase 1 commit |
+| services/business/hardware-procurement.html | done | pending phase 1 commit |
+| services/business/voip-phone-systems.html | done | pending phase 1 commit |
+| services/business/it-consulting.html | done | pending phase 1 commit |
 | services/residential/pc-repair.html | pending | pending |
 | services/residential/smart-home-support.html | pending | pending |
 | services/residential/device-setup-training.html | pending | pending |
