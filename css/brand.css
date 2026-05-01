@@ -28,7 +28,14 @@ body {
     font-family: var(--font-main);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
     -webkit-font-smoothing: antialiased;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body.is-iframe {
@@ -326,7 +333,7 @@ h1, h2, h3, h4 {
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 32px;
     margin-top: 48px;
     max-width: 1200px;
