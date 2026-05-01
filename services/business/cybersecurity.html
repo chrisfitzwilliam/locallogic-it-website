@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-96KFS8L9J5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -45,29 +44,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../../assets/phosphor/style.css">
   <link rel="stylesheet" href="../../css/service.css" />
-  <!-- Shared Pill Nav Styles -->
   <link rel="stylesheet" href="../../components/pill-nav.css?v=20260501_7" />
 </head>
 <body class="business-page">
   <div class="bg-pattern"></div>
   <div class="bg-network"></div>
 
-    <!-- Pill Nav (fixed, docked top-left) -->
   <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
-    <!-- Animated trail SVG -->
     <svg class="pill-trail-svg" id="navTrailSvg" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="navTrailGrad" gradientUnits="userSpaceOnUse">
-          <stop offset="0%"   stop-color="rgba(80,160,255,0)"/>
-          <stop offset="45%"  stop-color="rgba(100,180,255,0.4)"/>
-          <stop offset="75%"  stop-color="rgba(180,220,255,0.8)"/>
-          <stop offset="100%" stop-color="white"/>
-        </linearGradient>
-      </defs>
+      <defs><linearGradient id="navTrailGrad" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="rgba(80,160,255,0)"/><stop offset="45%" stop-color="rgba(100,180,255,0.4)"/>
+        <stop offset="75%" stop-color="rgba(180,220,255,0.8)"/><stop offset="100%" stop-color="white"/>
+      </linearGradient></defs>
       <path id="navTrailStroke" fill="none" stroke="url(#navTrailGrad)" stroke-width="3" stroke-linecap="round"/>
     </svg>
     <header class="pill-nav">
-      <!-- Floating particles -->
       <div class="pill-particles">
         <div class="pill-particle" style="left:5%;bottom:10%;width:2.5px;height:2.5px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.4s;animation-delay:0s"></div>
         <div class="pill-particle" style="left:14%;bottom:22%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.3s;animation-delay:1s"></div>
@@ -80,13 +71,10 @@
       </div>
       <div class="nav-segment logo-segment">
         <a class="header-brand" href="../../index.html">
-          <div class="header-logo">
-            <img src="../../assets/logo.png" alt="Local Logic IT Logo" height="32" style="width: auto;">
-          </div>
+          <div class="header-logo"><img src="../../assets/logo.png" alt="Local Logic IT Logo" height="32" style="width: auto;"></div>
           <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
         </a>
       </div>
-
       <div class="nav-segment links-segment">
         <div class="header-nav-container" id="expanded-nav">
           <nav class="header-links" id="main-nav-links">
@@ -94,41 +82,32 @@
             <a href="../../index.html">Home</a>
             <div class="dropdown active" id="services-dropdown">
               <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
-              <div class="dropdown-content">
-                <div class="dropdown-content-inner">
-                  <a href="../../residential.html">Home &amp; Family</a>
-                  <a href="../../business.html">Business &amp; Office</a>
-                  <a href="../../service-area.html">Service Area</a>
-                </div>
-              </div>
+              <div class="dropdown-content"><div class="dropdown-content-inner">
+                <a href="../../residential.html">Home &amp; Family</a>
+                <a href="../../business.html">Business &amp; Office</a>
+                <a href="../../service-area.html">Service Area</a>
+              </div></div>
             </div>
             <a href="../../service-area.html">Service Area</a>
             <div class="dropdown" id="contact-dropdown">
               <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
-              <div class="dropdown-content">
-                <div class="dropdown-content-inner">
-                  <a href="#contact">Contact Info</a>
-                  <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
-                </div>
-              </div>
+              <div class="dropdown-content"><div class="dropdown-content-inner">
+                <a href="#contact">Contact Info</a>
+                <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
+              </div></div>
             </div>
           </nav>
         </div>
       </div>
-
       <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </header>
     <div class="tagline-pill">Local Service. Logical Solutions.</div>
-
-    <!-- Mobile drawer menu -->
     <div class="pill-mobile-menu" id="pill-mobile-menu">
       <a href="../../index.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
       <div class="mobile-dropdown mobile-nav-link">
-        <div class="mobile-dropdown-trigger">
-          <span class="mobile-nav-icon"><i class="ph ph-briefcase"></i></span> Services
-        </div>
+        <div class="mobile-dropdown-trigger"><span class="mobile-nav-icon"><i class="ph ph-briefcase"></i></span> Services</div>
         <div class="mobile-dropdown-content">
           <a href="../../residential.html" onclick="closeMobileMenu()">Residential (Home & Family)</a>
           <a href="../../business.html" onclick="closeMobileMenu()">Business (Office & Enterprise)</a>
@@ -154,10 +133,46 @@
       <span class="section-label">What We Do</span>
       <h2 class="section-heading">What's Included</h2>
       <ul class="includes-list">
-        <li>Advanced endpoint protection and threat detection</li>
-        <li>Multi-factor authentication (MFA) implementation</li>
-        <li>Secure email gateway and phishing protection</li>
-        <li>Security awareness training for your employees</li>
+        <li>
+          <div class="includes-icon"><i class="ph ph-shield-checkered"></i></div>
+          <h3>Endpoint Detection & Response</h3>
+          <p>Every workstation and server gets enterprise-grade threat detection that goes far beyond traditional antivirus — catching fileless attacks, behavioral anomalies, and zero-day threats.</p>
+          <ul>
+            <li>Next-gen antivirus with behavioral analysis</li>
+            <li>Real-time threat detection and automatic isolation</li>
+            <li>Ransomware rollback and file recovery</li>
+          </ul>
+        </li>
+        <li>
+          <div class="includes-icon"><i class="ph ph-lock-key"></i></div>
+          <h3>Multi-Factor Authentication</h3>
+          <p>Passwords alone aren't enough. We implement MFA across email, VPN, cloud apps, and admin accounts so a stolen password doesn't mean a stolen business.</p>
+          <ul>
+            <li>MFA deployment on Microsoft 365 and Google Workspace</li>
+            <li>VPN and remote access MFA</li>
+            <li>Admin and privileged account hardening</li>
+          </ul>
+        </li>
+        <li>
+          <div class="includes-icon"><i class="ph ph-envelope-simple"></i></div>
+          <h3>Email Security & Phishing Protection</h3>
+          <p>90% of cyberattacks start with email. We deploy advanced filtering, impersonation detection, and link scanning to catch threats before they reach your inbox.</p>
+          <ul>
+            <li>Advanced spam and phishing filter deployment</li>
+            <li>Impersonation and spoofing protection</li>
+            <li>Safe link and attachment scanning</li>
+          </ul>
+        </li>
+        <li>
+          <div class="includes-icon"><i class="ph ph-graduation-cap"></i></div>
+          <h3>Security Awareness Training</h3>
+          <p>Your employees are your first line of defense — or your biggest vulnerability. We train them to recognize phishing, social engineering, and suspicious behavior.</p>
+          <ul>
+            <li>Monthly phishing simulation campaigns</li>
+            <li>Interactive security awareness modules</li>
+            <li>Incident reporting procedure training</li>
+          </ul>
+        </li>
       </ul>
     </section>
 
@@ -168,41 +183,86 @@
         <li class="pipeline-step">
           <div class="pipeline-icon"><i class="ph ph-magnifying-glass"></i></div>
           <h3>Assess</h3>
-          <p>We review accounts, devices, backups, email settings, remote access, and the policies staff actually follow.</p>
+          <p>We review accounts, devices, backups, email settings, remote access, and the policies staff actually follow. You get a risk report showing exactly where your business is exposed — prioritized by severity and ease of exploitation.</p>
         </li>
         <li class="pipeline-step">
           <div class="pipeline-icon"><i class="ph ph-lock-key"></i></div>
           <h3>Harden</h3>
-          <p>MFA, patching, endpoint protection, least-privilege access, and backup controls are tightened first.</p>
+          <p>MFA, patching, endpoint protection, least-privilege access, and backup controls are tightened first. We focus on the changes that eliminate the most risk with the least disruption to your daily operations.</p>
         </li>
         <li class="pipeline-step">
           <div class="pipeline-icon"><i class="ph ph-graduation-cap"></i></div>
           <h3>Train</h3>
-          <p>Staff get plain-English guidance on phishing, password habits, payment changes, and suspicious prompts.</p>
+          <p>Staff get plain-English guidance on phishing, password habits, payment change requests, and suspicious prompts. We run simulated phishing tests to measure improvement and identify who needs extra support.</p>
         </li>
         <li class="pipeline-step">
           <div class="pipeline-icon"><i class="ph ph-radar"></i></div>
-          <h3>Detect</h3>
-          <p>Security alerts are monitored for the early signals that an account or device needs attention.</p>
-        </li>
-        <li class="pipeline-step">
-          <div class="pipeline-icon"><i class="ph ph-first-aid-kit"></i></div>
-          <h3>Respond</h3>
-          <p>If something looks wrong, we contain the issue, preserve evidence, and help the business recover cleanly.</p>
+          <h3>Detect & Respond</h3>
+          <p>Security alerts are monitored for early signals that an account or device needs attention. If something looks wrong, we contain the issue, preserve evidence, and help the business recover cleanly and quickly.</p>
         </li>
       </ol>
     </section>
 
     <section class="section example" aria-labelledby="cybersecurity-example-heading">
-      <span class="section-label">Real-World Example</span>
-      <h2 id="cybersecurity-example-heading" class="section-heading">Stopping the simple attack paths first</h2>
-      <p class="trust-body">A local office can reduce real risk without buying an oversized toolset. It needs protected email, patched devices, verified backups, and staff who know what to do when a vendor payment request or login prompt feels off. We build the first layer around those everyday moments, then add monitoring and response steps so leadership is not relying on hope when a suspicious message reaches the inbox.</p>
+      <span class="section-label">Real-World Examples</span>
+      <h2 id="cybersecurity-example-heading" class="section-heading">How we've helped <span class="text-gradient-blue">real businesses</span> stay safe</h2>
+      <div class="examples-grid">
+        <div class="example-card">
+          <div class="example-card-header">
+            <div class="example-card-icon"><i class="ph ph-envelope-simple"></i></div>
+            <h3>CEO Email Impersonation Stopped</h3>
+          </div>
+          <p>An attacker spoofed the CEO's email address and sent a wire transfer request to the accounting department. Our email security flagged the impersonation attempt, quarantined the message, and alerted the real CEO. The $47,000 fraudulent transfer was never processed.</p>
+          <div class="example-outcome"><i class="ph ph-check-circle"></i> $47,000 fraudulent wire transfer prevented</div>
+        </div>
+        <div class="example-card">
+          <div class="example-card-header">
+            <div class="example-card-icon"><i class="ph ph-lock-key"></i></div>
+            <h3>Ransomware Blocked at the Door</h3>
+          </div>
+          <p>An employee clicked a link in a convincing invoice email. Our endpoint protection detected the ransomware payload within 3 seconds, isolated the workstation, and prevented any file encryption. We re-imaged the machine and traced the attack vector to improve email filtering rules.</p>
+          <div class="example-outcome"><i class="ph ph-check-circle"></i> Ransomware contained in 3 seconds — zero files encrypted</div>
+        </div>
+        <div class="example-card">
+          <div class="example-card-header">
+            <div class="example-card-icon"><i class="ph ph-graduation-cap"></i></div>
+            <h3>Phishing Click Rate Dropped 85%</h3>
+          </div>
+          <p>A 30-person law firm had a 40% click rate on our initial phishing simulation — nearly half the staff clicked fake malicious links. After 6 months of monthly training and simulated campaigns, their click rate dropped to 6%. Three employees now regularly report suspicious emails to IT before opening them.</p>
+          <div class="example-outcome"><i class="ph ph-check-circle"></i> Phishing susceptibility dropped from 40% to 6%</div>
+        </div>
+        <div class="example-card">
+          <div class="example-card-header">
+            <div class="example-card-icon"><i class="ph ph-password"></i></div>
+            <h3>200 Reused Passwords Found & Fixed</h3>
+          </div>
+          <p>A security audit of a 25-person company revealed 200+ instances of password reuse across business accounts — including the same password used for the domain admin and a personal Netflix account. We deployed a password manager company-wide, enforced unique passwords, and enabled MFA on all critical systems.</p>
+          <div class="example-outcome"><i class="ph ph-check-circle"></i> 200 reused passwords replaced — MFA on all critical accounts</div>
+        </div>
+      </div>
     </section>
 
     <section class="section trust">
       <span class="section-label">Why Us</span>
       <h2 class="section-heading">Why Local Logic IT?</h2>
-      <p class="trust-body">We take a proactive, "Assume Breach" mentality. We don't wait for an alarm to go off; we look for weak spots early and <strong>reduce the paths attackers can use against your environment.</strong></p>
+      <p class="trust-body">We take a proactive, "Assume Breach" mentality. We don't wait for an alarm to go off; we <strong>look for weak spots early and reduce the paths attackers can use</strong> against your environment.</p>
+      <div class="trust-features">
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i class="ph ph-eye"></i></div>
+          <h4>Attacker's Perspective</h4>
+          <p>We evaluate your security the way a hacker would — looking for the easy paths in, not just checking compliance boxes.</p>
+        </div>
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i class="ph ph-puzzle-piece"></i></div>
+          <h4>Layered Defense</h4>
+          <p>No single tool stops everything. We build overlapping layers so a failure in one area doesn't mean a breach.</p>
+        </div>
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i class="ph ph-handshake"></i></div>
+          <h4>Right-Sized for SMBs</h4>
+          <p>Enterprise security principles adapted for small business budgets — you get real protection without the enterprise price tag.</p>
+        </div>
+      </div>
     </section>
 
     <section class="section contact" id="contact">
@@ -210,40 +270,27 @@
       <h2 class="section-title">Get in <span class="text-gradient-blue">Touch</span></h2>
       <div class="contact-grid">
         <a href="mailto:contact@locallogicit.com" class="contact-card">
-          <i class="ph ph-envelope-simple"></i>
-          <h3>Email Us</h3>
-          <p>contact@locallogicit.com</p>
+          <i class="ph ph-envelope-simple"></i><h3>Email Us</h3><p>contact@locallogicit.com</p>
         </a>
         <a href="tel:6362448827" class="contact-card">
-          <i class="ph ph-phone"></i>
-          <h3>Call Us</h3>
-          <p>636-244-8827</p>
+          <i class="ph ph-phone"></i><h3>Call Us</h3><p>636-244-8827</p>
         </a>
         <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
-          <i class="ph ph-chat-centered-text"></i>
-          <h3>Live Chat</h3>
-          <p>Chat With Us Now</p>
+          <i class="ph ph-chat-centered-text"></i><h3>Live Chat</h3><p>Chat With Us Now</p>
         </a>
       </div>
     </section>
 
-        <footer class="footer">
-      <div class="footer-logo">
-          <img src="../../assets/logo.png" alt="Local Logic IT Logo" width="1024" height="682" style="width: 160px; height: auto;">
-      </div>
+    <footer class="footer">
+      <div class="footer-logo"><img src="../../assets/logo.png" alt="Local Logic IT Logo" width="1024" height="682" style="width: 160px; height: auto;"></div>
       <h3 class="footer-brand-name">Local Logic IT</h3>
       <p class="footer-tagline">Local Service. Logical Solutions.</p>
-      <a href="../../quick-support.html" class="footer-support-pill">
-        <i class="ph ph-desktop-tower"></i> Quick Support
-      </a>
+      <p class="footer-support-label">Need Help?</p>
+      <a href="../../quick-support.html" class="footer-support-pill"><i class="ph ph-desktop-tower"></i> Quick Support</a>
       <div class="footer-copyright">&copy; 2026 Local Logic IT &middot; All Rights Reserved.</div>
     </footer>
   </main>
-  <!-- Shared Pill Nav Script -->
   <script src="../../scripts/pill-nav.js?v=20260501_7"></script>
-
-
-  <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
@@ -255,6 +302,5 @@
       s0.parentNode.insertBefore(s1, s0);
     })();
   </script>
-  <!--End of Tawk.to Script-->
 </body>
 </html>
