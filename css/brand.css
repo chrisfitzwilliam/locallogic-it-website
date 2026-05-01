@@ -315,7 +315,7 @@ h1, h2, h3, h4 {
 /* ── Testimonials ── */
 .testimonials {
     padding: 100px 24px;
-    background: var(--bg-darker);
+    background: transparent;
 }
 
 @media (max-width: 768px) {
