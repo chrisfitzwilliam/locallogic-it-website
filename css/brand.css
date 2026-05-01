@@ -138,6 +138,63 @@ h1, h2, h3, h4 {
     border-color: white;
 }
 
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 24px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        gap: 16px;
+    }
+}
+.service-card {
+    padding: 40px;
+    border-radius: 24px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    background: var(--glass-bg);
+    border: 1px solid var(--border-glass);
+}
+
+.service-card:hover {
+    background: var(--glass-bg-hover);
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+}
+
+.service-title {
+    font-size: 1.5rem;
+    margin: 20px 0 12px;
+    color: #fff;
+    display: block;
+}
+
+.service-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.residential-page .service-card:hover {
+    border-color: var(--accent-amber);
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        padding: 24px;
+    }
+}
+
 /* Sections */
 .section {
     padding: 80px 24px;
@@ -145,9 +202,15 @@ h1, h2, h3, h4 {
     margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+    .section {
+        padding: 48px 20px;
+    }
+}
+
 @media (max-width: 480px) {
     .section {
-        padding: 60px 20px;
+        padding: 40px 16px;
     }
 }
 
@@ -207,6 +270,13 @@ h1, h2, h3, h4 {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 24px 20px;
+        border-radius: 24px;
+    }
+}
+
 .contact-card:hover {
     background: var(--glass-bg-hover);
     border-color: var(--accent-blue);
@@ -243,6 +313,12 @@ h1, h2, h3, h4 {
     background: var(--bg-darker);
 }
 
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 64px 24px;
+    }
+}
+
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -253,12 +329,26 @@ h1, h2, h3, h4 {
     margin-right: auto;
 }
 
+@media (max-width: 768px) {
+    .testimonials-grid {
+        gap: 20px;
+        margin-top: 32px;
+    }
+}
+
 .testimonial-card {
     padding: 40px;
     display: flex;
     flex-direction: column;
     gap: 24px;
     text-align: left;
+}
+
+@media (max-width: 768px) {
+    .testimonial-card {
+        padding: 24px;
+        gap: 16px;
+    }
 }
 
 .testimonial-stars {
@@ -274,6 +364,12 @@ h1, h2, h3, h4 {
     line-height: 1.6;
     font-style: italic;
     flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+    .testimonial-text {
+        font-size: 0.95rem;
+    }
 }
 
 .testimonial-author {

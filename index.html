@@ -604,98 +604,25 @@
   <section class="section contact" id="contact">
     <span class="section-label">Get In Touch</span>
     <h2 class="section-title">How Can We <span class="text-gradient-amber">Help?</span></h2>
-    <div class="contact-row">
-      <a href="mailto:chris@locallogicit.com" class="contact-pill">
-        <div class="contact-pill-icon"><i class="ph ph-envelope-simple"></i></div>
-        <div class="contact-pill-text">
-          <h3>Email Us</h3>
-          <p>contact@locallogicit.com</p>
-        </div>
+    <div class="contact-grid">
+      <a href="mailto:chris@locallogicit.com" class="contact-card">
+        <i class="ph ph-envelope-simple"></i>
+        <h3>Email Us</h3>
+        <p>contact@locallogicit.com</p>
       </a>
-      <a href="tel:6362448827" class="contact-pill">
-        <div class="contact-pill-icon"><i class="ph ph-phone"></i></div>
-        <div class="contact-pill-text">
-          <h3>Call Us</h3>
-          <p>636-244-8827</p>
-        </div>
+      <a href="tel:6362448827" class="contact-card">
+        <i class="ph ph-phone"></i>
+        <h3>Call Us</h3>
+        <p>636-244-8827</p>
       </a>
-      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-pill">
-        <div class="contact-pill-icon"><i class="ph ph-chat-centered-text"></i></div>
-        <div class="contact-pill-text">
-          <h3>Live Chat</h3>
-          <p>Chat With Us Now</p>
-        </div>
+      <a href="javascript:void(0)" onclick="Tawk_API.maximize()" class="contact-card">
+        <i class="ph ph-chat-centered-text"></i>
+        <h3>Live Chat</h3>
+        <p>Chat With Us Now</p>
       </a>
     </div>
   </section>
 
-  <style>
-    .contact-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 1fr;
-      gap: 16px;
-      margin-top: 48px;
-    }
-    .contact-pill {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 36px 20px;
-      background: var(--glass-bg);
-      border: 1px solid var(--border-glass);
-      border-radius: 28px;
-      text-decoration: none;
-      transition: var(--transition);
-      text-align: center;
-    }
-    .contact-pill:hover {
-      background: var(--glass-bg-hover);
-      border-color: var(--accent-amber);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(255, 138, 0, 0.12);
-    }
-    .contact-pill--highlight {
-      border-color: rgba(255, 138, 0, 0.2);
-      background: rgba(255, 138, 0, 0.04);
-    }
-    .contact-pill-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .contact-pill-icon i {
-      font-size: 1.8rem;
-    }
-    .contact-pill:nth-child(1) .contact-pill-icon { background: rgba(0, 102, 255, 0.12); }
-    .contact-pill:nth-child(1) .contact-pill-icon i { color: var(--accent-blue); }
-    .contact-pill:nth-child(2) .contact-pill-icon { background: rgba(255, 138, 0, 0.12); }
-    .contact-pill:nth-child(2) .contact-pill-icon i { color: var(--accent-amber); }
-    .contact-pill:nth-child(3) .contact-pill-icon { background: rgba(0, 102, 255, 0.12); }
-    .contact-pill:nth-child(3) .contact-pill-icon i { color: var(--accent-blue); }
-    .contact-pill-icon--logo {
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .contact-pill-text h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-    .contact-pill-text p {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-    }
-    @media (max-width: 767px) {
-      .contact-row { grid-template-columns: 1fr; }
-    }
-  </style>
 
   <footer class="footer">
     <div class="footer-logo">
