@@ -47,12 +47,14 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 
 ## Recent SEO Remediation
 - `SEO_AUDIT.md` records the 2026-04 SEO audit recommendations and approval-gated items.
-- Hub service-grid gaps were fixed locally by adding cards for:
+- SEO remediation commit `a52a762` was pushed to `origin/main` and deployed by the VM auto-deploy timer.
+- Hub service-grid gaps were fixed by adding cards for:
   - `services/business/hardware-procurement.html`
   - `services/business/voip-phone-systems.html`
   - `services/residential/data-backup-recovery.html`
   - `services/residential/printer-setup.html`
-- Missing image attributes were fixed locally using exact PNG dimensions:
+- Missing image attributes were fixed using exact PNG dimensions:
   - `assets/logo.png`: `1024x682`
   - `assets/quick-assist-guide.png`: `1024x576`
-- Cloudflare cache purge for `/assets/lordicon/lordicon.js` and `/assets/og-image.png` remained blocked because no Cloudflare API token/session was available on this host. Edge may stay stale until a targeted purge is performed.
+- Targeted Cloudflare purge for `/assets/lordicon/lordicon.js` and `/assets/og-image.png` completed after user provided a temporary token. Edge and origin matched afterward; the user confirmed the exposed token was revoked.
+- UI Fix (2026-04-30): Enforced uniform contact card sizes on mobile by using `grid-auto-rows: 1fr` and standardized 2-column mobile layout across the site.
