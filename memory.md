@@ -57,4 +57,6 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
   - `assets/logo.png`: `1024x682`
   - `assets/quick-assist-guide.png`: `1024x576`
 - Targeted Cloudflare purge for `/assets/lordicon/lordicon.js` and `/assets/og-image.png` completed after user provided a temporary token. Edge and origin matched afterward; the user confirmed the exposed token was revoked.
-- UI Fix (2026-04-30): Enforced uniform contact card sizes on mobile by using `grid-auto-rows: 1fr` and standardized 2-column mobile layout across the site.
+- UI Fix (2026-05-01): Standardized contact section to a uniform 3-card grid site-wide, moved "Quick Support" to a global footer pill, and added a "Testimonials" section to main hub pages.
+- Cleanup: Fixed capitalization (PC Repair, passkeys) and removed redundant phrasing in business service descriptions.
+- Deployment: All changes pushed to origin main and verified on production.

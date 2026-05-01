@@ -237,6 +237,63 @@ h1, h2, h3, h4 {
     color: var(--text-secondary);
 }
 
+/* ── Testimonials ── */
+.testimonials {
+    padding: 100px 24px;
+    background: var(--bg-darker);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonial-card {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;
+}
+
+.testimonial-stars {
+    color: var(--accent-amber);
+    font-size: 1.1rem;
+    display: flex;
+    gap: 4px;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-style: italic;
+    flex-grow: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.author-info h4 {
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.author-info span {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
 /* ── Footer ── */
 .footer {
     padding: 80px 24px 100px; /* Added extra bottom padding for chat widget */
