@@ -692,10 +692,25 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 
   /* Make mobile menu span near-full viewport width */
   .pill-mobile-menu {
-    left: 50%;
-    right: auto;
+    position: fixed;
+    top: 72px;
+    left: 50% !important;
+    right: auto !important;
     transform: translateX(-50%);
     width: calc(100vw - 28px);
+    max-width: 440px;
+    box-sizing: border-box;
+  }
+
+  @keyframes menu-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-8px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
   }
 }
 

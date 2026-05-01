@@ -101,7 +101,7 @@
 
   // ── Magnetic tagline: snaps left on nav hover ──
   var navLinksEl = document.getElementById('main-nav-links');
-  if (navLinksEl && isLanding) {
+  if (navLinksEl) {
     var navTriggers = navLinksEl.querySelectorAll('a, .dropdown-trigger');
     navTriggers.forEach(function(el) {
       el.addEventListener('mouseenter', function() {
