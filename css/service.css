@@ -553,6 +553,9 @@ body {
     margin: 40px auto;
     max-width: 1000px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .trust-body {
@@ -561,6 +564,7 @@ body {
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.6;
+    text-align: center;
 }
 
 .trust-body strong {
@@ -574,6 +578,8 @@ body {
     gap: 32px;
     margin-top: 48px;
     text-align: center;
+    width: 100%;
+    justify-items: center;
 }
 
 .trust-feature {
@@ -581,6 +587,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    text-align: center;
+    max-width: 280px;
 }
 
 .trust-feature-icon {
@@ -592,6 +600,7 @@ body {
     border-radius: 16px;
     background: rgba(0, 102, 255, 0.12);
     border: 1px solid rgba(0, 102, 255, 0.25);
+    margin: 0 auto;
 }
 
 .trust-feature-icon i {
@@ -623,12 +632,14 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   Contact Section — Equal-size cards
+   Contact Section — Equal-size cards (override brand.css auto-fit)
    ═══════════════════════════════════════════ */
 .contact .contact-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
     grid-auto-rows: 1fr;
     max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* ═══════════════════════════════════════════
