@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="description" content="Thank you for contacting Local Logic IT. We'll be in touch shortly." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <meta property="og:title" content="Thank You — Local Logic IT" />
+  <meta property="og:description" content="Thank you for contacting Local Logic IT. We'll be in touch shortly." />
+  <meta property="og:url" content="https://locallogicit.com/thank-you.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://locallogicit.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://locallogicit.com/assets/og-image.png" />
+  <title>Thank You — Local Logic IT</title>
+  <link rel="canonical" href="https://locallogicit.com/thank-you.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="assets/phosphor/style.css">
+  <link rel="stylesheet" href="css/brand.css" />
+
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: clamp(120px, 16vw, 160px) clamp(16px, 4vw, 32px) 80px;
+    }
+
+    /* ── Success Mark ── */
+    .success-mark {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(0, 102, 255, 0.18), rgba(255, 138, 0, 0.12) 70%);
+      border: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: mark-in 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+
+    .success-mark::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 102, 255, 0.25);
+      animation: ring-pulse 2.4s ease-out infinite;
+    }
+
+    .success-mark::after {
+      content: "";
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 138, 0, 0.18);
+      animation: ring-pulse 2.4s ease-out 0.6s infinite;
+    }
+
+    .success-check {
+      width: 56px;
+      height: 56px;
+      stroke: #fff;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .success-check path {
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: draw-check 0.6s 0.35s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+
+    @keyframes mark-in {
+      0%   { opacity: 0; transform: scale(0.6); }
+      60%  { opacity: 1; transform: scale(1.06); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes draw-check {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes ring-pulse {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    /* ── Header ── */
+    .thanks-header {
+      margin-bottom: 56px;
+      animation: fade-up 0.7s 0.2s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+
+    .thanks-header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      font-weight: 800;
+    }
+
+    .thanks-header p.lede {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @keyframes fade-up {
+      0%   { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Next Steps Card ── */
+    .next-card {
+      padding: clamp(28px, 5vw, 48px);
+      margin-bottom: 56px;
+      text-align: left;
+      animation: fade-up 0.7s 0.4s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+
+    .next-card-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+
+    .next-card h2 {
+      font-size: clamp(1.5rem, 3vw, 1.875rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .steps-list li i {
+      flex-shrink: 0;
+      font-size: 1.4rem;
+      color: var(--accent-blue);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 102, 255, 0.1);
+      border: 1px solid rgba(0, 102, 255, 0.2);
+      border-radius: 10px;
+    }
+
+    .steps-list li:nth-child(2) i {
+      color: var(--accent-amber);
+      background: rgba(255, 138, 0, 0.1);
+      border-color: rgba(255, 138, 0, 0.2);
+    }
+
+    .steps-list li strong {
+      color: #fff;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── Action Row ── */
+    .action-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 720px;
+      margin: 0 auto 64px;
+      animation: fade-up 0.7s 0.55s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+
+    .action-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 24px;
+      background: var(--glass-bg);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .action-pill:hover {
+      background: var(--glass-bg-hover);
+      transform: translateY(-3px);
+    }
+
+    .action-pill.primary {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .action-pill.primary:hover {
+      background: #0052cc;
+      border-color: #0052cc;
+    }
+
+    .action-pill i {
+      font-size: 1.2rem;
+    }
+
+    /* ── Home Link ── */
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      animation: fade-up 0.7s 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
+    }
+
+    .home-link:hover {
+      color: #fff;
+      transform: translateX(-4px);
+    }
+
+    /* ── Top Nav (matches quick-support.html) ── */
+    .nav {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      width: auto;
+    }
+
+    .nav-inner {
+      padding: 12px 24px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* ── Footer ── */
+    .thanks-footer {
+      margin-top: 24px;
+      opacity: 0.5;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 480px) {
+      .success-mark { width: 100px; height: 100px; }
+      .success-check { width: 48px; height: 48px; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://locallogicit.com/#organization",
+          "name": "Local Logic IT",
+          "url": "https://locallogicit.com/",
+          "logo": "https://locallogicit.com/assets/logo.png",
+          "email": "contact@locallogicit.com",
+          "telephone": "+1-636-244-8827"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://locallogicit.com/thank-you.html#webpage",
+          "url": "https://locallogicit.com/thank-you.html",
+          "name": "Thank You — Local Logic IT",
+          "description": "Thank you for contacting Local Logic IT. We'll be in touch shortly.",
+          "isPartOf": { "@id": "https://locallogicit.com/#website" },
+          "about": { "@id": "https://locallogicit.com/#organization" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+  </script>
+</head>
+
+<body>
+  <div class="bg-pattern"></div>
+  <div class="bg-network"></div>
+
+  <nav class="nav">
+    <div class="nav-inner glass-panel">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.png" alt="Local Logic IT Logo" width="32" height="32">
+        <span style="white-space:nowrap">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Animated success mark -->
+    <div class="success-mark" aria-hidden="true">
+      <svg class="success-check" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 29 L24 39 L42 19" />
+      </svg>
+    </div>
+
+    <header class="thanks-header">
+      <h1>Thank <span class="text-gradient-blue">You.</span></h1>
+      <p class="lede">We've received your request and a real person — not a call center — will be in touch as soon as possible. Most replies go out the same business day.</p>
+    </header>
+
+    <div class="next-card glass-panel">
+      <span class="next-card-label">What Happens Next</span>
+      <h2>Here's what to expect</h2>
+      <ul class="steps-list">
+        <li>
+          <i class="ph ph-envelope-simple" aria-hidden="true"></i>
+          <span>
+            <strong>We'll review your request</strong>
+            One of our technicians will look over the details you submitted and prepare a personal response.
+          </span>
+        </li>
+        <li>
+          <i class="ph ph-phone" aria-hidden="true"></i>
+          <span>
+            <strong>You'll hear from us shortly</strong>
+            Expect a reply by phone or email — usually within a few hours during business hours, or first thing the next morning.
+          </span>
+        </li>
+        <li>
+          <i class="ph ph-handshake" aria-hidden="true"></i>
+          <span>
+            <strong>We'll find the right fix</strong>
+            Whether it's on-site, remote, or a quick answer over the phone — we'll figure out the most logical next step together.
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="action-row">
+      <a href="tel:6362448827" class="action-pill primary">
+        <i class="ph ph-phone"></i>
+        <span>636-244-8827</span>
+      </a>
+      <a href="mailto:contact@locallogicit.com" class="action-pill">
+        <i class="ph ph-envelope-simple"></i>
+        <span>Email Us</span>
+      </a>
+    </div>
+
+    <a href="index.html" class="home-link">
+      <i class="ph ph-arrow-left"></i>
+      <span>Back to home</span>
+    </a>
+
+    <div class="thanks-footer">
+      &copy; 2026 Local Logic IT &middot; Local Service. Logical Solutions.
+    </div>
+  </main>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    Tawk_API.onLoad = function () {
+      Tawk_API.minimize();
+    };
+    (function () {
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>
