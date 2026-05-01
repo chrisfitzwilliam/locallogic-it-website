@@ -630,22 +630,15 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
    Responsive Breakpoints
    ══════════════════════════════ */
 
-/* Tablet */
+/* Mobile + Tablet Portrait (covers phones, iPad portrait, small tablets) */
 @media (max-width: 899px) {
-  .header-links {
-    gap: 12px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 767px) {
   .pill-wrapper,
   .pill-wrapper[data-pill-position="center"],
   .pill-wrapper[data-pill-position="docked"] {
     top: 10px;
     left: 50% !important;
     right: auto !important;
-    width: auto !important;
+    width: calc(100vw - 28px) !important;
     transform: translateX(-50%) !important;
     border-radius: 100px;
     padding: 4px 8px;
@@ -684,7 +677,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
     font-size: 0.95rem;
   }
 
-  /* Hide the links segment and container entirely on mobile */
+  /* Hide the links segment and container entirely on mobile/tablet */
   .links-segment {
     display: none !important;
   }

@@ -26,7 +26,7 @@
 
   // ── Expansion ──
   function expandPill() {
-    if (window.innerWidth > 767) {
+    if (window.innerWidth > 899) {
       shell.classList.add('is-expanded');
     }
   }
