@@ -10,8 +10,8 @@
     --text-primary: #FFFFFF;
     --text-secondary: #A6A9B3;
     --border-glass: rgba(255, 255, 255, 0.12);
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-bg-hover: rgba(255, 255, 255, 0.06);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg-hover: rgba(255, 255, 255, 0.08);
     --font-main: 'Poppins', sans-serif;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -238,7 +238,8 @@ h1, h2, h3, h4 {
 /* ── Contact Grid ── */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
     grid-auto-rows: 1fr;
     gap: 24px;
     margin-top: 48px;
@@ -249,7 +250,8 @@ h1, h2, h3, h4 {
 
 @media (max-width: 1024px) {
     .contact-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        justify-content: center;
     }
 }
 
@@ -330,6 +332,7 @@ h1, h2, h3, h4 {
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    justify-content: center;
 }
 
 @media (max-width: 768px) {
