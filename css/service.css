@@ -203,7 +203,7 @@ body {
 }
 
 .includes-list li::before {
-    content: "\eac4"; /* Ph-check-circle */
+    content: "\e184"; /* Ph-check-circle */
     font-family: "Phosphor";
     font-weight: bold;
     color: var(--accent-blue);

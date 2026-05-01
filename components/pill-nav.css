@@ -203,7 +203,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 
 .header-logo svg,
 .header-logo img {
-  height: 46px;
+  height: 48px;
   width: auto;
   display: block;
 }
@@ -720,6 +720,60 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   .header-name {
     display: none;
   }
+}
+
+/* ── Animated Navbar Border + Particles ── */
+@keyframes nav-border-shift {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes nav-particle-float {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  12%  { opacity: 0.8; }
+  88%  { opacity: 0.8; }
+  100% { transform: translateY(-56px) translateX(8px); opacity: 0; }
+}
+
+/* Gradient border on pill wrapper */
+#quartz-shell::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: linear-gradient(115deg,
+    rgba(0,102,255,0.55) 0%,
+    rgba(110,55,210,0.3) 38%,
+    rgba(255,138,0,0.55) 68%,
+    rgba(0,102,255,0.55) 100%
+  );
+  background-size: 250% 250%;
+  animation: nav-border-shift 7s ease infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* SVG trail overlay */
+.pill-trail-svg {
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+}
+
+/* Particles inside pill */
+.pill-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 0;
+}
+.pill-particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: nav-particle-float linear infinite;
 }
 
 /* ── Reduced Motion ── */

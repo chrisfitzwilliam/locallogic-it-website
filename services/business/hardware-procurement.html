@@ -43,26 +43,104 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/@phosphor-icons/web@2.1.2/src/index.js" integrity="sha384-J7cw2fbG1T4C5MirTVUxsZGaMfw2m0XsCgOQEqUvB1OF9VIsHWuZF1GmyVRzs7eu" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/phosphor/style.css">
   <link rel="stylesheet" href="../../css/service.css" />
+  <!-- Shared Pill Nav Styles -->
+  <link rel="stylesheet" href="../../components/pill-nav.css" />
 </head>
 <body class="business-page">
   <div class="bg-pattern"></div>
   <div class="bg-network"></div>
 
-  <nav class="nav">
-    <div class="nav-left">
-      <a class="nav-back" href="../../business.html">
-        <i class="ph ph-arrow-left"></i>
-        <span>Back to Business</span>
-      </a>
-      <a class="nav-logo" href="../../index.html">
-        <img src="../../assets/logo-mark.svg" alt="Local Logic IT Logo" width="32" height="32">
-        <span class="nav-logo-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
-      </a>
+    <!-- Pill Nav (fixed, docked top-left) -->
+  <div class="pill-wrapper" id="quartz-shell" data-pill-position="docked">
+    <!-- Animated trail SVG -->
+    <svg class="pill-trail-svg" id="navTrailSvg" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="navTrailGrad" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="rgba(80,160,255,0)"/>
+          <stop offset="45%"  stop-color="rgba(100,180,255,0.4)"/>
+          <stop offset="75%"  stop-color="rgba(180,220,255,0.8)"/>
+          <stop offset="100%" stop-color="white"/>
+        </linearGradient>
+      </defs>
+      <path id="navTrailStroke" fill="none" stroke="url(#navTrailGrad)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <header class="pill-nav">
+      <!-- Floating particles -->
+      <div class="pill-particles">
+        <div class="pill-particle" style="left:5%;bottom:10%;width:2.5px;height:2.5px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.4s;animation-delay:0s"></div>
+        <div class="pill-particle" style="left:14%;bottom:22%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.3s;animation-delay:1s"></div>
+        <div class="pill-particle" style="left:26%;bottom:7%;width:2px;height:2px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.9s;animation-delay:1.7s"></div>
+        <div class="pill-particle" style="left:41%;bottom:17%;width:2.5px;height:2.5px;background:#FF8A00;box-shadow:0 0 6px #FF8A00;animation-duration:5s;animation-delay:0.4s"></div>
+        <div class="pill-particle" style="left:56%;bottom:8%;width:2px;height:2px;background:#0066FF;box-shadow:0 0 5px #0066FF;animation-duration:3.6s;animation-delay:1.3s"></div>
+        <div class="pill-particle" style="left:68%;bottom:20%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.5s;animation-delay:0.7s"></div>
+        <div class="pill-particle" style="left:80%;bottom:11%;width:2.5px;height:2.5px;background:#0066FF;box-shadow:0 0 6px #0066FF;animation-duration:4.1s;animation-delay:2s"></div>
+        <div class="pill-particle" style="left:91%;bottom:6%;width:2px;height:2px;background:#FF8A00;box-shadow:0 0 5px #FF8A00;animation-duration:4.8s;animation-delay:0.5s"></div>
+      </div>
+      <div class="nav-segment logo-segment">
+        <a class="header-brand" href="../../index.html">
+          <div class="header-logo">
+            <img src="../../assets/logo.png" alt="Local Logic IT Logo" height="32" style="width: auto;">
+          </div>
+          <span class="header-name">LOCAL LOGIC <span style="color: var(--accent-amber)">IT</span></span>
+        </a>
+      </div>
+
+      <div class="nav-segment links-segment">
+        <div class="header-nav-container" id="expanded-nav">
+          <nav class="header-links" id="main-nav-links">
+            <div class="nav-indicator" id="nav-indicator"></div>
+            <a href="../../index.html">Home</a>
+            <div class="dropdown active" id="services-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Services</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="../../residential.html">Home &amp; Family</a>
+                  <a href="../../business.html">Business &amp; Office</a>
+                  <a href="../../service-area.html">Service Area</a>
+                </div>
+              </div>
+            </div>
+            <a href="../../service-area.html">Service Area</a>
+            <div class="dropdown" id="contact-dropdown">
+              <a href="javascript:void(0)" class="dropdown-trigger">Contact</a>
+              <div class="dropdown-content">
+                <div class="dropdown-content-inner">
+                  <a href="#contact">Contact Info</a>
+                  <a href="javascript:void(0)" onclick="Tawk_API.maximize()">Live Chat</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <button class="pill-hamburger" id="pill-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+    <div class="tagline-pill">Local Service. Logical Solutions.</div>
+
+    <!-- Mobile drawer menu -->
+    <div class="pill-mobile-menu" id="pill-mobile-menu">
+      <a href="../../index.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-house"></i></span> Home</a>
+      <div class="mobile-dropdown mobile-nav-link">
+        <div class="mobile-dropdown-trigger">
+          <span class="mobile-nav-icon"><i class="ph ph-briefcase"></i></span> Services
+        </div>
+        <div class="mobile-dropdown-content">
+          <a href="../../residential.html" onclick="closeMobileMenu()">Residential (Home & Family)</a>
+          <a href="../../business.html" onclick="closeMobileMenu()">Business (Office & Enterprise)</a>
+        </div>
+      </div>
+      <a href="../../service-area.html" class="mobile-nav-link"><span class="mobile-nav-icon"><i class="ph ph-map-pin"></i></span> Service Area</a>
+      <a href="#contact" class="mobile-nav-link" onclick="closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-phone"></i></span> Contact</a>
+      <a href="javascript:void(0)" class="mobile-nav-link" onclick="Tawk_API.maximize(); closeMobileMenu()"><span class="mobile-nav-icon"><i class="ph ph-chat-centered-text"></i></span> Live Chat</a>
+      <div class="mobile-menu-divider"></div>
+      <a href="../../quick-support.html" class="btn-support-mobile"><i class="ph ph-desktop-tower"></i> Quick Support</a>
     </div>
-    <a class="nav-cta-link" href="#contact">Get in Touch</a>
-  </nav>
+  </div>
 
   <main>
     <section class="hero">
@@ -111,9 +189,9 @@
       </div>
     </section>
 
-    <footer class="footer">
+        <footer class="footer">
       <div class="footer-logo">
-          <img src="../../assets/logo-mark.svg" alt="Local Logic IT Logo" width="48" height="48">
+          <img src="../../assets/logo.png" alt="Local Logic IT Logo" width="1024" height="682" style="width: 160px; height: auto;">
       </div>
       <h3 class="footer-brand-name">Local Logic IT</h3>
       <p class="footer-tagline">Local Service. Logical Solutions.</p>
@@ -123,6 +201,9 @@
       <div class="footer-copyright">&copy; 2026 Local Logic IT &middot; All Rights Reserved.</div>
     </footer>
   </main>
+  <!-- Shared Pill Nav Script -->
+  <script src="../../scripts/pill-nav.js"></script>
+
 
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
