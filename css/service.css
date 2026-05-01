@@ -214,6 +214,124 @@ body {
     color: var(--accent-amber);
 }
 
+/* Service Pipeline */
+.pipeline {
+    max-width: 1120px;
+}
+
+.pipeline-flow {
+    list-style: none;
+    display: flex;
+    gap: clamp(16px, 3vw, 40px);
+    margin-top: 40px;
+    counter-reset: pipeline-step;
+}
+
+.pipeline-step {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: clamp(24px, 3vw, 32px);
+    transition: var(--transition);
+}
+
+.pipeline-step:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+}
+
+.pipeline-step::after {
+    content: '';
+    position: absolute;
+    top: 58px;
+    left: calc(100% + 8px);
+    width: calc(clamp(16px, 3vw, 40px) - 16px);
+    height: 2px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.1),
+            var(--accent-blue),
+            rgba(255, 255, 255, 0.1)
+        );
+    background-size: 220% 100%;
+    opacity: 0.45;
+    animation: pipeline-pulse 4s ease-in-out infinite;
+}
+
+.pipeline-step:last-child::after {
+    display: none;
+}
+
+.residential-page .pipeline-step::after {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.1),
+            var(--accent-amber),
+            rgba(255, 255, 255, 0.1)
+        );
+    background-size: 220% 100%;
+}
+
+.pipeline-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin-bottom: 24px;
+    border-radius: 50%;
+    color: var(--accent-blue);
+    background: rgba(0, 102, 255, 0.12);
+    box-shadow: 0 0 32px var(--accent-blue-glow);
+}
+
+.residential-page .pipeline-icon {
+    color: var(--accent-amber);
+    background: rgba(255, 138, 0, 0.12);
+    box-shadow: 0 0 32px var(--accent-amber-glow);
+}
+
+.pipeline-icon i {
+    font-size: 1.8rem;
+}
+
+.pipeline-step h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.pipeline-step p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.55;
+}
+
+@keyframes pipeline-pulse {
+    0%,
+    100% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pipeline-step,
+    .pipeline-step::after {
+        animation: none;
+        transition: none;
+    }
+}
+
 /* ── Trust Section ── */
 .trust {
     background: rgba(255, 255, 255, 0.02);
@@ -242,4 +360,32 @@ body {
     .section { padding: 60px 20px; }
     .includes-list { grid-template-columns: 1fr; }
     .includes-list li { padding: 24px; }
+    .pipeline-flow {
+        flex-direction: column;
+        gap: 28px;
+    }
+    .pipeline-step::after {
+        top: calc(100% + 8px);
+        left: 28px;
+        width: 2px;
+        height: 12px;
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.1),
+                var(--accent-blue),
+                rgba(255, 255, 255, 0.1)
+            );
+        background-size: 100% 220%;
+    }
+    .residential-page .pipeline-step::after {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.1),
+                var(--accent-amber),
+                rgba(255, 255, 255, 0.1)
+            );
+        background-size: 100% 220%;
+    }
 }
