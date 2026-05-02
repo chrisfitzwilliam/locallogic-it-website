@@ -222,6 +222,47 @@
     .half--business    .half-pill { background: rgba(0,102,255,0.1); color: var(--accent-blue);  border: 1px solid rgba(0,102,255,0.3); }
     .half:hover .half-pill { transform: scale(1.05); }
 
+    /* ── Google for Startups badge (landing page) ── */
+    .half-google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 14px;
+      margin-top: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: none; /* badge is decorative; the whole half is already a link */
+    }
+    .half-google-badge .badge-logo {
+      height: 14px;
+      width: auto;
+      opacity: 0.9;
+    }
+    .half-google-badge .badge-sep {
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,0.12);
+    }
+    .half-google-badge .badge-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .half-google-badge .badge-label .badge-grant {
+      color: var(--accent-blue);
+      font-weight: 700;
+    }
+    @media (max-width: 767px) {
+      .half-google-badge { padding: 4px 10px; gap: 8px; }
+      .half-google-badge .badge-logo { height: 11px; }
+      .half-google-badge .badge-label { font-size: 0.6rem; }
+    }
+
     .or-divider {
       position: absolute;
       top: 50%; left: 50%;
@@ -552,6 +593,13 @@
         <span class="half-name">Business &amp; Office</span>
         <span class="half-sub">Managed IT · Security · Cloud</span>
         <span class="half-pill">Enterprise Support →</span>
+        <!-- Google for Startups AI Grant badge -->
+        <div class="half-google-badge">
+          <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" class="badge-logo">
+          <span style="font-size: 0.72rem; font-weight: 500; color: #fff; opacity: 0.8;">for Startups</span>
+          <div class="badge-sep"></div>
+          <span class="badge-label">AI Grant <span class="badge-grant">Recipient</span></span>
+        </div>
       </div>
     </div>
   </main>
