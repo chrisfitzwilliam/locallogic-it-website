@@ -44,6 +44,8 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 ## Live Routing Facts
 - Production host is apex `https://locallogicit.com/`.
 - `https://www.locallogicit.com/` redirects to apex.
+- Search Console duplicate-home handling was remediated on 2026-05-05: live Nginx redirects client requests for `https://locallogicit.com/index.html` to `https://locallogicit.com/`, while `/` still serves the homepage normally.
+- `http://` and `www` URL variants are expected to remain "Page with redirect" in Search Console because they intentionally canonicalize to the HTTPS apex host.
 
 ## Recent SEO Remediation
 - `SEO_AUDIT.md` records the 2026-04 SEO audit recommendations and approval-gated items.
