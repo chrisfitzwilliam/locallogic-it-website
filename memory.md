@@ -46,6 +46,7 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - `https://www.locallogicit.com/` redirects to apex.
 - Search Console duplicate-home handling was remediated on 2026-05-05: live Nginx redirects client requests for `https://locallogicit.com/index.html` to `https://locallogicit.com/`, while `/` still serves the homepage normally.
 - `http://` and `www` URL variants are expected to remain "Page with redirect" in Search Console because they intentionally canonicalize to the HTTPS apex host.
+- Tawk is intentionally guarded by `scripts/tawk-title-lock.js`: automatic chat opens are minimized, visitor-clicked Live Chat links still open chat, and the browser tab title is restored to the page title instead of Tawk's unread-message text.
 
 ## Recent SEO Remediation
 - `SEO_AUDIT.md` records the 2026-04 SEO audit recommendations and approval-gated items.
