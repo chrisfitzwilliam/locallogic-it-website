@@ -47,6 +47,11 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Search Console duplicate-home handling was remediated on 2026-05-05: live Nginx redirects client requests for `https://locallogicit.com/index.html` to `https://locallogicit.com/`, while `/` still serves the homepage normally.
 - `http://` and `www` URL variants are expected to remain "Page with redirect" in Search Console because they intentionally canonicalize to the HTTPS apex host.
 
+## Live Chat / Tawk
+- The site uses the direct Tawk embed `https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc` and direct `Tawk_API.maximize()` click handlers.
+- Do not reintroduce `scripts/tawk-title-lock.js` or the `LocalLogicOpenTawk()` wrapper without a browser-tested replacement; that guard was reverted in commit `ab98aa8` because it made the chatbox stop working.
+- Tawk may change the browser tab title to unread-message text. Treat that as a Tawk-side behavior unless a future fix is proven to preserve chat loading and manual Live Chat clicks on production.
+
 ## Recent SEO Remediation
 - `SEO_AUDIT.md` records the 2026-04 SEO audit recommendations and approval-gated items.
 - SEO remediation commit `a52a762` was pushed to `origin/main` and deployed by the VM auto-deploy timer.
