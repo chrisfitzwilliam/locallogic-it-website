@@ -46,6 +46,10 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - `https://www.locallogicit.com/` redirects to apex.
 - Search Console duplicate-home handling was remediated on 2026-05-05: live Nginx redirects client requests for `https://locallogicit.com/index.html` to `https://locallogicit.com/`, while `/` still serves the homepage normally.
 - `http://` and `www` URL variants are expected to remain "Page with redirect" in Search Console because they intentionally canonicalize to the HTTPS apex host.
+- On 2026-05-06, the static Gigi's Italian Kitchen site from `C:\Users\DESKTOP\Documents\gigis\gigis_website` was deployed to `fitzwilliam-web-1`: document root `/var/www/gigi/current`, Nginx vhost `/etc/nginx/sites-available/gigi.fitzwilliam.net`, enabled symlink in `sites-enabled`, and forced-host HTTP verification returned `200 OK`.
+- `fitzwilliam.net` remains registered at IONOS, but authoritative nameservers were moved from Cloudflare to Google Cloud DNS on 2026-05-08. The Google project is `fitzwilliamdotnet`, managed zone `fitzwilliam-net`, nameservers `ns-cloud-a1.googledomains.com` through `ns-cloud-a4.googledomains.com`. IONOS registrar readback confirmed the Google nameservers; public resolvers may lag after the move.
+- Google Cloud DNS for `fitzwilliam.net` contains Proton MX, SPF, verification TXT, DMARC, and the three Proton DKIM CNAMEs. `rdp.fitzwilliam.net` was removed from Google DNS on 2026-05-08 after abandoning the Cloudflare Tunnel / browser-RDP path in favor of WireGuard plus direct RDP.
+- `gigi.fitzwilliam.net` DNS now lives in the `fitzwilliam.net` Google Cloud DNS zone, and HTTPS was issued on 2026-05-06 with Certbot. HTTP redirects to HTTPS, HTTPS returns `200 OK`, and the certificate expires on 2026-08-04. If the Windows host still cannot resolve the subdomain immediately, treat it as local DNS propagation/cache lag; the VM resolved it and Certbot validation succeeded.
 
 ## Live Chat / Tawk
 - The site uses the direct Tawk embed `https://embed.tawk.to/69ee4a2453f59e1c3596b2ef/1jn5d37fc` and direct `Tawk_API.maximize()` click handlers.
@@ -73,3 +77,14 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Shared pipeline styling lives in `css/service.css` (`.pipeline`, `.pipeline-flow`, `.pipeline-step`, `.pipeline-icon`), including mobile stacking and reduced-motion handling.
 - Current service detail scope is 8 business pages and 8 residential pages. The business scope includes `voip-phone-systems.html` and `it-consulting.html` because those pages are linked from `business.html`.
 - Service detail contact cards use `mailto:contact@locallogicit.com`.
+
+## Recent Infrastructure & Email Migration
+- On 2026-05-08, the domain `locallogicit.com` was migrated from Zoho Mail to Microsoft 365.
+- DNS management remains on Cloudflare. The correct Zone ID for `locallogicit.com` was confirmed as `f6549448e157edee85aa0189cf62f70e`.
+- Microsoft 365 records applied:
+  - MX: `locallogicit-com.mail.protection.outlook.com` (Priority 0)
+  - CNAME: `autodiscover.outlook.com` for the `autodiscover` hostname.
+  - SPF (TXT): Updated to `v=spf1 include:spf.protection.outlook.com -all`.
+  - Verification: Added `MS=ms34195605` TXT record.
+- Legacy Cleanup: All Zoho-related MX records, verification TXT records, and the `zmail._domainkey` DKIM record were removed to prevent conflicts.
+- Cloudflare API Token: A new custom token with `DNS:Edit` and `Zone:Read` permissions was provided by the user and updated in `cloudflare.key`.

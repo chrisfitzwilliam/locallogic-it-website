@@ -40,7 +40,6 @@ locallogic-it-website/
 │
 ├── assets/
 │   ├── logo.png                        # Full logo (used as favicon too)
-│   ├── logo-mark.svg                   # Logomark SVG (used on service detail pages)
 │   ├── favicon.png                     # Same as logo.png (32×32 display)
 │   ├── og-image.png                    # Open Graph social share image
 │   └── quick-assist-guide.png          # Screenshot for quick-support.html
