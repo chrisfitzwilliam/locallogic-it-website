@@ -156,19 +156,24 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
 }
 
 .logo-segment {
-  padding-left: 12px;
-  padding-right: 16px;
+  padding: 0 16px;
+  transition: padding 0.5s var(--transition-fluid);
 }
 
 .links-segment {
-  padding-left: 16px;
-  padding-right: 12px;
+  padding-left: 20px;
+  padding-right: 16px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   max-width: 0;
   opacity: 0;
   transform: translateX(10px);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s var(--transition-fluid);
   overflow: hidden;
+}
+
+.pill-wrapper.is-expanded .logo-segment {
+  padding-left: 8px;
+  padding-right: 24px;
 }
 
 .pill-wrapper.is-expanded .links-segment {
@@ -176,6 +181,7 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   opacity: 1;
   transform: translateX(0);
   overflow: visible;
+  padding-right: 4px;
 }
 
 /* ── Brand ── */
