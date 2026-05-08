@@ -39,7 +39,7 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
   - **Note (2026-05-08):** Removed `always` from `Cache-Control` for static assets to prevent Cloudflare from caching 404 responses as immutable.
 - DNS: Managed on Cloudflare (Zone ID: `f6549448e157edee85aa0189cf62f70e`).
 - Email: Microsoft 365 (Migrated from Zoho on 2026-05-08).
-- Cloudflare Token: Current token in `cloudflare.key` has `DNS:Edit` and `Zone:Read` permissions but **lacks Cache Purge permissions**. Manual purge via dashboard is required for clearing cached 404s.
+- Cloudflare Token: Current token in `cloudflare.key` includes `DNS:Edit`, `Zone:Read`, and `Cache Purge` permissions. It is fully functional for automated DNS and cache management.
 
 ## Recent Fixes & Remediation
 - **Asset Fix (2026-05-08):** Resolved 404 for `assets/logo-cloud.png` (added untracked file).
