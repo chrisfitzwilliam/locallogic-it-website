@@ -1,5 +1,5 @@
 /* ── Service Page Base ── */
-@import url('brand.css');
+@import url('brand.css?v=20260510');
 
 body {
     background: var(--bg-graphite);
