@@ -42,10 +42,12 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Cloudflare Token: Current token in `cloudflare.key` includes `DNS:Edit`, `Zone:Read`, and `Cache Purge` permissions. It is fully functional for automated DNS and cache management.
 
 ## Recent Fixes & Remediation
-- **Asset Fix (2026-05-08):** Resolved 404 for `assets/logo-cloud.png` (added untracked file).
-- **Favicon Standardization (2026-05-08):** Added missing root `favicon.ico` and updated all HTML pages to use `/favicon.ico` consistently.
+- **Contact Section Redesign (2026-05-10):** Redesigned the "How Can We Help?" section with a horizontal "Action Card" layout for better balance and responsiveness (2x2 grid on desktop, 1x1 on mobile).
+- **Booking Integration (2026-05-10):** Added a "Book a Meeting" card linking to Outlook Book With Me across all 22 pages.
+- **Favicon Optimization (2026-05-10):** Generated a set of transparent, square favicon assets (48, 96, 144, 192px) and updated the legacy `.ico` file. All HTML pages updated to reference high-res PNGs.
+- **Cache Management (2026-05-10):** Implemented a site-wide cache-busting strategy using `?v=20260510_2`. Updated `service.css` to use a versioned `@import url('brand.css?v=20260510')` to fix stale sub-page layouts.
+- **Asset Fix (2026-05-08):** Resolved 404 for `assets/logo-cloud.png`.
 - **SEO (2026-05-05):** Remediated duplicate-home issues and fixed service-grid gaps.
-- **Service Enrichment (2026-05-01):** Added "How It Works" and "Real-World Example" sections to all 16 service detail pages.
 
 ## Live Chat / Tawk
 - Uses direct Tawk embed and `Tawk_API.maximize()` handlers.
