@@ -42,6 +42,7 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Cloudflare Token: Current token in `cloudflare.key` includes `DNS:Edit`, `Zone:Read`, and `Cache Purge` permissions. It is fully functional for automated DNS and cache management.
 
 ## Recent Fixes & Remediation
+- **Web Design & Hosting Addition (2026-05-14):** Added a new dedicated service page and integrated a card into the business services grid, positioned adjacent to IT Consulting. Refreshed `sitemap.xml` and updated all `lastmod` dates to trigger re-indexing.
 - **Contact Section Redesign (2026-05-10):** Redesigned the "How Can We Help?" section with a horizontal "Action Card" layout for better balance and responsiveness (2x2 grid on desktop, 1x1 on mobile).
 - **Booking Integration (2026-05-10):** Added a "Book a Meeting" card linking to Outlook Book With Me across all 22 pages.
 - **Favicon Optimization (2026-05-10):** Generated a set of transparent, square favicon assets (48, 96, 144, 192px) and updated the legacy `.ico` file. All HTML pages updated to reference high-res PNGs.
