@@ -38,6 +38,8 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
   - Static assets have `Cache-Control: public, max-age=31536000, immutable`.
   - **Note (2026-05-08):** Removed `always` from `Cache-Control` for static assets to prevent Cloudflare from caching 404 responses as immutable.
 - DNS: Managed on Cloudflare (Zone ID: `f6549448e157edee85aa0189cf62f70e`).
+- Client Subdomains:
+  - `eltek.locallogicit.com`: Static client site hosted via GitHub Pages (repository: `chrisfitzwilliam/eltek`), with CNAME record managed on Cloudflare pointing to `chrisfitzwilliam.github.io`.
 - Email: Microsoft 365 (Migrated from Zoho on 2026-05-08).
 - Cloudflare Token: Current token in `cloudflare.key` includes `DNS:Edit`, `Zone:Read`, and `Cache Purge` permissions. It is fully functional for automated DNS and cache management.
 
