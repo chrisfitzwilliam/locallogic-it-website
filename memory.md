@@ -41,7 +41,7 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Client Subdomains:
   - `eltek.locallogicit.com`: Static client site hosted via GitHub Pages (repository: `chrisfitzwilliam/eltek`), with CNAME record managed on Cloudflare pointing to `chrisfitzwilliam.github.io`.
 - Email: Microsoft 365 (Migrated from Zoho on 2026-05-08).
-- Cloudflare Token: Current token in `cloudflare.key` includes `DNS:Edit`, `Zone:Read`, and `Cache Purge` permissions. It is fully functional for automated DNS and cache management.
+- Cloudflare Token: The token previously in `cloudflare.key` (`DNS:Edit`, `Zone:Read`, `Cache Purge`) was revoked on 2026-06-12 (all tokens deleted from dashboard during incident response). `cloudflare.key` is untracked/gitignored and now contains a dead token. A new token must be generated for future DNS/cache automation.
 
 ## ⚠️ ACTIVE: Emergency GitHub Pages Cutover (2026-06-12)
 - **Cause:** GCP project `local-logic-it` (account `chris@fitzwilliam.net`) hit a billing issue, taking down VM `130.211.118.230`.
