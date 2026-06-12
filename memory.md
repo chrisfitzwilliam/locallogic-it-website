@@ -43,6 +43,12 @@ Compact project memory for `locallogic-it-website`. Keep this file short and cur
 - Email: Microsoft 365 (Migrated from Zoho on 2026-05-08).
 - Cloudflare Token: Current token in `cloudflare.key` includes `DNS:Edit`, `Zone:Read`, and `Cache Purge` permissions. It is fully functional for automated DNS and cache management.
 
+## ⚠️ ACTIVE: Emergency GitHub Pages Cutover (2026-06-12)
+- **Cause:** GCP project `local-logic-it` (account `chris@fitzwilliam.net`) hit a billing issue, taking down VM `130.211.118.230`.
+- **Fix applied:** Repo made public, GitHub Pages enabled (branch `main`, root), `CNAME` file added with `locallogicit.com`. Cloudflare DNS apex `A` records repointed to GitHub Pages IPs (185.199.108-111.153, unproxied) and `www` CNAME to `chrisfitzwilliam.github.io` (unproxied). Site is live at `https://locallogicit.com` via GitHub Pages, HTTPS enforced.
+- **Side effects:** Repo is now public (was private). `cloudflare.key` untracked from git and added to `.gitignore`; the old token (in git history) was revoked via Cloudflare dashboard and is dead.
+- **TODO when VM is restored:** Fix GCP billing on `local-logic-it` (chris@fitzwilliam.net), then revert apex `A` record to `130.211.118.230` (proxied) and `www` CNAME back to `locallogicit.com` (proxied) to resume serving from the VM/systemd auto-deploy. Decide whether to keep repo public (required for free GitHub Pages) or revert to private. Generate a new Cloudflare API token for future DNS automation.
+
 ## Recent Fixes & Remediation
 - **Web Design & Hosting Addition (2026-05-14):** Added a new dedicated service page and integrated a card into the business services grid, positioned adjacent to IT Consulting. Refreshed `sitemap.xml` and updated all `lastmod` dates to trigger re-indexing.
 - **Contact Section Redesign (2026-05-10):** Redesigned the "How Can We Help?" section with a horizontal "Action Card" layout for better balance and responsiveness (2x2 grid on desktop, 1x1 on mobile).
