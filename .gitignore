@@ -35,11 +35,8 @@ Aug Key.txt
 # Documentation (keep separate from repo)
 *.md
 
-# Screenshots & other non-website files
+# Screenshots & temporary images (not website content)
 Screenshot*.png
-*.jpg
-*.png
-!img/
 
 # AI / tool generated
 .audit-output/
