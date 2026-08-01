@@ -21,8 +21,22 @@ qa-tmp/
 __pycache__/
 *.pyc
 
-# Secrets
+# Secrets & API keys
 keys.txt
+*.key
+cloudflare.key
+cloudflare_tunnels.key
+ionos.key
+
+# Deployment tools & sensitive files
+downloads/defender/
+Aug Key.txt
+
+# Screenshots & other non-website files
+Screenshot*.png
+*.jpg
+*.png
+!img/
 
 # AI / tool generated
 .audit-output/
@@ -31,4 +45,3 @@ keys.txt
 .playwright-mcp/
 .superpowers/
 docs/superpowers/
-cloudflare.key
