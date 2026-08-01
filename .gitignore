@@ -32,6 +32,9 @@ ionos.key
 downloads/defender/
 Aug Key.txt
 
+# Documentation (keep separate from repo)
+*.md
+
 # Screenshots & other non-website files
 Screenshot*.png
 *.jpg
