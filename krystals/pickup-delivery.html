@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pickup & Delivery - Krystal's Produce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#FFC43F;
+    --green:#E10E1A;
+    --green-deep:#1F1F1F;
+    --green-pale:#FBE5E5;
+    --ink:#222;
+    --muted:#777;
+    --line:#EFEFEF;
+    --paper:#FAF8F2;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:"Open Sans",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.55}
+  h1,h2,h3{font-family:"Inter",sans-serif;margin:0;line-height:1.08;color:var(--ink)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px}
+  .util{background:var(--green-deep);color:#fff;font-size:13px;padding:8px 0}
+  .util .container{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .util span,.util a{opacity:.9}
+  .nav{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+  .nav .container{display:flex;align-items:center;gap:34px;padding-top:18px;padding-bottom:18px}
+  .brand img{height:54px;width:auto}
+  .nav-links{display:flex;gap:28px;margin-left:auto;font-weight:600;font-size:15px;color:#333}
+  .nav-links a.active,.nav-links a:hover{color:var(--green)}
+  .cta{background:var(--green);color:#fff;padding:11px 18px;border-radius:10px;font-weight:700;font-size:14px}
+  .cta.green{background:#269b24}
+  .nav-btns{display:flex;gap:10px;align-items:center;margin-left:auto}
+  .hero{background:var(--yellow);padding:74px 0 96px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:48px;align-items:center}
+  .tag{font-family:"Caveat";color:var(--green);font-weight:700;font-size:25px}
+  .hero h1{font-size:clamp(42px,5.2vw,76px);letter-spacing:-.025em;margin-top:10px}
+  .hero p{font-size:18px;color:#3a3a2c;max-width:560px;margin:18px 0 0}
+  .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .btn{border:0;border-radius:12px;padding:14px 22px;font-weight:700;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center}
+  .btn-dark{background:var(--green-deep);color:#fff}
+  .btn-light{background:#fff;color:var(--green-deep);border:1px solid rgba(0,0,0,.08)}
+  .hero-card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 30px 60px -24px rgba(0,0,0,.35)}
+  .hero-card img{border-radius:14px;aspect-ratio:4/3;object-fit:cover;width:100%}
+  .hero-card .note{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .mini{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .mini strong{display:block;font-family:"Inter";font-size:15px}
+  .mini span{display:block;color:var(--muted);font-size:13px;margin-top:3px}
+  section{padding:86px 0}
+  .section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px;flex-wrap:wrap}
+  .section-head h2{font-size:42px;margin-top:4px}
+  .section-head p{color:var(--muted);max-width:560px;margin:8px 0 0}
+  .pickup-panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:30px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+  .step strong{display:block;color:var(--green);font-family:"Inter";font-size:18px}
+  .step span{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+  .box-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .box-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 14px 30px rgba(0,0,0,.06)}
+  .box-card .ph{border-radius:12px;overflow:hidden;aspect-ratio:1/1;background:#fff7ec;margin-bottom:14px;padding:10px}
+  .box-card .ph img{width:100%;height:100%;object-fit:contain}
+  .box-card .eyebrow{font-size:11px;font-weight:800;color:var(--green);letter-spacing:.08em;text-transform:uppercase}
+  .box-card h3{font-size:20px;margin-top:5px}
+  .box-card p{font-size:14px;color:var(--muted);margin:8px 0 0}
+  .business{background:var(--green-deep);color:#fff}
+  .business h2,.business h3{color:#fff}
+  .business .tag{color:var(--yellow)}
+  .business p{color:#d8dccf}
+  .business-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:34px;align-items:start}
+  .business-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .business-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px}
+  .business-item strong{display:block;color:#fff;font-size:17px;margin-bottom:5px}
+  .business-item span{display:block;color:#d8dccf;font-size:14px}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px}
+  footer .container{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  @media(max-width:1000px){
+    .hero-grid,.business-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .box-grid{grid-template-columns:repeat(2,1fr)}
+    .nav-links{display:none}
+    .nav-btns{margin-left:auto}
+  }
+  @media(max-width:640px){
+    .container{padding:0 16px}
+    .box-grid,.business-list{grid-template-columns:1fr}
+    .hero-card .note{grid-template-columns:1fr}
+    .hero{padding-top:52px}
+    .util{padding:6px 0; font-size:11px}
+    .util .container{flex-direction:row; justify-content:center; flex-wrap:wrap; gap:4px 12px; text-align:center}
+    .hide-mobile{display:none}
+
+    .nav .container{flex-direction:column; gap:16px; padding:16px}
+    .brand img{height:48px; margin:0 auto}
+    .nav-btns{width:100%; justify-content:center; gap:8px; margin-left:0}
+    .cta{padding:10px 14px; font-size:13px; flex:1; justify-content:center; white-space:nowrap}
+  }
+</style>
+</head>
+<body>
+  <div class="util">
+    <div class="container">
+      <span>Open 7 days a week</span>
+      <span class="hide-mobile">3156 Elm Point Industrial Dr, St. Charles, MO 63301</span>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="container">
+      <a class="brand" href="index.html"><img src="img/logo.png" alt="Krystal's Produce"></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#what-s-fresh">What's Fresh</a>
+        <a class="active" href="pickup-delivery.html">Pickup/Delivery</a>
+        <a href="index.html#visit-us">Visit Us</a>
+        <a href="index.html#about">About</a>
+      </div>
+      <div class="nav-btns">
+        <a class="cta green" href="index.html#what-s-fresh">See Whats Fresh</a>
+        <a class="cta" href="https://www.google.com/maps/dir/?api=1&destination=3156%20Elm%20Point%20Industrial%20Dr%2C%20St%20Charles%2C%20MO%2063301" target="_blank" rel="noopener">Open in Maps</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="tag">~ pickup & delivery ~</div>
+          <h1>Fresh stand favorites, packed for pickup or delivery.</h1>
+          <p>Get produce, plants, pantry jars, flowers, and seasonal boxes without wandering the whole lot. Choose quick in-store pickup, residential box delivery, or bulk delivery for groups and businesses.</p>
+          <div class="actions">
+            <a class="btn btn-dark" href="#pickup">In-store Pickup</a>
+            <a class="btn btn-light" href="#residential-boxes">Residential Boxes</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="img/hero-main.png" alt="Krystal's Produce stand">
+          <div class="note">
+            <div class="mini"><strong>Pickup</strong><span>We gather your stand order before you arrive.</span></div>      
+            <div class="mini"><strong>Delivery</strong><span>Home boxes and bulk drop-offs by arrangement.</span></div>    
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="pickup">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="tag">~ in-store pickup ~</div>
+            <h2>Fast pickup from the stand</h2>
+            <p>Tell us what you need, then pull in at the stand. We can set aside produce, pantry jars, flats, hanging baskets, pumpkins, mums, and seasonal items before you arrive.</p>
+          </div>
+        </div>
+        <div class="pickup-panel">
+          <div class="steps">
+            <div class="step"><strong>1. Choose</strong><span>Pick produce, plants, pantry items, seasonal decor, or a custom box.</span></div>
+            <div class="step"><strong>2. Pack</strong><span>We pull the best available items from what is fresh and ready that day.</span></div>
+            <div class="step"><strong>3. Pickup</strong><span>Pay at the stand and head out with your order packed and ready.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="residential-boxes" style="background:var(--paper)">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="tag">~ residential delivery ~</div>
+            <h2>Fresh boxes for home delivery</h2>
+            <p>Creative boxes built around what is ripe, useful, and fun to bring home that week.</p>
+          </div>
+        </div>
+        <div class="box-grid">
+          <div class="box-card">
+            <div class="ph"><img src="img/berry.png" alt="Berry Box"></div>
+            <div class="eyebrow">Sweet snack box</div>
+            <h3>Berry Box</h3>
+            <p>Strawberries plus rotating seasonal berries, packed for families, offices, and weekend desserts.</p>
+          </div>
+          <div class="box-card">
+            <div class="ph"><img src="img/herbs.png" alt="Herb Garden Box"></div>
+            <div class="eyebrow">Live plant box</div>
+            <h3>Herb Garden Box</h3>
+            <p>Live basil, mint, rosemary, parsley, and other kitchen herbs for porch pots or windowsills.</p>
+          </div>
+          <div class="box-card">
+            <div class="ph"><img src="img/produce.png" alt="Fresh Produce Box"></div>
+            <div class="eyebrow">Produce plus staples</div>
+            <h3>Fresh Produce Box</h3>
+            <p>A practical mix of stand produce and everyday favorites like pickles, salsa, honey, sauce, and seasonal vegetables.</p>
+          </div>
+          <div class="box-card">
+            <div class="ph"><img src="img/pantry.png" alt="Pantry Box"></div>
+            <div class="eyebrow">Homemade goods</div>
+            <h3>Pantry Box</h3>
+            <p>Jams, pickles, salsa, hot sauce, honey, BBQ sauce, and back-wall favorites for gifts or easy weeknight meals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="business" id="business-delivery">
+      <div class="container business-grid">
+        <div>
+          <div class="tag">~ business & bulk ~</div>
+          <h2>Wholesale pricing and delivery for groups that buy in volume.</h2>
+          <p>We work with schools, churches, kitchens, fundraisers, offices, and local organizations that need cases, flats, baskets, pantry goods, or seasonal produce delivered on a schedule.</p>
+        </div>
+        <div class="business-list">
+          <div class="business-item"><strong>Schools</strong><span>Produce for cafeterias, events, teacher appreciation, and seasonal classroom projects.</span></div>
+          <div class="business-item"><strong>Churches</strong><span>Bulk fruit, plants, pantry goods, and event supplies for dinners, drives, and gatherings.</span></div>
+          <div class="business-item"><strong>Bulk wholesale</strong><span>Case pricing on produce, flats, hanging baskets, pumpkins, mums, and pantry favorites.</span></div>
+          <div class="business-item"><strong>Scheduled delivery</strong><span>Coordinate drop-offs for recurring needs, large orders, or seasonal rushes.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span>Copyright 2026 Krystal's Produce.</span>
+      <a href="index.html#visit-us">Get directions to the stand</a>
+    </div>
+  </footer>
+</body>
+</html>

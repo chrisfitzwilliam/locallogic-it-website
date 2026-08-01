@@ -1,0 +1,1048 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Krystal's Produce - Fresh Local Missouri-Grown Produce, Plants & Pantry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&family=Caveat:wght@500;700&family=Bree+Serif&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<style>
+  :root{
+    --yellow:#FFC43F;
+    --yellow-soft:#FFEFC2;
+    --green:#E10E1A;
+    --green-deep:#1F1F1F;
+    --green-pale:#FBE5E5;
+    --orange:#E10E1A;
+    --ink:#222222;
+    --ink-2:#333333;
+    --muted:#777777;
+    --line:#EFEFEF;
+    --paper:#FAF8F2;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Open Sans", system-ui, sans-serif;
+    color:var(--ink);
+    background:#fff;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:"Inter", sans-serif; color:var(--ink); margin:0; line-height:1.1; letter-spacing:-0.01em}
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%; display:block}
+  .container{max-width:1320px; margin:0 auto; padding:0 32px}
+  .hairline{border:0; height:1px; background:var(--line); margin:0}
+  /* === TOP UTILITY BAR === */
+  .util{
+    background:var(--green-deep); color:#fff;
+    font-size:13px; padding:8px 0;
+  }
+  .util .container{display:flex; justify-content:space-between; align-items:center; gap:24px;}
+  .util .left{display:flex; gap:22px; flex-wrap:wrap}
+  .util .left span{display:inline-flex; align-items:center; gap:8px; opacity:.92}
+  .util .dot{width:6px;height:6px;border-radius:50%;background:#FFC43F;display:inline-block}
+  .util .right{display:flex; gap:18px; opacity:.85}
+  .util .right a:hover{opacity:1; color:var(--yellow)}
+  /* === NAV === */
+  .nav{
+    background:#fff; position:sticky; top:0; z-index:50;
+    border-bottom:1px solid var(--line);
+    transition:box-shadow .2s ease;
+  }
+  .nav.scrolled{box-shadow:0 4px 18px rgba(0,0,0,0.06)}
+  .nav .container{display:flex; align-items:center; gap:36px; padding-top:18px; padding-bottom:18px}
+  .brand{display:flex; align-items:center; gap:10px}
+  .brand img{height:54px; width:auto; display:block}
+  .brand-foot img{height:48px}
+  .nav-links{display:flex; gap:30px; margin-left:auto; font-family:"Open Sans"; font-weight:600; font-size:15px; color:var(--ink-2)}
+  .nav-links a{padding:8px 2px; position:relative; cursor:pointer}
+  .nav-links a.active{color:var(--green)}
+  .nav-links a.active::after{content:""; position:absolute; left:0; right:0; bottom:-19px; height:3px; background:var(--green); border-radius:2px}
+  .nav-links a:hover{color:var(--green)}
+  .nav .cta{
+    background:var(--green); color:#fff; padding:11px 18px; border-radius:10px;
+    font-weight:600; font-size:14px; letter-spacing:.04em;
+    display:inline-flex; gap:8px; align-items:center;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .nav .cta.green{background:#269b24}
+  .nav .cta:hover{background:var(--green-deep); transform:translateY(-1px)}
+  .nav-btns{display:flex; gap:10px; align-items:center; margin-left:auto}
+  @media (min-width:1101px){
+    .nav-btns{margin-left:0}
+  }
+  /* === HERO === */
+  .hero{
+    background:var(--yellow);
+    position:relative; overflow:hidden;
+  }
+  .hero .container{display:grid; grid-template-columns:1.1fr .9fr; gap:48px; padding-top:42px; padding-bottom:96px; align-items:start}
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,.6); border:1px solid rgba(54,65,39,.15);
+    padding:8px 14px; border-radius:999px;
+    font-size:13px; font-weight:600; color:var(--green-deep);
+    letter-spacing:.04em;
+  }
+  .hero .eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:#27a04a; box-shadow:0 0 0 0 rgba(39,160,74,.6); animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(39,160,74,.55)}70%{box-shadow:0 0 0 10px rgba(39,160,74,0)}100%{box-shadow:0 0 0 0 rgba(39,160,74,0)}}
+  .hero h1{
+    font-family:"Inter"; font-weight:800;
+    font-size:clamp(40px, 5.6vw, 78px);
+    line-height:1.02; letter-spacing:-0.025em;
+    margin-top:18px; color:#1a1f0e;
+  }
+  .hero h1 em{font-style:normal; color:var(--green-deep); font-family:"Caveat"; font-weight:700; font-size:.85em; letter-spacing:0}
+
+  /* --- Dropping Texts Animation --- */
+  .dropping-texts {
+    display: inline-block;
+    width: auto;
+    min-width: 260px;
+    text-align: left;
+    height: 1.1em;
+    vertical-align: bottom;
+    position: relative;
+    margin-left: 0.2em;
+  }
+  .dropping-texts > div {
+    font-family: "Bree Serif", serif;
+    font-size: 0px;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 400;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .dropping-texts > div:nth-child(1) { animation: roll 7.5s linear infinite 0s; color: #d06a28; }
+  .dropping-texts > div:nth-child(2) { animation: roll 7.5s linear infinite 2.5s; color: #269b24; }
+  .dropping-texts > div:nth-child(3) { animation: roll 7.5s linear infinite 5s; color: #e10e1a; }
+
+  @keyframes roll {
+    0% { font-size:0px; opacity:0; transform: translateY(-50px) rotate(-15deg); }
+    3% { opacity:1; transform: translateY(0) rotate(0deg); }
+    5% { font-size:inherit; opacity:1; }
+    30% { font-size:inherit; opacity:1; transform: translateY(0) rotate(0deg); }
+    35% { font-size:0px; opacity:0; transform: translateY(50px) rotate(10deg); }
+    100% { font-size:0px; opacity:0; }
+  }
+
+  .hero p.lede{font-size:18px; max-width:520px; margin-top:18px; color:#3a3a2c}
+  .hero .actions{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap}
+  .pickup-card{
+    max-width:720px; display:grid; grid-template-columns:104px 1fr 104px;
+    gap:18px; align-items:center; background:#fff; border:2px solid rgba(31,31,31,.08);
+    border-radius:18px; padding:18px 20px; box-shadow:0 18px 38px rgba(0,0,0,.12);
+    transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  .pickup-card:hover{transform:translateY(-3px); box-shadow:0 24px 48px rgba(0,0,0,.16); border-color:rgba(225,14,26,.28)}
+  .pickup-card lord-icon{width:96px;height:96px}
+  .pickup-card .copy{text-align:center}
+  .pickup-card .kicker{font-size:12px; font-weight:800; color:var(--green); letter-spacing:.08em; text-transform:uppercase}
+  .pickup-card h3{font-size:22px; margin-top:3px}
+  .pickup-card p{font-size:14px; color:var(--muted); margin:6px 0 0; line-height:1.45}
+  .pickup-card .card-btn{
+    display:inline-flex; align-items:center; justify-content:center; margin-top:12px;
+    background:var(--green); color:#fff; border-radius:10px; padding:10px 16px;
+    font-weight:800; font-size:13px; letter-spacing:.03em;
+    box-shadow:0 10px 18px rgba(225,14,26,.22);
+  }
+  .pickup-card:hover .card-btn{background:var(--green-deep)}
+  .banners-pickup{grid-column:1 / -1; display:flex; justify-content:center; margin-top:52px}
+  .banners-pickup .pickup-card{width:min(100%, 760px)}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px; border-radius:12px; font-weight:600; font-size:15px;
+    cursor:pointer; border:0; font-family:inherit;
+    transition:transform .15s, background .15s, color .15s;
+  }
+  .btn-primary{background:var(--green); color:#fff}
+  .btn-primary:hover{background:var(--green-deep); transform:translateY(-1px)}
+  .btn-dark{background:var(--green-deep); color:#fff}
+  .btn-dark:hover{background:#1f2614; transform:translateY(-1px)}
+  .btn-ghost{background:transparent; border:1.5px solid var(--green-deep); color:var(--green-deep)}
+  .btn-ghost:hover{background:var(--green-deep); color:#fff}
+  .hero .stats{display:flex; gap:36px; margin-top:36px}
+  .hero .stats .n{font-family:"Inter"; font-weight:700; font-size:30px; color:var(--green-deep); line-height:1}
+  .hero .stats .l{font-size:13px; color:#5a5d44; margin-top:6px}
+  .hero-img{
+    position:relative;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.25), 0 12px 30px -12px rgba(0,0,0,.18);
+    aspect-ratio: 16/10;
+  }
+  .hero-img img{width:100%; height:100%; object-fit:cover}
+  .hero-media{display:grid; gap:18px; margin-top:-12px}
+  .hero-map{
+    border:0;
+    border-radius:18px;
+    width:100%;
+    aspect-ratio:16/10;
+    min-height:0;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.22), 0 12px 30px -12px rgba(0,0,0,.16);
+    display:block;
+  }
+  .hero-tag{
+    position:absolute; left:-18px; top:24px;
+    background:#fff; padding:14px 18px; border-radius:14px;
+    box-shadow:0 12px 24px rgba(0,0,0,.12);
+    font-family:"Caveat"; font-weight:700; font-size:24px; color:var(--green-deep);
+    transform:rotate(-4deg);
+  }
+  .hero-tag .sub{display:block; font-family:"Open Sans"; font-weight:600; font-size:11px; letter-spacing:.12em; color:var(--orange); margin-top:-4px}
+  .hero-pricecard{
+    position:absolute; right:-14px; bottom:24px;
+    background:#fff; border-radius:14px; padding:14px 18px;
+    box-shadow:0 18px 32px rgba(0,0,0,.18);
+    display:flex; gap:14px; align-items:center;
+  }
+  .hero-pricecard .ribbon{
+    width:40px;height:40px;border-radius:8px; background:var(--orange); color:#fff;
+    display:grid; place-items:center; font-weight:800; font-family:"Inter"; font-size:18px;
+  }
+  .hero-pricecard .t{font-family:"Inter"; font-weight:700; font-size:15px}
+  .hero-pricecard .s{font-size:12px; color:var(--muted)}
+  /* Banners (3-up) overlap */
+  .banners{
+    margin-top:-58px; position:relative; z-index:5;
+    display:grid; grid-template-columns:repeat(3, 330px); justify-content:center; gap:18px;
+  }
+  .ban{
+    width:330px; min-height:92px; max-width:100%; border-radius:8px; box-sizing:border-box; padding:16px 20px;
+    background:#fff; border:4px solid var(--card-accent-soft); box-shadow:rgba(149,157,165,.2) 0 8px 24px;
+    position:relative; overflow:hidden; display:flex; align-items:center;
+    justify-content:flex-start; gap:16px; color:var(--ink);
+  }
+  .ban .wave{
+    position:absolute; transform:rotate(90deg); left:-31px; top:32px;
+    width:80px; fill:var(--card-accent-wash);
+  }
+  .ban .ic{
+    width:35px; height:35px; display:flex; justify-content:center; align-items:center;
+    background:var(--card-accent-wash); border-radius:50%; margin-left:8px; flex-shrink:0;
+  }
+  .ban .ic svg{width:22px;height:22px;display:block;color:var(--card-accent)}
+  .ban .message-text-container{
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+    flex-grow:1; min-width:0; position:relative; z-index:1;
+  }
+  .ban .message-text,
+  .ban .sub-text{margin:0; cursor:default}
+  .ban .message-text{color:var(--card-accent); font-size:17px; font-weight:700; line-height:1.15}
+  .ban .sub-text{font-size:14px; color:#555; line-height:1.35}
+  .ban-1{--card-accent:#d06a28; --card-accent-soft:rgba(208,106,40,.34); --card-accent-wash:rgba(208,106,40,.16)}
+  .ban-2{--card-accent:#269b24; --card-accent-soft:rgba(38,155,36,.34); --card-accent-wash:rgba(38,155,36,.16)}
+  .ban-3{--card-accent:#e10e1a; --card-accent-soft:rgba(225,14,26,.32); --card-accent-wash:rgba(225,14,26,.14)}
+  /* Section header */
+  .sec{padding:96px 0}
+  .sec-head{display:flex; align-items:end; justify-content:space-between; margin-bottom:36px; gap:24px; flex-wrap:wrap}
+  .sec-head .tag{font-family:"Caveat"; color:var(--green); font-size:24px; font-weight:700; line-height:1}
+  .sec-head h2{font-family:"Inter"; font-weight:700; font-size:42px; letter-spacing:-0.02em; margin-top:6px}
+  .sec-head p{color:var(--muted); margin-top:8px; max-width:540px; font-size:15.5px}
+  .sec-head .right{display:flex; gap:8px; align-items:center}
+  .pager-btn{
+    width:42px;height:40px;border-radius:10px;background:#F1F1F1; border:0;
+    display:grid; place-items:center; cursor:pointer; transition:background .15s;
+  }
+  .pager-btn:hover{background:#E4E4E4}
+  .pager-btn.green{background:var(--green); color:#fff}
+  .pager-btn.green:hover{background:var(--green-deep)}
+  /* Categories */
+  .cats{display:grid; grid-template-columns:repeat(7, 1fr); gap:24px}
+  .cat{display:flex; flex-direction:column; align-items:center; gap:14px; cursor:pointer; padding:8px 4px}
+  .cat .circle{
+    width:100%; max-width:118px; aspect-ratio:1/1; border-radius:50%; overflow:hidden;
+    background:var(--green-pale);
+    box-shadow:0 8px 18px rgba(0,0,0,0.06);
+    transition:transform .25s ease, box-shadow .25s ease;
+    position:relative;
+  }
+  .cat .circle img{width:100%;height:100%;object-fit:cover}
+  .cat:hover .circle{transform:translateY(-6px); box-shadow:0 16px 30px rgba(0,0,0,.14)}
+  .cat .nm{font-weight:600; font-size:14.5px; color:var(--ink-2)}
+  /* Product cards */
+  .fresh-scroll{
+    overflow:hidden; margin:0 -32px; padding:6px 32px 18px;
+    cursor:pointer;
+  }
+  .fresh-track{
+    display:flex; gap:24px; width:max-content;
+    animation:freshMarquee 55s linear infinite;
+  }
+  .fresh-scroll:hover .fresh-track,
+  .fresh-scroll:focus-within .fresh-track,
+  .fresh-scroll.paused .fresh-track{animation-play-state:paused}
+  @keyframes freshMarquee{
+    from{transform:translateX(0)}
+    to{transform:translateX(calc(-50% - 12px))}
+  }
+  .prod{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:18px; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    position:relative; overflow:hidden;
+    width:290px; flex:0 0 290px;
+  }
+  .prod:hover{transform:translateY(-4px); box-shadow:0 18px 36px rgba(0,0,0,.10); border-color:transparent}
+  .prod .ph{
+    width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden; background:var(--green-pale);
+    margin-bottom:14px; position:relative;
+  }
+  .prod .ph img{width:100%; height:100%; object-fit:cover; transition:transform .35s}
+  .prod:hover .ph img{transform:scale(1.05)}
+  .prod .badge{
+    position:absolute; top:10px; left:10px;
+    background:var(--orange); color:#fff; font-size:11px; font-weight:700;
+    padding:5px 10px; border-radius:999px; letter-spacing:.06em;
+  }
+  .prod .badge.green{background:var(--green)}
+  .prod .badge.dark{background:var(--green-deep)}
+  .prod .nm{font-family:"Inter"; font-weight:600; font-size:17px; margin-bottom:4px}
+  .prod .meta{font-size:13px; color:var(--muted); margin-bottom:12px}
+  .prod .row{display:flex; justify-content:space-between; align-items:center}
+  .prod .price{font-family:"Open Sans"; font-weight:700; font-size:18px; color:var(--ink)}
+  .prod .price s{color:var(--muted); font-size:13px; margin-right:6px; font-weight:600}
+  .prod .add{
+    width:36px;height:36px;border-radius:10px;background:var(--paper); border:0;
+    display:grid; place-items:center; cursor:pointer; transition:background .15s;
+  }
+  .prod:hover .add{background:var(--green); color:#fff}
+  /* Story strip - alternating photo-and-quote */
+  .story{
+    background:var(--paper); padding:96px 0;
+  }
+  .story-grid{display:grid; grid-template-columns:1.05fr 1fr; gap:64px; align-items:center}
+  .story h2{font-size:46px; line-height:1.05}
+  .story p{color:#4a4a3e; font-size:16.5px; line-height:1.7; margin-top:18px}
+  .story .pull{
+    border-left:3px solid var(--green); padding:8px 0 8px 18px; margin-top:24px;
+    font-family:"Caveat"; font-weight:700; font-size:24px; color:var(--green-deep);
+  }
+  .story .frame{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  }
+  .story .frame img{border-radius:14px; width:100%; height:100%; object-fit:cover; aspect-ratio:3/4; box-shadow:0 14px 28px rgba(0,0,0,.10)}
+  .story .frame .tall{aspect-ratio:3/4.4}
+  .story .frame .col{display:flex; flex-direction:column; gap:14px}
+  .story .frame .col img:first-child{aspect-ratio:3/2.4}
+  .story .frame .col img:last-child{aspect-ratio:3/2.6}
+  /* Pantry section */
+  .pantry{background:var(--green-deep); color:#fff; padding:96px 0; position:relative; overflow:hidden}
+  .pantry::before{content:""; position:absolute; right:-120px; top:-120px; width:380px; height:380px; border-radius:50%; background:rgba(255,196,63,.08)}
+  .pantry .container{position:relative; z-index:2}
+  .pantry .sec-head h2{color:#fff; font-size:46px}
+  .pantry .sec-head .tag{color:var(--yellow)}
+  .pantry .sec-head p{color:#cfd3c2}
+  .pantry-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; margin-top:8px}
+  .pantry-card{
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.12); border-radius:18px;
+    padding:24px; backdrop-filter:blur(4px);
+    display:flex; flex-direction:column;
+    transition:background .2s, transform .2s;
+  }
+  .pantry-card:hover{background:rgba(255,255,255,.07); transform:translateY(-4px)}
+  .pantry-card .ph{border-radius:12px; overflow:hidden; aspect-ratio:4/3; margin-bottom:18px}
+  .pantry-card .ph img{width:100%;height:100%;object-fit:cover}
+  .pantry-card.big{grid-row:auto}
+  .pantry-card h3{color:#fff; font-size:22px}
+  .pantry-card p{color:#cfd3c2; font-size:14px; margin-top:6px}
+  .pantry-card .pill{
+    align-self:flex-start; background:var(--yellow); color:#1a1f0e; font-weight:700; font-size:11.5px; letter-spacing:.08em;
+    padding:6px 12px; border-radius:999px; margin-bottom:12px;
+  }
+  .chip-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+  .chip{background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); padding:6px 12px; border-radius:999px; font-size:12.5px; color:#dfe3d4}
+  /* Visit / hours */
+  .visit{padding:96px 0; background:#fff}
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px}
+  .hours-card{
+    background:var(--paper); border-radius:20px; padding:36px; border:1px solid var(--line);
+    display:flex; flex-direction:column; gap:20px;
+  }
+  .hours-card h3{font-family:"Inter"; font-size:28px}
+  .hours-row{display:flex; justify-content:space-between; align-items:center; padding:14px 0; border-bottom:1px dashed #DCDDD0; font-size:15px}
+  .hours-row:last-of-type{border-bottom:0}
+  .hours-row .d{font-weight:600}
+  .hours-row .t{font-family:"Inter"; font-weight:600; color:var(--green-deep)}
+  .hours-row.today{background:var(--yellow-soft); margin:0 -16px; padding:14px 16px; border-radius:10px; border-bottom:0}
+  .hours-row.today .t{color:var(--orange)}
+  .open-now{
+    display:inline-flex; align-items:center; gap:10px; align-self:flex-start;
+    background:var(--green); color:#fff; padding:8px 14px; border-radius:999px;
+    font-size:13px; font-weight:700; letter-spacing:.05em;
+  }
+  .map-card{
+    border-radius:20px; overflow:hidden; background:#fff;
+    position:relative; min-height:420px;
+    border:1px solid var(--line);
+    display:flex; align-items:end; justify-content:start;
+    padding:24px;
+  }
+  .map-card .sign{position:absolute; left:0; right:0; top:0; bottom:120px; width:100%; height:auto; max-height:calc(100% - 120px); object-fit:contain; padding:24px}
+  .map-card .pin{
+    position:absolute; left:42%; top:38%;
+    width:48px;height:48px;border-radius:50% 50% 50% 0; transform:rotate(-45deg);
+    background:var(--orange); display:grid; place-items:center;
+    box-shadow:0 18px 26px rgba(249,95,9,.35);
+    animation:bob 2s ease-in-out infinite;
+  }
+  .pin::after{content:""; width:14px;height:14px;background:#fff;border-radius:50%}
+  @keyframes bob{0%,100%{top:38%}50%{top:35%}}
+  .map-card .label{
+    position:absolute; left:24px; bottom:24px; right:24px;
+    background:#fff; padding:18px 22px; border-radius:14px;
+    box-shadow:0 12px 26px rgba(0,0,0,.10);
+    display:flex; gap:18px; align-items:center; justify-content:space-between;
+  }
+  .map-card .label .a{font-family:"Inter"; font-weight:700; font-size:16px}
+  .map-card .label .s{font-size:13px; color:var(--muted); margin-top:2px}
+  /* Newsletter */
+  .news{
+    background:url('img/gerbers-macro.png') center/cover no-repeat;
+    position:relative;
+    padding:120px 0;
+  }
+  .news::before{content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(54,65,39,.92) 0%, rgba(54,65,39,.55) 60%, rgba(54,65,39,.2))}
+  .news .container{position:relative; z-index:2; max-width:720px; margin-left:auto; margin-right:auto; padding-left:32px}
+  .news h2{color:#fff; font-size:42px; line-height:1.1}
+  .news p{color:#dde2cf; max-width:520px; margin-top:14px}
+  .news form{display:flex; margin-top:28px; max-width:560px; background:#fff; border-radius:12px; padding:6px; gap:6px}
+  .news input{flex:1; border:0; padding:12px 16px; font-size:15px; font-family:inherit; background:transparent; outline:none}
+  .news button{background:var(--green); color:#fff; border:0; padding:12px 22px; border-radius:9px; font-weight:700; cursor:pointer; font-family:inherit}
+  .news button:hover{background:var(--green-deep)}
+  /* Footer */
+  footer{background:#fff; padding:64px 0 28px; border-top:1px solid var(--line)}
+  .foot-grid{display:grid; grid-template-columns:1.4fr repeat(3, 1fr); gap:48px}
+  .foot h5{font-family:"Inter"; font-weight:600; font-size:15px; margin-bottom:18px; color:var(--ink)}
+  .foot ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; font-size:14px; color:var(--muted)}
+  .foot ul a:hover{color:var(--green)}
+  .foot p.b{color:var(--muted); font-size:14px; margin-top:14px; max-width:320px}
+  .socials{display:flex; gap:10px; margin-top:18px}
+  .socials a{width:36px;height:36px;border-radius:50%; background:var(--paper); display:grid; place-items:center; transition:background .15s, color .15s; color:var(--green-deep)}
+  .socials a:hover{background:var(--green); color:#fff}
+  .copyright{margin-top:48px; padding-top:20px; border-top:1px solid var(--line); text-align:center; font-size:13px; color:var(--muted)}
+  /* Responsive */
+  @media (max-width:1100px){
+    .hero .container{grid-template-columns:1fr; padding-top:48px; padding-bottom:96px}
+    .banners{grid-template-columns:minmax(0, 330px); justify-content:center}
+    .cats{grid-template-columns:repeat(4, 1fr)}
+    .fresh-scroll{margin:0 -16px; padding-left:16px; padding-right:16px}
+    .pantry-grid{grid-template-columns:1fr}
+    .pantry-card.big{grid-row:auto; grid-column:auto}
+    .visit-grid, .story-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+  }
+  @media (max-width:640px){
+    .container{padding:0 16px}
+    .util{padding:6px 0; font-size:11px}
+    .util .container{flex-direction:row; justify-content:center; flex-wrap:wrap; gap:4px 12px}
+    .util .left{gap:4px 12px; justify-content:center}
+    .util .right{display:none} 
+
+    .nav .container{flex-direction:column; gap:16px; padding:16px; align-items:center}
+    .brand{justify-content:center; width:100%}
+    .brand img{height:48px}
+    .nav-btns{width:100%; justify-content:center; gap:8px}
+    .nav .cta{padding:10px 14px; font-size:13px; flex:1; justify-content:center; white-space:nowrap}
+    .nav .cta svg{width:14px; height:14px}
+
+    .pickup-card{grid-template-columns:74px 1fr 74px; padding:16px; gap:10px}
+    .pickup-card lord-icon{width:74px;height:74px}
+    .pickup-card h3{font-size:18px}
+    .pickup-card p{font-size:13px}
+    .pickup-card .card-btn{padding:9px 12px; font-size:12px}
+    .cats{grid-template-columns:repeat(3, 1fr)}
+    .prod{width:260px; flex-basis:260px}
+    .pantry-grid{grid-template-columns:1fr}
+    .pantry-card.big{grid-column:auto}
+    .foot-grid{grid-template-columns:1fr}
+    .hero h1{font-size:42px}
+    .news form{flex-direction:column}
+    .hide-mobile{display:none}
+  }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+<script type="text/babel" data-presets="env,react">
+const { useState, useEffect, useCallback, useRef } = React;
+
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "accent": "cream",
+  "showHeroPriceCard": false,
+  "showStats": false
+}/*EDITMODE-END*/;
+
+// ---- Data ----
+const NAV = ["Home","What's Fresh","Pickup/Delivery","Visit Us","About"];
+
+const CATEGORIES = [
+  { name:"Mums & Pumpkins", img:"img/welcome-mums.png" },
+  { name:"Hanging Baskets", img:"img/hanging-basket.png" },
+  { name:"Tomatoes",         img:"img/missouri-grown.png" },
+  { name:"Berries",          img:"img/strawberries.png" },
+  { name:"Melons",           img:"img/watermelons.png" },
+  { name:"Bedding Plants",   img:"img/gerber-pots.png" },
+  { name:"Pantry & Jams",    img:"img/pantry-wall.png" },
+];
+
+const PRODUCTS = {
+  Spring: [
+    { name:"4-Inch Pot Gerbera",   meta:"Mixed colors - assorted",  price:"$4.99", img:"img/gerber-pots.png", tag:"NEW", tagClass:"green" },
+    { name:"Premium Hanging Basket", meta:"Begonia + impatiens",    price:"$24.99", was:"$29.99", img:"img/hanging-basket.png", tag:"BLUE RIBBON", tagClass:"dark" },
+    { name:"Bedding Flat",          meta:"36 plants, mixed varieties", price:"$18.50", img:"img/aerial-flowers.png" },
+    { name:"Trailing Vine Bowl",    meta:"Pothos, ivy, wandering jew", price:"$32.00", img:"img/hanging-plants.png" },
+  ],
+  Summer: [
+    { name:"Slicing Tomatoes",      meta:"Missouri-grown, vine-ripe", price:"$3.99 / lb", img:"img/missouri-grown.png", tag:"LOCAL", tagClass:"green" },
+    { name:"Sweet Watermelon",      meta:"Seedless, grown in MO",     price:"$6.99 ea", img:"img/watermelons.png" },
+    { name:"Fresh Strawberries",    meta:"1 lb clamshell, vine-ripe", price:"$5.99", was:"$7.99", img:"img/strawberries.png", tag:"PEAK" },
+    { name:"Wild Wonders Cherry Tomatoes", meta:"Multi-color medley", price:"$4.49", img:"img/salsa-tomatoes.png" },
+  ],
+  Fall: [
+    { name:"Hardy Garden Mums",     meta:"9-inch pot, multiple colors", price:"$8.99", img:"img/welcome-mums.png", tag:"IN SEASON", tagClass:"green" },
+    { name:"Carving Pumpkins",      meta:"Sized small to giant",      price:"from $4", img:"img/storefront.png" },
+    { name:"Cornstalks & Decor",    meta:"By the bundle",             price:"$12.00", img:"img/rainy-stand.png" },
+    { name:"Mrs. Renfro's Salsa",   meta:"Tequila, mango, peach...",  price:"$5.49", img:"img/salsa-tomatoes.png", tag:"PANTRY", tagClass:"dark" },
+  ],
+};
+
+// ---- Components ----
+function FreshIcon(){return (
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M13 27h38l-5 23H18L13 27Z" fill="currentColor"/>
+    <path d="M21 27c1.4-8 5.2-12 11-12s9.6 4 11 12" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round"/>
+    <circle cx="25" cy="36" r="5" fill="#fff"/>
+    <circle cx="38" cy="36" r="5" fill="#fff"/>
+    <circle cx="31" cy="45" r="5" fill="#fff"/>
+    <path d="M41 19c5-6 11-6 16-3-2 6-8 10-16 8" fill="currentColor"/>
+  </svg>
+);}
+function LeafIcon(){return (
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M15 47c9-23 25-33 42-34-1 15-9 29-25 34-7 2-13 2-17 0Z" fill="currentColor"/>
+    <path d="M18 47c11-13 23-22 36-30" fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
+    <rect x="8" y="13" width="25" height="18" rx="7" fill="#fff"/>
+    <text x="13" y="26" fill="currentColor" fontFamily="Inter, Arial, sans-serif" fontSize="13" fontWeight="900">MO</text>
+  </svg>
+);}
+function TruckIcon(){return (
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M8 23h29v21H8V23Z" fill="currentColor"/>
+    <path d="M37 30h10l8 8v6H37V30Z" fill="currentColor"/>
+    <path d="M14 23l5-9h17l5 9" fill="currentColor"/>
+    <circle cx="20" cy="48" r="6" fill="currentColor"/>
+    <circle cx="48" cy="48" r="6" fill="currentColor"/>
+    <circle cx="20" cy="48" r="2.5" fill="#fff"/>
+    <circle cx="48" cy="48" r="2.5" fill="#fff"/>
+    <path d="M16 33h13M16 38h9" stroke="#fff" strokeWidth="4" strokeLinecap="round"/>
+  </svg>
+);}
+
+function PickupDeliveryCard(){
+  return (
+    <a className="pickup-card" href="pickup-delivery.html">
+      <lord-icon
+        src="https://cdn.lordicon.com/rezibkiy.json"
+        trigger="loop"
+        delay="2000"
+        colors="primary:#121331,secondary:#e88c30">
+      </lord-icon>
+      <div className="copy">
+        <div className="kicker">Pickup &amp; Delivery</div>
+        <h3>Fresh boxes, stand pickup, and bulk delivery</h3>
+        <p>Residential boxes plus school, church, and wholesale delivery options.</p>
+        <span className="card-btn">View Pickup &amp; Delivery</span>
+      </div>
+      <lord-icon
+        src="https://cdn.lordicon.com/byupthur.json"
+        trigger="loop"
+        colors="primary:#121331,secondary:#e88c30">
+      </lord-icon>
+    </a>
+  );
+}
+
+function Nav({active, setActive}){
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(()=>{
+    const onScroll=()=>setScrolled(window.scrollY>20);
+    window.addEventListener('scroll', onScroll);
+    return ()=>window.removeEventListener('scroll', onScroll);
+  },[]);
+  return (
+    <>
+      <div className="util">
+        <div className="container">
+          <div className="left">
+            <span><span className="dot"></span> Open 7 days a week</span>
+            <span className="hide-mobile">St. Charles, MO - 7 days a week</span>
+            <span>EBT - Cash - Card welcome</span>
+          </div>
+          <div className="right">
+            <a href="#visit-us">Directions</a>
+            <a href="pickup-delivery.html#business-delivery">Wholesale</a>
+          </div>
+        </div>
+      </div>
+      <nav className={`nav ${scrolled?'scrolled':''}`}>
+        <div className="container">
+          <a href="#" className="brand">
+            <img src="img/logo.png" alt="Krystal's Produce" />
+          </a>
+          <div className="nav-links">
+            {NAV.map(l=>(
+              l==="Pickup/Delivery" ? (
+                <a key={l} href="pickup-delivery.html">{l}</a>
+              ) : (
+                <a key={l} className={l===active?"active":""} onClick={(e)=>{e.preventDefault(); setActive(l); const id=l.toLowerCase().replace(/[^a-z]/g,'-'); document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});}}>
+                  {l}
+                </a>
+              )
+            ))}
+          </div>
+          <div className="nav-btns">
+            <a href="#what-s-fresh" className="cta green" onClick={(e)=>{e.preventDefault(); document.getElementById('what-s-fresh')?.scrollIntoView({behavior:'smooth'});}}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12 L 19 12 M 13 6 L 19 12 L 13 18"/></svg>
+              See Whats Fresh
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=3156%20Elm%20Point%20Industrial%20Dr%2C%20St%20Charles%2C%20MO%2063301" target="_blank" rel="noopener" className="cta">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 C 8 2 5 5 5 9 C 5 14 12 22 12 22 C 12 22 19 14 19 9 C 19 5 16 2 12 2 Z M 12 12 C 10.3 12 9 10.7 9 9 C 9 7.3 10.3 6 12 6 C 13.7 6 15 7.3 15 9 C 15 10.7 13.7 12 12 12 Z"/></svg>
+              Open in Maps
+            </a>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+}
+
+function Hero({tweaks}){
+  return (
+    <section className="hero" id="home">
+      <div className="container">
+        <div>
+          <span className="eyebrow"><span className="pulse"></span> NOW IN SEASON - SPRING BEDDING PLANTS</span>
+          <h1>
+            Fresh<br/>
+            <div className="dropping-texts" style={{marginLeft:0}}>
+              <div>produce</div>
+              <div>flowers</div>
+              <div>pantry favorites</div>
+            </div>
+            <br/><em>close to home.</em>
+          </h1>
+          <p className="lede">Family-run roadside stand at 3156 Elm Point Industrial Dr in St. Charles, Missouri. Mums in the fall, hanging baskets all spring, sweet corn in July, and a whole wall of small-batch sauces and jams year round.</p>
+          <div className="actions">
+            <button className="btn btn-dark" onClick={()=>document.getElementById('what-s-fresh')?.scrollIntoView({behavior:'smooth'})}>See What's Fresh
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 12 L 19 12 M 13 6 L 19 12 L 13 18" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </button>
+            <button className="btn btn-ghost" onClick={()=>document.getElementById('visit-us')?.scrollIntoView({behavior:'smooth'})}>Get Directions</button>
+          </div>
+          {tweaks.showStats && (
+            <div className="stats">
+              <div><div className="n">23+</div><div className="l">Years serving St. Charles</div></div>
+              <div><div className="n">100%</div><div className="l">Missouri-grown produce</div></div>
+              <div><div className="n">7</div><div className="l">Days a week, rain or shine</div></div>
+            </div>
+          )}
+        </div>
+        <div className="hero-media">
+          <div className="hero-img">
+          <img src="img/hero-main.png" alt="Krystal's Produce flower baskets and produce stand" />
+          {tweaks.showHeroPriceCard && (
+            <div className="hero-pricecard">
+                <div className="ribbon">*</div>
+              <div>
+                <div className="t">Today's Pick</div>
+                <div className="s">Hardy garden mums - $8.99</div>
+              </div>
+            </div>
+          )}
+          </div>
+          <iframe
+            className="hero-map"
+            title="Map to Krystal's Produce"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=3156%20Elm%20Point%20Industrial%20Dr%2C%20St%20Charles%2C%20MO%2063301&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Banners(){
+  return (
+    <div className="container">
+      <div className="banners">
+        <div className="ban ban-1">
+          <svg className="wave" viewBox="0 0 1440 320" aria-hidden="true"><path d="M0,96L60,112C120,128,240,160,360,154.7C480,149,600,107,720,96C840,85,960,107,1080,138.7C1200,171,1320,213,1380,234.7L1440,256L1440,320L0,320Z"/></svg>
+          <div className="ic"><FreshIcon/></div>
+          <div className="message-text-container"><h4 className="message-text">Picked This Morning</h4><p className="sub-text">Tomatoes, sweet corn, peppers and berries from farms within 60 miles of the stand.</p></div>
+        </div>
+        <div className="ban ban-2">
+          <svg className="wave" viewBox="0 0 1440 320" aria-hidden="true"><path d="M0,96L60,112C120,128,240,160,360,154.7C480,149,600,107,720,96C840,85,960,107,1080,138.7C1200,171,1320,213,1380,234.7L1440,256L1440,320L0,320Z"/></svg>
+          <div className="ic"><LeafIcon/></div>
+          <div className="message-text-container"><h4 className="message-text">Missouri Grown</h4><p className="sub-text">Most of what we sell rode here in a pickup truck, not a refrigerated semi.</p></div>
+        </div>
+        <div className="ban ban-3">
+          <svg className="wave" viewBox="0 0 1440 320" aria-hidden="true"><path d="M0,96L60,112C120,128,240,160,360,154.7C480,149,600,107,720,96C840,85,960,107,1080,138.7C1200,171,1320,213,1380,234.7L1440,256L1440,320L0,320Z"/></svg>
+          <div className="ic"><TruckIcon/></div>
+          <div className="message-text-container"><h4 className="message-text">Wholesale Delivery</h4><p className="sub-text">Restaurants, churches and schools can call ahead for cases and bulk pricing.</p></div>
+        </div>
+        <div className="banners-pickup">
+          <PickupDeliveryCard/>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Categories(){
+  return (
+    <section className="sec" id="home" style={{paddingTop:'120px', paddingBottom:'48px'}}>
+      <div className="container">
+        <div className="sec-head">
+          <div>
+            <div className="tag">~ shop the stand ~</div>
+            <h2>Popular categories</h2>
+            <p>Stroll the same way you would on a Saturday, with flowers in front, produce under the tent, and the pantry shelf along the back wall.</p>
+          </div>
+          <div className="right">
+            <button className="pager-btn" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button className="pager-btn green" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div className="cats">
+          {CATEGORIES.map(c=>(
+            <div className="cat" key={c.name}>
+              <div className="circle"><img src={c.img} alt={c.name}/></div>
+              <div className="nm">{c.name}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhatsFresh(){
+  const [paused, setPaused] = useState(false);
+  const freshItems = Object.values(PRODUCTS).flat();
+  const scrollingItems = [...freshItems, ...freshItems];
+  return (
+    <section className="sec" id="what-s-fresh" style={{paddingTop:'72px'}}>
+      <div className="container">
+        <div className="sec-head">
+          <div>
+            <div className="tag">~ today on the tables ~</div>
+            <h2>What's fresh now</h2>
+            <p>Stock changes weekly with the harvest. Browse the full stand list, and hover or click to pause the scroll.</p>
+          </div>
+        </div>
+        <div
+          className={`fresh-scroll ${paused?'paused':''}`}
+          onClick={()=>setPaused(p=>!p)}
+          onMouseLeave={()=>setPaused(false)}
+          aria-label="Scrolling list of fresh products. Click to pause or resume."
+        >
+          <div className="fresh-track">
+          {scrollingItems.map((p,i)=>(
+            <div className="prod" key={`${p.name}-${i}`}>
+              <div className="ph">
+                {p.tag && <div className={`badge ${p.tagClass||''}`}>{p.tag}</div>}
+                <img src={p.img} alt={p.name}/>
+              </div>
+              <div className="nm">{p.name}</div>
+              <div className="meta">{p.meta}</div>
+              <div className="row">
+                <div className="price">{p.was && <s>{p.was}</s>}{p.price}</div>
+                <button className="add" aria-label="Add">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+              </div>
+            </div>
+          ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Story(){
+  return (
+    <section className="story" id="about">
+      <div className="container">
+        <div className="story-grid">
+          <div>
+            <div className="tag" style={{color:'var(--green)', fontFamily:'Caveat', fontWeight:700, fontSize:24}}>~ our story ~</div>
+            <h2>A roadside stand, a couple of pickup trucks,<br/>and a lot of good neighbors.</h2>
+            <p>Krystal's Produce started in 2002 with a folding table and a load of sweet corn. Two decades later we're still buying direct from Missouri growers we know by name, still serving St. Charles from Elm Point Industrial Dr, and still selling tomatoes that taste like tomatoes.</p>
+            <p>Spring brings the bedding plants, including flats of impatiens, geraniums, and the gerberas folks line up for. Summer is melons, peaches, sweet corn, and as many tomatoes as we can squeeze under the tent. Fall is mums, cornstalks, gourds, and pumpkins by the wagonload.</p>
+            <div className="pull">"If we wouldn't put it on our own table,<br/>we don't put it on yours."<br/><span style={{fontFamily:'Open Sans', fontSize:13, color:'#778066', fontWeight:600, letterSpacing:'.06em', textTransform:'uppercase'}}>- Krystal &amp; Family</span></div>
+          </div>
+          <div className="frame">
+            <img className="tall" src="img/spring-stand.png" alt=""/>
+            <div className="col">
+              <img src="img/storefront.png" alt=""/>
+              <img src="img/rainy-stand.png" alt=""/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pantry(){
+  return (
+    <section className="pantry" id="pantry">
+      <div className="container">
+        <div className="sec-head">
+          <div>
+            <div className="tag">~ on the back wall ~</div>
+            <h2>Pantry &amp; provisions</h2>
+            <p>Small-batch sauces, jams, pickles, apple butter, raw honey, fresh-pressed lemonade, and a wall of Mrs. Renfro's salsas you won't find at the chain stores.</p>
+          </div>
+        </div>
+        <div className="pantry-grid">
+          <div className="pantry-card big">
+            <div className="ph"><img src="img/pantry-wall.png" alt="The pantry wall"/></div>
+            <span className="pill">FAMOUS WALL</span>
+            <h3>Eight shelves, hundreds of jars</h3>
+            <p>BBQ sauces, pickles, apple butters, hot sauces, dressings, steak marinades, and at least a dozen kinds of jam. Most are made within a couple hours of the stand.</p>
+            <div className="chip-row">
+              <span className="chip">Pickles</span>
+              <span className="chip">Apple Butters</span>
+              <span className="chip">Wing Sauces</span>
+              <span className="chip">Salad Dressings</span>
+              <span className="chip">BBQ</span>
+              <span className="chip">Jams &amp; Jellies</span>
+            </div>
+          </div>
+          <div className="pantry-card">
+            <div className="ph"><img src="img/salsa-tomatoes.png" alt="Mrs. Renfro's salsa shelf"/></div>
+            <span className="pill">12 VARIETIES</span>
+            <h3>Mrs. Renfro's Salsa</h3>
+            <p>Tequila, ghost pepper, raspberry chipotle, mango habanero, peach, pineapple. Pick a heat, pick a fruit.</p>
+          </div>
+          <div className="pantry-card">
+            <div className="ph"><img src="img/missouri-grown.png" alt="Local raw honey"/></div>
+            <span className="pill">LOCAL &amp; RAW</span>
+            <h3>Honey, Eggs &amp; Lemonade</h3>
+            <p>Cage-free brown eggs, raw local honey, fresh-pressed lemonade by the gallon. Seafood Friday through Sunday.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VisitUs(){
+  const days = [
+    ['Monday','8:30 AM - 6:30 PM', false],
+    ['Tuesday','8:30 AM - 6:30 PM', false],
+    ['Wednesday','8:30 AM - 6:30 PM', false],
+    ['Thursday','8:30 AM - 6:30 PM', false],
+    ['Friday','8:30 AM - 7:00 PM', false],
+    ['Saturday','8:30 AM - 7:00 PM', false],
+    ['Sunday','8:30 AM - 7:00 PM', false],
+  ];
+  return (
+    <section className="visit" id="visit-us">
+      <div className="container">
+        <div className="sec-head">
+          <div>
+            <div className="tag">~ come see us ~</div>
+            <h2>Visit the stand</h2>
+            <p>We're on the lot 7 days a week, March through Christmas. Pull right in. There's room for the truck.</p>
+          </div>
+        </div>
+        <div className="visit-grid">
+          <div className="hours-card">
+            <span className="open-now"><span style={{width:8,height:8,borderRadius:'50%',background:'#fff'}}></span>OPEN 7 DAYS</span>
+            <h3>Hours</h3>
+            <div>
+              {days.map(([d,t,today])=>(
+                <div key={d} className={`hours-row ${today?'today':''}`}><span className="d">{d}{today?' (today)':''}</span><span className="t">{t}</span></div>
+              ))}
+            </div>
+            <div style={{paddingTop:8, fontSize:13, color:'var(--muted)'}}>Open March through Christmas Eve. Closed Easter Sunday and Thanksgiving Day.</div>
+          </div>
+          <div className="map-card">
+            <img className="sign" src="img/open-sign.png" alt="Open 7 days a week" />
+            <div className="label">
+              <div>
+                <div className="a">Krystal's Produce</div>
+                <div className="s">3156 Elm Point Industrial Dr, St. Charles, MO 63301</div>
+              </div>
+              <a className="btn btn-primary" style={{padding:'10px 16px'}} href="https://www.google.com/maps/dir/?api=1&destination=3156%20Elm%20Point%20Industrial%20Dr%2C%20St%20Charles%2C%20MO%2063301" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 11 L21 3 L13 21 L11 13 L3 11Z"/></svg>
+                Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Newsletter(){
+  return (
+    <section className="news">
+      <div className="container">
+        <div className="tag" style={{color:'#FFC43F', fontFamily:'Caveat', fontWeight:700, fontSize:24}}>~ stay in the loop ~</div>
+        <h2>Know what's on the tables before you drive out.</h2>
+        <p>Quick weekly text when sweet corn shows up, when peaches peak, and when the mum trucks land in September.</p>
+        <form onSubmit={(e)=>{e.preventDefault(); alert("Thanks - we'll text you when the corn is in.");}}>
+          <input type="email" placeholder="you@email.com" required/>
+          <button type="submit">Send me the list</button>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+function Footer(){
+  return (
+    <footer>
+      <div className="container">
+        <div className="foot-grid">
+          <div className="foot">
+            <div className="brand brand-foot" style={{marginBottom:8}}>
+              <img src="img/logo.png" alt="Krystal's Produce" />
+            </div>
+            <p className="b">Family-run produce stand and garden center in St. Charles since 2002. Mums to melons, plants to pickles.</p>
+            <div className="socials">
+              <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22V12h3l1-4h-4V5.5C13 4.5 13.5 4 15 4h2V0h-3c-3 0-5 2-5 5v3H6v4h3v10h4z"/></svg></a>
+              <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+              <a href="#" aria-label="Phone"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.5 2.9 3.7 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A18 18 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg></a>
+            </div>
+          </div>
+          <div className="foot">
+            <h5>The Stand</h5>
+            <ul>
+              <li><a href="#what-s-fresh">What's Fresh</a></li>
+              <li><a href="pickup-delivery.html">Pickup &amp; Delivery</a></li>
+              <li><a href="#pantry">Pantry &amp; Provisions</a></li>
+              <li><a href="#about">Our Story</a></li>
+            </ul>
+          </div>
+          <div className="foot">
+            <h5>Visit</h5>
+            <ul>
+              <li>3156 Elm Point Industrial Dr</li>
+              <li>St. Charles, MO 63301</li>
+              <li><a href="#visit-us">Get directions</a></li>
+            </ul>
+          </div>
+          <div className="foot">
+            <h5>Wholesale</h5>
+            <ul>
+              <li>Restaurants &amp; cafes</li>
+              <li>Schools &amp; churches</li>
+              <li>Cases &amp; bulk pricing</li>
+              <li><a href="pickup-delivery.html#business-delivery">Delivery planning</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="copyright">Copyright 2026 Krystal's Produce. Family-run since 2002. We accept EBT, cash, and major cards.</div>
+      </div>
+    </footer>
+  );
+}
+
+function App(){
+  const [active, setActive] = useState('Home');
+  const [tweaks, setTweaks] = useState(TWEAKS);
+  const [tweaksOpen, setTweaksOpen] = useState(false);
+
+  // Tweaks protocol
+  useEffect(()=>{
+    const onMsg=(e)=>{
+      if(!e.data || typeof e.data!=='object') return;
+      if(e.data.type==='__activate_edit_mode') setTweaksOpen(true);
+      if(e.data.type==='__deactivate_edit_mode') setTweaksOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({type:'__edit_mode_available'}, '*');
+    return ()=>window.removeEventListener('message', onMsg);
+  },[]);
+
+  const setTweak = (k,v)=>{
+    setTweaks(t=>{const n={...t,[k]:v}; window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[k]:v}}, '*'); return n;});
+  };
+
+  // Theme accent
+  useEffect(()=>{
+    const root=document.documentElement;
+    if(tweaks.accent==='yellow'){root.style.setProperty('--yellow','#FFC43F'); root.style.setProperty('--orange','#F95F09');}
+    if(tweaks.accent==='peach'){root.style.setProperty('--yellow','#F4B26A'); root.style.setProperty('--orange','#D9603F');}
+    if(tweaks.accent==='cream'){root.style.setProperty('--yellow','#F5E9C4'); root.style.setProperty('--orange','#C66A2C');}
+  },[tweaks.accent]);
+
+  return (
+    <>
+      <Nav active={active} setActive={setActive}/>
+      <Hero tweaks={tweaks}/>
+      <Banners/>
+      <Categories/>
+      <WhatsFresh/>
+      <Story/>
+      <Pantry/>
+      <VisitUs/>
+      <Newsletter/>
+      <Footer/>
+      {tweaksOpen && (
+        <div style={{
+          position:'fixed', right:24, bottom:24, width:280,
+          background:'#fff', border:'1px solid #E2E2E2', borderRadius:14,
+          padding:18, boxShadow:'0 24px 48px rgba(0,0,0,.18)', zIndex:300, fontFamily:'"Open Sans"'
+        }}>
+          <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:14}}>
+            <strong style={{fontFamily:'"Inter"', fontSize:15}}>Tweaks</strong>
+            <button onClick={()=>{setTweaksOpen(false); window.parent.postMessage({type:'__edit_mode_dismissed'},'*');}} style={{border:0, background:'transparent', cursor:'pointer', fontSize:18, color:'#999'}}>x</button>
+          </div>
+          <div style={{fontSize:12, color:'#666', marginBottom:8, fontWeight:600, textTransform:'uppercase', letterSpacing:'.06em'}}>Hero Accent</div>
+          <div style={{display:'flex', gap:8, marginBottom:18}}>
+            {[['yellow','#FFC43F'],['peach','#F4B26A'],['cream','#F5E9C4']].map(([k,c])=>(
+              <button key={k} onClick={()=>setTweak('accent',k)} style={{
+                flex:1, height:36, borderRadius:8, border:tweaks.accent===k?'2px solid #364127':'1px solid #E2E2E2',
+                background:c, cursor:'pointer', fontWeight:600, fontSize:12, color:'#1a1f0e', textTransform:'capitalize'
+              }}>{k}</button>
+            ))}
+          </div>
+          <label style={{display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:13, marginBottom:10}}>
+            <span>Show "Today's Pick" card</span>
+            <input type="checkbox" checked={tweaks.showHeroPriceCard} onChange={(e)=>setTweak('showHeroPriceCard', e.target.checked)}/>
+          </label>
+          <label style={{display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:13}}>
+            <span>Show stat row</span>
+            <input type="checkbox" checked={tweaks.showStats} onChange={(e)=>setTweak('showStats', e.target.checked)}/>
+          </label>
+        </div>
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
