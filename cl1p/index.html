@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="/assets/favicon-144.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <title>Local Logic IT | Secure In-Memory Clipboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/assets/phosphor/style.css" />
+  <link rel="stylesheet" href="/css/brand.css?v=20260510_2" />
+  
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: var(--bg-graphite);
+      margin: 0;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background network lines decoration */
+    .bg-decoration {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .clipboard-container {
+      width: 100%;
+      max-width: 550px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .brand-header img {
+      width: 160px;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    .brand-tagline {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .clip-card {
+      padding: 40px;
+      display: none;
+    }
+
+    .clip-card.active {
+      display: block;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 24px;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      color: white;
+      padding: 14px 18px;
+      font-family: var(--font-main);
+      font-size: 1rem;
+      transition: var(--transition);
+      box-sizing: border-box;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 12px rgba(0, 102, 255, 0.15);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 180px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .btn-full {
+      width: 100%;
+      padding: 14px 28px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .alert {
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .alert-info {
+      background: rgba(0, 102, 255, 0.1);
+      border: 1px solid rgba(0, 102, 255, 0.2);
+      color: #99c2ff;
+    }
+
+    .alert-warning {
+      background: rgba(255, 138, 0, 0.1);
+      border: 1px solid rgba(255, 138, 0, 0.2);
+      color: #ffd299;
+    }
+
+    .alert-error {
+      background: rgba(255, 77, 77, 0.1);
+      border: 1px solid rgba(255, 77, 77, 0.2);
+      color: #ffcccc;
+    }
+
+    .alert i {
+      font-size: 1.2rem;
+      margin-top: 1px;
+    }
+
+    .lock-icon-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .lock-icon-container i {
+      font-size: 3rem;
+      color: var(--accent-blue);
+      background: rgba(0, 102, 255, 0.1);
+      padding: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 102, 255, 0.2);
+      display: inline-block;
+    }
+
+    .read-only-content {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 1rem;
+      color: #e6e6e6;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 250px;
+      overflow-y: auto;
+      margin-bottom: 24px;
+    }
+
+    /* Actions row */
+    .actions-row {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .actions-row .btn {
+      flex: 1;
+    }
+
+    /* Shake animation for errors */
+    .shake {
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-decoration"></div>
+
+  <div class="clipboard-container">
+    
+    <div class="brand-header">
+      <img src="/assets/logo.png" alt="Local Logic IT Logo" width="160" height="34" />
+      <div class="brand-tagline">Local Service. Logical Solutions.</div>
+    </div>
+
+    <!-- 1. Lock Screen Card -->
+    <div id="card-lock" class="glass-panel clip-card active">
+      <div class="lock-icon-container">
+        <i class="ph ph-lock-simple"></i>
+      </div>
+      <h2 class="card-title">Enter Access Key</h2>
+      
+      <div id="lock-error" class="alert alert-error" style="display: none;">
+        <i class="ph ph-warning-circle"></i>
+        <div>Invalid access key. Please try again.</div>
+      </div>
+
+      <form id="lock-form" onsubmit="handleUnlock(event)">
+        <div class="form-group">
+          <label class="form-label" for="access-key">Access Key</label>
+          <input 
+            type="password" 
+            id="access-key" 
+            class="form-control" 
+            placeholder="••••" 
+            required 
+            pattern="[0-9]*" 
+            inputmode="numeric"
+            autocomplete="off"
+            autofocus 
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          <i class="ph ph-key"></i> Unlock Clipboard
+        </button>
+      </form>
+    </div>
+
+    <!-- 2. Write Screen Card -->
+    <div id="card-write" class="glass-panel clip-card">
+      <h2 class="card-title">Clipboard is <span class="text-gradient-blue">Empty</span></h2>
+      
+      <div class="alert alert-info">
+        <i class="ph ph-info"></i>
+        <div>No text is stored right now. Write something below to save it securely in-memory.</div>
+      </div>
+
+      <div id="write-error" class="alert alert-error" style="display: none;">
+        <i class="ph ph-warning-circle"></i>
+        <div id="write-error-msg">Error saving text.</div>
+      </div>
+
+      <form id="write-form" onsubmit="handleSave(event)">
+        <div class="form-group">
+          <label class="form-label" for="clipboard-text">Text to Store</label>
+          <textarea 
+            id="clipboard-text" 
+            class="form-control" 
+            placeholder="Paste your secure text, password, or configuration here..." 
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-full">
+          <i class="ph ph-paper-plane-tilt"></i> Store in RAM
+        </button>
+      </form>
+    </div>
+
+    <!-- 3. Read Screen Card -->
+    <div id="card-read" class="glass-panel clip-card">
+      <h2 class="card-title">Secure Content <span class="text-gradient-amber">Retrieved!</span></h2>
+      
+      <div class="alert alert-warning">
+        <i class="ph ph-shield-warning"></i>
+        <div><strong>Caution:</strong> This data was held in-memory and has been destroyed on the server. Copy it now, as refreshing this page will lose it forever.</div>
+      </div>
+
+      <div class="read-only-content" id="retrieved-content"></div>
+
+      <div class="actions-row">
+        <button onclick="copyContent()" class="btn btn-secondary">
+          <i class="ph ph-copy"></i> Copy Content
+        </button>
+        <button onclick="resetClipboard()" class="btn btn-outline">
+          <i class="ph ph-arrows-clockwise"></i> Clear / New
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.2/src/index.js" crossorigin="anonymous" integrity="sha384-Z55j2G5H5nU68XhU3S2fWpX36F0L49F5N5uS9Z8xG7m3/0L3d4N5y6z7w8v9u0A="></script>
+  <script>
+    let savedKey = sessionStorage.getItem('clip_key');
+
+    window.onload = function() {
+      if (savedKey) {
+        document.getElementById('access-key').value = savedKey;
+        checkStatus(savedKey);
+      }
+    };
+
+    function showCard(cardId) {
+      document.querySelectorAll('.clip-card').forEach(card => card.classList.remove('active'));
+      document.getElementById(cardId).classList.add('active');
+    }
+
+    async function checkStatus(key) {
+      try {
+        const response = await fetch('/cl1p/api/status', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key })
+        });
+        
+        if (response.status === 401) {
+          sessionStorage.removeItem('clip_key');
+          showError('lock-error');
+          showCard('card-lock');
+          return;
+        }
+
+        const data = await response.json();
+        if (data.empty) {
+          showCard('card-write');
+          document.getElementById('clipboard-text').focus();
+        } else {
+          retrieveContent(key);
+        }
+      } catch (err) {
+        showError('lock-error', 'Server error checking status.');
+      }
+    }
+
+    async function handleUnlock(e) {
+      e.preventDefault();
+      const key = document.getElementById('access-key').value.trim();
+      sessionStorage.setItem('clip_key', key);
+      checkStatus(key);
+    }
+
+    async function handleSave(e) {
+      e.preventDefault();
+      const text = document.getElementById('clipboard-text').value;
+      const key = sessionStorage.getItem('clip_key');
+
+      try {
+        const response = await fetch('/cl1p/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key, text })
+        });
+
+        if (response.ok) {
+          document.getElementById('clipboard-text').value = '';
+          checkStatus(key);
+        } else {
+          const errData = await response.json();
+          showError('write-error', errData.error || 'Failed to save.');
+        }
+      } catch (err) {
+        showError('write-error', 'Server connection failure.');
+      }
+    }
+
+    async function retrieveContent(key) {
+      try {
+        const response = await fetch('/cl1p/api/get', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ key })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          document.getElementById('retrieved-content').textContent = data.text || '[Empty Content]';
+          showCard('card-read');
+        } else {
+          showCard('card-lock');
+        }
+      } catch (err) {
+        showCard('card-lock');
+      }
+    }
+
+    function copyContent() {
+      const text = document.getElementById('retrieved-content').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const copyBtn = document.querySelector('.actions-row button:first-child');
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="ph ph-check"></i> Copied!';
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+        }, 2000);
+      });
+    }
+
+    function resetClipboard() {
+      const key = sessionStorage.getItem('clip_key');
+      checkStatus(key);
+    }
+
+    function showError(elementId, msg) {
+      const errDiv = document.getElementById(elementId);
+      if (msg && errDiv.querySelector('div')) {
+        errDiv.querySelector('div').textContent = msg;
+      }
+      errDiv.style.display = 'flex';
+      
+      // Shake animation
+      const card = errDiv.closest('.clip-card');
+      card.classList.add('shake');
+      setTimeout(() => card.classList.remove('shake'), 400);
+    }
+  </script>
+</body>
+</html>
