@@ -1,0 +1,12 @@
+{
+  "name": "locallogicit-cl1p",
+  "main": "src/index.js",
+  "compatibility_date": "2024-05-01",
+  "workers_dev": true,
+  "kv_namespaces": [
+    {
+      "binding": "CLIP_KV",
+      "id": "6ee180c67dad41bba8f09088cece2fe2"
+    }
+  ]
+}
