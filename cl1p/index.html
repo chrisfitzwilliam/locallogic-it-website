@@ -316,6 +316,23 @@
       </div>
     </div>
 
+    <!-- 4. Success Screen Card -->
+    <div id="card-success" class="glass-panel clip-card">
+      <div class="lock-icon-container">
+        <i class="ph ph-check-circle" style="color: var(--accent-blue); background: rgba(0, 102, 255, 0.1); border-color: rgba(0, 102, 255, 0.2);"></i>
+      </div>
+      <h2 class="card-title">Stored in <span class="text-gradient-blue">RAM</span></h2>
+      
+      <div class="alert alert-info">
+        <i class="ph ph-info"></i>
+        <div>Your text has been securely stored. The very next device to access this page with the access key will retrieve and permanently delete it.</div>
+      </div>
+
+      <button onclick="resetClipboard()" class="btn btn-primary btn-full">
+        <i class="ph ph-arrows-clockwise"></i> Done
+      </button>
+    </div>
+
   </div>
 
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.2/src/index.js" crossorigin="anonymous" integrity="sha384-Z55j2G5H5nU68XhU3S2fWpX36F0L49F5N5uS9Z8xG7m3/0L3d4N5y6z7w8v9u0A="></script>
@@ -383,7 +400,7 @@
 
         if (response.ok) {
           document.getElementById('clipboard-text').value = '';
-          checkStatus(key);
+          showCard('card-success');
         } else {
           const errData = await response.json();
           showError('write-error', errData.error || 'Failed to save.');
