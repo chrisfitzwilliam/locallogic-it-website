@@ -416,6 +416,14 @@ body.is-loaded .pill-wrapper[data-pill-position="center"].is-docking {
   visibility: hidden;
 }
 
+/* Hide tagline when scrolled down to prevent overlapping content */
+.pill-wrapper.is-scrolled .tagline-pill {
+  opacity: 0 !important;
+  transform: translateX(-50%) translateY(-6px) !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
 /* ── Flash animation (for chooser selection) ── */
 @keyframes flash-out {
   0% { opacity: 0.8; }

@@ -99,6 +99,17 @@
     shell.classList.remove('tagline-anchored');
   });
 
+  // ── Scroll Listener: hide tagline pill when scrolled down ──
+  function updateScrollState() {
+    if (window.scrollY > 40) {
+      shell.classList.add('is-scrolled');
+    } else {
+      shell.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
+
   // ── Magnetic tagline: snaps left on nav hover ──
   var navLinksEl = document.getElementById('main-nav-links');
   if (navLinksEl) {

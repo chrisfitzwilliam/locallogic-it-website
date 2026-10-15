@@ -77,13 +77,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="assets/phosphor/style.css">
 
-  <!-- Leaflet Map -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- MapLibre GL Map -->
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 
-  <link rel="stylesheet" href="css/brand.css?v=20260510_2" />
+  <link rel="stylesheet" href="css/brand.css?v=20261014_1" />
   <!-- Shared Pill Nav Styles -->
-  <link rel="stylesheet" href="components/pill-nav.css?v=20260501_8" />
+  <link rel="stylesheet" href="components/pill-nav.css?v=20261014_1" />
 
   <style>
     /* ── Hero ── */
@@ -334,9 +334,14 @@
         }
     }
 
+    /* ── Coverage Section Anchor Margin ── */
+    #coverage {
+        scroll-margin-top: 40px;
+    }
+
     /* ── Service Area Map ── */
     #service-map {
-        height: 450px;
+        height: 480px;
         width: 100%;
         border-radius: 24px;
         margin: 40px 0;
@@ -344,26 +349,71 @@
         border: 1px solid var(--border-glass);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         position: relative;
+        overflow: hidden;
         z-index: 1; /* Keep map below the pill nav */
     }
 
-    /* Override Leaflet defaults for dark glass theme */
-    .leaflet-container {
-        background: transparent;
+    /* Override MapLibre defaults for dark glass theme */
+    .maplibregl-map {
         font-family: 'Poppins', sans-serif;
     }
-    .leaflet-bar a {
-        background-color: var(--glass-bg) !important;
-        border-bottom: 1px solid var(--border-glass) !important;
-        color: #fff !important;
-    }
-    .leaflet-bar a:hover {
-        background-color: var(--glass-bg-hover) !important;
-    }
-    .leaflet-control-zoom {
+    .maplibregl-ctrl-group {
+        background: rgba(11, 15, 25, 0.75) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
         border: 1px solid var(--border-glass) !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
         overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+    .maplibregl-ctrl-group button {
+        width: 34px !important;
+        height: 34px !important;
+        background: transparent !important;
+        border-bottom: 1px solid var(--border-glass) !important;
+    }
+    .maplibregl-ctrl-group button:last-child {
+        border-bottom: none !important;
+    }
+    .maplibregl-ctrl-group button:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+    }
+    .maplibregl-ctrl-icon {
+        filter: invert(1) brightness(1.2) !important;
+    }
+
+    /* Custom Popup Styling */
+    .maplibregl-popup-content {
+        background: rgba(11, 15, 25, 0.9) !important;
+        color: #fff !important;
+        border: 1px solid var(--border-glass) !important;
+        border-radius: 12px !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+        padding: 10px 16px !important;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+    }
+    .maplibregl-popup-tip {
+        border-top-color: rgba(11, 15, 25, 0.9) !important;
+        border-bottom-color: rgba(11, 15, 25, 0.9) !important;
+    }
+    .maplibregl-ctrl-attrib {
+        background: rgba(6, 9, 19, 0.75) !important;
+        backdrop-filter: blur(6px) !important;
+        color: var(--text-secondary) !important;
+        border-top-left-radius: 8px;
+        padding: 2px 8px !important;
+        font-size: 11px !important;
+    }
+    .maplibregl-ctrl-attrib a {
+        color: #7b9acc !important;
+        text-decoration: none;
+    }
+    .maplibregl-ctrl-attrib a:hover {
+        text-decoration: underline;
     }
 
     /* Pulsing Markers */
@@ -371,6 +421,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
     }
     .pulse-dot {
         width: 12px;
@@ -379,6 +430,10 @@
         border-radius: 50%;
         position: relative;
         box-shadow: 0 0 10px var(--accent-blue);
+        transition: transform 0.2s ease;
+    }
+    .pulse-marker:hover .pulse-dot {
+        transform: scale(1.3);
     }
     .pulse-dot::after {
         content: '';
@@ -408,27 +463,6 @@
         0% { transform: scale(0.5); opacity: 0; }
         50% { opacity: 1; }
         100% { transform: scale(1.5); opacity: 0; }
-    }
-
-    /* Custom Popup Styling */
-    .leaflet-popup-content-wrapper {
-        background: var(--bg-darker);
-        color: #fff;
-        border: 1px solid var(--border-glass);
-        border-radius: 12px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-    .leaflet-popup-tip {
-        background: var(--bg-darker);
-        border: 1px solid var(--border-glass);
-        border-top: none;
-        border-left: none;
-    }
-    .leaflet-popup-content {
-        margin: 12px 16px;
-        font-weight: 500;
-        font-family: 'Poppins', sans-serif;
     }
   </style>
 </head>
@@ -750,24 +784,11 @@
   </main>
 
   <!-- Shared Pill Nav Script -->
-  <script src="scripts/pill-nav.js?v=20260501_8"></script>
+  <script src="scripts/pill-nav.js?v=20261014_1"></script>
 
   <!-- Interactive Map Initialization -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Initialize map, centered roughly on St. Charles / St. Louis region
-      // Zoom level 10 gives a good view of the whole metro area
-      var map = L.map('service-map', {
-        scrollWheelZoom: false // Prevent accidental zooming when scrolling down the page
-      }).setView([38.7881, -90.5974], 10);
-
-      // Add CartoDB Dark Matter tile layer
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-      }).addTo(map);
-
       // Locations Data
       const locations = [
         { name: "St. Charles, MO (Primary Hub)", lat: 38.7881, lng: -90.4974, primary: true },
@@ -787,26 +808,31 @@
         { name: "Warrenton, MO", lat: 38.8114, lng: -91.1440 }
       ];
 
-      // Define custom HTML markers
-      const standardIcon = L.divIcon({
-        className: 'pulse-marker',
-        html: '<div class="pulse-dot"></div>',
-        iconSize: [24, 24],
-        iconAnchor: [12, 12]
+      // Initialize MapLibre GL map with OpenFreeMap Dark style (free, fast, no API key required)
+      const map = new maplibregl.Map({
+        container: 'service-map',
+        style: 'https://tiles.openfreemap.org/styles/dark',
+        center: [-90.66, 38.79],
+        zoom: 9.7,
+        scrollZoom: false
       });
 
-      const primaryIcon = L.divIcon({
-        className: 'pulse-marker primary',
-        html: '<div class="pulse-dot"></div>',
-        iconSize: [32, 32],
-        iconAnchor: [16, 16]
-      });
+      // Zoom controls in top-left
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
 
-      // Add markers to map
+      // Add custom pulsing markers
       locations.forEach(loc => {
-        const iconToUse = loc.primary ? primaryIcon : standardIcon;
-        const marker = L.marker([loc.lat, loc.lng], { icon: iconToUse }).addTo(map);
-        marker.bindPopup(loc.name);
+        const el = document.createElement('div');
+        el.className = loc.primary ? 'pulse-marker primary' : 'pulse-marker';
+        el.innerHTML = '<div class="pulse-dot"></div>';
+
+        const popup = new maplibregl.Popup({ offset: 14, closeButton: false })
+          .setHTML(`<strong>${loc.name}</strong>`);
+
+        new maplibregl.Marker({ element: el })
+          .setLngLat([loc.lng, loc.lat])
+          .setPopup(popup)
+          .addTo(map);
       });
     });
   </script>
